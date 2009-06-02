@@ -1,6 +1,6 @@
 package net.marloncarvalho.alfred.cpf;
 
-import net.marloncarvalho.alfred.CoisasUteisException;
+import net.marloncarvalho.alfred.AlfredException;
 import net.marloncarvalho.alfred.numeros.Numeros;
 
 /**
@@ -31,7 +31,7 @@ final public class CPF {
 		String cpfSoNumeros = limpar(cpf);
 		// Verificar tamanho do CPF.
 		if ( cpfSoNumeros.length() != 11 )
-			throw new CoisasUteisException("CPF inválido. Tamanho de um CPF válido é 11. Este CPF possui " + cpfSoNumeros.length() + " números.");
+			throw new AlfredException("CPF inválido. Tamanho de um CPF válido é 11. Este CPF possui " + cpfSoNumeros.length() + " números.");
 		StringBuilder sb = new StringBuilder();
 		sb.append(cpfSoNumeros.substring(0, 3));
 		sb.append(".");
@@ -71,9 +71,9 @@ final public class CPF {
 	 */
 	public static String limpar(String cpf) {
 		if ( cpf == null ) 
-			throw new CoisasUteisException("O CPF informado é nulo.");
+			throw new AlfredException("O CPF informado é nulo.");
 		if ( "".equals(cpf) ) 
-			throw new CoisasUteisException("O CPF informado é vazio.");
+			throw new AlfredException("O CPF informado é vazio.");
 		char[] chars = cpf.toCharArray();
 		StringBuilder sb = new StringBuilder();
 		for(int indice=0;indice<chars.length;indice++) {

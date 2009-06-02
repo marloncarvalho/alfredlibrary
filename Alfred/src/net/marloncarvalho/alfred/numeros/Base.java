@@ -1,6 +1,6 @@
 package net.marloncarvalho.alfred.numeros;
 
-import net.marloncarvalho.alfred.CoisasUteisException;
+import net.marloncarvalho.alfred.AlfredException;
 
 /**
  * Utilitário para conversão entre bases numéricas.
@@ -23,7 +23,7 @@ final public class Base {
 		try {
 			n = Integer.valueOf(decimal);
 		} catch (RuntimeException re) {
-			throw new CoisasUteisException(re);
+			throw new AlfredException(re);
 		}
 		String saida = "";
 		aux = new int[64];
@@ -76,7 +76,7 @@ final public class Base {
 		try {
 			n = Integer.valueOf(decimal);
 		} catch (RuntimeException re) {
-			throw new CoisasUteisException(re);
+			throw new AlfredException(re);
 		}
 		String saida = "";
 		aux = new int[32];
@@ -169,7 +169,7 @@ final public class Base {
 		try {
 			n = Integer.valueOf(decimal);
 		} catch (RuntimeException re) {
-			throw new CoisasUteisException(re);
+			throw new AlfredException(re);
 		}
 		aux = new int[32];
 		do {
