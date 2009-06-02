@@ -8,7 +8,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 
-import net.marloncarvalho.alfred.CoisasUteisException;
+import net.marloncarvalho.alfred.AlfredException;
 
 import org.cyberneko.html.parsers.DOMParser;
 import org.xml.sax.SAXException;
@@ -57,7 +57,7 @@ final public class Sedex {
 	        wr.close();
 	        rd.close();
 		} catch (IOException e) {
-			throw new CoisasUteisException("Não foi possível acessar a página dos Correios. Tente novamente mais tarde.");
+			throw new AlfredException("Não foi possível acessar a página dos Correios. Tente novamente mais tarde.");
 		}
 		return new String[2];
 	}

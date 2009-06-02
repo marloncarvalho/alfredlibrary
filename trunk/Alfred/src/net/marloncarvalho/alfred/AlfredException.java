@@ -1,23 +1,23 @@
 package net.marloncarvalho.alfred;
 
 @SuppressWarnings("serial")
-public class CoisasUteisException extends RuntimeException {
+public class AlfredException extends RuntimeException {
 
-	public CoisasUteisException() {
+	public AlfredException() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public CoisasUteisException(String message) {
+	public AlfredException(String message) {
 		super(message);
 		// TODO Auto-generated constructor stub
 	}
 
-	public CoisasUteisException(Throwable cause) {
+	public AlfredException(Throwable cause) {
 		super(cause);
 		// TODO Auto-generated constructor stub
 	}
 
-	public CoisasUteisException(String message, Throwable cause) {
+	public AlfredException(String message, Throwable cause) {
 		super(message, cause);
 		// TODO Auto-generated constructor stub
 	}
