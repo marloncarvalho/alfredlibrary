@@ -14,32 +14,17 @@
  *  You should have received a copy of the GNU General Public License
  *  along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
-package net.marloncarvalho.alfred.email;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+package net.marloncarvalho.alfred.conversores;
 
 /**
- * Classe utilitária para Emails.
+ * Classe para conversão entre medidas de distância.
  * 
  * @author Marlon Silva Carvalho
  * @since 03/06/2009
  */
-final public class Email {
+final public class Distancia {
 
-	private Email() {
-	}
-
-	/**
-	 * Verificar se um e-mail é válido.
-	 * 
-	 * @param email E-mail a ser validado.
-	 * @return Verdadeiro caso seja válido. Falso, caso contrário.
-	 */
-	public static boolean isValido(String email) {
-		Pattern p = Pattern.compile(".+@.+\\.[a-z]+");
-		Matcher m = p.matcher(email);
-		return m.matches();
-	}
-
+	private Distancia() {}
+	
+	
 }
