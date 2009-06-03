@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import net.marloncarvalho.alfred.AlfredException;
 import net.marloncarvalho.alfred.net.WorldWideWeb;
 
 /**
@@ -16,7 +17,7 @@ import net.marloncarvalho.alfred.net.WorldWideWeb;
 final public class Sedex {
 
 	public static void main(String[] args) {
-		Sedex.getPrecoPrazoEntrega("40290280", "40290280", 11);
+		System.out.println(Sedex.getPrecoPrazoEntrega("40290280", "40290280", 1));
 	}
 
 	/**
@@ -42,14 +43,41 @@ final public class Sedex {
 		parametros.put("peso", Integer.toString(peso));
 		// Realizar a requisição.
 		String conteudo = WorldWideWeb.getConteudoSite("http://www.correios.com.br/encomendas/prazo/prazo.cfm", parametros);
-
-		// Usar expressão regular para achar R$ XX,XX  e o prazo.
-		Pattern padrao = Pattern.compile("R\\$ \\d{1,3},\\d{2}");  
+		
+		// Usar expressão regular para achar o preço.
+		Pattern padrao = Pattern.compile("<b>R\\$ \\d{1,3},\\d{2}</b>");  
 		Matcher pesquisa = padrao.matcher(conteudo);
+
+		// Deve encontrar apenas um.
+		String preco = "";
 		while(pesquisa.find()) {
-			System.out.println(pesquisa.group());
+			preco = pesquisa.group();
 		}
-		return new String[2];
+
+		// Se preço não encontrado, emitir erro.
+		if ( "".equals(preco) ) {
+			throw new AlfredException("Não foi possível obter as informações do site dos Correios. Verifique se os CEPs informados estão corretos.");
+		}
+
+		// Usar expressão regular para achar o prazo.
+		padrao = Pattern.compile("<b>\\d{1,2} DIA(S)? &Uacute;(TIL|TEIS)</b>");  
+		pesquisa = padrao.matcher(conteudo);
+
+		String prazo = "";
+		while(pesquisa.find()) {
+			prazo = pesquisa.group();
+		}
+
+		// Se prazo não encontrado, emitir erro.
+		if ( "".equals(prazo) ) {
+			throw new AlfredException("Não foi possível obter as informações do site dos Correios. Verifique se os CEPs informados estão corretos.");
+		}
+
+		// Remover as tags <b></b> das strings.
+		String precoFinal = preco.replace("<b>","").replace("</b>","");
+		String prazoFinal = prazo.replace("<b>","").replace("</b>","");
+
+		return new String[] {precoFinal,prazoFinal};
 	}
 
 }
