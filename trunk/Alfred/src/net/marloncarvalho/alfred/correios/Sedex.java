@@ -32,10 +32,6 @@ import net.marloncarvalho.alfred.net.WorldWideWeb;
  */
 final public class Sedex {
 
-	public static void main(String[] args) {
-		System.out.println(Sedex.getPrecoPrazoEntrega("40290280", "40290280", 1));
-	}
-
 	/**
 	 * Verificar o Prazo e o Preço para entrega via Sedex de um CEP de origem para um CEP de destino com uma encomenda com o peso especificado.
 	 * Exemplo de uso:
@@ -49,6 +45,14 @@ final public class Sedex {
 	 * 			   Segunda posição corresponde ao prazo em dias.
 	 */
 	public static String[] getPrecoPrazoEntrega(String cepOrigem, String cepDestino, int peso) {
+		// Checar se os parâmetros foram informados.
+		if ( "".equals(cepOrigem) )
+			throw new AlfredException("Informe o CEP de Origem.");
+		if ( "".equals(cepDestino) )
+			throw new AlfredException("Informe o CEP de Destino.");
+		if ( peso <= 0 )
+			throw new AlfredException("Informe o Peso da encomenda.");
+
 		// Montar os parâmetros.
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("resposta","paginaCorreios");

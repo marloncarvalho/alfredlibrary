@@ -58,7 +58,7 @@ final public class Telefones {
 		if ( soNumeros.length() == 12 ) {
 			s.append("+");
 			s.append(telefone.substring(0,2));
-			s.append("(");
+			s.append(" (");
 			s.append(telefone.substring(2,4));
 			s.append(") ");
 			s.append(telefone.substring(4,8));
