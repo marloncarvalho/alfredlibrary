@@ -66,8 +66,14 @@ final public class CEP {
 	 */
 	public static String[] consultarEndereco(String cep) { 
 		String cepFormatado = formatarSimples(cep);
-		Map<String, String> endereco = CSVReader.interpretar("http://ceplivre.pc2consultoria.com/index.php?module=cep&cep=" + cepFormatado + "&formato=csv");
+		Map<String, String> endereco = CSVReader.interpretar("http://ceplivre.pc2consultoria.com/index.php?module=cep&cep=" + cepFormatado + "&formato=csv").iterator().next();
+		if ( endereco == null )
+			throw new AlfredException("Endereço não encontrado.");
 		return new String[] {endereco.get("tipo_logradouro"),endereco.get("logradouro"), endereco.get("bairro"), endereco.get("cidade"),endereco.get("sigla"),endereco.get("estado")};
+	}
+
+	public static void main(String[] args) {
+		CEP.consultarEndereco("40290280");
 	}
 
 }
