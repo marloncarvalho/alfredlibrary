@@ -9,6 +9,7 @@ import java.util.List;
  * 
  * @author Amar Maniar
  */
+@SuppressWarnings("all")
 class CSV {
 	private int nfield;
 	char fieldSep;
