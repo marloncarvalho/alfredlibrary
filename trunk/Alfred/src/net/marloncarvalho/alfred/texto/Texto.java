@@ -16,6 +16,9 @@
  */
 package net.marloncarvalho.alfred.texto;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import net.marloncarvalho.alfred.numeros.Numeros;
 
 /**
@@ -56,6 +59,45 @@ public class Texto {
 			s.append(c);
 		s.append(texto);
 		return s.toString();
+	}
+
+	/**
+	 * Capitalizar a primeira letra de todas as palavras do texto.
+	 * 
+	 * @param texto Texto que terá as palavras capitalizadas.
+	 * @return Texto com a formatação aplicada.
+	 */
+	public static String capitalizarIniciais(String texto) {
+		String[] split = texto.split(" ");
+		StringBuilder s = new StringBuilder();
+		for(int i = 0; i < split.length; i++) {
+			s.append(String.valueOf(split[i].charAt(0)).toUpperCase());
+			s.append(split[i].substring(1, split[i].length()));
+			s.append(" ");
+		}
+		return s.toString().trim();
+	}
+
+	/**
+	 * Contar a quantidade de vezes que uma palavra ocorre em um texto.
+	 * Não usar caracteres especiais na palavra a ser pesquisada.
+	 * 
+	 * @param texto Texto.
+	 * @param palavra Palavra que será contada no texto.
+	 * @param ignoreCase Considerar maiúsculas ou minúsculas.
+	 * @return Quantidade de vezes que a palavra ocorre.
+	 */
+	public static int contarQuantidadePalavra(String texto, String palavra, boolean ignoreCase) {
+		if ( ignoreCase) {
+			texto = texto.toLowerCase();
+			palavra = palavra.toLowerCase();
+		}
+		Pattern padrao = Pattern.compile(palavra);  
+		Matcher pesquisa = padrao.matcher(texto);
+		int r = 0;
+		while(pesquisa.find()) 
+			r++;
+		return r;
 	}
 
 }
