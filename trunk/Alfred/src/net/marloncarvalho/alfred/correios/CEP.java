@@ -72,8 +72,4 @@ final public class CEP {
 		return new String[] {endereco.get("tipo_logradouro"),endereco.get("logradouro"), endereco.get("bairro"), endereco.get("cidade"),endereco.get("sigla"),endereco.get("estado")};
 	}
 
-	public static void main(String[] args) {
-		System.out.println(CEP.consultarEndereco("40290280"));
-	}
-
 }

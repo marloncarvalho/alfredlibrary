@@ -37,7 +37,7 @@ public class CNPJTest {
 	@Test
 	public void testarFormatarCNPJMenos15Numeros() {
 		try {
-			System.out.println(CNPJ.formatar("008.6061.342/0001-61"));
+			CNPJ.formatar("15.13.923/0001-84");
 			Assert.fail();
 		} catch(AlfredException ex) {
 		}
@@ -50,7 +50,35 @@ public class CNPJTest {
 	@Test
 	public void testarFormatarCNPJCorreto() {
 		try {
-			CNPJ.formatar("008.606.342/0001-61");
+			CNPJ.formatar("15.193.923/0001-84");
+		} catch(AlfredException ex) {
+			Assert.fail();
+		}
+	}
+
+	/**
+	 * Verificar se a validação de CNPJ funciona com um número válido.
+	 */
+	@Test
+	public void testarValidarCNPJValido() {
+		try {
+			if ( !CNPJ.isValido("15.193.923/0001-84") ) {
+				Assert.fail();
+			}
+		} catch(AlfredException ex) {
+			Assert.fail();
+		}
+	}
+
+	/**
+	 * Verificar se a validação de CNPJ funciona com um número inválido.
+	 */
+	@Test
+	public void testarValidarCNPJInvalido() {
+		try {
+			if ( CNPJ.isValido("15.193.923/0001-85") ) {
+				Assert.fail();
+			}
 		} catch(AlfredException ex) {
 			Assert.fail();
 		}
