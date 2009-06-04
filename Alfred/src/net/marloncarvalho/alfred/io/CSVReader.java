@@ -37,6 +37,10 @@ import net.marloncarvalho.alfred.AlfredException;
  */
 final public class CSVReader {
 	
+	public static void main(String[] args) {
+		CSVReader.interpretar("http://www.ams.org/msnhtml/annser.csv");
+	}
+
 	/**
 	 * Lê um arquivo CSV de um local e interpreta.
 	 * Retorna um Map onde o cabeçalho forma as chaves do Map.
@@ -57,22 +61,27 @@ final public class CSVReader {
 	        String[] keys = null;
 	        while ((line = rd.readLine()) != null) {
 	        	// Se for a primeira linha, então obter o cabeçalho.
+	        	if ( line.trim().charAt(0) == '#' )
+	        		continue;
+	        	if ( line.trim().split(",").length == 0 )
+	        		continue;
 	        	if ( primeiraLinha ) {
 	        		primeiraLinha = false;
-	        		String[] linhaSplit = line.split(",");
-	        		keys = new String[linhaSplit.length];
-	        		for(int i = 0; i < linhaSplit.length; i++)
-	        			keys[i] = linhaSplit[i].trim();
+	        		CSV csv = new CSV();
+	        		csv.split(line);
+	        		keys = new String[csv.getNField()-1];
+	        		for(int i = 0; i < csv.getNField()-1; i++)
+	        			keys[i] = csv.getField(i);
 	        	} else {
 		        	// Montar o Map.
+	        		CSV csv = new CSV();
 	        		Map<String,String> retorno = new HashMap<String, String>();
-		        	String[] linhaSplit = line.split(",");
-		        	for(int i = 0; i < linhaSplit.length ; i++) {
-		        		retorno.put(keys[i],linhaSplit[i].trim());
+	        		csv.split(line);
+		        	for(int i = 0; i < csv.getNField()-1; i++) {
+		        		retorno.put(keys[i],csv.getField(i));
 		        	}
 		        	c.add(retorno);
 	        	}
-	        	
 	        }
 	        rd.close();
 	        return c;
