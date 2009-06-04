@@ -73,7 +73,7 @@ final public class CEP {
 	}
 
 	public static void main(String[] args) {
-		CEP.consultarEndereco("40290280");
+		System.out.println(CEP.consultarEndereco("40290280"));
 	}
 
 }
