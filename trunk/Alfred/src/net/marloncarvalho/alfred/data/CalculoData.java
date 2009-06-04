@@ -16,6 +16,7 @@
  */
 package net.marloncarvalho.alfred.data;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -34,7 +35,95 @@ final public class CalculoData {
 	 * @return Data com a soma de dias.
 	 */
 	public static Date somarDias(Date data, int quantidadeDias) {
-		return null;
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(data);
+		calendar.add(Calendar.DAY_OF_MONTH, quantidadeDias);
+		return calendar.getTime();
+	}
+
+	/**
+	 * Subtrair uma determinada quantidade de dias a uma data.
+	 * 
+	 * @param data Data.
+	 * @param quantidadeDias Quantidade de dias a subtrair.
+	 * @return Data com a subtração de dias.
+	 */
+	public static Date subtrairDias(Date data, int quantidadeDias) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(data);
+		calendar.add(Calendar.DAY_OF_MONTH, -quantidadeDias);
+		return calendar.getTime();		
+	}
+
+	/**
+	 * Somar uma determinada quantidade de meses a uma data.
+	 * 
+	 * @param data Data.
+	 * @param quantidadeMeses Quantidade de meses a somar.
+	 * @return Data com a soma de meses.
+	 */
+	public static Date somarMeses(Date data, int quantidadeMeses) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(data);
+		calendar.add(Calendar.MONTH, quantidadeMeses);
+		return calendar.getTime();
+	}
+
+	/**
+	 * Subtrair uma determinada quantidade de meses a uma data.
+	 * 
+	 * @param data Data.
+	 * @param quantidadeMeses Quantidade de meses a subtrair.
+	 * @return Data com a subtração de meses.
+	 */
+	public static Date subtrairMeses(Date data, int quantidadeMeses) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(data);
+		calendar.add(Calendar.MONTH, -quantidadeMeses);
+		return calendar.getTime();
+	}
+	
+	/**
+	 * Somar uma determinada quantidade de anos a uma data.
+	 * 
+	 * @param data Data.
+	 * @param quantidadeAnos Quantidade de anos a somar.
+	 * @return Data com a soma de anos.
+	 */
+	public static Date somarAnos(Date data, int quantidadeAnos) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(data);
+		calendar.add(Calendar.YEAR, quantidadeAnos);
+		return calendar.getTime();
+	}
+
+	/**
+	 * Subtrair uma determinada quantidade de anos a uma data.
+	 * 
+	 * @param data Data.
+	 * @param quantidadeAnos Quantidade de anos a subtrair.
+	 * @return Data com a subtração de anos.
+	 */
+	public static Date subtrairAnos(Date data, int quantidadeAnos) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(data);
+		calendar.add(Calendar.YEAR, -quantidadeAnos);
+		return calendar.getTime();
+	}
+
+	/**
+	 * Calcular a quantidade de dias que existe entre as duas datas informadas.
+	 * 
+	 * @param data1 Data 1.
+	 * @param data2 Data 2.
+	 * @return Diferença em dias.
+	 */
+	public static int calcularDiferencaDias(Date data1, Date data2) {
+		Calendar calendarData1 = Calendar.getInstance();
+		calendarData1.setTime(data1);
+		Calendar calendarData2 = Calendar.getInstance();
+		calendarData2.setTime(data2);
+		return calendarData1.get(Calendar.DAY_OF_YEAR) - calendarData2.get(Calendar.DAY_OF_YEAR);
 	}
 
 }
