@@ -53,6 +53,7 @@ final public class WorldWideWeb {
 	        StringBuilder resultado = new StringBuilder();
 	        while ((line = rd.readLine()) != null) {
 	            resultado.append(line);
+	            resultado.append("\n");
 	        }
 	        rd.close();
 	        return resultado.toString();

@@ -16,7 +16,10 @@
  */
 package net.marloncarvalho.alfred.correios;
 
+import java.util.Map;
+
 import net.marloncarvalho.alfred.AlfredException;
+import net.marloncarvalho.alfred.io.CSVReader;
 
 /**
  * Classe utilitária para CEPs.
@@ -30,6 +33,7 @@ final public class CEP {
 
 	/**
 	 * Realizar a formatação do CEP passado.
+	 * A formatação é do tipo XX.XXX-XXX.
 	 * 
 	 * @param cep CEP a ser formatado.
 	 * @return CEP formatado.
@@ -38,6 +42,32 @@ final public class CEP {
 		if ( "".equals(cep) || cep.length() != 8 )
 			throw new AlfredException("Informe um CEP válido.");
 		return new StringBuilder().append(cep.substring(0,2)).append(".").append(cep.substring(2,5)).append("-").append(cep.substring(5,8)).toString();
+	}
+
+	/**
+	 * Realizar a formatação do CEP passado.
+	 * A formatação é do tipo XXXXX-XXX.
+	 * 
+	 * @param cep CEP a ser formatado.
+	 * @return CEP formatado.
+	 */
+	public static String formatarSimples(String cep) {
+		if ( "".equals(cep) || cep.length() != 8 )
+			throw new AlfredException("Informe um CEP válido.");
+		return new StringBuilder().append(cep.substring(0,5)).append("-").append(cep.substring(5,8)).toString();
+	}
+
+	/**
+	 * Consultar um Endereço pelo CEP.
+	 * Será retornado um Array contendo 6 posições, que conterão, respectivamente, os campos (tipo de logradouro, logradouro, bairro, cidade, sigla do estado, estado).
+	 * 
+	 * @param cep CEP a ser consultado.
+	 * @return Array contendo o resultado da consulta.
+	 */
+	public static String[] consultarEndereco(String cep) { 
+		String cepFormatado = formatarSimples(cep);
+		Map<String, String> endereco = CSVReader.interpretar("http://ceplivre.pc2consultoria.com/index.php?module=cep&cep=" + cepFormatado + "&formato=csv");
+		return new String[] {endereco.get("tipo_logradouro"),endereco.get("logradouro"), endereco.get("bairro"), endereco.get("cidade"),endereco.get("sigla"),endereco.get("estado")};
 	}
 
 }
