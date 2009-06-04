@@ -22,6 +22,8 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,9 +44,9 @@ final public class CSVReader {
 	 * @param u URL do arquivo CSV.
 	 * @return Mapa.
 	 */
-	public static Map<String,String> interpretar(String u) {
+	public static Collection<Map<String,String>> interpretar(String u) {
         URL url;
-        Map<String,String> retorno = new HashMap<String, String>();
+        Collection<Map<String,String>> c = new ArrayList<Map<String,String>>();
 		try {
 			url = new URL(u);
 	        URLConnection conn = url.openConnection();
@@ -63,14 +65,17 @@ final public class CSVReader {
 	        			keys[i] = linhaSplit[i].trim();
 	        	} else {
 		        	// Montar o Map.
+	        		Map<String,String> retorno = new HashMap<String, String>();
 		        	String[] linhaSplit = line.split(",");
 		        	for(int i = 0; i < linhaSplit.length ; i++) {
 		        		retorno.put(keys[i],linhaSplit[i].trim());
 		        	}
+		        	c.add(retorno);
 	        	}
+	        	
 	        }
 	        rd.close();
-	        return retorno;
+	        return c;
 		} catch (MalformedURLException e) {
 			throw new AlfredException("Não foi possível obter contato com o site " + u, e);
 		} catch (IOException e) {
