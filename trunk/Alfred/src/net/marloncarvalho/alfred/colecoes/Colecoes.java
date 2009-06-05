@@ -19,7 +19,10 @@ package net.marloncarvalho.alfred.colecoes;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
+import java.util.List;
 
 import net.marloncarvalho.alfred.AlfredException;
 import net.marloncarvalho.alfred.texto.Texto;
@@ -33,58 +36,56 @@ import net.marloncarvalho.alfred.texto.Texto;
 final public class Colecoes {
 
 	/**
-	 * Remover de uma coleção todos os itens que possuam o campo "nomeCampo" com o valor "valor".
-	 * Não passar coleção de tipos primitivos como parâmetro.
-	 * A coleção deve ser composta de objetos que seguem o padrão JavaBean.
-	 * <example>
-	 * 	class MeuObjeto {
-	 * 		private String id;
+	 * Remover de uma coleção todos os itens que possuam o campo "nomeCampo" com
+	 * o valor "valor". Não passar coleção de tipos primitivos como parâmetro. A
+	 * coleção deve ser composta de objetos que seguem o padrão JavaBean.
+	 * <example> class MeuObjeto { private String id;
 	 * 
-	 * 		public String getId() {
-	 * 			return id;
-	 * 		}
+	 * public String getId() { return id; }
 	 * 
-	 * 		public void setId(String id) {
-	 * 			this.id = id;
-	 * 		}
-	 * 	}
+	 * public void setId(String id) { this.id = id; } }
 	 * 
-	 * 	Collection c = new ArrayList();
-	 *  MeuObjeto mo = new MeuObjeto();
-	 *  mo.setId("1");
-	 *  c.add(mo);
-	 *  
-	 *  c = Colecoes.removerItem(c,"id", "1");
-	 *  
-	 *  // Irá remover o item anteriormente adicionado.
-	 * </example>
+	 * Collection c = new ArrayList(); MeuObjeto mo = new MeuObjeto();
+	 * mo.setId("1"); c.add(mo);
 	 * 
-	 * @param colecao Coleção.
-	 * @param nomeCampo Nome do campo que será checado.
-	 * @param valor Valor do campo.
+	 * c = Colecoes.removerItem(c,"id", "1");
+	 * 
+	 * // Irá remover o item anteriormente adicionado. </example>
+	 * 
+	 * @param colecao
+	 *            Coleção.
+	 * @param nomeCampo
+	 *            Nome do campo que será checado.
+	 * @param valor
+	 *            Valor do campo.
 	 * @return Coleção sem os itens.
 	 */
 	@SuppressWarnings("all")
-	public static Collection removerItem(Collection colecao, String nomeCampo, Object valor) {
+	public static Collection removerItem(Collection colecao, String nomeCampo,
+			Object valor) {
 		try {
 			Collection retorno = colecao.getClass().newInstance();
-			for(Iterator it = colecao.iterator(); it.hasNext() ; ) {
+			for (Iterator it = colecao.iterator(); it.hasNext();) {
 				Object o = it.next();
-				Method m = o.getClass().getMethod("get" + Texto.capitalizarIniciais(nomeCampo), null);
+				Method m = o.getClass().getMethod(
+						"get" + Texto.capitalizarIniciais(nomeCampo), null);
 				Object r = m.invoke(o, null);
-				if ( r != null && r.equals(valor) )
+				if (r != null && r.equals(valor))
 					continue;
 				retorno.add(o);
 			}
 			return retorno;
 		} catch (InstantiationException e) {
-			throw new AlfredException("Não foi possível instanciar um tipo de coleção igual ao tipo informado.");
+			throw new AlfredException(
+					"Não foi possível instanciar um tipo de coleção igual ao tipo informado.");
 		} catch (IllegalAccessException e) {
 			throw new AlfredException(e);
 		} catch (SecurityException e) {
 			throw new AlfredException(e);
 		} catch (NoSuchMethodException e) {
-			throw new AlfredException("Não existe o método de acesso ao campo informado. Verifique se sua classe implementa o padrão JavaBean." ,e);
+			throw new AlfredException(
+					"Não existe o método de acesso ao campo informado. Verifique se sua classe implementa o padrão JavaBean.",
+					e);
 		} catch (IllegalArgumentException e) {
 			throw new AlfredException(e);
 		} catch (InvocationTargetException e) {
@@ -92,4 +93,39 @@ final public class Colecoes {
 		}
 	}
 
+	/**
+	 * Ordenar uma coleção conforme um determinado atributo do objeto contido na coleção.
+	 * Os objetos contidos na coleção devem ser do mesmo tipo e implementarem a interface Comparable.
+	 * 
+	 * @param colecao Coleção.
+	 * @param nomeCampo Nome do campo.
+	 * @return Coleção ordenada.
+	 */
+	@SuppressWarnings("all")
+	public static List ordenar(List colecao, final String nomeCampo) {
+		if ( colecao.size() <= 0 ) 
+			return colecao;
+		if ( ! Comparable.class.isInstance(colecao.iterator().next()) )
+			throw new AlfredException("Os objetos contidos na coleção não implementam a interface Comparable.");
+		Comparator comparator = new Comparator() {
+			@Override
+			public int compare(Object ob1, Object ob2) {
+				try {
+					Method m1 = ob1.getClass().getMethod("get" + Texto.capitalizarIniciais(nomeCampo), null);
+					Object r1 = m1.invoke(ob1, null);
+					
+					Method m2 = ob2.getClass().getMethod("get" + Texto.capitalizarIniciais(nomeCampo), null);
+					Object r2 = m2.invoke(ob2, null);
+
+					Comparable c1 = (Comparable) r1;
+					Comparable c2 = (Comparable) r2;
+					return c1.compareTo(c2);
+				} catch (Throwable e) {
+				} 
+				return 0;
+			}
+		};
+		Collections.sort(colecao, comparator);
+		return colecao;
+	}
 }
