@@ -36,10 +36,6 @@ import net.marloncarvalho.alfred.AlfredException;
  * @since 04/06/2009
  */
 final public class CSVReader {
-	
-	public static void main(String[] args) {
-		CSVReader.interpretar("http://www.ams.org/msnhtml/annser.csv");
-	}
 
 	/**
 	 * Lê um arquivo CSV de um local e interpreta.
