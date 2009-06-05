@@ -18,6 +18,7 @@ package net.marloncarvalho.alfred.cpf;
 
 import net.marloncarvalho.alfred.AlfredException;
 import net.marloncarvalho.alfred.numeros.Numeros;
+import net.marloncarvalho.alfred.texto.Texto;
 
 /**
  * Utilitários para CPF.
@@ -83,6 +84,7 @@ final public class CPF {
 	 * @return Verdadeiro caso seja válido. Falso, caso contrário.
 	 */
 	public static boolean isValido(String cpf) {
+		cpf = Texto.manterNumeros(cpf);
         if (cpf.length() != 11)
             return false;
         String numDig = cpf.substring(0, 9);
