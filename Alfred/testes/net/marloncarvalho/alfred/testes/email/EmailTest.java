@@ -14,40 +14,40 @@
  *  You should have received a copy of the GNU General Public License
  *  along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
-package net.marloncarvalho.alfred.testes.cpf;
+package net.marloncarvalho.alfred.testes.email;
 
-import junit.framework.Assert;
-import net.marloncarvalho.alfred.cpf.CPF;
+import net.marloncarvalho.alfred.email.Email;
 
+import org.junit.Assert;
 import org.junit.Test;
 
-
 /**
- * Classe de Testes para CPF.
+ * Classe de Teste para E-mails.
  * 
  * @author Marlon Silva Carvalho
- * @since 03/06/2009
+ * @since 04/06/2009
  */
-public class CPFTest {
+public class EmailTest {
 
 	/**
-	 * Testar a validação de um CPF que é válido.
+	 * Testar e-mails inválidos.
 	 */
 	@Test
-	public void testarValidarCPFValido() {
-		if ( !CPF.isValido("111.111.111-11") ) {
+	public void testarEmailInvalido() {
+		if ( ! Email.isValido("marlon.carvalho@gmail.com") )
 			Assert.fail();
-		}
-	}
-
-	/**
-	 * Testar a validação de um CPF que é inválido.
-	 */
-	@Test
-	public void testarValidarCPFInvalido() {
-		if ( CPF.isValido("111.111.111-12") ) {
+		if ( Email.isValido("marlon.carvalhogmail.com") )
 			Assert.fail();
-		}
+		if ( Email.isValido("marlon@g@g.com") )
+			Assert.fail();
+		if ( Email.isValido("marlong@g....com") )
+			Assert.fail();
+		if ( Email.isValido("marlon@.com") )
+			Assert.fail();
+		if ( Email.isValido("marlon@ccom") )
+			Assert.fail();
+		if ( Email.isValido("asf@1.com") )
+			Assert.fail();
 	}
 
 }
