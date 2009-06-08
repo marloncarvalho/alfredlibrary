@@ -17,18 +17,18 @@
 package net.marloncarvalho.alfred.testes.correios;
 
 import net.marloncarvalho.alfred.AlfredException;
-import net.marloncarvalho.alfred.correios.Sedex;
+import net.marloncarvalho.alfred.correios.Sedex10;
 
 import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * Classe de teste para Sedex.
+ * Teste de Sedex 10.
  * 
  * @author Marlon Silva Carvalho
- * @since 04/06/2009
+ * @since 08/06/2009
  */
-public class SedexTest {
+public class Sedex10Test {
 
 	/**
 	 * Realizar o teste de Sedex para CEPs corretos.
@@ -37,7 +37,7 @@ public class SedexTest {
 	@Test
 	public void testarPrecoPrazoCEPsCorretos() {
 		try {
-			Sedex.obterPrecoPrazoEntrega("40290280", "40290280", 1);
+			Sedex10.obterPrecoPrazoEntrega("40290280", "40290280", 1);
 		} catch ( AlfredException exception ) {
 			Assert.fail();
 		}
@@ -50,7 +50,7 @@ public class SedexTest {
 	@Test
 	public void testarPrecoPrazoCEPsCEPOrigemIncorreto() {
 		try {
-			Sedex.obterPrecoPrazoEntrega("40290281", "40290280", 1);
+			Sedex10.obterPrecoPrazoEntrega("40290281", "40290280", 1);
 			Assert.fail();
 		} catch ( AlfredException exception ) {
 		}
@@ -63,7 +63,7 @@ public class SedexTest {
 	@Test
 	public void testarPrecoPrazoCEPsCEPDestinoIncorreto() {
 		try {
-			Sedex.obterPrecoPrazoEntrega("40290280", "40290281", 1);
+			Sedex10.obterPrecoPrazoEntrega("40290280", "40290281", 1);
 			Assert.fail();
 		} catch ( AlfredException exception ) {
 		}
@@ -76,7 +76,7 @@ public class SedexTest {
 	@Test
 	public void testarPrecoPrazoCEPsCorretosPesoIncorreto() {
 		try {
-			Sedex.obterPrecoPrazoEntrega("40290280", "40290280", -1);
+			Sedex10.obterPrecoPrazoEntrega("40290280", "40290280", -1);
 			Assert.fail();
 		} catch ( AlfredException exception ) {
 		}
@@ -89,7 +89,7 @@ public class SedexTest {
 	@Test
 	public void testarPrecoPrazoParametrosVazios() {
 		try {
-			Sedex.obterPrecoPrazoEntrega("", "", -1);
+			Sedex10.obterPrecoPrazoEntrega("", "", -1);
 			Assert.fail();
 		} catch ( AlfredException exception ) {
 		}

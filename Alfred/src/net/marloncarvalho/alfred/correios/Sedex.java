@@ -35,7 +35,7 @@ final public class Sedex {
 	/**
 	 * Verificar o Prazo e o Preço para entrega via Sedex de um CEP de origem para um CEP de destino com uma encomenda com o peso especificado.
 	 * Exemplo de uso:
-	 * Sedex.getPrecoPrazoEntrega("40290280", "40290280",1);
+	 * Sedex.obterPrecoPrazoEntrega("40290280", "40290280",1);
 	 * Retorno: {"11,20","1"}
 	 * 
 	 * @param cepOrigem CEP de Origem.
@@ -44,7 +44,7 @@ final public class Sedex {
 	 * @return Prazo e Preço para entrega. Primeira posição corresponde ao preço. 
 	 * 			   Segunda posição corresponde ao prazo em dias.
 	 */
-	public static String[] getPrecoPrazoEntrega(String cepOrigem, String cepDestino, int peso) {
+	public static String[] obterPrecoPrazoEntrega(String cepOrigem, String cepDestino, int peso) {
 		// Checar se os parâmetros foram informados.
 		if ( "".equals(cepOrigem) )
 			throw new AlfredException("Informe o CEP de Origem.");
