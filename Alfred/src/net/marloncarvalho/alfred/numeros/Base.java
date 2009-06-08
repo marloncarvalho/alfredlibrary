@@ -18,7 +18,7 @@ final public class Base {
 	 * @param decimal Número decimal.
 	 * @return Número em base binária.
 	 */
-	public static String converterDecimalBinario(String decimal) {
+	public static String converterDecimalEmBinario(String decimal) {
 		int i = 0, aux[], resto, n;
 		try {
 			n = Integer.valueOf(decimal);
@@ -48,7 +48,7 @@ final public class Base {
 	 * @param binario Número binário.
 	 * @return Número em base decimal.
 	 */
-	public static String converterBinarioDecimal(String binario) {
+	public static String converterBinarioEmDecimal(String binario) {
         int i = 0,  j = 0;
         int aux[] = new int [ 32 ];
         int n = 0;
@@ -71,7 +71,7 @@ final public class Base {
 	 * @param binario Número decimal.
 	 * @return Número em base hexadecimal.
 	 */
-	public static String converterDecimalHexadecimal(String decimal) {
+	public static String converterDecimalEmHexadecimal(String decimal) {
 		int i = 0, aux[], resto, n;
 		try {
 			n = Integer.valueOf(decimal);
@@ -127,7 +127,7 @@ final public class Base {
 	 * @param binario Número hexadecimal.
 	 * @return Número em base decimal.
 	 */
-	public static String converterHexadecimalDecimal(String hexadecimal) {
+	public static String converterHexadecimalEmDecimal(String hexadecimal) {
         int i = 0,  j = 0;
         int aux[] = new int [ 32 ];
         int n = 0;
@@ -163,7 +163,7 @@ final public class Base {
 	 * @param binario Número decimal.
 	 * @return Número em base octa.
 	 */
-	public static String converterDecimalOcta(String decimal) {
+	public static String converterDecimalEmOcta(String decimal) {
 		String saida = "";
 		int i = 0, aux[], resto, n;
 		try {
@@ -193,7 +193,7 @@ final public class Base {
 	 * @param binario Número octa.
 	 * @return Número em base decimal.
 	 */
-	public static String converterOctaDecimal(String octa) {
+	public static String converterOctaEmDecimal(String octa) {
         int i = 0,  j = 0;
         int aux[] = new int [ 32 ];
         int n = 0;
