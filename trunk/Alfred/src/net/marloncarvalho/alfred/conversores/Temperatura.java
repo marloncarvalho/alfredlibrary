@@ -33,7 +33,7 @@ final public class Temperatura {
 	 * @param degCelcius Temperatura em Celcius.
 	 * @return Temperatura em Fahrenheit.
 	 */
-	public static float converterCelciusFahrenheit(float degCelcius) {
+	public static float converterCelciusEmFahrenheit(float degCelcius) {
 		float degFahrenheit;
 		degFahrenheit = degCelcius * 9 / 5 + 32;
 		return degFahrenheit;
@@ -46,7 +46,7 @@ final public class Temperatura {
 	 * @param degFahrenheit Temperatura em Farenheit.
 	 * @return Temperatura em Celcius.
 	 */
-	public static float converterFahrenheitCelcius(float degFahrenheit) {
+	public static float converterFahrenheitEmCelcius(float degFahrenheit) {
 		float degCelcius;
 		degCelcius = (degFahrenheit - 32) * 5 / 9;
 		return degCelcius;
@@ -58,9 +58,9 @@ final public class Temperatura {
 	 * @param f Temperatura em Fahrenheit.
 	 * @return Temperatura em Kelvin.
 	 */
-	public static float converterFahrenheitKelvin(float f) {
-		float celcius = converterFahrenheitCelcius(f);
-		return converterCelciusKelvin(celcius);
+	public static float converterFahrenheitEmKelvin(float f) {
+		float celcius = converterFahrenheitEmCelcius(f);
+		return converterCelciusEmKelvin(celcius);
 	}
 
 	/**
@@ -69,9 +69,9 @@ final public class Temperatura {
 	 * @param k Temperatura em Kelvin.
 	 * @return Temperatura em Fahrenheit.
 	 */
-	public static float converterKelvinFahrenheit(float k) {
-		float celcius = converterKelvinCelcius(k);
-		return converterCelciusFahrenheit(celcius);
+	public static float converterKelvinEmFahrenheit(float k) {
+		float celcius = converterKelvinEmCelcius(k);
+		return converterCelciusEmFahrenheit(celcius);
 	}
 	
 	/**
@@ -81,7 +81,7 @@ final public class Temperatura {
 	 * @param degCelcius Temperatura em Celcius.
 	 * @return Temperatura em Kelvin.
 	 */
-	public static float converterCelciusKelvin(float degCelcius) {
+	public static float converterCelciusEmKelvin(float degCelcius) {
 		float degKelvin;
 		degKelvin = degCelcius + 273.15f;
 		return degKelvin;
@@ -94,7 +94,7 @@ final public class Temperatura {
 	 * @param degKelvin Temperatura em Kelvin.
 	 * @return Temperatura em Celcius.
 	 */
-	public static float converterKelvinCelcius(float degKelvin) {
+	public static float converterKelvinEmCelcius(float degKelvin) {
 		float degCelcius;
 		degCelcius = degKelvin - 273.15f;
 		return degCelcius;
