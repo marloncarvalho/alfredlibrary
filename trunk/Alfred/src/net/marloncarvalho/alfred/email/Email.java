@@ -33,12 +33,17 @@ final public class Email {
 	/**
 	 * Verificar se um e-mail é válido.
 	 * 
-	 * @param email E-mail a ser validado.
+	 * @param emailAddress
+	 *            E-mail a ser validado.
 	 * @return Verdadeiro caso seja válido. Falso, caso contrário.
 	 */
 	public static boolean isValido(String email) {
-		Pattern p = Pattern.compile(".+@.+\\.[a-z]+");
-		Matcher m = p.matcher(email);
+		Pattern pattern = Pattern.compile (
+		         "([a-zA-Z0-9_\\-\\.]+)@((\\[a-z]{1,3}\\.[a-z]"
+		         + "{1,3}\\.[a-z]{1,3}\\.)|(([a-zA-Z\\-]+\\.)+))"
+		         + "([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)", 
+		         Pattern.MULTILINE);
+		Matcher m=pattern.matcher(email);
 		return m.matches();
 	}
 

@@ -34,6 +34,12 @@ public class EmailTest {
 	 */
 	@Test
 	public void testarEmailInvalido() {
+		if ( !Email.isValido("123marlon123@teste.com") )
+			Assert.fail();
+		if ( Email.isValido("marlon=@t.com") )
+			Assert.fail();
+		if ( Email.isValido("marlon") )
+			Assert.fail();
 		if ( ! Email.isValido("marlon.carvalho@gmail.com") )
 			Assert.fail();
 		if ( Email.isValido("marlon.carvalhogmail.com") )
