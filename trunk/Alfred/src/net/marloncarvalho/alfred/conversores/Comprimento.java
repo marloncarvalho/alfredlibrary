@@ -84,26 +84,6 @@ final public class Comprimento {
 	}
 	
 	/**
-	 * Converter Hectare em Metro.
-	 * 
-	 * @param h Hectare.
-	 * @return Metro.
-	 */
-	public static double converterHectareEmMetro(double h) {
-		return (h*10.000);
-	}
-	
-	/**
-	 * Converter Metro em Hectare.
-	 * 
-	 * @param m Metro.
-	 * @return Hectare.
-	 */
-	public static double converterMetroEmHectare(double m) {
-		return (m/10.000);
-	}
-
-	/**
 	 * Converter Polegada em Centímetro.
 	 * 
 	 * @param p Polegada.
