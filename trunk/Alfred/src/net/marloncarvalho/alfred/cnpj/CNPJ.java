@@ -25,13 +25,12 @@ import net.marloncarvalho.alfred.texto.Texto;
  * @author Marlon Silva Carvalho
  * @since 03/06/2009
  */
-public class CNPJ {
+final public class CNPJ {
 
 	/**
 	 * Formatar um CNPJ.
 	 * 
-	 * @param cnpj
-	 *            CNPJ a ser formatado.
+	 * @param cnpj CNPJ a ser formatado.
 	 * @return CNPJ formatado.
 	 */
 	public static String formatar(String cnpj) {
