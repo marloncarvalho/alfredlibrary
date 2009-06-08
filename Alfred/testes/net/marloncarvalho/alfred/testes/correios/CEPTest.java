@@ -56,4 +56,31 @@ public class CEPTest {
 		}
 	}
 	
+	/**
+	 * Testar a obtenção de um Endereço por um CEP correto.
+	 */
+	@Test
+	public void testarConsultarEnderecoCorreto() {
+		String[] endereco = CEP.consultarEndereco("40290280");
+		// São 6 posições sempre.
+		if ( endereco.length != 6 )
+			Assert.fail();
+		for(int i=0; i < endereco.length; i++) {
+			if ( endereco[i] == null )
+				Assert.fail();
+		}
+	}
+
+	/**
+	 * Testar a consulta de um CEP incorreto.
+	 */
+	@Test
+	public void testarConsultarEnderecoIncorreto() {
+		try {
+			CEP.consultarEndereco("11111111");
+			Assert.fail();
+		} catch ( AlfredException ae) {
+		}
+	}
+
 }
