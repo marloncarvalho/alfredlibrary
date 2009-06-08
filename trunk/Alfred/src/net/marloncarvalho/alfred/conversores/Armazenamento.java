@@ -35,7 +35,11 @@ final public class Armazenamento {
 	
 	/**
 	 * Converter um valor entre duas grandezas de armazenamento em informática.
+	 * Exemplo de uso:
 	 * 
+	 *  // Converter 1 megabyte em bytes.
+	 * 	Armazenamento.converter(1, Armazenamento.MEGABYTE, Armazenamento.BYTE);
+	 *  
 	 * @param valor Valor a ser convertido.
 	 * @param unidadeEntrada Tipo do valor de entrada (bytes, kilobytes, megabytes, etc).
 	 * @param unidadeSaida Tipo de valor de saída (bytes, kilobytes, megabytes, etc).
