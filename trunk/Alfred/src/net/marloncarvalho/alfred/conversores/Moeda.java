@@ -42,7 +42,7 @@ final public class Moeda {
 	 * @param valorConversao Valor a ser convertido para dolar.
 	 * @return Valor em dolar.
 	 */
-	public static String converterRealDolar(String valorConversao) {
+	public static String converterRealEmDolar(String valorConversao) {
 		return Moeda.converter(valorConversao, "790", "220");
 	}
 
@@ -52,7 +52,7 @@ final public class Moeda {
 	 * @param valorConversao Valor a ser convertido para real.
 	 * @return Valor em real.
 	 */
-	public static String converterDolarReal(String valorConversao) {
+	public static String converterDolarEmReal(String valorConversao) {
 		return Moeda.converter(valorConversao, "220", "790");
 	}
 
