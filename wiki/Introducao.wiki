@@ -6,3 +6,6 @@ Eu, oras. Marlon. Trabalho com Java há alguns anos e sempre precisei de uma for
 
 == Posso ajudar? ==
 Sem dúvidas. Ajude codificando, documentando, criticando ou colaborando de qualquer forma. O importante é ajudar.
+
+== Licença ==
+A licença é LGPL. Isto significa que você pode usar em seu projeto proprietário, se quiser. Pode usar em qualquer tipo de projeto.
