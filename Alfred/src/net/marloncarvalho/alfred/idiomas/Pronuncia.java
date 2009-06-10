@@ -69,7 +69,6 @@ final public class Pronuncia {
 			AudioFormat format = audioInputStream.getFormat();
 			SourceDataLine auline = null;
 			DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);
-	 
 			try {
 				auline = (SourceDataLine) AudioSystem.getLine(info);
 				auline.open(format);
@@ -92,16 +91,15 @@ final public class Pronuncia {
 						auline.write(abData, 0, nBytesRead);
 				}
 			} catch (IOException e) {
-				e.printStackTrace();
-				return;
+				throw new AlfredException(e);
 			} finally {
 				auline.drain();
 				auline.close();
 			}
 		} catch (UnsupportedAudioFileException e) {
-			e.printStackTrace();
+			throw new AlfredException(e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw new AlfredException(e);
 		}
 	}
 	
