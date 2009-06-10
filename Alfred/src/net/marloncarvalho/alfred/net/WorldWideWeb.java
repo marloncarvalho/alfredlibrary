@@ -17,9 +17,12 @@
 package net.marloncarvalho.alfred.net;
 
 import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
@@ -35,6 +38,19 @@ import net.marloncarvalho.alfred.AlfredException;
  * @since 02/06/2009
  */
 final public class WorldWideWeb {
+
+	public static InputStream getConteudoArquivo(String u) {
+		URL url;
+		try {
+			url = new URL(u);
+			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+		    return new DataInputStream(connection.getInputStream());
+		} catch (MalformedURLException e) {
+			throw new AlfredException(e);
+		} catch (IOException e) {
+			throw new AlfredException(e);
+		}
+	}
 
 	/**
 	 * Obter o conteúdo de um site.
