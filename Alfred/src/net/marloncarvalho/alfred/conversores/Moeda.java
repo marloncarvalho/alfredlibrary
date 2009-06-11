@@ -37,7 +37,32 @@ import net.marloncarvalho.alfred.texto.Texto;
  * @since 03/06/2009
  */
 final public class Moeda {
-
+	public static String AFEGANISTAO = "005"; 
+	public static String AFRICADOSUL = "785";
+	public static String ALBANIA = "490";
+	public static String ALEMANHA = "610";
+	public static String ANDORRA = "690";
+	public static String ANGOLA = "635";
+	public static String ANTILHASHOLANDESAS = "325";
+	public static String ARABIASAUDITA = "820";
+	public static String ARGELIA = "095";
+	public static String ARGENTINA = "706";
+	public static String ARMENIA = "275";
+	public static String ARUBA = "328";
+	public static String AUSTRALIA = "150";
+	public static String AUSTRIA = "940";
+	public static String AZERBAIJAO = "607";
+	public static String BAHAMAS = "155";
+	public static String BAHREIN = "105";
+	public static String BANGLADESH = "905";
+	public static String BARBADOS = "175";
+	public static String BELARUS = "829";
+	public static String BELGICA = "360";
+	public static String BELIZE = "180";
+	public static String BERMUDAS = "160";
+	public static String BOLIVIA = "030";
+	public static String BOSNIAHERZEGOVINA = "612";
+	
 	private Moeda() {}
 
 	/**
