@@ -1,7 +1,7 @@
 /*
  *  This file is part of Alfred Library.
  *
- *  Foobar is free software: you can redistribute it and/or modify
+ *  Alfred Library is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
@@ -12,7 +12,7 @@
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *  along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+ *  along with Alfred Library.  If not, see <http://www.gnu.org/licenses/>.
  */
 package net.marloncarvalho.alfred.idiomas;
 
@@ -21,15 +21,12 @@ import java.io.InputStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.DataLine;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.SourceDataLine;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 import net.marloncarvalho.alfred.AlfredException;
+import net.marloncarvalho.alfred.midia.Audio;
 import net.marloncarvalho.alfred.net.WorldWideWeb;
 
 /**
@@ -42,65 +39,45 @@ final public class Pronuncia {
 	public static int INGLES = 1;
 
 	/**
-	 * Obter a pronúncia de uma palavra em um idioma.
+	 * Obter o Stream de áudio de uma pronúncia.
 	 * 
 	 * @param idioma Idioma.
 	 * @param palavra Palavra.
+	 * @return Stream de áudio.
 	 */
-	public static void obterPronuncia(int idioma, String palavra) {
+	public static AudioInputStream obterPronuncia(int idioma, String palavra) {
 		String url = "http://www.merriam-webster.com/dictionary/" + palavra;
 		String conteudo = WorldWideWeb.getConteudoSite(url);
 		String arquivoWav = "";
-		///cgi-bin/audio.pl?dictio04.wav=dictionary
-		//
-		//Pattern padrao = Pattern.compile("//audio\\.pl\\?[a-z0-9]*\\.wav=" + palavra);  
 		Pattern padrao = Pattern.compile("[a-z0-9]*\\.wav");
 		Matcher pesquisa = padrao.matcher(conteudo);
 		while(pesquisa.find()) {
 			arquivoWav = pesquisa.group();
+			break;
 		}
 		if ( "".equals(arquivoWav) )
 			throw new AlfredException("Não foi encontrada a pronúncia da palavra " + palavra + ".");
 		url = "http://media.merriam-webster.com/soundc11/" + arquivoWav.charAt(0) + "/" + arquivoWav;
-		InputStream is = WorldWideWeb.getConteudoArquivo(url);
-		
+		InputStream is = WorldWideWeb.getConteudoArquivo(url);		
 		try {
 			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(is);
-			AudioFormat format = audioInputStream.getFormat();
-			SourceDataLine auline = null;
-			DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);
-			try {
-				auline = (SourceDataLine) AudioSystem.getLine(info);
-				auline.open(format);
-			} catch (LineUnavailableException e) {
-				e.printStackTrace();
-				return;
-			} catch (Exception e) {
-				e.printStackTrace();
-				return;
-			}
-	 
-			auline.start();
-			int nBytesRead = 0;
-			byte[] abData = new byte[524288];
-	 
-			try {
-				while (nBytesRead != -1) {
-					nBytesRead = audioInputStream.read(abData, 0, abData.length);
-					if (nBytesRead >= 0)
-						auline.write(abData, 0, nBytesRead);
-				}
-			} catch (IOException e) {
-				throw new AlfredException(e);
-			} finally {
-				auline.drain();
-				auline.close();
-			}
+			return audioInputStream;
 		} catch (UnsupportedAudioFileException e) {
 			throw new AlfredException(e);
 		} catch (IOException e) {
 			throw new AlfredException(e);
 		}
 	}
-	
+
+	/**
+	 * Ouvir a pronúncia de uma palavra em um idioma.
+	 * 
+	 * @param idioma Idioma.
+	 * @param palavra Palavra.
+	 */
+	public static void ouvirPronuncia(int idioma, String palavra) {
+		AudioInputStream audio = Pronuncia.obterPronuncia(idioma, palavra);
+		Audio.executar(audio);
+	}
+
 }
