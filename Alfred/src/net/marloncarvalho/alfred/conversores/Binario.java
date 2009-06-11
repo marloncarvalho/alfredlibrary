@@ -16,12 +16,40 @@
  */
 package net.marloncarvalho.alfred.conversores;
 
+import java.io.IOException;
+
+import net.marloncarvalho.alfred.AlfredException;
+
 /**
+ * Conversor de tipos binários.
  * 
- * @author 79325645572
- *
+ * @author Marlon Silva Carvalho
+ * @since 11/06/2009
  */
 final public class Binario {
-	//String s = new sun.misc.BASE64Encoder().encode(buf);
+
+	/**
+	 * Converter um array de bytes em uma representação em Base 64.
+	 * 
+	 * @param bytes Bytes.
+	 * @return String contendo a representação em Base 64.
+	 */
+	public static String codificarBase64(byte[] bytes) {
+		return new sun.misc.BASE64Encoder().encode(bytes);
+	}
+
+	/**
+	 * Decodificar uma String em Base64 para binário.
+	 * 
+	 * @param base Base64.
+	 * @return Binário.
+	 */
+	public static byte[] decodificarBase64(String base) {
+		try {
+			return new sun.misc.BASE64Decoder().decodeBuffer(base);
+		} catch (IOException e) {
+			throw new AlfredException(e);
+		}
+	}
 
 }
