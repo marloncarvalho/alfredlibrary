@@ -46,3 +46,30 @@ PAC.obterPrecoPrazoEntregaParaRoloPrisma("40290280", "40290280", 1, 6, 18);
 </code>
 
 No exemplo acima, vamos obter o preço e prazo para entrega de uma encomenda de 1kg no formato Rolo/Prisma, 6cm de diâmetro e 18cm de comprimento. Aqui também entram as regras dos Correios citadas no exemplo acima.
+
+==Consultar um Endereço==
+Os utilitários de CEP realizam a busca de um endereço e também formatam um valor. Vamos ver o primeiro caso, obter um endereço.
+
+<code>
+String[] endereco = CEP.consultarEndereco("40290280");
+</code>
+No exemplo acima você terá um array de String com 6 posições:
+1. Tipo do Logradouro. Rua, Avenida, Praça e etc.
+2. Logradouro. É o nome da rua, por exemplo.
+3. Bairro.
+4. Cidade.
+5. Sigla do Estado. BA, SP, RJ...
+6. Nome do Estado. Bahia, São Paulo, Rio de Janeiro...
+
+==Formatar um CEP==
+A formatação de CEP é simples. Utilize as opções abaixo:
+
+<code>
+CEP.formatar("40290280");
+</code>
+Formatação do tipo 40.290-280.
+
+<code>
+CEP.formatarSimples("40290280");
+</code>
+Formatação do tipo 40290-280
