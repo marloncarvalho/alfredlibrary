@@ -1,4 +1,0 @@
-= Utilitários =
-A melhor forma de ver quais são os utilitários disponíveis é através do JavaDoc. Contudo, explicarei alguns destes utilitários.
-
-== Correios ==
