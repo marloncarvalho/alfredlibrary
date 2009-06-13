@@ -1,0 +1,20 @@
+#labels Featured
+=Conversão de Unidade de Armazenamento=
+
+Este utilitário converte valores de unidades de armazenamento. Por exemplo, converte de Megabyte para Byte. As unidades disponíveis para conversão são:
+
+  # BYTE
+  # KILOBYTE
+  # MEGABYTE
+  # GIGABYTE
+  # TERABYTE
+  # PETABYTE
+  # EXABYTE
+
+Vamos a um exemplo de uso:
+
+<code>
+Armazenamento.converter(1024, Armazenamento.MEGABYTE, Armazenamento.KILOBYTE);
+</code>
+
+No exemplo acima, você irá converter 1024 MEGABYTES para KILOBYTES.
