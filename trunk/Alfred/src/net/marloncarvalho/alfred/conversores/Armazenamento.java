@@ -56,8 +56,4 @@ final public class Armazenamento {
 		return valor;
 	}
 
-	public static void main(String[] args) {
-		System.out.println(Armazenamento.converter(1, Armazenamento.BYTE, Armazenamento.MEGABYTE));
-	}
-
 }

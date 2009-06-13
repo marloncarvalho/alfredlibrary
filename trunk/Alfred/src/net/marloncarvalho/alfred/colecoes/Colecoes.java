@@ -39,30 +39,28 @@ final public class Colecoes {
 	 * Remover de uma coleção todos os itens que possuam o campo "nomeCampo" com
 	 * o valor "valor". Não passar coleção de tipos primitivos como parâmetro. A
 	 * coleção deve ser composta de objetos que seguem o padrão JavaBean.
-	 * <example> class MeuObjeto { private String id;
+	 * <br>
+	 * <code> 
+	 * class MeuObjeto { private String id;<br><br>
 	 * 
-	 * public String getId() { return id; }
+	 * 		public String getId() { return id; }<br>
+	 * 		public void setId(String id) { this.id = id; } <br>
+	 * }<br>
+	 * <br><br>
+	 * Collection c = new ArrayList(); MeuObjeto mo = new MeuObjeto();<br>
+	 * mo.setId("1"); c.add(mo);<br>
+	 * <br><br>
+	 * c = Colecoes.removerItem(c,"id", "1");<br>
+	 * <br><br>
+	 * // Irá remover o item anteriormente adicionado. </code>
 	 * 
-	 * public void setId(String id) { this.id = id; } }
-	 * 
-	 * Collection c = new ArrayList(); MeuObjeto mo = new MeuObjeto();
-	 * mo.setId("1"); c.add(mo);
-	 * 
-	 * c = Colecoes.removerItem(c,"id", "1");
-	 * 
-	 * // Irá remover o item anteriormente adicionado. </example>
-	 * 
-	 * @param colecao
-	 *            Coleção.
-	 * @param nomeCampo
-	 *            Nome do campo que será checado.
-	 * @param valor
-	 *            Valor do campo.
+	 * @param colecao Coleção.
+	 * @param nomeCampo Nome do campo que será checado.
+	 * @param valor Valor do campo.
 	 * @return Coleção sem os itens.
 	 */
 	@SuppressWarnings("all")
-	public static Collection removerItem(Collection colecao, String nomeCampo,
-			Object valor) {
+	public static Collection removerItem(Collection colecao, String nomeCampo, Object valor) {
 		try {
 			Collection retorno = colecao.getClass().newInstance();
 			for (Iterator it = colecao.iterator(); it.hasNext();) {
