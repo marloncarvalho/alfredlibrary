@@ -30,3 +30,19 @@ O mesmo ocorre para o Sedex Hoje. O código muda muito pouco. Segue abaixo um ex
 // O segundo é o CEP de Destino.
 SedexHoje.obterPrecoPrazoEntrega("40290280","40290280",1);
 </code>
+
+==PAC==
+A entrega por PAC é um pouco mais complicada e deve seguir algumas regras dos Correios. Existem alguns limites quanto ao tamanho da Embalagem que você deve estar atento. Esta rotina também necessita de alguns parâmetros a mais.
+
+
+<code>
+ PAC.obterPrecoPrazoEntregaParaCaixaPacote("40290280", "40290280", 1, 12, 6, 16);
+</code>
+
+No exemplo acima, vamos obter o preço e prazo para entrega de uma encomenda de 1kg no formato Caixa/Pacote, com 12cm de largura, 6cm de altura e 16cm de comprimento. Aqui que entram as regras dos Correios. Vejam quais são no endereço <a href="http://www.correios.com.br/encomendas/prazo/Formato.cfm">http://www.correios.com.br/encomendas/prazo/Formato.cfm.</a>.
+
+<code>
+PAC.obterPrecoPrazoEntregaParaRoloPrisma("40290280", "40290280", 1, 6, 18);
+</code>
+
+No exemplo acima, vamos obter o preço e prazo para entrega de uma encomenda de 1kg no formato Rolo/Prisma, 6cm de diâmetro e 18cm de comprimento. Aqui também entram as regras dos Correios citadas no exemplo acima.
