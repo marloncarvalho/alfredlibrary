@@ -1,0 +1,32 @@
+#labels Featured
+=Utilitários de Correios=
+Através destes utilitários você pode realizar consultas de preços e prazos de entrega através de PAC, Sedex, Sedex 10 e Sedex Hoje. Poderá também consultar Endereços e formatar CEP de duas formas.
+
+==Sedex==
+Caso você queira consultar qual o preço e prazo para entrega por Sedex, utilize o utilitário net.marloncarvalho.alfred.correios.Sedex. Você necessitará uma conexão com a Internet, pois este utilitário consulta as páginas dos Correios para obter estas informações. Veja abaixo alguns exemplos de uso.
+
+<code>
+// O primeiro é o CEP de Origem.
+// O segundo é o CEP de Destino.
+Sedex.obterPrecoPrazoEntrega("40290280","40290280",1);
+</code>
+
+Com o código acima você irá obter o preço e prazo para entrega do CEP de Origem 40290280 para o CEP de destino 40290280. O número 1 indica o peso da encomenda.
+
+==Sedex 10==
+O cálculo para o Sedex 10 não muda, quando comparado ao Sedex. Basta mudar um pouco seu código. Segue um exemplo.
+
+<code>
+// O primeiro é o CEP de Origem.
+// O segundo é o CEP de Destino.
+Sedex10.obterPrecoPrazoEntrega("40290280","40290280",1);
+</code>
+
+==Sedex Hoje==
+O mesmo ocorre para o Sedex Hoje. O código muda muito pouco. Segue abaixo um exemplo.
+
+<code>
+// O primeiro é o CEP de Origem.
+// O segundo é o CEP de Destino.
+SedexHoje.obterPrecoPrazoEntrega("40290280","40290280",1);
+</code>
