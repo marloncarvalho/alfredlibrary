@@ -48,7 +48,7 @@ final public class CPF {
             numero = Integer.valueOf((int) (Math.random() * 10));
             iniciais.append(numero.toString());
         }
-        return iniciais.toString() + calcDigVerif(iniciais.toString());
+        return iniciais.toString() + gerarDigitoVerificador(iniciais.toString());
     }
 
 	/**
@@ -88,7 +88,7 @@ final public class CPF {
         if (cpf.length() != 11)
             return false;
         String numDig = cpf.substring(0, 9);
-        return calcDigVerif(numDig).equals(cpf.substring(9, 11));
+        return gerarDigitoVerificador(numDig).equals(cpf.substring(9, 11));
 	}
 
 	/**
@@ -121,7 +121,7 @@ final public class CPF {
 	 * @param num
 	 * @return Dígito verificador.
 	 */
-	private static String calcDigVerif(String num) {
+	public static String gerarDigitoVerificador(String num) {
 		Integer primDig, segDig;
 		int soma = 0, peso = 10;
 		for (int i = 0; i < num.length(); i++)

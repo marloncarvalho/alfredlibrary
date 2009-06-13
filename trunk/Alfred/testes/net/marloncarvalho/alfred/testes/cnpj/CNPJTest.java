@@ -84,4 +84,31 @@ public class CNPJTest {
 		}
 	}
 
+	/**
+	 * Testar a geração de um CNPJ.
+	 */
+	@Test
+	public void testarGeracao() {
+		try {
+			String cnpj = CNPJ.gerar();
+			Assert.assertTrue(CNPJ.isValido(cnpj));
+		} catch ( AlfredException ae ) {
+			Assert.fail();
+		}
+	}
+
+	/**
+	 * Testar a geração de dígito verificador.
+	 */
+	@Test
+	public void testarGeracaoDigitoVerificador() {
+		try {
+			// Deve ser 84.
+			String digito = CNPJ.gerarDigitoVerificador("151939230001");
+			Assert.assertEquals("84", digito);
+		} catch ( AlfredException ae ) {
+			Assert.fail();
+		}
+	}
+
 }

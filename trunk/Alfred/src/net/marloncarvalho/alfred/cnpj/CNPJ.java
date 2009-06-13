@@ -28,6 +28,58 @@ import net.marloncarvalho.alfred.texto.Texto;
 final public class CNPJ {
 
 	/**
+	 * Gerar um número de CNPJ válido.<br>
+	 * Um número de CNPJ que é válido não significa que exista.
+	 * 
+	 * @return CNPJ gerado.
+	 */
+	public static String gerar() {
+		StringBuilder iniciais = new StringBuilder();
+		Integer numero;
+		for (int i = 0; i < 12; i++) {
+			numero = Integer.valueOf((int) (Math.random() * 10));
+			iniciais.append(numero.toString());
+		}
+		return formatar(iniciais.toString() + gerarDigitoVerificador(iniciais.toString()));
+	}
+
+	/**
+	 * Dado um conjunto de 12 números, gerar um dígito verificador.
+	 * 
+	 * @param cnpj CNPJ com 12 números.
+	 * @return Dígito verificador.
+	 */
+	public static String gerarDigitoVerificador(String cnpj) {
+		int soma = 0, dig;
+		String str_cnpj = Texto.manterNumeros(cnpj);
+		String cnpj_calc = str_cnpj;
+
+		char[] chr_cnpj = (str_cnpj + "00").toCharArray();
+
+		for (int i = 0; i < 4; i++)
+			if (chr_cnpj[i] - 48 >= 0 && chr_cnpj[i] - 48 <= 9)
+				soma += (chr_cnpj[i] - 48) * (6 - (i + 1));
+		for (int i = 0; i < 8; i++)
+			if (chr_cnpj[i + 4] - 48 >= 0 && chr_cnpj[i + 4] - 48 <= 9)
+				soma += (chr_cnpj[i + 4] - 48) * (10 - (i + 1));
+		dig = 11 - (soma % 11);
+
+		cnpj_calc += (dig == 10 || dig == 11) ? "0" : Integer.toString(dig);
+		chr_cnpj[12] = cnpj_calc.charAt(12);
+
+		soma = 0;
+		for (int i = 0; i < 5; i++)
+			if (chr_cnpj[i] - 48 >= 0 && chr_cnpj[i] - 48 <= 9)
+				soma += (chr_cnpj[i] - 48) * (7 - (i + 1));
+		for (int i = 0; i < 8; i++)
+			if (chr_cnpj[i + 5] - 48 >= 0 && chr_cnpj[i + 5] - 48 <= 9)
+				soma += (chr_cnpj[i + 5] - 48) * (10 - (i + 1));
+		dig = 11 - (soma % 11);
+		cnpj_calc += (dig == 10 || dig == 11) ? "0" : Integer.toString(dig);
+		return String.valueOf(cnpj_calc.charAt(12)) + String.valueOf(cnpj_calc.charAt(13));
+	}
+
+	/**
 	 * Formatar um CNPJ.
 	 * 
 	 * @param cnpj CNPJ a ser formatado.
@@ -54,10 +106,12 @@ final public class CNPJ {
 	}
 
 	/**
-	 * Validar um CNPJ. Código de Rodrigo Scorsatto. 
-	 * Obtido em http://www.javafree.org/artigo/852844/Validacao-de-CNPJ-em-java.html
-	 * Autor: Dalton Camargo.
+	 * <b>Validar um CNPJ.</b><br>
+	 * Obtido em <a href=
+	 * "http://www.javafree.org/artigo/852844/Validacao-de-CNPJ-em-java.html"
+	 * >http://www.javafree.org/artigo/852844/Validacao-de-CNPJ-em-java.html</a><br>
 	 * 
+	 * @author Dalton Camargo.
 	 * @param str_cnpj CNPJ a ser validado.
 	 * @return Verdadeiro caso seja válido. Falso, caso contrário.
 	 */
