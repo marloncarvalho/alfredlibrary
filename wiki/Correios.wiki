@@ -54,12 +54,12 @@ Os utilitários de CEP realizam a busca de um endereço e também formatam um va
 String[] endereco = CEP.consultarEndereco("40290280");
 </code>
 No exemplo acima você terá um array de String com 6 posições:
-1. Tipo do Logradouro. Rua, Avenida, Praça e etc.
-2. Logradouro. É o nome da rua, por exemplo.
-3. Bairro.
-4. Cidade.
-5. Sigla do Estado. BA, SP, RJ...
-6. Nome do Estado. Bahia, São Paulo, Rio de Janeiro...
+  #Tipo do Logradouro. Rua, Avenida, Praça e etc.
+  #Logradouro. É o nome da rua, por exemplo.
+  #Bairro.
+  #Cidade.
+  #Sigla do Estado. BA, SP, RJ...
+  #Nome do Estado. Bahia, São Paulo, Rio de Janeiro...
 
 ==Formatar um CEP==
 A formatação de CEP é simples. Utilize as opções abaixo:
