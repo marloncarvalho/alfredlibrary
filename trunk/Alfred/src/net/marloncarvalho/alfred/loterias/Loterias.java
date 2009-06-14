@@ -64,8 +64,4 @@ final public class Loterias {
 		return new String[] { resultadoQuina[0], resultadoQuina[1], resultadoQuina[2], resultadoQuina[3], resultadoQuina[4]};
 	}
 
-	public static void main(String[] args) {
-		Loterias.obterResultadoQuina("2063");
-	}
-
 }
