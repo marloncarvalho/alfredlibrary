@@ -62,6 +62,34 @@ final public class Moeda {
 	public static String BERMUDAS = "160";
 	public static String BOLIVIA = "030";
 	public static String BOSNIAHERZEGOVINA = "612";
+	public static String BOTSUANA = "755";
+	public static String BRASIL = "790";
+	public static String BRUNEI = "185";
+	public static String BULGARIA = "510";
+	public static String BURUNDI = "365";
+	public static String BUTAO = "665";
+	public static String CABOVERDE = "295";
+	public static String CAMBOJA = "825";
+	public static String CANADA = "165";
+	public static String CATAR = "800";
+	public static String CAYMAN = "190";
+	public static String CAZAQUISTAO = "913";
+	public static String CHILE = "715";
+	public static String CHINA = "795";
+	public static String CHIPRE = "520";
+	public static String CINGAPURA = "195";
+	public static String COLOMBIA = "720";
+	public static String COMORES = "368";
+	public static String CONGO = "971";
+	public static String COREIADONORTE = "925";
+	public static String COREIADOSUL = "930";
+	public static String COSTARICA = "040";
+	public static String CROACIA  = "779";
+	public static String CUBA = "725";
+	public static String DINAMARCA = "055";
+	public static String EGITO = "535";
+	public static String ELSALVADOR = "045";
+	public static String EMIRADOSARABESUNIDOS = "145";
 	
 	private Moeda() {}
 
