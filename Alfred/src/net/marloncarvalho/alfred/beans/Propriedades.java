@@ -33,6 +33,8 @@ import net.marloncarvalho.alfred.texto.Texto;
  */
 final public class Propriedades {
 
+	private Propriedades() { }
+	
 	/**
 	 * Colocar em um Map todas as propriedades de um objeto.
 	 * 
