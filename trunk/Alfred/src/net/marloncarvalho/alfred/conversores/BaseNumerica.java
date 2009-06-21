@@ -84,7 +84,7 @@ final public class BaseNumerica {
 	 * Código obtido do Linha de Código no endereço
 	 * <link>http://www.linhadecodigo.com.br/Codigo.aspx?id=407</link>
 	 * 
-	 * @param binario Número decimal.
+	 * @param decimal Número decimal.
 	 * @return Número em base hexadecimal.
 	 */
 	public static String converterDecimalEmHexadecimal(String decimal) {
@@ -140,7 +140,7 @@ final public class BaseNumerica {
 	 * Código obtido do Linha de Código no endereço
 	 * <link>http://www.linhadecodigo.com.br/Codigo.aspx?id=407</link>
 	 * 
-	 * @param binario Número hexadecimal.
+	 * @param hexadecimal Número hexadecimal.
 	 * @return Número em base decimal.
 	 */
 	public static String converterHexadecimalEmDecimal(String hexadecimal) {
@@ -176,7 +176,7 @@ final public class BaseNumerica {
 	 * Código obtido do Linha de Código no endereço
 	 * <link>http://www.linhadecodigo.com.br/Codigo.aspx?id=407</link>
 	 * 
-	 * @param binario Número decimal.
+	 * @param decimal Número decimal.
 	 * @return Número em base octa.
 	 */
 	public static String converterDecimalEmOcta(String decimal) {
@@ -206,7 +206,7 @@ final public class BaseNumerica {
 	 * Código obtido do Linha de Código no endereço
 	 * <link>http://www.linhadecodigo.com.br/Codigo.aspx?id=407</link>
 	 * 
-	 * @param binario Número octa.
+	 * @param octa Número octa.
 	 * @return Número em base decimal.
 	 */
 	public static String converterOctaEmDecimal(String octa) {

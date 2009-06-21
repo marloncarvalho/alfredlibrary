@@ -33,8 +33,7 @@ final public class Email {
 	/**
 	 * Verificar se um e-mail é válido.
 	 * 
-	 * @param emailAddress
-	 *            E-mail a ser validado.
+	 * @param email E-mail a ser validado.
 	 * @return Verdadeiro caso seja válido. Falso, caso contrário.
 	 */
 	public static boolean isValido(String email) {

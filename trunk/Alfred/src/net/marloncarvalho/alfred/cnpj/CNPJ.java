@@ -111,7 +111,6 @@ final public class CNPJ {
 	 * "http://www.javafree.org/artigo/852844/Validacao-de-CNPJ-em-java.html"
 	 * >http://www.javafree.org/artigo/852844/Validacao-de-CNPJ-em-java.html</a><br>
 	 * 
-	 * @author Dalton Camargo.
 	 * @param str_cnpj CNPJ a ser validado.
 	 * @return Verdadeiro caso seja válido. Falso, caso contrário.
 	 */
