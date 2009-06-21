@@ -29,19 +29,23 @@ import java.util.Vector;
 import net.marloncarvalho.alfred.AlfredException;
 
 /**
- * Utilitarios para Arquivos
+ * Utilitarios para Arquivos.
  * 
  * @author Mario Jorge Pereira
+ * @author Marlon Silva Carvalho
  * @since 09/06/2009
  */
-public class Arquivo {
+final public class Arquivo {
+
+	private Arquivo() {}
 
 	/**
-	 * 
-	 * @param local
-	 * @param fileData
-	 * @param nome
-	 * @return
+	 * Salvar um arquivo.
+	 *  
+	 * @param local Caminho do arquivo.
+	 * @param fileData Dados.
+	 * @param nome Nome do arquivo.
+	 * @return Verdadeiro caso a opera tenha sido realizada com sucesso.
 	 */
 	public static boolean salvar(String local, byte[] fileData, String nome) {
 		FileOutputStream out = null;
@@ -64,8 +68,15 @@ public class Arquivo {
 		return true;
 	}
 
-	public static boolean sobrescrever(String local, byte[] fileData,
-			String nome) {
+	/**
+	 * Sobrescrever um arquivo.
+	 * 
+	 * @param local Caminho do arquivo.
+	 * @param fileData Dados.
+	 * @param nome Nome do arquivo.
+	 * @return Verdadeiro caso a opera tenha sido realizada com sucesso.
+	 */
+	public static boolean sobrescrever(String local, byte[] fileData, String nome) {
 		FileOutputStream out = null;
 		File f = new File(local + nome);
 		if (f.exists()) {
@@ -85,9 +96,11 @@ public class Arquivo {
 	}
 
 	/**
+	 * Listar arquivos específicos de um determinado diretório.
 	 * 
-	 * @param local
-	 * @return
+	 * @param local Diretório.
+	 * @param terminacoes Terminações dos arquivos.
+	 * @return Lista de arquivos encontrados.
 	 */
 	public static File[] listarArquivosEspecificosDiretorio(String local, final List<String> terminacoes) {
 		File f = new File(local);
@@ -107,27 +120,28 @@ public class Arquivo {
 	}
 
 	/**
+	 * Listar arquivos de um diretório conforme um filtro e podendo ser recursivo.
 	 * 
-	 * @param directory
-	 * @param filter
-	 * @param recurse
-	 * @return
+	 * @param directory Diretório.
+	 * @param filter Filtro.
+	 * @param recurse Se é recursivo.
+	 * @return Lista de arquivos.
 	 */
-	public static File[] listFilesAsArray(File directory,
-			FilenameFilter filter, boolean recurse) {
-		Collection<File> files = listFiles(directory, filter, recurse);
+	public static File[] listarArquivosArray(File directory, FilenameFilter filter, boolean recurse) {
+		Collection<File> files = listarArquivos(directory, filter, recurse);
 		File[] arr = new File[files.size()];
 		return files.toArray(arr);
 	}
 
 	/**
+	 * Listar arquivos de um diretório conforme um filtro e podendo ser recursivo.
 	 * 
-	 * @param directory
-	 * @param filter
-	 * @param recurse
-	 * @return
+	 * @param directory Diretório.
+	 * @param filter Filtro.
+	 * @param recurse Se é recursivo.
+	 * @return Lista de arquivos.
 	 */
-	public static Collection<File> listFiles(File directory,FilenameFilter filter, boolean recurse) {
+	public static Collection<File> listarArquivos(File directory,FilenameFilter filter, boolean recurse) {
 		Vector<File> files = new Vector<File>();
 		File[] entries = directory.listFiles();
 		for (File entry : entries) {
@@ -135,28 +149,30 @@ public class Arquivo {
 				files.add(entry);
 			}
 			if (recurse && entry.isDirectory()) {
-				files.addAll(listFiles(entry, filter, recurse));
+				files.addAll(listarArquivos(entry, filter, recurse));
 			}
 		}
 		return files;
 	}
 
 	/**
+	 * Obter a extensão de um arquivo.
 	 * 
-	 * @param file
-	 * @return
+	 * @param file Arquivo.
+	 * @return Extensão.
 	 */
-	public static String extensao(File file) {
+	public static String obterExtensao(File file) {
 		String nome = file.getName();
-		return extensao(nome);
+		return obterExtensao(nome);
 	}
 
 	/**
+	 * Obter a extensão de um arquivo.
 	 * 
-	 * @param nome
-	 * @return
+	 * @param nome Nome do arquivo.
+	 * @return Extensão.
 	 */
-	public static String extensao(String nome) {
+	public static String obterExtensao(String nome) {
 		String resp = "";
 		int i = nome.lastIndexOf(".");
 		if (i != -1) {
