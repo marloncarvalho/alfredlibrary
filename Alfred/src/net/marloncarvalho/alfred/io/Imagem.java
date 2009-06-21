@@ -37,15 +37,18 @@ import net.marloncarvalho.alfred.AlfredException;
  * Utilitário para imagens.
  * 
  * @author Mario Jorge Pereira
+ * @author Marlon Silva Carvalho
  * @since 09/06/2009
  */
-public class Imagem {
+final public class Imagem {
+
+	private Imagem() { }
 
 	/**
-	 * Carregar a imagem em um BufferedImage
+	 * Carregar a imagem em um BufferedImage.
 	 * 
-	 * @param ref
-	 * @return
+	 * @param ref Nome do arquivo da imagem.
+	 * @return BufferedImage.
 	 */
 	public static BufferedImage carregarImagem(String ref) {
 		BufferedImage bimg = null;
@@ -58,25 +61,26 @@ public class Imagem {
 	}
 
 	/**
+	 * Redimensionar uma imagem.
 	 * 
-	 * 
-	 * @param imagem
-	 * @param novaLargura
-	 * @param novaAltura
-	 * @param manterProporcao
-	 * @return
+	 * @param imagem Imagem a ser redimensionada.
+	 * @param novaLargura Nova Largura.
+	 * @param novaAltura Nova Altura.
+	 * @param manterProporcao Se deve ser mantida a proporção.
+	 * @return Nova imagem redimensionada.
 	 */
 	public static BufferedImage redimensionar(byte[] imagem, int novaLargura, int novaAltura, boolean manterProporcao) {
 		return redimensionar(obterBufferedImage(imagem), novaLargura,novaAltura, manterProporcao);
 	}
 
 	/**
-	 * 
-	 * @param bi
-	 * @param novaLargura
-	 * @param novaAltura
-	 * @param manterProporcao
-	 * @return
+	 *  Redimensionar uma imagem.
+	 *  
+	 * @param bi Imagem a ser redimensionada.
+	 * @param novaLargura Nova Largura.
+	 * @param novaAltura Nova Altura.
+	 * @param manterProporcao Se deve ser mantida a proporção.
+	 * @return Nova imagem redimensionada.
 	 */
 	public static BufferedImage redimensionar(BufferedImage bi, int novaLargura, int novaAltura, boolean manterProporcao) {
 		double thumbRatio = (double) novaLargura / (double) novaAltura;
@@ -99,12 +103,13 @@ public class Imagem {
 	}
 
 	/**
-	 * 
-	 * @param img
-	 * @param novaLargura
-	 * @param novaAltura
-	 * @param manterProporcao
-	 * @return
+	 *  Redimensionar uma imagem.
+	 *  
+	 * @param img Imagem a ser redimensionada.
+	 * @param novaLargura Nova Largura.
+	 * @param novaAltura Nova Altura.
+	 * @param manterProporcao Se deve ser mantida a proporção.
+	 * @return Nova imagem redimensionada.
 	 */
 	public static BufferedImage redimensionar(Image img, int novaLargura,int novaAltura, boolean manterProporcao) {
 		double thumbRatio = (double) novaLargura / (double) novaAltura;
@@ -127,13 +132,14 @@ public class Imagem {
 	}
 
 	/**
+	 * Salvar uma imagem.
 	 * 
-	 * @param img
-	 * @param arquivo
+	 * @param img Imagem a ser salva.
+	 * @param arquivo Nome do arquivo.
 	 */
 	public static void salvarImagem(BufferedImage img, String arquivo) {
 		BufferedOutputStream out;
-		String tipo = Arquivo.extensao(arquivo).toUpperCase();
+		String tipo = Arquivo.obterExtensao(arquivo).toUpperCase();
 		try {
 			out = new BufferedOutputStream(new FileOutputStream(arquivo));
 			ImageIO.write(img, tipo, out);
@@ -145,9 +151,10 @@ public class Imagem {
 	}
 
 	/**
+	 * Obter uma imagem a partir de um array de bytes.
 	 * 
-	 * @param imagem
-	 * @return
+	 * @param imagem Imagem em bytes.
+	 * @return Imagem.
 	 */
 	public static BufferedImage obterBufferedImage(byte[] imagem) {
 		BufferedImage bi = null;
@@ -160,10 +167,11 @@ public class Imagem {
 	}
 
 	/**
+	 * Obter uma imagem.
 	 * 
-	 * @param imagem
-	 * @param descricao
-	 * @return
+	 * @param imagem Dados da imagem em bytes.
+	 * @param descricao Nome da imagem.
+	 * @return Imagem.
 	 */
 	public static Image obterImagem(byte[] imagem, String descricao) {
 		return new ImageIcon(imagem, descricao).getImage();
