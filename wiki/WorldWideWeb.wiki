@@ -1,0 +1,32 @@
+#labels Featured
+=World Wide Web=
+Utilitários para interação com conteúdo de websites. Inicialmente, temos três funcionalidades.
+
+==Obter o HTML de um site=
+Para você obter o conteúdo de uma página Web, use:
+
+<code>
+ WorldWideWeb.getConteudoSite("http://www.marloncarvalho.net/");
+</code>
+
+Você terá o conteúdo HTML da página em uma String.
+
+==Obter o HTML de um site usando POST=
+Para você obter o conteúdo de uma página Web enviando parâmetros através de POST, use:
+
+<code>
+ Map<String,Object> parametros = new HashMap<String,Object>();
+ parametros.put("param1","dado1");
+ WorldWideWeb.getConteudoSite("http://www.marloncarvalho.net/", parametros);
+</code>
+
+Esta funcionalidade é muito interessante para se obter a resposta de um formulário na Web. Suponha que a página tenha um formulário que envia para http://www.marloncarvalho.net/ e que tenha um campo de texto com nome "param1". Com este utilitário você pode obter a resposta que a submissão deste formulário dará.
+
+==Obter um Arquivo=
+Suponha que você quer obter um arquivo .pdf de um site. Use assim:
+
+<code>
+ WorldWideWeb.getConteudoArquivo("http://www.marloncarvalho.net/arquivo.pdf");
+</code>
+
+Como reposta você terá um InputStream.
