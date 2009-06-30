@@ -1,0 +1,27 @@
+#labels Featured
+=Verificaçao e Geração de CPF=
+Através deste utilitário é possível validar, gerar e formatar um CPF. Vamos aos exemplos de utilização.
+
+<code>
+CPF.formatar("11111111111");
+</code>
+
+No exemplo acima você terá um CPF formatado assim: 111.111.111-11
+
+<code>
+CPF.isValido("111.111.111-12")
+</code>
+
+Neste exemplo, o retorno será FALSE, pois o último número está errado. Deveria ser 1.
+
+<code>
+CPF.gerar();
+</code>
+
+O código acima vai gerar um CPF válido para você. Contudo, entenda que um CPF ser válido, não implica que ele exista.
+
+<code>
+CPF.gerarDigitoVerificador("111111111");
+</code>
+
+Você tem os 9 primeiros números e quer saber quais seriam os dígitos verificadores para estes números? Faz igualzinho ao exemplo acima!
