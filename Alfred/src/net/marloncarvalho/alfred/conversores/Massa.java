@@ -23,8 +23,31 @@ package net.marloncarvalho.alfred.conversores;
  * @since 07/06/2009
  */
 final public class Massa {
+	public static double TONELADA = 1D;
+	public static double QUILOGRAMA = 1000D;
+	public static double HECTOGRAMA = 10000D;
+	public static double GRAMA = 1000000D;
+	public static double CENTIGRAMA = 100000000D;
+	public static double QUILATE = 5000000D;
+	public static double MILIGRAMA = 1000000000D;
+	public static double MICROGRAMA = 1000000000000D;
+	public static double NANOGRAMA = 1000000000000000D;
 
 	private Massa() {}
+
+	/**
+	 * Converter uma unidade de massa para outra.
+	 * 
+	 * @param unidadeEntrada Unidade de Entrada.
+	 * @param unidadeSaida Unidade de Saída.
+	 * @param valor Valor a ser convertido.
+	 * @return Valor convertido.
+	 */
+	public static double converter(double unidadeEntrada, double unidadeSaida, double valor) {
+		if ( unidadeEntrada > unidadeSaida )
+			return (valor/(unidadeEntrada/unidadeSaida));
+		else return (valor*(unidadeSaida/unidadeEntrada));
+	}
 
 	/**
 	 * Converter Quilograma em Grama.
@@ -32,6 +55,7 @@ final public class Massa {
 	 * @param kg Quilograma.
 	 * @return Grama.
 	 */
+	@Deprecated
 	public static double converterKgEmGrama(double kg) {
 		return (kg*1000);
 	}
@@ -42,6 +66,7 @@ final public class Massa {
 	 * @param g Grama.
 	 * @return Quilograma.
 	 */
+	@Deprecated
 	public static double converterGramaEmKg(double g) {
 		return (g/1000);
 	}
