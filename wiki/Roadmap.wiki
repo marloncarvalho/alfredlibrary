@@ -7,7 +7,9 @@ Previsão de conclusão: 15 de julho de 2009
 
   * Completar documentação de todas as funcionalidades no Wiki.
     * Uma página wiki para cada classe utilitária mais exemplos de utilização.
+
   * Completar todos os testes unitários de cada utilitário.
     * Todas as classes devem ter testes unitários.
+
   * Todas as funcionalidades incluídas até o build 20090621 serão mantidas. Nenhuma nova será incluída.
     * Novas funcionalidades serão incluídas apenas para a versão 0.2.
