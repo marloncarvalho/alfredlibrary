@@ -38,12 +38,12 @@ final public class Massa {
 	/**
 	 * Converter uma unidade de massa para outra.
 	 * 
+	 * @param valor Valor a ser convertido.
 	 * @param unidadeEntrada Unidade de Entrada.
 	 * @param unidadeSaida Unidade de Saída.
-	 * @param valor Valor a ser convertido.
 	 * @return Valor convertido.
 	 */
-	public static double converter(double unidadeEntrada, double unidadeSaida, double valor) {
+	public static double converter(double valor, double unidadeEntrada, double unidadeSaida) {
 		if ( unidadeEntrada > unidadeSaida )
 			return (valor/(unidadeEntrada/unidadeSaida));
 		else return (valor*(unidadeSaida/unidadeEntrada));
