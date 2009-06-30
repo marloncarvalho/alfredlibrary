@@ -13,3 +13,10 @@ Previsão de conclusão: 15 de julho de 2009
 
   * Todas as funcionalidades incluídas até o build 20090621 serão mantidas. Nenhuma nova será incluída.
     * Novas funcionalidades serão incluídas apenas para a versão 0.2.
+
+  * Finalizar as correções dos problemas encontrados (Issues).
+
+==Versão 0.2==
+Previsão de conclusão: sem previsão.
+
+ Ainda em discussão. O principal foco será o desenvolvimento de novas funcionalidades.
