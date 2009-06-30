@@ -90,7 +90,87 @@ final public class Moeda {
 	public static String EGITO = "535";
 	public static String ELSALVADOR = "045";
 	public static String EMIRADOSARABESUNIDOS = "145";
-	
+	public static String EQUADOR = "895";
+	public static String ESLOVAQUIA = "058";
+	public static String ESLOVENIA = "914";
+	public static String ESPANHA = "700";
+	public static String ESTADOSUNIDOS = "220";
+	public static String ESTONIA = "057";
+	public static String ETIOPIA = "009";
+	public static String FINLANDIA = "615";
+	public static String FRANCA = "395";
+	public static String GANA = "035";
+	public static String GRECIA = "270";
+	public static String HOLANDA = "335";
+	public static String HONDURAS = "495";
+	public static String HONGKONG = "205";
+	public static String HUNGRIA = "345";
+	public static String IEMEN = "810";
+	public static String INDIA = "860";
+	public static String INDONESIA = "865";
+	public static String IRA = "815";
+	public static String IRAQUE = "115";
+	public static String IRLANDA = "550";
+	public static String ISLANDIA = "060";
+	public static String ISRAEL = "880";
+	public static String ITALIA = "595";
+	public static String JAMAICA = "230";
+	public static String JAPAO = "470";
+	public static String JORDANIA = "125";
+	public static String LETONIA = "485";
+	public static String LIBANO = "560";
+	public static String LIBERIA = "235";
+	public static String LIBIA = "130";
+	public static String LITUANIA = "601";
+	public static String MACEDONIA = "132";
+	public static String MADAGASCAR = "405";
+	public static String MALASIA = "828";
+	public static String MARROCOS = "139";
+	public static String MEXICO = "741";
+	public static String MOCAMBIQUE = "622";
+	public static String MONGOLIA = "915";
+	public static String NAMIBIA = "173";
+	public static String NEPAL = "845";
+	public static String NICARAGUA = "051";
+	public static String NIGERIA = "630";
+	public static String NORUEGA = "065";
+	public static String NOVAZELANDIA = "245";
+	public static String PANAMA = "020";
+	public static String PAPUANOVAGUINE = "778";
+	public static String PAQUISTAO = "875";
+	public static String PARAGUAI = "450";
+	public static String PERU = "660";
+	public static String POLONIA = "975";
+	public static String PORTUGAL = "315";
+	public static String QUENIA = "950";
+	public static String REINOUNIDO = "540";
+	public static String REPUBLICADOMINICANA = "730";
+	public static String ROMENIA = "506";
+	public static String RUANDA = "420";
+	public static String RUSSIA = "830";
+	public static String SERRALEOA = "500";
+	public static String SERVIA = "133";
+	public static String SIRIA = "575";
+	public static String SOMALIA = "960";
+	public static String SRILANKA = "855";
+	public static String SUDAO = "134";
+	public static String SUECIA = "070";
+	public static String SUICA = "425";
+	public static String SURINAME = "255";
+	public static String TAILANDIA = "015";
+	public static String TANZANIA = "015";
+	public static String TIMORLESTE = "320";
+	public static String TUNISIA = "135";
+	public static String TURQUIA = "642";
+	public static String UCRANIA = "460";
+	public static String UGANDA = "955";
+	public static String URUGUAI = "745";
+	public static String UZBEQUISTAO = "893";
+	public static String VENEZUELA = "025";
+	public static String VIETNA = "260";
+	public static String ZAMBIA = "765";
+	public static String ZIMBABUE = "217";
+
 	private Moeda() {}
 
 	/**
@@ -111,7 +191,7 @@ final public class Moeda {
 	 * @return Valor em dolar.
 	 */
 	public static String converterRealEmDolar(String valorConversao) {
-		return Moeda.converter(valorConversao, "790", "220");
+		return Moeda.converter(valorConversao, BRASIL, ESTADOSUNIDOS);
 	}
 
 	/**
@@ -121,7 +201,7 @@ final public class Moeda {
 	 * @return Valor em real.
 	 */
 	public static String converterDolarEmReal(String valorConversao) {
-		return Moeda.converter(valorConversao, "220", "790");
+		return Moeda.converter(valorConversao, ESTADOSUNIDOS, BRASIL);
 	}
 
 	/**
