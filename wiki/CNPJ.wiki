@@ -1,5 +1,5 @@
 #labels Featured
-=Verifiçao e Geração de CNPJ=
+=Verificaçao e Geração de CNPJ=
 Através deste utilitário é possível validar, gerar e formatar um CNPJ. Vamos aos exemplos de utilização.
 
 <code>
