@@ -5,6 +5,8 @@ Está página tem por objetivo definir o roadmap de desenvolvimento da bibliotec
 ==Versão 0.1==
 Previsão de conclusão: 15 de julho de 2009
 
+Para ver o mapa para o desenvolvimento do Alfred, visite o mapa mental no XMind.net: http://share.xmind.net/marloncarvalho/alfred-library/.
+
   * Completar documentação de todas as funcionalidades no Wiki.
     * Uma página wiki para cada classe utilitária mais exemplos de utilização.
 
