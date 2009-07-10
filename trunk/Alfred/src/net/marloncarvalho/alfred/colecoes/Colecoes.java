@@ -103,8 +103,6 @@ final public class Colecoes {
 	public static List ordenar(List colecao, final String nomeCampo) {
 		if ( colecao.size() <= 0 ) 
 			return colecao;
-		if ( ! Comparable.class.isInstance(colecao.iterator().next()) )
-			throw new AlfredException("Os objetos contidos na coleção não implementam a interface Comparable.");
 		Comparator comparator = new Comparator() {
 			@Override
 			public int compare(Object ob1, Object ob2) {
@@ -119,8 +117,8 @@ final public class Colecoes {
 					Comparable c2 = (Comparable) r2;
 					return c1.compareTo(c2);
 				} catch (Throwable e) {
+					throw new AlfredException(e);
 				} 
-				return 0;
 			}
 		};
 		Collections.sort(colecao, comparator);
