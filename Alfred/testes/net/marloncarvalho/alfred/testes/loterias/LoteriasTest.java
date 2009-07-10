@@ -37,7 +37,6 @@ public class LoteriasTest {
 			if ( resultado.length < 6 )
 				Assert.fail();
 			for(int i=0; i<resultado.length;i++) {
-				System.out.println(resultado[i]);
 				if ( resultado[i] == null || "".equals(resultado[i]) ) 
 					Assert.fail();
 			}
@@ -53,7 +52,6 @@ public class LoteriasTest {
 			if ( resultado.length < 5 )
 				Assert.fail();
 			for(int i=0; i<resultado.length;i++) {
-				System.out.println(resultado[i]);
 				if ( resultado[i] == null || "".equals(resultado[i]) ) 
 					Assert.fail();
 			}
