@@ -74,16 +74,13 @@ final public class Colecoes {
 			}
 			return retorno;
 		} catch (InstantiationException e) {
-			throw new AlfredException(
-					"Não foi possível instanciar um tipo de coleção igual ao tipo informado.");
+			throw new AlfredException("Não foi possível instanciar um tipo de coleção igual ao tipo informado.");
 		} catch (IllegalAccessException e) {
 			throw new AlfredException(e);
 		} catch (SecurityException e) {
 			throw new AlfredException(e);
 		} catch (NoSuchMethodException e) {
-			throw new AlfredException(
-					"Não existe o método de acesso ao campo informado. Verifique se sua classe implementa o padrão JavaBean.",
-					e);
+			throw new AlfredException("Não existe o método de acesso ao campo informado. Verifique se sua classe implementa o padrão JavaBean.",e);
 		} catch (IllegalArgumentException e) {
 			throw new AlfredException(e);
 		} catch (InvocationTargetException e) {
