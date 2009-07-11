@@ -31,6 +31,7 @@ import org.junit.Test;
  * @author Marlon Silva Carvalho
  * @since 10/07/2009
  */
+@SuppressWarnings("all")
 public class ColecoesTest {
 
 	@Test
