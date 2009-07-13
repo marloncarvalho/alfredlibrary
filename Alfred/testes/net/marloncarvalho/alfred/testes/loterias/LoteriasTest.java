@@ -33,7 +33,7 @@ public class LoteriasTest {
 	@Test
 	public void testarResultadoMegaSena() {
 		try {
-			String[] resultado = Loterias.obterResultadoMegaSena("1087");
+			String[] resultado = Loterias.obterResultadoMegaSena("1");
 			if ( resultado.length < 6 )
 				Assert.fail();
 			for(int i=0; i<resultado.length;i++) {
