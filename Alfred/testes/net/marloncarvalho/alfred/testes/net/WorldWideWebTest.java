@@ -39,8 +39,9 @@ public class WorldWideWebTest {
 	public void testarObterConteudoSemPostComProxy() {
 		try {
 			AlfredConfig.getInstancia().setUsingProxy(true);
-			AlfredConfig.getInstancia().setProxy("", 80);
+			AlfredConfig.getInstancia().setProxy("189.56.61.33", 3128);
 			String conteudo = WorldWideWeb.getConteudoSite("http://alfredlibrary.googlecode.com/");
+			AlfredConfig.getInstancia().setUsingProxy(false);
 			if ( conteudo == null || "".equals(conteudo ) ) {
 				Assert.fail();
 			}
