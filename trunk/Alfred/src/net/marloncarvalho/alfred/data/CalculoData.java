@@ -123,7 +123,7 @@ final public class CalculoData {
 		calendarData1.setTime(data1);
 		Calendar calendarData2 = Calendar.getInstance();
 		calendarData2.setTime(data2);
-		return calendarData1.get(Calendar.DAY_OF_YEAR) - calendarData2.get(Calendar.DAY_OF_YEAR);
+		return Math.abs(calendarData1.get(Calendar.DAY_OF_YEAR) - calendarData2.get(Calendar.DAY_OF_YEAR));
 	}
 
 }
