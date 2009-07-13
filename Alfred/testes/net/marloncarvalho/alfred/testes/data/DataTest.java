@@ -16,7 +16,13 @@
  */
 package net.marloncarvalho.alfred.testes.data;
 
+import java.text.DateFormatSymbols;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Locale;
+
+import junit.framework.Assert;
 
 import net.marloncarvalho.alfred.data.Data;
 
@@ -32,8 +38,16 @@ public class DataTest {
 
 	@Test
 	public void testarFormatacaoExtensa() {
-		String data = Data.formatarDataPorExtenso(new Date());
-		System.out.println(data);
+		Date agora = new Date();
+		String data = Data.formatarDataPorExtenso(agora);
+		
+		Calendar cal = null;
+		cal = new GregorianCalendar();
+		cal.setTime(agora);
+		String mes = new DateFormatSymbols(Locale.getDefault()).getMonths()[cal.get(Calendar.MONTH)];
+		String dia = (cal.get(Calendar.DAY_OF_MONTH) < 10)  ?  "0" + cal.get(Calendar.DAY_OF_MONTH) : String.valueOf(cal.get(Calendar.DAY_OF_MONTH));
+		String b = new StringBuilder().append(dia).append(" de ").append(mes).append(" de ").append(cal.get(Calendar.YEAR)).toString();
+		Assert.assertEquals(b,data);
 	}
 
 }
