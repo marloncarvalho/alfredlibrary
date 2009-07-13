@@ -9,5 +9,5 @@ Este utilitário resume-se a apenas realizar a conversão de Base64. Por exemplo
 O caminho inverso também é possível:
 
 <code>
- byte[] bytes = Binario.decodificarBase64("umastringcontendobase64");
+ byte\[\] bytes = Binario.decodificarBase64("umastringcontendobase64");
 </code>
