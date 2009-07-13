@@ -3,7 +3,7 @@
 Este utilitário resume-se a apenas realizar a conversão de Base64. Por exemplo, suponha que você tem um array de bytes e queira sua representação em Base64.
 
 <code>
-  Binario.codificarBase64(bytes});
+  Binario.codificarBase64(bytes);
 </code>
 
 O caminho inverso também é possível:
