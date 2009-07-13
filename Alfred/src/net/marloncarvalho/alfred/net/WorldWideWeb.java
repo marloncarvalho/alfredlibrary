@@ -22,13 +22,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.Map;
 
+import net.marloncarvalho.alfred.AlfredConfig;
 import net.marloncarvalho.alfred.AlfredException;
 
 /**
@@ -43,8 +43,12 @@ final public class WorldWideWeb {
 		URL url;
 		try {
 			url = new URL(u);
-			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-		    return new DataInputStream(connection.getInputStream());
+			URLConnection conn = null;
+			if ( AlfredConfig.getInstancia().isUsingProxy() )
+				conn = url.openConnection(AlfredConfig.getInstancia().getProxy());
+			else conn = url.openConnection();
+
+		    return new DataInputStream(conn.getInputStream());
 		} catch (MalformedURLException e) {
 			throw new AlfredException(e);
 		} catch (IOException e) {
@@ -62,7 +66,10 @@ final public class WorldWideWeb {
         URL url;
 		try {
 			url = new URL(u);
-	        URLConnection conn = url.openConnection();
+			URLConnection conn = null;
+			if ( AlfredConfig.getInstancia().isUsingProxy() )
+				conn = url.openConnection(AlfredConfig.getInstancia().getProxy());
+			else conn = url.openConnection();
 	        conn.setDoOutput(true);
 	        BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 	        String line;
@@ -100,7 +107,10 @@ final public class WorldWideWeb {
 				}
 			}
 			url = new URL(u);
-	        URLConnection conn = url.openConnection();
+			URLConnection conn = null;
+			if ( AlfredConfig.getInstancia().isUsingProxy() )
+				conn = url.openConnection(AlfredConfig.getInstancia().getProxy());
+			else conn = url.openConnection();
 	        conn.setDoOutput(true);
 	        OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
 	        wr.write(strParams.toString());

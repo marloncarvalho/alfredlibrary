@@ -21,6 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import junit.framework.Assert;
+import net.marloncarvalho.alfred.AlfredConfig;
 import net.marloncarvalho.alfred.AlfredException;
 import net.marloncarvalho.alfred.net.WorldWideWeb;
 
@@ -34,6 +35,20 @@ import org.junit.Test;
  */
 public class WorldWideWebTest {
 
+	@Test
+	public void testarObterConteudoSemPostComProxy() {
+		try {
+			AlfredConfig.getInstancia().setUsingProxy(true);
+			AlfredConfig.getInstancia().setProxy("", 80);
+			String conteudo = WorldWideWeb.getConteudoSite("http://alfredlibrary.googlecode.com/");
+			if ( conteudo == null || "".equals(conteudo ) ) {
+				Assert.fail();
+			}
+		} catch ( AlfredException ae ) {
+			Assert.fail(ae.getMessage());
+		}
+	}
+	
 	@Test
 	public void testarObterConteudoSemPost() {
 		try {
