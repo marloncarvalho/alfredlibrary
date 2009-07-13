@@ -34,6 +34,7 @@ import org.junit.Test;
 @SuppressWarnings("all")
 public class ColecoesTest {
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testarColecaoOrdenar() {
 		ClasseBean a = new ClasseBean("A");
@@ -49,6 +50,7 @@ public class ColecoesTest {
 		Assert.assertEquals("ABC", res);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testarColecaoRemover() {
 		ClasseBean a = new ClasseBean("A");
