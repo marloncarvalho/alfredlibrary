@@ -16,6 +16,8 @@
  */
 package net.marloncarvalho.alfred.loterias;
 
+import java.util.Date;
+
 import net.marloncarvalho.alfred.net.WorldWideWeb;
 
 /**
@@ -43,6 +45,21 @@ final public class Loterias {
 		String resultado = conteudo.split("\\|")[2].replaceAll("<ul>", "").replaceAll("</ul>","").replaceAll("<li>", "").replaceAll("<span id=\"num_sorteio\">","").replaceAll("</span>","").replaceAll("</li>","|");
 		String[] resultadoMegaSena = resultado.split("\\|");
 		return resultadoMegaSena;
+	}
+
+	/**
+	 * Obter o número do concurso mais atual da megasena.
+	 * 
+	 * @return Número do Concurso.
+	 */
+	public static String obterNumeroUltimoConcursoMegaSena() {
+		String url = "http://www1.caixa.gov.br/loterias/loterias/megasena/megasena_pesquisa_new.asp?f_megasena=" + new Date().getTime();
+		String conteudo = WorldWideWeb.getConteudoSite(url);
+		return conteudo.split("\\|")[0];
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(Loterias.obterNumeroUltimoConcursoMegaSena());
 	}
 
 	/**
