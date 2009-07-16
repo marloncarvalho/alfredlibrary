@@ -57,10 +57,6 @@ final public class Loterias {
 		String conteudo = WorldWideWeb.getConteudoSite(url);
 		return conteudo.split("\\|")[0];
 	}
-	
-	public static void main(String[] args) {
-		System.out.println(Loterias.obterNumeroUltimoConcursoMegaSena());
-	}
 
 	/**
 	 * Obter o resultado da Quina.
