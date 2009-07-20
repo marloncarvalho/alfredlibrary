@@ -1,0 +1,9 @@
+#labels Featured
+=Novidades=
+
+*20/07/2009*
+Novo build no ar. Os ISSUES #3 e #4 foram atendidos. 
+
+  * A classe BaseNumerica passa a usar a própria plataforma Java para realizar a conversão;
+  * A classe Temperatura passa a ter o método converter(float,int,int);
+  * A classe Armazenamento agora tem as opções de conversão BIT, KILOBIT, MEGABIT, GIGABIT, TERABIT e EXABIT.
