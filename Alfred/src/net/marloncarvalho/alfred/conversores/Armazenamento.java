@@ -23,21 +23,28 @@ package net.marloncarvalho.alfred.conversores;
  * @since 08/06/2009
  */
 final public class Armazenamento {
-	public static int BYTE = 1;
-	public static int KILOBYTE = 2;
-	public static int MEGABYTE = 3;
-	public static int GIGABYTE = 4;
-	public static int TERABYTE = 5;
-	public static int PETABYTE = 6;
-	public static int EXABYTE = 7;
-	
+	public static int BIT = 1;
+	public static int KILOBIT = 2;
+	public static int MEGABIT = 3;
+	public static int GIGABIT = 4;
+	public static int TERABIT = 5;
+	public static int PETABIT = 6;
+	public static int EXABIT = 7;
+	public static int BYTE = 8;
+	public static int KILOBYTE = 9;
+	public static int MEGABYTE = 10;
+	public static int GIGABYTE = 11;
+	public static int TERABYTE = 12;
+	public static int PETABYTE = 13;
+	public static int EXABYTE = 14;
+
 	private Armazenamento() {}
-	
+
 	/**
-	 * Converter um valor entre duas grandezas de armazenamento em informática.
+	 * Converter um valor entre duas grandezas de armazenamento em informática.<br><br>
 	 * Exemplo de uso:
-	 * 
-	 *  // Converter 1 megabyte em bytes.
+	 * <br> 
+	 *  // Converter 1 megabyte em bytes.<br>
 	 * 	Armazenamento.converter(1, Armazenamento.MEGABYTE, Armazenamento.BYTE);
 	 *  
 	 * @param valor Valor a ser convertido.
@@ -46,6 +53,18 @@ final public class Armazenamento {
 	 * @return Valor conertido.
 	 */
 	public static double converter(double valor, int unidadeEntrada, int unidadeSaida) {
+		if ( unidadeSaida < BYTE && unidadeEntrada > EXABIT ) {
+			for(int i=0; i<(unidadeEntrada-BYTE);i++)
+				valor *= 1024;
+			valor *= 8;
+			unidadeEntrada = BIT;
+		}
+		if ( unidadeSaida > EXABIT && unidadeEntrada < BYTE ) {
+			for(int i=0; i<(unidadeEntrada-BIT);i++)
+				valor *= 1024;
+			valor /= 8;
+			unidadeEntrada = BYTE;
+		}
 		if ( unidadeEntrada < unidadeSaida ) {
 			for(int i=0; i<(unidadeSaida-unidadeEntrada);i++)
 				valor /= 1024;
