@@ -16,6 +16,8 @@
  */
 package net.marloncarvalho.alfred.conversores;
 
+import net.marloncarvalho.alfred.AlfredException;
+
 /**
  * Classe utilitária para conversão de temperaturas.
  * 
@@ -23,11 +25,38 @@ package net.marloncarvalho.alfred.conversores;
  * @since 03/06/2009
  */
 final public class Temperatura {
-	
+	public static int CELSIUS = 1;
+	public static int FAHRENHEIT = 2;
+	public static int KELVIN = 3;
+
 	private Temperatura() {}
-	
+
 	/**
-	 * Converter de Celcius para Fahrenheiht.
+	 * Converter um valor de temperatura para outro.
+	 * 
+	 * @param valor Valor que será convertido.
+	 * @param entrada Em que tipo de representação o valor está representado.
+	 * @param saida Em que tipo de representação o valor de saída será representado.
+	 * @return Valor convertido.
+	 */
+	public static float converter(float valor, int entrada, int saida) {
+		if ( entrada == CELSIUS && saida == FAHRENHEIT )
+			return converterCelciusEmFahrenheit(valor);
+		if ( entrada == CELSIUS && saida == KELVIN )
+			return converterCelciusEmKelvin(valor);
+		if ( entrada == FAHRENHEIT && saida == CELSIUS )
+			return converterFahrenheitEmCelcius(valor);
+		if ( entrada == FAHRENHEIT && saida == KELVIN )
+			return converterFahrenheitEmKelvin(valor);
+		if ( entrada == KELVIN && saida == CELSIUS )
+			return converterKelvinEmCelcius(valor);
+		if ( entrada == KELVIN && saida == FAHRENHEIT )
+			return converterKelvinEmFahrenheit(valor);
+		throw new AlfredException("Não foi possível realizar a conversão de temperatura solicitada.");
+	}
+
+	/**
+	 * Converter de Celcius para Fahrenheit.
 	 * Código "gentilmente" sugado do blog http://discomoose.org/2005/12/27/temperature-conversion-program-in-java/.
 	 * 
 	 * @param degCelcius Temperatura em Celcius.
