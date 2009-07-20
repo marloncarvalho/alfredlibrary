@@ -58,11 +58,11 @@ public class BaseNumericaTest {
 	@Test
 	public void testarConversaoDecimalHexadecimal() {
 		String hexa = BaseNumerica.converterDecimalEmHexadecimal("10");
-		Assert.assertEquals("0A", hexa);
+		Assert.assertEquals("A", hexa);
 		hexa = BaseNumerica.converterDecimalEmHexadecimal("1");
-		Assert.assertEquals("01", hexa);
+		Assert.assertEquals("1", hexa);
 		hexa = BaseNumerica.converterDecimalEmHexadecimal("11");
-		Assert.assertEquals("0B", hexa);
+		Assert.assertEquals("B", hexa);
 	}
 
 }
