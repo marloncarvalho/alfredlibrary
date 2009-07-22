@@ -24,6 +24,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
+import net.marloncarvalho.alfred.AlfredException;
 import net.marloncarvalho.alfred.net.WorldWideWeb;
 
 import org.xml.sax.Attributes;
@@ -49,14 +50,20 @@ final public class BRLinux {
 	 * @throws IOException
 	 * @throws ParserConfigurationException
 	 */
-	public static String[] obterNoticiasBRLinux() throws SAXException,
-			IOException, ParserConfigurationException {
+	public static String[] obterNoticiasBRLinux() {
 		String url;
 		url = "http://br-linux.org/feed/";
 		String conteudo = WorldWideWeb.getConteudoSite(url);
 
 		SAXParserFactory parserFactory = SAXParserFactory.newInstance();
-		SAXParser parser = parserFactory.newSAXParser();
+		SAXParser parser;
+		try {
+			parser = parserFactory.newSAXParser();
+		} catch (ParserConfigurationException e) {
+			throw new AlfredException(e);
+		} catch (SAXException e) {
+			throw new AlfredException(e);
+		}
 
 		Reader reader = new StringReader(conteudo);
 		InputSource inputSource = new InputSource(reader);
@@ -88,7 +95,13 @@ final public class BRLinux {
 			}
 		};
 
-		parser.parse(inputSource, handler);
+		try {
+			parser.parse(inputSource, handler);
+		} catch (SAXException e) {
+			throw new AlfredException(e);
+		} catch (IOException e) {
+			throw new AlfredException(e);
+		}
 		String[] resultadoNoticias = resultado.split("\\|");
 		return resultadoNoticias;
 	}

@@ -16,15 +16,11 @@
  */
 package net.marloncarvalho.alfred.testes.brlinux;
 
-import java.io.IOException;
-
-import javax.xml.parsers.ParserConfigurationException;
-
+import net.marloncarvalho.alfred.AlfredException;
 import net.marloncarvalho.alfred.brlinux.BRLinux;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.xml.sax.SAXException;
 
 /**
  * Teste das noticias do BRLinux.
@@ -44,13 +40,9 @@ public class BRLinuxTest {
 				if (resultado[i] == null || "".equals(resultado[i]))
 					Assert.fail();
 			}
-		} catch (SAXException e) {
+		} catch (AlfredException e) {
 			Assert.fail();
-		} catch (IOException e) {
-			Assert.fail();
-		} catch (ParserConfigurationException e) {
-			Assert.fail();
-		}
+		} 
 	}
 
 }
