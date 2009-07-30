@@ -8,5 +8,3 @@ Quer ajudar o Alfred a melhorar? Tem diversas formas!
   * Corrija bugs;
   * Escreva documentação;
   * Faça uma doação.
-
-<div align="center"><form target="pagseguro" action="https://pagseguro.uol.com.br/security/webpagamentos/webdoacao.aspx" method="post"><input type="hidden" name="email_cobranca" value="marlon.carvalho@gmail.com"><input type="hidden" name="moeda" value="BRL"><input type="image" src="https://pagseguro.uol.com.br/Security/Imagens/FacaSuaDoacao.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!"></form></div>
