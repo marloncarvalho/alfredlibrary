@@ -50,9 +50,14 @@ final public class Propriedades {
 			Field field = fields[i];
 			try {
 				if ( ! field.isAccessible() ) {
-					Method method = objeto.getClass().getMethod("get" + Texto.capitalizarIniciais(field.getName()), null);
-					Object valor = method.invoke(objeto, null);
-					map.put(field.getName(),valor);
+					Method method;
+					try {
+						method = objeto.getClass().getMethod("get" + Texto.capitalizarIniciais(field.getName()), null);
+						Object valor = method.invoke(objeto, null);
+						map.put(field.getName(),valor);
+					} catch (NoSuchMethodException e) { 
+						// Ignorar a exceção e copiar os demais campos. 
+					}
 				} else {
 					Object valor = field.get(objeto);
 					map.put(field.getName(),valor);
@@ -62,8 +67,6 @@ final public class Propriedades {
 			} catch (IllegalAccessException e) {
 				throw new AlfredException(e);
 			} catch (SecurityException e) {
-				throw new AlfredException(e);
-			} catch (NoSuchMethodException e) {
 				throw new AlfredException(e);
 			} catch (InvocationTargetException e) {
 				throw new AlfredException(e);
