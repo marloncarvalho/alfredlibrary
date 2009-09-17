@@ -1,6 +1,7 @@
 package net.marloncarvalho.alfred.numeros;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 /**
  * Utilitários para Números.
@@ -112,6 +113,24 @@ final public class Numeros {
 		} catch (RuntimeException exception) {
 			return false;
 		}
+	}
+
+	/**
+	 * Obter uma String contendo os números primos até 'numero' seperados por espaço.
+	 * 
+	 * @param numero 
+	 * @return Números primos separados por espaço.
+	 */
+	public static String obterNumerosPrimosAte(int numero) {
+		StringBuilder sb = new StringBuilder();
+		for(int i=2;i<=numero;i++) {
+			BigInteger bigInteger = BigInteger.valueOf(i);
+			if ( bigInteger.isProbablePrime(100) ) {
+				sb.append(bigInteger);
+				sb.append(" ");
+			}
+		}
+		return sb.toString().trim();
 	}
 
 }

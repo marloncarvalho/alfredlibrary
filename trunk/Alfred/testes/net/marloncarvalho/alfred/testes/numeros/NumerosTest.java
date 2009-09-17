@@ -62,4 +62,19 @@ public class NumerosTest {
 		Assert.assertTrue(Numeros.isBigDecimal("1.5"));
 	}
 
+	@Test
+	public void testarPrimosVerdadeiros() {
+		Assert.assertEquals("2 3 5 7 11 13", Numeros.obterNumerosPrimosAte(16));
+	}
+
+	@Test
+	public void testarPrimosAte1() {
+		Assert.assertEquals("", Numeros.obterNumerosPrimosAte(1));
+	}
+
+	@Test
+	public void testarPrimosAte0() {
+		Assert.assertEquals("", Numeros.obterNumerosPrimosAte(0));
+	}
+
 }
