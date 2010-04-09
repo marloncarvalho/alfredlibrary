@@ -35,7 +35,9 @@ import net.marloncarvalho.alfred.texto.Texto;
  * 
  * @author Marlon Silva Carvalho
  * @since 03/06/2009
+ * @deprecated
  */
+@Deprecated
 final public class Moeda {
 	public static String AFEGANISTAO = "005"; 
 	public static String AFRICADOSUL = "785";

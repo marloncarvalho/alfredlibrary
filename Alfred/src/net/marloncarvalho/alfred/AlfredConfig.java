@@ -5,6 +5,7 @@ import java.net.Proxy;
 import java.net.SocketAddress;
 import java.net.Proxy.Type;
 
+@Deprecated
 final public class AlfredConfig {
 	private boolean usingProxy = false;
 	private Proxy proxy;

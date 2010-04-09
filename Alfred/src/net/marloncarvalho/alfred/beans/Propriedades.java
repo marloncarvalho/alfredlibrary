@@ -30,7 +30,9 @@ import net.marloncarvalho.alfred.texto.Texto;
  * 
  * @author Marlon Silva Carvalho
  * @since 17/06/2009
+ * @deprecated
  */
+@Deprecated
 final public class Propriedades {
 
 	private Propriedades() { }
@@ -100,6 +102,24 @@ final public class Propriedades {
 				throw new AlfredException(e);
 			}
 		}
+	}
+
+	public static Object obterValorPropriedade(String prop, Object objeto) {
+		Method method;
+		try {
+			method = objeto.getClass().getMethod("get" + Texto.capitalizarIniciais(prop), null);
+			Object valor = method.invoke(objeto, null);
+			return valor;
+		} catch (NoSuchMethodException e) { 
+			// Ignorar a exceção e copiar os demais campos. 
+		} catch (IllegalArgumentException e) {
+			// Ignorar a exceção e copiar os demais campos.
+		} catch (IllegalAccessException e) {
+			// Ignorar a exceção e copiar os demais campos.
+		} catch (InvocationTargetException e) {
+			// Ignorar a exceção e copiar os demais campos.
+		}
+		return null;
 	}
 
 }

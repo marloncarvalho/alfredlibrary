@@ -34,7 +34,9 @@ import net.marloncarvalho.alfred.AlfredException;
  * 
  * @author Marlon Silva Carvalho
  * @since 04/06/2009
+ * @deprecated
  */
+@Deprecated
 final public class CSVReader {
 
 	/**

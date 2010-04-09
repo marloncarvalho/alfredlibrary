@@ -21,7 +21,9 @@ package net.marloncarvalho.alfred.conversores;
  * 
  * @author Marlon Silva Carvalho
  * @since 07/06/2009
+ * @deprecated
  */
+@Deprecated
 final public class Massa {
 	public static double TONELADA = 1D;
 	public static double QUILOGRAMA = 1000D;

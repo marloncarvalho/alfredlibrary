@@ -26,7 +26,9 @@ import net.marloncarvalho.alfred.numeros.Numeros;
  * 
  * @author Marlon Silva Carvalho
  * @since 03/06/2009
+ * @deprecated
  */
+@Deprecated
 public class Texto {
 
 	/**

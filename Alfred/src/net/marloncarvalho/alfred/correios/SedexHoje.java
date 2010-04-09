@@ -29,7 +29,9 @@ import net.marloncarvalho.alfred.net.WorldWideWeb;
  * 
  * @author Marlon Silva Carvalho
  * @since 13/06/2009
+ * @deprecated
  */
+@Deprecated
 final public class SedexHoje {
 
 	/**

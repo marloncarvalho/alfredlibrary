@@ -1,6 +1,7 @@
 package net.marloncarvalho.alfred;
 
 @SuppressWarnings("serial")
+@Deprecated
 public class AlfredException extends RuntimeException {
 
 	public AlfredException() {

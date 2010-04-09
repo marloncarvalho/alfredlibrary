@@ -22,7 +22,9 @@ package net.marloncarvalho.alfred.conversores;
  * 
  * @author Marlon Silva Carvalho
  * @since 02/06/2009
+ * @deprecated
  */
+@Deprecated
 final public class BaseNumerica {
 
 	/**

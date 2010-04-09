@@ -34,7 +34,9 @@ import net.marloncarvalho.alfred.net.WorldWideWeb;
  * 
  * @author Marlon Silva Carvalho
  * @since 10/06/2009
+ * @deprecated
  */
+@Deprecated
 final public class Pronuncia {
 	public static int INGLES = 1;
 

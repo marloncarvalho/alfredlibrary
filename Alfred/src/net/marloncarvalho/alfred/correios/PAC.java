@@ -29,7 +29,9 @@ import net.marloncarvalho.alfred.net.WorldWideWeb;
  * 
  * @author Marlon Silva Carvalho
  * @since 13/06/2009
+ * @deprecated
  */
+@Deprecated
 final public class PAC {
 	private static String FORMATO_CAIXA_PACOTE = "1";
 	private static String FORMATO_ROLO_PRISMA = "2";
