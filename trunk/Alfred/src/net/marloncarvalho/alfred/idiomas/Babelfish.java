@@ -29,7 +29,9 @@ import net.marloncarvalho.alfred.net.WorldWideWeb;
  * 
  * @author Marlon Silva Carvalho
  * @since 21/06/2009
+ * @deprecated
  */
+@Deprecated
 final public class Babelfish {
 	//public static String CHINESSIMP_PARA_INGLES = "zh_en";
 	//public static String CHINESSIMP_PARA_CHINESTRADICIONAL = "zh_zt";

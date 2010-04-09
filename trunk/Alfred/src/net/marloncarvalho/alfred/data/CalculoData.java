@@ -24,7 +24,9 @@ import java.util.Date;
  * 
  * @author Marlon Silva Carvalho
  * @since 03/06/2009
+ * @deprecated
  */
+@Deprecated
 final public class CalculoData {
 
 	/**

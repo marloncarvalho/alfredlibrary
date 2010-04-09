@@ -27,7 +27,9 @@ import net.marloncarvalho.alfred.io.CSVReader;
  * 
  * @author Marlon Silva Carvalho
  * @since 04/06/2009
+ * @deprecated
  */
+@Deprecated
 final public class CEP {
 
 	private CEP() {}

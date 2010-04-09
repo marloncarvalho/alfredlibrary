@@ -37,7 +37,9 @@ import org.xml.sax.helpers.DefaultHandler;
  * 
  * @author Carlos Daniel de Mattos Mercer
  * @since 21/07/2009
+ * @deprecated
  */
+@Deprecated
 final public class BRLinux {
 
 	private static String resultado = "";

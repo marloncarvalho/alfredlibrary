@@ -8,8 +8,10 @@ import java.util.List;
  * Editado para remover os comentários.
  * 
  * @author Amar Maniar
+ * @deprecated
  */
 @SuppressWarnings("all")
+@Deprecated
 class CSV {
 	private int nfield;
 	char fieldSep;

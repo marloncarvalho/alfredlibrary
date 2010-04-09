@@ -39,7 +39,9 @@ import net.marloncarvalho.alfred.AlfredException;
  * @author Mario Jorge Pereira
  * @author Marlon Silva Carvalho
  * @since 09/06/2009
+ * @deprecated
  */
+@Deprecated
 final public class Imagem {
 
 	private Imagem() { }

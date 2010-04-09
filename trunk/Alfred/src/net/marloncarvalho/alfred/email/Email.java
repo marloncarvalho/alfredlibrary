@@ -24,7 +24,9 @@ import java.util.regex.Pattern;
  * 
  * @author Marlon Silva Carvalho
  * @since 03/06/2009
+ * @deprecated
  */
+@Deprecated
 final public class Email {
 
 	private Email() {

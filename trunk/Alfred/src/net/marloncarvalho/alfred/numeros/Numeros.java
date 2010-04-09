@@ -8,7 +8,9 @@ import java.math.BigInteger;
  * 
  * @author Marlon Silva Carvalho
  * @since 02/06/2009
+ * @deprecated
  */
+@Deprecated
 final public class Numeros {
 
 	/**

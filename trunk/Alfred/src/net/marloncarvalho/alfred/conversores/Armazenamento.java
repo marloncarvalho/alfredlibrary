@@ -21,7 +21,9 @@ package net.marloncarvalho.alfred.conversores;
  * 
  * @author Marlon Silva Carvalho
  * @since 08/06/2009
+ * @deprecated
  */
+@Deprecated
 final public class Armazenamento {
 	public static int BIT = 1;
 	public static int KILOBIT = 2;

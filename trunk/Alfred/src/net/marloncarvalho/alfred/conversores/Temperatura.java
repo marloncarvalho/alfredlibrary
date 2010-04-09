@@ -23,7 +23,9 @@ import net.marloncarvalho.alfred.AlfredException;
  * 
  * @author Marlon Silva Carvalho
  * @since 03/06/2009
+ * @deprecated
  */
+@Deprecated
 final public class Temperatura {
 	public static int CELSIUS = 1;
 	public static int FAHRENHEIT = 2;

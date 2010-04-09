@@ -25,7 +25,9 @@ import net.marloncarvalho.alfred.texto.Texto;
  * 
  * @author Marlon Silva Carvalho
  * @since 02/06/2009
+ * @deprecated
  */
+@Deprecated
 final public class CPF {
 
 	/**

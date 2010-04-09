@@ -32,7 +32,9 @@ import net.marloncarvalho.alfred.AlfredException;
  * 
  * @author Marlon Silva Carvalho
  * @since 11/06/2009
+ * @deprecated
  */
+@Deprecated
 final public class Audio {
 
 	/**
