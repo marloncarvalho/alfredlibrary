@@ -17,8 +17,8 @@
 package net.marloncarvalho.alfred.testes.conversores;
 
 import junit.framework.Assert;
-import net.marloncarvalho.alfred.conversores.Binario;
 
+import org.alfredlibrary.conversores.Binario;
 import org.junit.Test;
 
 /**

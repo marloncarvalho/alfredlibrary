@@ -21,8 +21,7 @@ import java.util.Map;
 
 import junit.framework.Assert;
 
-import net.marloncarvalho.alfred.beans.Propriedades;
-
+import org.alfredlibrary.beans.Propriedades;
 import org.junit.Test;
 
 /**

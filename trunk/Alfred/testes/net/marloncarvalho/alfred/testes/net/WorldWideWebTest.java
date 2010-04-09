@@ -21,10 +21,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import junit.framework.Assert;
-import net.marloncarvalho.alfred.AlfredConfig;
-import net.marloncarvalho.alfred.AlfredException;
-import net.marloncarvalho.alfred.net.WorldWideWeb;
 
+import org.alfredlibrary.AlfredConfig;
+import org.alfredlibrary.AlfredException;
+import org.alfredlibrary.net.WorldWideWeb;
 import org.junit.Test;
 
 /**

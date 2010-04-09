@@ -17,8 +17,8 @@
 package net.marloncarvalho.alfred.testes.telefones;
 
 import junit.framework.Assert;
-import net.marloncarvalho.alfred.telefones.Telefones;
 
+import org.alfredlibrary.telefones.Telefones;
 import org.junit.Test;
 
 /**

@@ -24,8 +24,7 @@ import java.util.Locale;
 
 import junit.framework.Assert;
 
-import net.marloncarvalho.alfred.data.Data;
-
+import org.alfredlibrary.data.Data;
 import org.junit.Test;
 
 /**

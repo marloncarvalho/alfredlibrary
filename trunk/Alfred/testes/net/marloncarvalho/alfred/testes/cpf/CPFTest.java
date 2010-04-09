@@ -17,8 +17,8 @@
 package net.marloncarvalho.alfred.testes.cpf;
 
 import junit.framework.Assert;
-import net.marloncarvalho.alfred.cpf.CPF;
 
+import org.alfredlibrary.cpf.CPF;
 import org.junit.Test;
 
 

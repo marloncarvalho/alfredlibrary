@@ -16,9 +16,8 @@
  */
 package net.marloncarvalho.alfred.testes.cnpj;
 
-import net.marloncarvalho.alfred.AlfredException;
-import net.marloncarvalho.alfred.cnpj.CNPJ;
-
+import org.alfredlibrary.AlfredException;
+import org.alfredlibrary.cnpj.CNPJ;
 import org.junit.Assert;
 import org.junit.Test;
 

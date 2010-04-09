@@ -21,8 +21,7 @@ import java.util.Date;
 
 import junit.framework.Assert;
 
-import net.marloncarvalho.alfred.data.CalculoData;
-
+import org.alfredlibrary.data.CalculoData;
 import org.junit.Test;
 
 /**

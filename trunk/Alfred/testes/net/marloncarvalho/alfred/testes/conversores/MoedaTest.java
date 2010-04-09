@@ -17,9 +17,9 @@
 package net.marloncarvalho.alfred.testes.conversores;
 
 import junit.framework.Assert;
-import net.marloncarvalho.alfred.AlfredException;
-import net.marloncarvalho.alfred.conversores.Moeda;
 
+import org.alfredlibrary.AlfredException;
+import org.alfredlibrary.conversores.Moeda;
 import org.junit.Test;
 
 /**

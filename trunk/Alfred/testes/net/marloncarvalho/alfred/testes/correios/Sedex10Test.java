@@ -16,9 +16,8 @@
  */
 package net.marloncarvalho.alfred.testes.correios;
 
-import net.marloncarvalho.alfred.AlfredException;
-import net.marloncarvalho.alfred.correios.Sedex10;
-
+import org.alfredlibrary.AlfredException;
+import org.alfredlibrary.correios.Sedex10;
 import org.junit.Assert;
 import org.junit.Test;
 

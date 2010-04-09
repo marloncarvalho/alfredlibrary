@@ -17,9 +17,9 @@
 package net.marloncarvalho.alfred.testes.correios;
 
 import junit.framework.Assert;
-import net.marloncarvalho.alfred.AlfredException;
-import net.marloncarvalho.alfred.correios.PAC;
 
+import org.alfredlibrary.AlfredException;
+import org.alfredlibrary.correios.PAC;
 import org.junit.Test;
 
 /**
