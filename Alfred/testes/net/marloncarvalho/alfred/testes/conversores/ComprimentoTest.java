@@ -18,8 +18,7 @@ package net.marloncarvalho.alfred.testes.conversores;
 
 import junit.framework.Assert;
 
-import net.marloncarvalho.alfred.conversores.Comprimento;
-
+import org.alfredlibrary.conversores.Comprimento;
 import org.junit.Test;
 
 /**

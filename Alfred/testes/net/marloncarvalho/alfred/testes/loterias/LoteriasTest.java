@@ -16,9 +16,8 @@
  */
 package net.marloncarvalho.alfred.testes.loterias;
 
-import net.marloncarvalho.alfred.AlfredException;
-import net.marloncarvalho.alfred.loterias.Loterias;
-
+import org.alfredlibrary.AlfredException;
+import org.alfredlibrary.loterias.Loterias;
 import org.junit.Assert;
 import org.junit.Test;
 

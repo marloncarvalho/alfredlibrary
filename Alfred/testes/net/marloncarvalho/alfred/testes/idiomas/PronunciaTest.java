@@ -19,9 +19,9 @@ package net.marloncarvalho.alfred.testes.idiomas;
 import java.io.InputStream;
 
 import junit.framework.Assert;
-import net.marloncarvalho.alfred.AlfredException;
-import net.marloncarvalho.alfred.idiomas.Pronuncia;
 
+import org.alfredlibrary.AlfredException;
+import org.alfredlibrary.idiomas.Pronuncia;
 import org.junit.Test;
 
 /**

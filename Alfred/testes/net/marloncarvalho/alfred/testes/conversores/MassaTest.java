@@ -17,8 +17,8 @@
 package net.marloncarvalho.alfred.testes.conversores;
 
 import junit.framework.Assert;
-import net.marloncarvalho.alfred.conversores.Massa;
 
+import org.alfredlibrary.conversores.Massa;
 import org.junit.Test;
 
 /**

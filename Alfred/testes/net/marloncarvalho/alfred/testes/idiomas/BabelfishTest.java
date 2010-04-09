@@ -17,8 +17,8 @@
 package net.marloncarvalho.alfred.testes.idiomas;
 
 import junit.framework.Assert;
-import net.marloncarvalho.alfred.idiomas.Babelfish;
 
+import org.alfredlibrary.idiomas.Babelfish;
 import org.junit.Test;
 
 /**

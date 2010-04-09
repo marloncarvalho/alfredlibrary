@@ -26,9 +26,9 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 import junit.framework.Assert;
-import net.marloncarvalho.alfred.AlfredException;
-import net.marloncarvalho.alfred.midia.Audio;
 
+import org.alfredlibrary.AlfredException;
+import org.alfredlibrary.midia.Audio;
 import org.junit.Test;
 
 /**

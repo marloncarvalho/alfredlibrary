@@ -17,8 +17,8 @@
 package net.marloncarvalho.alfred.testes.conversores;
 
 import junit.framework.Assert;
-import net.marloncarvalho.alfred.conversores.Temperatura;
 
+import org.alfredlibrary.conversores.Temperatura;
 import org.junit.Test;
 
 /**

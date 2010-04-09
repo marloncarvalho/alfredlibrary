@@ -16,8 +16,7 @@
  */
 package net.marloncarvalho.alfred.testes.conversores;
 
-import net.marloncarvalho.alfred.conversores.BaseNumerica;
-
+import org.alfredlibrary.conversores.BaseNumerica;
 import org.junit.Assert;
 import org.junit.Test;
 
