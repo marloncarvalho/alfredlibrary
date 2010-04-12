@@ -125,5 +125,25 @@ final public class CalculoData {
 		calendarData2.setTime(data2);
 		return Math.abs(calendarData1.get(Calendar.DAY_OF_YEAR) - calendarData2.get(Calendar.DAY_OF_YEAR));
 	}
+	
+	/**
+	 * Calcular a quantidade de dias que existe entre as duas datas informadas.
+	 * 
+	 * @author Rodrigo Moreira Fagundes
+	 * @since 12/04/2010
+	 * 
+	 * @param data1 Data Maior.
+	 * @param data2 Data Menor.
+	 * @param isInclusiva Se a data inicial é ou não incluída no cálculo
+	 * @return Diferen�a em dias.
+	 * 
+	 */
+	public static int calcularDiferencaDias(Date data1, Date data2, boolean isInclusiva) {
+		if (isInclusiva) {
+			return (calcularDiferencaDias(data1, data2) + 1);
+		} else {
+			return calcularDiferencaDias(data1, data2);
+		}
+	}
 
 }
