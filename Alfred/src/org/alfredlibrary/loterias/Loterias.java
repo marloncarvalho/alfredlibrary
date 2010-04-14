@@ -42,7 +42,7 @@ final public class Loterias {
 			url = "http://www1.caixa.gov.br/loterias/loterias/megasena/megasena_pesquisa_new.asp?submeteu=sim&opcao=concurso&txtConcurso=" + concurso;
 		}			
 		String conteudo = WorldWideWeb.getConteudoSite(url);
-		String resultado = conteudo.split("\\|")[2].replaceAll("<ul>", "").replaceAll("</ul>","").replaceAll("<li>", "").replaceAll("<span id=\"num_sorteio\">","").replaceAll("</span>","").replaceAll("</li>","|");
+		String resultado = conteudo.split("\\|")[2].replaceAll("<ul>", "").replaceAll("</ul>","").replaceAll("<li>", "").replaceAll("<span class=\"num_sorteio\">","").replaceAll("</span>","").replaceAll("</li>","|");
 		String[] resultadoMegaSena = resultado.split("\\|");
 		return resultadoMegaSena;
 	}
