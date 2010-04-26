@@ -48,6 +48,70 @@ final public class Loterias {
 	}
 
 	/**
+	 * Obter o resultado da Duplasena.
+	 * 
+	 * @param concurso Número do Concurso.
+	 * @return Resultado da Duplasena.
+	 */
+	public static String[][] obterResultadoDuplaSena(String concurso) {
+		String url;
+		if ( concurso == null || "".equals(concurso)) {
+			url = "http://www1.caixa.gov.br/loterias/loterias/duplasena/duplasena_pesquisa_new.asp?f_megasena=";
+		} else {
+			url = "http://www1.caixa.gov.br/loterias/loterias/duplasena/duplasena_pesquisa_new.asp?submeteu=sim&opcao=concurso&txtConcurso=" + concurso;
+		}			
+		String conteudo = WorldWideWeb.getConteudoSite(url);
+		String resultado = conteudo.split("\\|")[3].replaceAll("<ul>", "").replaceAll("</ul>","").replaceAll("<li>", "").replaceAll("<span class=\"num_sorteio\">","").replaceAll("</span>","").replaceAll("</li>","|");
+		String[] resultadoSorteio1 = resultado.split("\\|");
+		resultado = conteudo.split("\\|")[4].replaceAll("<ul>", "").replaceAll("</ul>","").replaceAll("<li>", "").replaceAll("<span class=\"num_sorteio\">","").replaceAll("</span>","").replaceAll("</li>","|");
+		String[] resultadoSorteio2 = resultado.split("\\|");
+		return new String[][]{resultadoSorteio1,resultadoSorteio2};
+	}
+
+	/**
+	 * Obter o resultado da Lotofácil.
+	 * 
+	 * @param concurso Número do Concurso.
+	 * @return Resultado da Lotofácil.
+	 */
+	public static String[] obterResultadoLotofacil(String concurso) {
+		String url;
+		if ( concurso == null || "".equals(concurso)) {
+			url = "http://www1.caixa.gov.br/loterias/loterias/lotofacil/lotofacil_pesquisa_new.asp?f_megasena=";
+		} else {
+			url = "http://www1.caixa.gov.br/loterias/loterias/lotofacil/lotofacil_pesquisa_new.asp?submeteu=sim&opcao=concurso&txtConcurso=" + concurso;
+		}			
+		String conteudo = WorldWideWeb.getConteudoSite(url);
+		String[] resultado = conteudo.split("\\|");
+		String[] resultadoMegaSena = new String[] {resultado[3],resultado[4],resultado[5],resultado[6],
+						resultado[7],resultado[8],resultado[9],resultado[10],resultado[11],
+						resultado[12],resultado[13],resultado[14],resultado[15],resultado[16],resultado[17]};
+		return resultadoMegaSena;
+	}
+
+	/**
+	 * Obter o resultado da Lotomania.
+	 * 
+	 * @param concurso Número do Concurso.
+	 * @return Resultado da Lotomania.
+	 */
+	public static String[] obterResultadoLotomania(String concurso) {
+		String url;
+		if ( concurso == null || "".equals(concurso)) {
+			url = "http://www1.caixa.gov.br/loterias/loterias/lotomania/lotomania_pesquisa.asp?f_megasena=";
+		} else {
+			url = "http://www1.caixa.gov.br/loterias/loterias/lotomania/lotomania_pesquisa.asp?submeteu=sim&opcao=concurso&txtConcurso=" + concurso;
+		}			
+		String conteudo = WorldWideWeb.getConteudoSite(url);
+		String[] resultado = conteudo.split("\\|");
+		String[] resultadoMegaSena = new String[] {resultado[6],resultado[7],resultado[8],resultado[9],
+						resultado[10],resultado[11],resultado[12],resultado[13],resultado[14],
+						resultado[15],resultado[16],resultado[17],resultado[18],resultado[19],resultado[20],
+						resultado[21],resultado[22],resultado[23],resultado[24],resultado[25]};
+		return resultadoMegaSena;
+	}
+
+	/**
 	 * Obter o nï¿½mero do concurso mais atual da megasena.
 	 * 
 	 * @return Nï¿½mero do Concurso.
