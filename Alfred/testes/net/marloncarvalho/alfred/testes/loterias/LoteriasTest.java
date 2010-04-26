@@ -58,4 +58,50 @@ public class LoteriasTest {
 			Assert.fail();
 		}
 	}
+	
+	@Test
+	public void testarResultadoLotofacil() {
+		try {
+			String[] resultado = Loterias.obterResultadoLotofacil("1");
+			if ( resultado.length < 15 )
+				Assert.fail();
+			for(int i=0; i<resultado.length;i++) {
+				if ( resultado[i] == null || "".equals(resultado[i]) ) 
+					Assert.fail();
+			}
+		} catch ( AlfredException exc ) {
+			Assert.fail();
+		}
+	}
+
+	@Test
+	public void testarResultadoLotomania() {
+		try {
+			String[] resultado = Loterias.obterResultadoLotomania("1030");
+			if ( resultado.length < 20 )
+				Assert.fail();
+			for(int i=0; i<resultado.length;i++) {
+				if ( resultado[i] == null || "".equals(resultado[i]) ) 
+					Assert.fail();
+			}
+		} catch ( AlfredException exc ) {
+			Assert.fail();
+		}
+	}
+
+	@Test
+	public void testarResultadoDuplasena() {
+		try {
+			String[][] resultado = Loterias.obterResultadoDuplaSena("857");
+			for(int i=0; i < resultado.length;i++) {
+				for(int j=0;j<resultado[i].length;j++) {
+					if ( resultado[i][j] == null || "".equals(resultado[i][j]) ) 
+						Assert.fail();
+				}
+			}
+		} catch ( AlfredException exc ) {
+			Assert.fail();
+		}
+	}
+
 }
