@@ -26,6 +26,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.nio.charset.Charset;
 import java.util.Map;
 
 import org.alfredlibrary.AlfredConfig;
@@ -71,7 +72,7 @@ final public class WorldWideWeb {
 				conn = url.openConnection(AlfredConfig.getInstancia().getProxy());
 			else conn = url.openConnection();
 	        conn.setDoOutput(true);
-	        BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+	        BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream(),Charset.forName("UTF-8")));
 	        String line;
 	        StringBuilder resultado = new StringBuilder();
 	        while ((line = rd.readLine()) != null) {
