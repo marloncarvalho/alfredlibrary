@@ -27,7 +27,9 @@ import java.util.Locale;
  * 
  * @author Marlon Silva Carvalho
  * @since 04/06/2009
+ * @deprecated Usar a classe FormatadorData.
  */
+@Deprecated
 final public class Data {
 
 	/**
