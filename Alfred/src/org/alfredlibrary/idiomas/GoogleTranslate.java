@@ -26,7 +26,7 @@ import org.alfredlibrary.net.WorldWideWeb;
  */
 final public class GoogleTranslate {
 
-	enum Idioma {
+	public enum Idioma {
 		AUTO_DETECT(""),
 		AFRIKAANS("af"),
 		ALBANIAN("sq"),
