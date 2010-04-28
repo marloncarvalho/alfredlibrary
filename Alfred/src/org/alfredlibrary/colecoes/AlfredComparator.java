@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.Date;
 
+import org.alfredlibrary.AlfredException;
 import org.alfredlibrary.texto.Texto;
 
 /**
@@ -145,15 +146,15 @@ public class AlfredComparator implements Comparator {
 					}
 		    	}
 	    	} catch (IllegalArgumentException e) {
-				e.printStackTrace();
+	    		throw new AlfredException(e);
 			} catch (SecurityException e) {
-				e.printStackTrace();
+				throw new AlfredException(e);
 			} catch (IllegalAccessException e) {
-				e.printStackTrace();
+				throw new AlfredException(e);
 			} catch (InvocationTargetException e) {
-				e.printStackTrace();
+				throw new AlfredException(e);
 			} catch (NoSuchMethodException e) {
-				e.printStackTrace();
+				throw new AlfredException("Não existe o método de acesso ao campo informado. Verifique se sua classe implementa o padrão JavaBean.",e);
 			}
     	} else { // Atributos de profundidade maior que 1
     		try {
@@ -219,15 +220,15 @@ public class AlfredComparator implements Comparator {
 					}
 		    	}
     		} catch (IllegalArgumentException e) {
-				e.printStackTrace();
+	    		throw new AlfredException(e);
 			} catch (SecurityException e) {
-				e.printStackTrace();
+				throw new AlfredException(e);
 			} catch (IllegalAccessException e) {
-				e.printStackTrace();
+				throw new AlfredException(e);
 			} catch (InvocationTargetException e) {
-				e.printStackTrace();
+				throw new AlfredException(e);
 			} catch (NoSuchMethodException e) {
-				e.printStackTrace();
+				throw new AlfredException("Não existe o método de acesso a um campo da cadeia informada. Verifique se sua classe implementa o padrão JavaBean.",e);
 			}
     	}
         return this.isAscendente() ? v: -v;
