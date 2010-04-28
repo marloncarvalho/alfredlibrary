@@ -30,6 +30,17 @@ import org.alfredlibrary.numeros.Numeros;
 public class Texto {
 
 	/**
+	 * Remover todas as tags de um texto.
+	 * 
+	 * @param texto Texto que terá as tags removidas.
+	 * @return Texto com as tags removidas.
+	 */
+	public static String removerTags(String texto) {
+		String noHTMLString = texto.replaceAll("\\<.*?\\>", "");
+		return noHTMLString;
+	}
+
+	/**
 	 * Manter no Texto apenas os nï¿½meros.
 	 * 
 	 * @param str Texto.

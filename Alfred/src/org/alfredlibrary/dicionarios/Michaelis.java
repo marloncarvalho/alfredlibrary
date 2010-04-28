@@ -14,35 +14,22 @@
  *  You should have received a copy of the GNU General Public License
  *  along with Alfred Library.  If not, see <http://www.gnu.org/licenses/>.
  */
-package net.marloncarvalho.alfred.testes.clima.climatempo;
+package org.alfredlibrary.dicionarios;
 
-import java.util.Collection;
-
-import junit.framework.Assert;
-
-import org.alfredlibrary.clima.climatempo.Clima;
-import org.alfredlibrary.clima.climatempo.Climatempo;
-import org.junit.Test;
+import org.alfredlibrary.net.WorldWideWeb;
 
 /**
- * Teste do utilitário de Climatempo.
+ * Obter o significado de uma palavra através do Michaelis.
  * 
  * @author Marlon Silva Carvalho
- * @since 27/05/2010
+ * @since 27/04/2010
  */
-public class ClimatempoTest {
+final public class Michaelis {
 
-	@Test
-	public void testarObtencaoClima() {
-		try {
-			Collection<Clima> climas = Climatempo.obterClima("800");
-			if ( climas == null || climas.size() <= 0 ) {
-				Assert.fail("Não foram encontrados climas para a localidade 857. Deveria existir!");
-			}
-		} catch (Exception e) {
-			Assert.fail(e.getMessage());
-		}
-		
+	public static String obterSignificado(String palavra) {
+		String url = "http://michaelis.uol.com.br/moderno/portugues/index.php?lingua=portugues-portugues&palavra=" + palavra;
+		String resultado = WorldWideWeb.getConteudoSite(url);
+		return null;
 	}
 
 }
