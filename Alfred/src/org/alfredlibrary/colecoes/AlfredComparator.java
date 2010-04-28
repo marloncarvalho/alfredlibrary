@@ -161,11 +161,15 @@ public class AlfredComparator implements Comparator {
 	    		Object arg2 = o2;
 	    		// Obtém o atributo para comparação
 	    		for (String atributo : this.getColAtributo()) {
-	    			if (arg1 != null) {
-	    				arg1 = arg1.getClass().getMethod("get"+Texto.capitalizarIniciais(atributo)).invoke(arg1);
-	    			}
-	    			if (arg2 != null) {
-	    				arg2 = arg2.getClass().getMethod("get"+Texto.capitalizarIniciais(atributo)).invoke(arg2);
+	    			if (arg1 != null || arg2 != null) {
+		    			if (arg1 != null) {
+		    				arg1 = arg1.getClass().getMethod("get"+Texto.capitalizarIniciais(atributo)).invoke(arg1);
+		    			}
+		    			if (arg2 != null) {
+		    				arg2 = arg2.getClass().getMethod("get"+Texto.capitalizarIniciais(atributo)).invoke(arg2);
+		    			}
+	    			} else {
+	    				break;
 	    			}
 	    		}
 	    		// Se não houver o atributo informado, inicia um valor padrão
