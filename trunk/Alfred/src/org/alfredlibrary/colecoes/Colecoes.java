@@ -123,7 +123,8 @@ final public class Colecoes {
 	}
 	
 	/**
-	 * Ordenar uma cole��o conforme um determinado atributo do objeto contido na cole��o.
+	 * Ordenar uma cole��o conforme um determinado atributo do objeto contido na cole��o
+	 * de forma ascendente ou descendente.
 	 * 
 	 * @param colecao Cole��o.
 	 * @param ascendente Ordena��o ascendente (true) ou descendente (false)  
@@ -132,7 +133,7 @@ final public class Colecoes {
 	 * @return Cole��o ordenada.
 	 */
 	@SuppressWarnings("all")
-	public static List ordenarPorComparator(List colecao, boolean ascendente, String nomeCampo, Class clazz) {
+	public static List ordenar(List colecao, boolean ascendente, String nomeCampo, Class clazz) {
 		if ( colecao.size() <= 0 ) { 
 			return colecao;
 		}
@@ -141,8 +142,8 @@ final public class Colecoes {
 	}
 	
 	/**
-	 * Ordenar uma cole��o conforme um determinado atributo do objeto contido indiretamente na cole��o,
-	 * em qualquer grau.
+	 * Ordenar uma cole��o conforme um determinado atributo do objeto contido
+	 * indiretamente na cole��o, em qualquer grau, de forma ascendente ou descendente.
 	 * 
 	 * @param colecao Cole��o.
 	 * @param ascendente Ordena��o ascendente (true) ou descendente (false)  
@@ -152,7 +153,7 @@ final public class Colecoes {
 	 * @return Cole��o ordenada.
 	 */
 	@SuppressWarnings("all")
-	public static List ordenarPorComparator(List colecao, boolean ascendente, Collection colNomeCampo, Class clazz) {
+	public static List ordenar(List colecao, boolean ascendente, Collection colNomeCampo, Class clazz) {
 		if ( colecao.size() <= 0 ) { 
 			return colecao;
 		}
