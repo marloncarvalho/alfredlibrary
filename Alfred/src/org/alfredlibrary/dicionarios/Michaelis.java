@@ -16,20 +16,35 @@
  */
 package org.alfredlibrary.dicionarios;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+
+import org.alfredlibrary.AlfredException;
 import org.alfredlibrary.net.WorldWideWeb;
+import org.alfredlibrary.texto.Texto;
 
 /**
- * Obter o significado de uma palavra através do Michaelis.
+ * Obter o significado de uma palavra atravï¿½s do Michaelis.
  * 
  * @author Marlon Silva Carvalho
  * @since 27/04/2010
  */
 final public class Michaelis {
 
-	public static String obterSignificado(String palavra) {
+	public static String obterSignificado(String palavra, boolean formatacaoHTML) {
 		String url = "http://michaelis.uol.com.br/moderno/portugues/index.php?lingua=portugues-portugues&palavra=" + palavra;
 		String resultado = WorldWideWeb.getConteudoSite(url);
-		return null;
+		String parte = resultado.substring(resultado.indexOf("<span class='descricao'>"));
+		parte = parte.substring(0,parte.indexOf("</span>"));
+		parte = Texto.desconverterElementosHTMLEspeciais(parte, 0);
+		if ( ! formatacaoHTML )
+			parte = Texto.removerTags(parte);
+		try {
+			parte = URLDecoder.decode(parte,"UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			throw new AlfredException(e);
+		}
+		return parte;
 	}
 
 }
