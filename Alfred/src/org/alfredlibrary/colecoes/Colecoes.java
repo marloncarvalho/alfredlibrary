@@ -121,4 +121,42 @@ final public class Colecoes {
 		Collections.sort(colecao, comparator);
 		return colecao;
 	}
+	
+	/**
+	 * Ordenar uma cole��o conforme um determinado atributo do objeto contido na cole��o.
+	 * 
+	 * @param colecao Cole��o.
+	 * @param ascendente Ordena��o ascendente (true) ou descendente (false)  
+	 * @param nomeCampo Nome do campo.
+	 * @param clazz Classe do campo selecionado.
+	 * @return Cole��o ordenada.
+	 */
+	@SuppressWarnings("all")
+	public static List ordenarPorComparator(List colecao, boolean ascendente, String nomeCampo, Class clazz) {
+		if ( colecao.size() <= 0 ) { 
+			return colecao;
+		}
+		Collections.sort(colecao, new AlfredComparator(ascendente, nomeCampo, clazz));
+		return colecao;
+	}
+	
+	/**
+	 * Ordenar uma cole��o conforme um determinado atributo do objeto contido indiretamente na cole��o,
+	 * em qualquer grau.
+	 * 
+	 * @param colecao Cole��o.
+	 * @param ascendente Ordena��o ascendente (true) ou descendente (false)  
+	 * @param colNomeCampo Cadeia de nome de campo para chegar no atributo base para
+	 * 						a ordenação.
+	 * @param clazz Classe do campo selecionado.
+	 * @return Cole��o ordenada.
+	 */
+	@SuppressWarnings("all")
+	public static List ordenarPorComparator(List colecao, boolean ascendente, Collection colNomeCampo, Class clazz) {
+		if ( colecao.size() <= 0 ) { 
+			return colecao;
+		}
+		Collections.sort(colecao, new AlfredComparator(ascendente, colNomeCampo, clazz));
+		return colecao;
+	}
 }
