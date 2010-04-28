@@ -35,21 +35,22 @@ import org.junit.Test;
  */
 public class WorldWideWebTest {
 
-	@Test
-	public void testarObterConteudoSemPostComProxy() {
-		try {
-			AlfredConfig.getInstancia().setUsingProxy(true);
-			AlfredConfig.getInstancia().setProxy("189.56.61.33", 3128);
-			String conteudo = WorldWideWeb.getConteudoSite("http://alfredlibrary.googlecode.com/");
-			AlfredConfig.getInstancia().setUsingProxy(false);
-			if ( conteudo == null || "".equals(conteudo ) ) {
-				Assert.fail();
-			}
-		} catch ( AlfredException ae ) {
-			Assert.fail(ae.getMessage());
-		}
-	}
-	
+//	@Test
+//	public void testarObterConteudoSemPostComProxy() {
+//		try {
+//			AlfredConfig.getInstancia().setUsingProxy(true);
+//			AlfredConfig.getInstancia().setProxy("189.56.61.33", 3128);
+//			String conteudo = WorldWideWeb.getConteudoSite("http://alfredlibrary.googlecode.com/");
+//			AlfredConfig.getInstancia().setUsingProxy(false);
+//			if ( conteudo == null || "".equals(conteudo ) ) {
+//				Assert.fail();
+//			}
+//		} catch ( AlfredException ae ) {
+//			AlfredConfig.getInstancia().setUsingProxy(true);
+//			Assert.fail(ae.getMessage());
+//		}
+//	}
+//	
 	@Test
 	public void testarObterConteudoSemPost() {
 		try {

@@ -52,7 +52,7 @@ final public class Climatempo {
 	 * @param codigo Código da cidade. Deve ser obtido através do site da Climatempo. Pode usar vários códigos de cidade separados por vírgula.
 	 * @return Coleção de Climas, um para cada dia e para as cidades informadas.
 	 */
-	public static Collection<Clima> obterTemperatura(String codigo) {
+	public static Collection<Clima> obterClima(String codigo) {
 		String url = "http://selos.climatempo.com.br/selos/selo.php?CODCIDADE=" + codigo;
 		String conteudoXML = WorldWideWeb.getConteudoSite(url);
 		Collection<Clima> climas = new ArrayList<Clima>();
