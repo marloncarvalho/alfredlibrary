@@ -31,6 +31,7 @@ import org.alfredlibrary.texto.Texto;
  * Utilit�rios para Cole��es.
  * 
  * @author Marlon Silva Carvalho
+ * @author Rodrigo Moreira Fagundes
  * @since 04/06/2009
  */
 final public class Colecoes {
