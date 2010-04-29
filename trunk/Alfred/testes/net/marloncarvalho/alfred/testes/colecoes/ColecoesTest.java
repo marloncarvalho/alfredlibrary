@@ -21,12 +21,12 @@ import java.util.Collection;
 import java.util.List;
 
 import junit.framework.Assert;
-import net.marloncarvalho.alfred.colecoes.Colecoes;
 
+import org.alfredlibrary.colecoes.Colecoes;
 import org.junit.Test;
 
 /**
- * Testar utilitário de Coleções.
+ * Testar utilitï¿½rio de Coleï¿½ï¿½es.
  * 
  * @author Marlon Silva Carvalho
  * @since 10/07/2009
