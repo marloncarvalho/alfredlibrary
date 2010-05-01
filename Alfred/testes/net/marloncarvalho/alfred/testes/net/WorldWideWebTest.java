@@ -28,7 +28,7 @@ import org.alfredlibrary.net.WorldWideWeb;
 import org.junit.Test;
 
 /**
- * Teste da classe de utilitário WorldWideWeb.
+ * Teste da classe de utilitï¿½rio WorldWideWeb.
  * 
  * @author Marlon Silva Carvalho
  * @since 13/07/2009
@@ -68,7 +68,7 @@ public class WorldWideWebTest {
 		try {
 			Map<String, String> mapa = new HashMap<String, String>();
 			mapa.put("teste","1");
-			String conteudo = WorldWideWeb.getConteudoSite("http://alfredlibrary.googlecode.com/",mapa);
+			String conteudo = WorldWideWeb.getConteudoSite("http://code.google.com/p/alfredlibrary/",mapa);
 			if ( conteudo == null || "".equals(conteudo ) ) {
 				Assert.fail();
 			}
