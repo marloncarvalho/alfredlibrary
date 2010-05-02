@@ -16,6 +16,7 @@
  */
 package org.alfredlibrary.musica;
 
+import org.alfredlibrary.AlfredException;
 import org.alfredlibrary.net.WorldWideWeb;
 import org.alfredlibrary.texto.Texto;
 
@@ -38,14 +39,13 @@ final public class Letras {
 		String nomeMusicaTrocado = nomeMusica.toLowerCase().replaceAll(" ", "-");
 		String url = "http://vagalume.uol.com.br/" + artistaTrocado + "/" + nomeMusicaTrocado + ".html";
 		String conteudo = WorldWideWeb.getConteudoSite(url);
+		if ( conteudo.indexOf("Oops") > -1 || conteudo.indexOf("<div class=\"tab_original\">") == -1) {
+			throw new AlfredException("Letra ou artista não encontrado.");
+		}
 		String letra = conteudo.substring(conteudo.indexOf("<div class=\"tab_original\">"), conteudo.indexOf("</div>", conteudo.indexOf("<div class=\"tab_original\">")));
 		letra = Texto.desconverterElementosHTMLEspeciais(letra, 0);
 		letra = Texto.removerTags(letra);
 		return letra;
 	}
 
-	public static void main(String[] args) {
-		System.out.println(Letras.obter("Raul Seixas", "Tente Outra Vez"));
-	}
-	
 }
