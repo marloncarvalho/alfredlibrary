@@ -40,8 +40,4 @@ final public class EstrelaGuia {
 		return Texto.removerTags(horoscopo);
 	}
 
-	public static void main(String[] args) {
-		System.out.println(EstrelaGuia.obter(Signo.AQUARIO));
-	}
-
 }
