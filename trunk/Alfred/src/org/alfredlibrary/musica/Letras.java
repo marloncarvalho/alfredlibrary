@@ -16,6 +16,9 @@
  */
 package org.alfredlibrary.musica;
 
+import org.alfredlibrary.net.WorldWideWeb;
+import org.alfredlibrary.texto.Texto;
+
 /**
  * Obter a letra de uma música.
  * 
@@ -30,8 +33,19 @@ final public class Letras {
 	 * @param nomeMusica Nome da Música.
 	 * @return Letra da Música.
 	 */
-	public static String obter(String nomeMusica) {
-		return null;
+	public static String obter(String artista, String nomeMusica) {
+		String artistaTrocado = artista.toLowerCase().replaceAll(" ", "-");
+		String nomeMusicaTrocado = nomeMusica.toLowerCase().replaceAll(" ", "-");
+		String url = "http://vagalume.uol.com.br/" + artistaTrocado + "/" + nomeMusicaTrocado + ".html";
+		String conteudo = WorldWideWeb.getConteudoSite(url);
+		String letra = conteudo.substring(conteudo.indexOf("<div class=\"tab_original\">"), conteudo.indexOf("</div>", conteudo.indexOf("<div class=\"tab_original\">")));
+		letra = Texto.desconverterElementosHTMLEspeciais(letra, 0);
+		letra = Texto.removerTags(letra);
+		return letra;
 	}
 
+	public static void main(String[] args) {
+		System.out.println(Letras.obter("Raul Seixas", "Tente Outra Vez"));
+	}
+	
 }
