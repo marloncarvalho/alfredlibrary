@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.alfredlibrary.validadores.numeros.Numeros;
+import org.alfredlibrary.validadores.Numeros;
 
 /**
  * Utilitï¿½rios para manipulaï¿½ï¿½o de Textos.
