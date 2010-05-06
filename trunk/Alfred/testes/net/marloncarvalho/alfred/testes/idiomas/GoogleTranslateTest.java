@@ -18,12 +18,12 @@ package net.marloncarvalho.alfred.testes.idiomas;
 
 import junit.framework.Assert;
 
-import org.alfredlibrary.idiomas.GoogleTranslate;
-import org.alfredlibrary.idiomas.GoogleTranslate.Idioma;
+import org.alfredlibrary.utilitarios.idiomas.GoogleTranslate;
+import org.alfredlibrary.utilitarios.idiomas.GoogleTranslate.Idioma;
 import org.junit.Test;
 
 /**
- * Teste do utilitário Google Translate.
+ * Teste do utilitï¿½rio Google Translate.
  * 
  * @author Marlon Silva Carvalho
  * @since 27/05/2010

@@ -18,7 +18,7 @@ package net.marloncarvalho.alfred.testes.cpf;
 
 import junit.framework.Assert;
 
-import org.alfredlibrary.cpf.CPF;
+import org.alfredlibrary.validadores.cpf.CPF;
 import org.junit.Test;
 
 
@@ -31,7 +31,7 @@ import org.junit.Test;
 public class CPFTest {
 
 	/**
-	 * Testar a validação de um CPF que é válido.
+	 * Testar a validaï¿½ï¿½o de um CPF que ï¿½ vï¿½lido.
 	 */
 	@Test
 	public void testarValidarCPFValido() {
@@ -41,7 +41,7 @@ public class CPFTest {
 	}
 
 	/**
-	 * Testar a validação de um CPF que é inválido.
+	 * Testar a validaï¿½ï¿½o de um CPF que ï¿½ invï¿½lido.
 	 */
 	@Test
 	public void testarValidarCPFInvalido() {

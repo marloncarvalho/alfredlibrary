@@ -18,11 +18,11 @@ package net.marloncarvalho.alfred.testes.idiomas;
 
 import junit.framework.Assert;
 
-import org.alfredlibrary.idiomas.Babelfish;
+import org.alfredlibrary.utilitarios.idiomas.Babelfish;
 import org.junit.Test;
 
 /**
- * Teste do utilitário Babelfish.
+ * Teste do utilitï¿½rio Babelfish.
  * 
  * @author Marlon Silva Carvalho
  * @since 10/07/2009

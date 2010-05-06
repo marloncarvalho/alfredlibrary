@@ -16,7 +16,7 @@
  */
 package net.marloncarvalho.alfred.testes.musica;
 
-import org.alfredlibrary.musica.Letras;
+import org.alfredlibrary.utilitarios.musica.Letras;
 import org.junit.Assert;
 import org.junit.Test;
 

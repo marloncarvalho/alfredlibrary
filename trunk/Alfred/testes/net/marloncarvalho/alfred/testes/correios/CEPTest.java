@@ -17,7 +17,7 @@
 package net.marloncarvalho.alfred.testes.correios;
 
 import org.alfredlibrary.AlfredException;
-import org.alfredlibrary.correios.CEP;
+import org.alfredlibrary.utilitarios.correios.CEP;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -30,7 +30,7 @@ import org.junit.Test;
 public class CEPTest {
 
 	/**
-	 * Testar a formatação de um CEP.
+	 * Testar a formataï¿½ï¿½o de um CEP.
 	 */
 	@Test
 	public void testarFormatacaoCEP() {
@@ -43,7 +43,7 @@ public class CEPTest {
 
 	/**
 	 * Testar um CEP incorreto.
-	 * Deve lançar exceção.
+	 * Deve lanï¿½ar exceï¿½ï¿½o.
 	 */
 	@Test
 	public void testarCEPIncorreto() {
@@ -56,12 +56,12 @@ public class CEPTest {
 	}
 	
 	/**
-	 * Testar a obtenção de um Endereço por um CEP correto.
+	 * Testar a obtenï¿½ï¿½o de um Endereï¿½o por um CEP correto.
 	 */
 	@Test
 	public void testarConsultarEnderecoCorreto() {
 		String[] endereco = CEP.consultarEndereco("40290280");
-		// São 6 posições sempre.
+		// Sï¿½o 6 posiï¿½ï¿½es sempre.
 		if ( endereco.length != 6 )
 			Assert.fail();
 		for(int i=0; i < endereco.length; i++) {

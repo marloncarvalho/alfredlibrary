@@ -18,7 +18,7 @@ package net.marloncarvalho.alfred.testes.brlinux;
 
 
 import org.alfredlibrary.AlfredException;
-import org.alfredlibrary.brlinux.BRLinux;
+import org.alfredlibrary.utilitarios.brlinux.BRLinux;
 import org.junit.Assert;
 import org.junit.Test;
 

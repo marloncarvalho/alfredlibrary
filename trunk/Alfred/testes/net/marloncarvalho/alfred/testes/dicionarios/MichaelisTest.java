@@ -16,7 +16,7 @@
  */
 package net.marloncarvalho.alfred.testes.dicionarios;
 
-import org.alfredlibrary.dicionarios.Michaelis;
+import org.alfredlibrary.utilitarios.dicionarios.Michaelis;
 import org.junit.Assert;
 import org.junit.Test;
 

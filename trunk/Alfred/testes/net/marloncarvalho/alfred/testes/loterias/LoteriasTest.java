@@ -17,12 +17,12 @@
 package net.marloncarvalho.alfred.testes.loterias;
 
 import org.alfredlibrary.AlfredException;
-import org.alfredlibrary.loterias.Loterias;
+import org.alfredlibrary.utilitarios.loterias.Loterias;
 import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * Teste dos utilitários de Loterias.
+ * Teste dos utilitï¿½rios de Loterias.
  * 
  * @author Marlon Silva Carvalho
  * @since 03/07/2009

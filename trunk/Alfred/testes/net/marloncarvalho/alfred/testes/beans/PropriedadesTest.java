@@ -21,11 +21,11 @@ import java.util.Map;
 
 import junit.framework.Assert;
 
-import org.alfredlibrary.beans.Propriedades;
+import org.alfredlibrary.utilitarios.beans.Propriedades;
 import org.junit.Test;
 
 /**
- * Teste do Utilitário de Propriedades.
+ * Teste do Utilitï¿½rio de Propriedades.
  * 
  * @author Marlon Silva Carvalho
  * @since 10/07/2009

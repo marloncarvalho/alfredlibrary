@@ -22,7 +22,7 @@ import java.util.List;
 
 import junit.framework.Assert;
 
-import org.alfredlibrary.colecoes.Colecoes;
+import org.alfredlibrary.utilitarios.colecoes.Colecoes;
 import org.junit.Test;
 
 /**
