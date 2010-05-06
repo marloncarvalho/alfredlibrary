@@ -26,8 +26,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.alfredlibrary.AlfredException;
-import org.alfredlibrary.net.WorldWideWeb;
-import org.alfredlibrary.texto.Texto;
+import org.alfredlibrary.utilitarios.net.WorldWideWeb;
+import org.alfredlibrary.utilitarios.texto.Texto;
 
 /**
  * Utilit�rio para convers�o entre moedas.
