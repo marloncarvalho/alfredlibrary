@@ -17,7 +17,7 @@
 package org.alfredlibrary.formatadores;
 
 import org.alfredlibrary.AlfredException;
-import org.alfredlibrary.validadores.numeros.Numeros;
+import org.alfredlibrary.validadores.Numeros;
 
 /**
  * Formatador de CPF.
