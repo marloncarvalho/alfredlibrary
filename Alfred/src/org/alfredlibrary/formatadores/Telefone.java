@@ -14,7 +14,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with Alfred Library.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.alfredlibrary.formatadores.telefones;
+package org.alfredlibrary.formatadores;
 
 import org.alfredlibrary.utilitarios.texto.Texto;
 
@@ -25,9 +25,9 @@ import org.alfredlibrary.utilitarios.texto.Texto;
  * @author Marlon Silva Carvalho
  * @since 03/06/2009
  */
-final public class Telefones {
+final public class Telefone {
 
-	private Telefones() {}
+	private Telefone() {}
 
 	/**
 	 * Formatar um Telefone.
