@@ -21,11 +21,11 @@ import java.io.InputStream;
 import junit.framework.Assert;
 
 import org.alfredlibrary.AlfredException;
-import org.alfredlibrary.idiomas.Pronuncia;
+import org.alfredlibrary.utilitarios.idiomas.Pronuncia;
 import org.junit.Test;
 
 /**
- * Classe de Teste para o utilitário Pronuncia.
+ * Classe de Teste para o utilitï¿½rio Pronuncia.
  * 
  * @author Marlon Silva Carvalho
  * @since 10/07/2009

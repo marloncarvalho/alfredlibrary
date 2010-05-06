@@ -28,11 +28,11 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import junit.framework.Assert;
 
 import org.alfredlibrary.AlfredException;
-import org.alfredlibrary.midia.Audio;
+import org.alfredlibrary.utilitarios.midia.Audio;
 import org.junit.Test;
 
 /**
- * Classe de teste para o utilitário de Áudio.
+ * Classe de teste para o utilitï¿½rio de ï¿½udio.
  * 
  * @author Marlon Silva Carvalho
  * @Since 13/07/2009

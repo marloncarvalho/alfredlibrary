@@ -16,7 +16,7 @@
  */
 package net.marloncarvalho.alfred.testes.email;
 
-import org.alfredlibrary.email.Email;
+import org.alfredlibrary.validadores.email.Email;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -29,7 +29,7 @@ import org.junit.Test;
 public class EmailTest {
 
 	/**
-	 * Testar e-mails inválidos.
+	 * Testar e-mails invï¿½lidos.
 	 */
 	@Test
 	public void testarEmailInvalido() {

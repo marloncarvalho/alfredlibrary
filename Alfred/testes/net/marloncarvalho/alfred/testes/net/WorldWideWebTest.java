@@ -23,7 +23,7 @@ import java.util.Map;
 import junit.framework.Assert;
 
 import org.alfredlibrary.AlfredException;
-import org.alfredlibrary.net.WorldWideWeb;
+import org.alfredlibrary.utilitarios.net.WorldWideWeb;
 import org.junit.Test;
 
 /**

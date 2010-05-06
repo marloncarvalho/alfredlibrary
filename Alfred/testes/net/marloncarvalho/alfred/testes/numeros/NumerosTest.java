@@ -18,11 +18,11 @@ package net.marloncarvalho.alfred.testes.numeros;
 
 import junit.framework.Assert;
 
-import org.alfredlibrary.numeros.Numeros;
+import org.alfredlibrary.validadores.numeros.Numeros;
 import org.junit.Test;
 
 /**
- * Classe de teste para o utilitário de Numeros.
+ * Classe de teste para o utilitï¿½rio de Numeros.
  * 
  * @author Marlon Silva Carvalho
  * @since 13/07/2009

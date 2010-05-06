@@ -20,12 +20,12 @@ import java.util.Collection;
 
 import junit.framework.Assert;
 
-import org.alfredlibrary.clima.climatempo.Clima;
-import org.alfredlibrary.clima.climatempo.Climatempo;
+import org.alfredlibrary.utilitarios.clima.climatempo.Clima;
+import org.alfredlibrary.utilitarios.clima.climatempo.Climatempo;
 import org.junit.Test;
 
 /**
- * Teste do utilitário de Climatempo.
+ * Teste do utilitï¿½rio de Climatempo.
  * 
  * @author Marlon Silva Carvalho
  * @since 27/05/2010
@@ -37,7 +37,7 @@ public class ClimatempoTest {
 		try {
 			Collection<Clima> climas = Climatempo.obterClima("800");
 			if ( climas == null || climas.size() <= 0 ) {
-				Assert.fail("Não foram encontrados climas para a localidade 857. Deveria existir!");
+				Assert.fail("Nï¿½o foram encontrados climas para a localidade 857. Deveria existir!");
 			}
 		} catch (Exception e) {
 			Assert.fail(e.getMessage());

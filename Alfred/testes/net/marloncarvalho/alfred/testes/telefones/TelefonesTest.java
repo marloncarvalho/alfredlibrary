@@ -18,7 +18,7 @@ package net.marloncarvalho.alfred.testes.telefones;
 
 import junit.framework.Assert;
 
-import org.alfredlibrary.telefones.Telefones;
+import org.alfredlibrary.formatadores.telefones.Telefones;
 import org.junit.Test;
 
 /**
@@ -30,7 +30,7 @@ import org.junit.Test;
 public class TelefonesTest {
 
 	/**
-	 * Testar a formatação de um telefone com 8 números.
+	 * Testar a formataï¿½ï¿½o de um telefone com 8 nï¿½meros.
 	 */
 	@Test
 	public void testarFormatacao8Numeros() {
@@ -40,7 +40,7 @@ public class TelefonesTest {
 	}
 
 	/**
-	 * Testar a formatação de um telefone com 10 números.
+	 * Testar a formataï¿½ï¿½o de um telefone com 10 nï¿½meros.
 	 */
 	@Test
 	public void testarFormatacao10Numeros() {
@@ -54,7 +54,7 @@ public class TelefonesTest {
 	}
 	
 	/**
-	 * Testar a formatação de um telefone com 12 números.
+	 * Testar a formataï¿½ï¿½o de um telefone com 12 nï¿½meros.
 	 */
 	@Test
 	public void testarFormatacao12Numeros() {
@@ -70,7 +70,7 @@ public class TelefonesTest {
 	}
 
 	/**
-	 * Testar a formatação de um telefone com 12 números.
+	 * Testar a formataï¿½ï¿½o de um telefone com 12 nï¿½meros.
 	 */
 	@Test
 	public void testarFormatacaoNumerosTamanhoDiferente81012() {

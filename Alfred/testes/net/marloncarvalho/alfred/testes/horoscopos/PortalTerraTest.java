@@ -16,8 +16,8 @@
  */
 package net.marloncarvalho.alfred.testes.horoscopos;
 
-import org.alfredlibrary.horoscopos.PortalTerra;
-import org.alfredlibrary.horoscopos.Signo;
+import org.alfredlibrary.utilitarios.horoscopos.PortalTerra;
+import org.alfredlibrary.utilitarios.horoscopos.Signo;
 import org.junit.Assert;
 import org.junit.Test;
 

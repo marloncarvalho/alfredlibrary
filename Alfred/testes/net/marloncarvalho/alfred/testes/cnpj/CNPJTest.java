@@ -17,7 +17,7 @@
 package net.marloncarvalho.alfred.testes.cnpj;
 
 import org.alfredlibrary.AlfredException;
-import org.alfredlibrary.cnpj.CNPJ;
+import org.alfredlibrary.validadores.cnpj.CNPJ;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -30,8 +30,8 @@ import org.junit.Test;
 public class CNPJTest {
 
 	/**
-	 * Testar um CNPJ que tenha menos de 15 números.
-	 * Deve lançar uma exceção.
+	 * Testar um CNPJ que tenha menos de 15 nï¿½meros.
+	 * Deve lanï¿½ar uma exceï¿½ï¿½o.
 	 */
 	@Test
 	public void testarFormatarCNPJMenos15Numeros() {
@@ -44,7 +44,7 @@ public class CNPJTest {
 
 	/**
 	 * Testar um CNPJ correto. 
-	 * Não deve lançar exceção.
+	 * Nï¿½o deve lanï¿½ar exceï¿½ï¿½o.
 	 */
 	@Test
 	public void testarFormatarCNPJCorreto() {
@@ -56,7 +56,7 @@ public class CNPJTest {
 	}
 
 	/**
-	 * Verificar se a validação de CNPJ funciona com um número válido.
+	 * Verificar se a validaï¿½ï¿½o de CNPJ funciona com um nï¿½mero vï¿½lido.
 	 */
 	@Test
 	public void testarValidarCNPJValido() {
@@ -70,7 +70,7 @@ public class CNPJTest {
 	}
 
 	/**
-	 * Verificar se a validação de CNPJ funciona com um número inválido.
+	 * Verificar se a validaï¿½ï¿½o de CNPJ funciona com um nï¿½mero invï¿½lido.
 	 */
 	@Test
 	public void testarValidarCNPJInvalido() {
@@ -84,7 +84,7 @@ public class CNPJTest {
 	}
 
 	/**
-	 * Testar a geração de um CNPJ.
+	 * Testar a geraï¿½ï¿½o de um CNPJ.
 	 */
 	@Test
 	public void testarGeracao() {
@@ -97,7 +97,7 @@ public class CNPJTest {
 	}
 
 	/**
-	 * Testar a geração de dígito verificador.
+	 * Testar a geraï¿½ï¿½o de dï¿½gito verificador.
 	 */
 	@Test
 	public void testarGeracaoDigitoVerificador() {

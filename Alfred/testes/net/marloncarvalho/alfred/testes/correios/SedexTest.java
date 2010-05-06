@@ -17,7 +17,7 @@
 package net.marloncarvalho.alfred.testes.correios;
 
 import org.alfredlibrary.AlfredException;
-import org.alfredlibrary.correios.Sedex;
+import org.alfredlibrary.utilitarios.correios.Sedex;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -31,7 +31,7 @@ public class SedexTest {
 
 	/**
 	 * Realizar o teste de Sedex para CEPs corretos.
-	 * Não deve lançar exceção.
+	 * Nï¿½o deve lanï¿½ar exceï¿½ï¿½o.
 	 */
 	@Test
 	public void testarPrecoPrazoCEPsCorretos() {
@@ -44,7 +44,7 @@ public class SedexTest {
 
 	/**
 	 * Realizar o teste de Sedex para CEP Origem Incorreto.
-	 * Deve lançar exceção.
+	 * Deve lanï¿½ar exceï¿½ï¿½o.
 	 */
 	@Test
 	public void testarPrecoPrazoCEPsCEPOrigemIncorreto() {
@@ -57,7 +57,7 @@ public class SedexTest {
 
 	/**
 	 * Realizar o teste de Sedex para CEP destino incorreto.
-	 * Deve lançar exceção.
+	 * Deve lanï¿½ar exceï¿½ï¿½o.
 	 */
 	@Test
 	public void testarPrecoPrazoCEPsCEPDestinoIncorreto() {
@@ -70,7 +70,7 @@ public class SedexTest {
 
 	/**
 	 * Realizar o teste de Sedex para CEPs corretos e peso incorreto.
-	 * Deve lançar exceção.
+	 * Deve lanï¿½ar exceï¿½ï¿½o.
 	 */
 	@Test
 	public void testarPrecoPrazoCEPsCorretosPesoIncorreto() {
@@ -82,8 +82,8 @@ public class SedexTest {
 	}
 
 	/**
-	 * Realizar o teste de Sedex para parâmetros vazios.
-	 * Deve lançar exceção.
+	 * Realizar o teste de Sedex para parï¿½metros vazios.
+	 * Deve lanï¿½ar exceï¿½ï¿½o.
 	 */
 	@Test
 	public void testarPrecoPrazoParametrosVazios() {

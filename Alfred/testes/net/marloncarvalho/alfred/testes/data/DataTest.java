@@ -24,7 +24,7 @@ import java.util.Locale;
 
 import junit.framework.Assert;
 
-import org.alfredlibrary.data.FormatadorData;
+import org.alfredlibrary.formatadores.data.FormatadorData;
 import org.junit.Test;
 
 /**

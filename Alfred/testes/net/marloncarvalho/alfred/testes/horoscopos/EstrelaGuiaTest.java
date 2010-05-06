@@ -16,8 +16,8 @@
  */
 package net.marloncarvalho.alfred.testes.horoscopos;
 
-import org.alfredlibrary.horoscopos.EstrelaGuia;
-import org.alfredlibrary.horoscopos.Signo;
+import org.alfredlibrary.utilitarios.horoscopos.EstrelaGuia;
+import org.alfredlibrary.utilitarios.horoscopos.Signo;
 import org.junit.Assert;
 import org.junit.Test;
 

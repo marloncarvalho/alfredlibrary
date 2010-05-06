@@ -21,11 +21,11 @@ import java.util.Date;
 
 import junit.framework.Assert;
 
-import org.alfredlibrary.data.CalculoData;
+import org.alfredlibrary.formatadores.data.CalculoData;
 import org.junit.Test;
 
 /**
- * Testar classe de utilitária de soma de dias.
+ * Testar classe de utilitï¿½ria de soma de dias.
  * 
  * @author 79325645572
  * @since 13/07/2009
