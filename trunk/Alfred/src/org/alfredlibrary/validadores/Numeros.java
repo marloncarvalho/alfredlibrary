@@ -14,13 +14,13 @@
  *  You should have received a copy of the GNU General Public License
  *  along with Alfred Library.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.alfredlibrary.validadores.numeros;
+package org.alfredlibrary.validadores;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
 /**
- * Utilit�rios para N�meros.
+ * Validador de Números
  * 
  * @author Marlon Silva Carvalho
  * @since 02/06/2009
@@ -28,10 +28,10 @@ import java.math.BigInteger;
 final public class Numeros {
 
 	/**
-	 * Verificar se o n�mero da String � um N�mero.
+	 * Verificar se o numero da String eh um Numero.
 	 * 
-	 * @param numero N�mero.
-	 * @return Verdadeiro caso seja N�mero. Falso, caso contr�rio.
+	 * @param numero Numero.
+	 * @return Verdadeiro caso seja Numero. Falso, caso contrario.
 	 */
 	public static boolean isNumber(String numero) {
 		try {
@@ -42,10 +42,10 @@ final public class Numeros {
 	}
 
 	/**
-	 * Verificar se o n�mero da String � um Short.
+	 * Verificar se o numero da String eh um Short.
 	 * 
-	 * @param numero N�mero.
-	 * @return Verdadeiro caso seja Short. Falso, caso contr�rio.
+	 * @param numero Numero.
+	 * @return Verdadeiro caso seja Short. Falso, caso contrario.
 	 */
 	public static boolean isShort(String numero) {
 		try {
@@ -57,10 +57,10 @@ final public class Numeros {
 	}
 
 	/**
-	 * Verificar se o n�mero da String � um inteiro.
+	 * Verificar se o numero da String eh um inteiro.
 	 * 
-	 * @param numero N�mero.
-	 * @return Verdadeiro caso seja inteiro. Falso, caso contr�rio.
+	 * @param numero Numero.
+	 * @return Verdadeiro caso seja inteiro. Falso, caso contrario.
 	 */
 	public static boolean isInteger(String numero) {
 		try {
@@ -72,10 +72,10 @@ final public class Numeros {
 	}
 
 	/**
-	 * Verificar se o n�mero da String � um Double.
+	 * Verificar se o numero da String eh um Double.
 	 * 
-	 * @param numero N�mero.
-	 * @return Verdadeiro caso seja Double. Falso, caso contr�rio.
+	 * @param numero Numero.
+	 * @return Verdadeiro caso seja Double. Falso, caso contrario.
 	 */
 	public static boolean isDouble(String numero) {
 		try {
@@ -87,10 +87,10 @@ final public class Numeros {
 	}
 
 	/**
-	 * Verificar se o n�mero da String � um Float.
+	 * Verificar se o numero da String eh um Float.
 	 * 
-	 * @param numero N�mero.
-	 * @return Verdadeiro caso seja Float. Falso, caso contr�rio.
+	 * @param numero Numero.
+	 * @return Verdadeiro caso seja Float. Falso, caso contrario.
 	 */
 	public static boolean isFloat(String numero) {
 		try {
