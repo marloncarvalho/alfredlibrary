@@ -1,4 +1,20 @@
-package org.alfredlibrary.formatadores.data;
+/*
+ *  This file is part of Alfred Library.
+ *
+ *  Alfred Library is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Alfred Library is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Alfred Library.  If not, see <http://www.gnu.org/licenses/>.
+ */
+package org.alfredlibrary.formatadores;
 
 import java.text.DateFormat;
 import java.text.DateFormatSymbols;
@@ -10,13 +26,13 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 
 /**
- * Utilitário para fazer conversões com Date.
+ * Utilitário para formatar Datas.
  * 
  * @author Rodrigo Moreira Fagundes
  * @author Marlon Silva Carvalho
  * @since 14/04/2010
  */
-public final class FormatadorData {
+public final class Data {
 
 	/**
 	 * Obtém uma String correspondente a uma determinada data,
@@ -26,7 +42,7 @@ public final class FormatadorData {
 	 * @param formato Formato do texto de saída.
 	 * @return String Texto com a data no formato especificado.
 	 */
-	public static String obterTextoDeData (Date data, String formato) {
+	public static String formatar (Date data, String formato) {
 		if (data != null) {
 			DateFormat dateFormat = new SimpleDateFormat(formato);
 			return dateFormat.format(data);
@@ -42,7 +58,7 @@ public final class FormatadorData {
 	 * @param formato Formato do texto passado em "strData".
 	 * @return Date Data.
 	 */
-	public static Date obterDataDeTexto (String strData, String formato) throws ParseException {
+	public static Date formatar (String strData, String formato) throws ParseException {
 		if (strData != null) {
 			DateFormat df = new SimpleDateFormat(formato);
 			return (Date)df.parse(strData);
@@ -57,7 +73,7 @@ public final class FormatadorData {
 	 * @param data Data a ser formatada.
 	 * @return Data formatada.
 	 */
-	public static String formatarDataPorExtenso(Date data) {
+	public static String formatarPorExtenso(Date data) {
 		Calendar cal = null;
 		cal = new GregorianCalendar();
 		cal.setTime(data);
