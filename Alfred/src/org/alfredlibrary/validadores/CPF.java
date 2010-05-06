@@ -14,36 +14,34 @@
  *  You should have received a copy of the GNU General Public License
  *  along with Alfred Library.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.alfredlibrary.validadores.email;
+package org.alfredlibrary.validadores;
+ 
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import org.alfredlibrary.utilitarios.texto.Texto;
 
 /**
- * Classe utilit�ria para Emails.
+ * Validador de CNPJ.
  * 
  * @author Marlon Silva Carvalho
- * @since 03/06/2009
+ * @since 02/06/2009
  */
-final public class Email {
+final public class CPF {
 
-	private Email() {
+	private CPF() {
 	}
 
 	/**
-	 * Verificar se um e-mail � v�lido.
+	 * Verificar se um CPF é válido.
 	 * 
-	 * @param email E-mail a ser validado.
-	 * @return Verdadeiro caso seja v�lido. Falso, caso contr�rio.
+	 * @param cpf CPF a ser verificado.
+	 * @return Verdadeiro caso seja válido. Falso, caso contrário.
 	 */
-	public static boolean isValido(String email) {
-		Pattern pattern = Pattern.compile (
-		         "([a-zA-Z0-9_\\-\\.]+)@((\\[a-z]{1,3}\\.[a-z]"
-		         + "{1,3}\\.[a-z]{1,3}\\.)|(([a-zA-Z\\-]+\\.)+))"
-		         + "([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)", 
-		         Pattern.MULTILINE);
-		Matcher m=pattern.matcher(email);
-		return m.matches();
+	public static boolean isValido(String cpf) {
+		cpf = Texto.manterNumeros(cpf);
+        if (cpf.length() != 11)
+            return false;
+        String numDig = cpf.substring(0, 9);
+        return org.alfredlibrary.utilitarios.cpfcnpj.CPF.gerarDigitoVerificador(numDig).equals(cpf.substring(9, 11));
 	}
 
 }
