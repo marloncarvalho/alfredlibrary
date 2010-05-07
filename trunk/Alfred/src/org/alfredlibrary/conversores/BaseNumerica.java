@@ -16,6 +16,9 @@
  */
 package org.alfredlibrary.conversores;
 
+import org.alfredlibrary.AlfredException;
+import org.alfredlibrary.validadores.Numeros;
+
 
 /**
  * Utilit�rio para convers�o entre bases num�ricas.
@@ -24,67 +27,60 @@ package org.alfredlibrary.conversores;
  * @since 02/06/2009
  */
 final public class BaseNumerica {
-
-	/**
-	 * Converter um n�mero Decimal para Bin�rio. 
-	 * 
-	 * @param decimal N�mero decimal.
-	 * @return N�mero em base bin�ria.
-	 */
-	public static String converterDecimalEmBinario(String decimal) {
-		return Long.toBinaryString(Long.valueOf(decimal));
+	
+	public enum Base {
+		DECIMAL(10), HEXADECIMAL(16), OCTAL(8), BINARIO(2);
+		
+		private Integer base;
+		
+		private Base(Integer base) { 
+			this.base = base;
+		}
+		
+		@Override
+		public String toString() {
+			return String.valueOf(base);
+		}
+		
 	}
-
+	
+	private BaseNumerica() {}
+	
 	/**
-	 * Converter um n�mero Bin�rio para Decimal.
+	 * Converter um número de uma base para outra.
 	 * 
-	 * @param binario N�mero bin�rio.
-	 * @return N�mero em base decimal.
+	 * @param valor Valor a ser convertido.
+	 * @param baseEntrada A Base Numérica usada como entrada. 
+	 * @param baseSaida A Base Numérica desejada na saída.
+	 * @return Valor convertido.
 	 */
-	public static String converterBinarioEmDecimal(String binario) {
-		return String.valueOf(Long.parseLong(binario,2));
-	}
+	public static String converter(String valor, Base baseEntrada, Base baseSaida) {
+		if ( valor == null || "".equals(valor) ) {
+			throw new AlfredException("Nenhum valor informado para conversão.");
+		}
+		if ( baseEntrada == Base.DECIMAL && !Numeros.isLong(valor) ) {
+			throw new AlfredException("Informe um Número Decimal válido!");
+		}
+		if ( baseEntrada == Base.OCTAL && Long.valueOf(valor) >= 8 ) {
+			throw new AlfredException("Informe um Número Octal válido!");
+		}
+		if ( baseEntrada == Base.BINARIO && Long.valueOf(valor) > 1 ) {
+			throw new AlfredException("Informe um Número Binário válido!");
+		}
 
-	/**
-	 * Converter um n�mero Decimal para Hexadecimal.
-	 * 
-	 * @param decimal N�mero decimal.
-	 * @return N�mero em base hexadecimal.
-	 */
-	public static String converterDecimalEmHexadecimal(String decimal) {
-		return Long.toHexString(Long.valueOf(decimal)).toUpperCase();
+		if ( baseEntrada == Base.DECIMAL && baseSaida == Base.BINARIO ) {
+			return Long.toBinaryString(Long.valueOf(valor));
+		}
+		if ( baseEntrada == Base.DECIMAL && baseSaida == Base.OCTAL ) {
+			return Long.toOctalString(Long.valueOf(valor));
+		}
+		if ( baseEntrada == Base.DECIMAL && baseSaida == Base.HEXADECIMAL ) {
+			return Long.toHexString(Long.valueOf(valor));
+		}
+		if ( baseSaida == Base.DECIMAL ) {
+			return String.valueOf(Long.parseLong(valor, baseEntrada.base));
+		}
+		return BaseNumerica.converter(BaseNumerica.converter(valor, baseEntrada, Base.DECIMAL), Base.DECIMAL, baseSaida);
 	}
-
-	/**
-	 * Converter um n�mero Hexadecimal para Decimal.
-	 * 
-	 * @param hexadecimal N�mero hexadecimal.
-	 * @return N�mero em base decimal.
-	 */
-	public static String converterHexadecimalEmDecimal(String hexadecimal) {
-		return String.valueOf(Long.parseLong(hexadecimal,16));
-	}
-
-	/**
-	 * Converter um n�mero Decimal para Octa.
-	 * 
-	 * @param decimal N�mero decimal.
-	 * @return N�mero em base octa.
-	 */
-	public static String converterDecimalEmOcta(String decimal) {
-		return Long.toOctalString(Long.valueOf(decimal)).toUpperCase();
-	}
-
-	/**
-	 * Converter um n�mero Octa para Decimal.
-	 * C�digo obtido do Linha de C�digo no endere�o
-	 * <link>http://www.linhadecodigo.com.br/Codigo.aspx?id=407</link>
-	 * 
-	 * @param octa N�mero octa.
-	 * @return N�mero em base decimal.
-	 */
-	public static String converterOctaEmDecimal(String octa) {
-		return String.valueOf(Long.parseLong(octa,8));
-	}
-
+	
 }
