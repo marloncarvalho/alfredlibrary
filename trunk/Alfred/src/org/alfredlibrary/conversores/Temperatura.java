@@ -18,117 +18,54 @@ package org.alfredlibrary.conversores;
 
 import org.alfredlibrary.AlfredException;
 
-
-
 /**
- * Classe utilit�ria para convers�o de temperaturas.
+ * Classe utilitária para conversão de temperaturas.
  * 
  * @author Marlon Silva Carvalho
  * @since 03/06/2009
  */
 final public class Temperatura {
-	public static int CELSIUS = 1;
-	public static int FAHRENHEIT = 2;
-	public static int KELVIN = 3;
+	
+	public enum Unidade {
+		CELSIUS(1), FAHRENHEIT(2), KELVIN(3);
+		
+		private int unidade;
+		private Unidade(int unidade) {
+			this.unidade = unidade;
+		}
+		
+		@Override
+		public String toString() {
+			return String.valueOf(this.unidade);
+		}
+
+	}
 
 	private Temperatura() {}
 
 	/**
 	 * Converter um valor de temperatura para outro.
+	 * Código "gentilmente" sugado do blog http://discomoose.org/2005/12/27/temperature-conversion-program-in-java/.
 	 * 
-	 * @param valor Valor que ser� convertido.
-	 * @param entrada Em que tipo de representa��o o valor est� representado.
-	 * @param saida Em que tipo de representa��o o valor de sa�da ser� representado.
+	 * @param valor Valor que será convertido.
+	 * @param entrada Em que tipo de representação o valor está representado.
+	 * @param saida Em que tipo de representação o valor de saída será representado.
 	 * @return Valor convertido.
 	 */
-	public static float converter(float valor, int entrada, int saida) {
-		if ( entrada == CELSIUS && saida == FAHRENHEIT )
-			return converterCelciusEmFahrenheit(valor);
-		if ( entrada == CELSIUS && saida == KELVIN )
-			return converterCelciusEmKelvin(valor);
-		if ( entrada == FAHRENHEIT && saida == CELSIUS )
-			return converterFahrenheitEmCelcius(valor);
-		if ( entrada == FAHRENHEIT && saida == KELVIN )
-			return converterFahrenheitEmKelvin(valor);
-		if ( entrada == KELVIN && saida == CELSIUS )
-			return converterKelvinEmCelcius(valor);
-		if ( entrada == KELVIN && saida == FAHRENHEIT )
-			return converterKelvinEmFahrenheit(valor);
-		throw new AlfredException("N�o foi poss�vel realizar a convers�o de temperatura solicitada.");
-	}
-
-	/**
-	 * Converter de Celcius para Fahrenheit.
-	 * C�digo "gentilmente" sugado do blog http://discomoose.org/2005/12/27/temperature-conversion-program-in-java/.
-	 * 
-	 * @param degCelcius Temperatura em Celcius.
-	 * @return Temperatura em Fahrenheit.
-	 */
-	public static float converterCelciusEmFahrenheit(float degCelcius) {
-		float degFahrenheit;
-		degFahrenheit = degCelcius * 9 / 5 + 32;
-		return degFahrenheit;
-	}
-
-	/**
-	 * Converter de Fahrenheit para Celcius.
-	 * C�digo "gentilmente" sugado do blog http://discomoose.org/2005/12/27/temperature-conversion-program-in-java/.
-	 * 
-	 * @param degFahrenheit Temperatura em Farenheit.
-	 * @return Temperatura em Celcius.
-	 */
-	public static float converterFahrenheitEmCelcius(float degFahrenheit) {
-		float degCelcius;
-		degCelcius = (degFahrenheit - 32) * 5 / 9;
-		return degCelcius;
-	}
-
-	/**
-	 * Converter de Fahrenheit para Kelvin.
-	 * 
-	 * @param f Temperatura em Fahrenheit.
-	 * @return Temperatura em Kelvin.
-	 */
-	public static float converterFahrenheitEmKelvin(float f) {
-		float celcius = converterFahrenheitEmCelcius(f);
-		return converterCelciusEmKelvin(celcius);
-	}
-
-	/**
-	 * Converter uma temperatura de Kelvin para Fahrenheit.
-	 * 
-	 * @param k Temperatura em Kelvin.
-	 * @return Temperatura em Fahrenheit.
-	 */
-	public static float converterKelvinEmFahrenheit(float k) {
-		float celcius = converterKelvinEmCelcius(k);
-		return converterCelciusEmFahrenheit(celcius);
-	}
-	
-	/**
-	 * Converter de Celcius para Kelvin.
-	 * C�digo "gentilmente" sugado do blog http://discomoose.org/2005/12/27/temperature-conversion-program-in-java/.
-	 * 
-	 * @param degCelcius Temperatura em Celcius.
-	 * @return Temperatura em Kelvin.
-	 */
-	public static float converterCelciusEmKelvin(float degCelcius) {
-		float degKelvin;
-		degKelvin = degCelcius + 273.15f;
-		return degKelvin;
-	}
-
-	/**
-	 * Converter de Kelvin para Celcius.
-	 * C�digo "gentilmente" sugado do blog http://discomoose.org/2005/12/27/temperature-conversion-program-in-java/.
-	 *  
-	 * @param degKelvin Temperatura em Kelvin.
-	 * @return Temperatura em Celcius.
-	 */
-	public static float converterKelvinEmCelcius(float degKelvin) {
-		float degCelcius;
-		degCelcius = degKelvin - 273.15f;
-		return degCelcius;
+	public static float converter(float valor, Unidade entrada, Unidade saida) {
+		if ( entrada == Unidade.CELSIUS && saida == Unidade.FAHRENHEIT )
+			return valor * 9 / 5 + 32;
+		if ( entrada == Unidade.CELSIUS && saida == Unidade.KELVIN )
+			return valor + 273.15f;
+		if ( entrada == Unidade.FAHRENHEIT && saida == Unidade.CELSIUS )
+			return (valor - 32) * 5 / 9;
+		if ( entrada == Unidade.FAHRENHEIT && saida == Unidade.KELVIN )
+			return converter((converter(valor, Unidade.FAHRENHEIT, Unidade.CELSIUS)), Unidade.CELSIUS, Unidade.KELVIN);
+		if ( entrada == Unidade.KELVIN && saida == Unidade.CELSIUS )
+			return valor - 273.15f;
+		if ( entrada == Unidade.KELVIN && saida == Unidade.FAHRENHEIT )
+			return converter((converter(valor, Unidade.KELVIN, Unidade.CELSIUS)), Unidade.CELSIUS, Unidade.FAHRENHEIT);
+		throw new AlfredException("Não foi possível realizar a conversão de temperatura solicitada.");
 	}
 
 }
