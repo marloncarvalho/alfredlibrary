@@ -23,25 +23,26 @@ package org.alfredlibrary.conversores;
  * @since 08/06/2009
  */
 final public class Armazenamento {
-	public static int BIT = 1;
-	public static int KILOBIT = 2;
-	public static int MEGABIT = 3;
-	public static int GIGABIT = 4;
-	public static int TERABIT = 5;
-	public static int PETABIT = 6;
-	public static int EXABIT = 7;
-	public static int BYTE = 8;
-	public static int KILOBYTE = 9;
-	public static int MEGABYTE = 10;
-	public static int GIGABYTE = 11;
-	public static int TERABYTE = 12;
-	public static int PETABYTE = 13;
-	public static int EXABYTE = 14;
+	
+	public enum Unidade {
+		BIT(1), KILOBIT(2), MEGABIT(3), GIGABIT(4), TERABIT(5), PETABIT(6), EXABIT(7), BYTE(8), KILOBYTE(9), MEGABYTE(10), GIGABYTE(11), TERABYTE(12), PETABYTE(13), EXABYTE(14);
+		
+		private int unidade;
+		private Unidade(int unidade) {
+			this.unidade = unidade;
+		}
+		
+		@Override
+		public String toString() {
+			return String.valueOf(unidade);
+		}
+
+	}
 
 	private Armazenamento() {}
 
 	/**
-	 * Converter um valor entre duas grandezas de armazenamento em inform�tica.<br><br>
+	 * Converter um valor entre duas grandezas de armazenamento em informática.<br><br>
 	 * Exemplo de uso:
 	 * <br> 
 	 *  // Converter 1 megabyte em bytes.<br>
@@ -49,27 +50,27 @@ final public class Armazenamento {
 	 *  
 	 * @param valor Valor a ser convertido.
 	 * @param unidadeEntrada Tipo do valor de entrada (bytes, kilobytes, megabytes, etc).
-	 * @param unidadeSaida Tipo de valor de sa�da (bytes, kilobytes, megabytes, etc).
+	 * @param unidadeSaida Tipo de valor de saída (bytes, kilobytes, megabytes, etc).
 	 * @return Valor conertido.
 	 */
-	public static double converter(double valor, int unidadeEntrada, int unidadeSaida) {
-		if ( unidadeSaida < BYTE && unidadeEntrada > EXABIT ) {
-			for(int i=0; i<(unidadeEntrada-BYTE);i++)
+	public static double converter(double valor, Unidade unidadeEntrada, Unidade unidadeSaida) {
+		if ( unidadeSaida.unidade < Unidade.BYTE.unidade && unidadeEntrada.unidade > Unidade.EXABIT.unidade ) {
+			for(int i=0; i<(unidadeEntrada.unidade - Unidade.BYTE.unidade);i++)
 				valor *= 1024;
 			valor *= 8;
-			unidadeEntrada = BIT;
+			unidadeEntrada = Unidade.BIT;
 		}
-		if ( unidadeSaida > EXABIT && unidadeEntrada < BYTE ) {
-			for(int i=0; i<(unidadeEntrada-BIT);i++)
+		if ( unidadeSaida.unidade > Unidade.EXABIT.unidade && unidadeEntrada.unidade < Unidade.BYTE.unidade ) {
+			for(int i=0; i<(unidadeEntrada.unidade - Unidade.BIT.unidade);i++)
 				valor *= 1024;
 			valor /= 8;
-			unidadeEntrada = BYTE;
+			unidadeEntrada = Unidade.BYTE;
 		}
-		if ( unidadeEntrada < unidadeSaida ) {
-			for(int i=0; i<(unidadeSaida-unidadeEntrada);i++)
+		if ( unidadeEntrada.unidade < unidadeSaida.unidade ) {
+			for(int i=0; i<(unidadeSaida.unidade - unidadeEntrada.unidade);i++)
 				valor /= 1024;
 		} else {
-			for(int i=0; i<(unidadeEntrada-unidadeSaida);i++)
+			for(int i=0; i<(unidadeEntrada.unidade - unidadeSaida.unidade);i++)
 				valor *= 1024;			
 		}
 		return valor;
