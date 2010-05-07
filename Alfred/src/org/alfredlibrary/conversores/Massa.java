@@ -17,21 +17,26 @@
 package org.alfredlibrary.conversores;
 
 /**
- * Classe para convers�o entre medidas de massa.
+ * Classe para conversão entre medidas de massa.
  * 
  * @author Marlon Silva Carvalho
  * @since 07/06/2009
  */
 final public class Massa {
-	public static double TONELADA = 1D;
-	public static double QUILOGRAMA = 1000D;
-	public static double HECTOGRAMA = 10000D;
-	public static double GRAMA = 1000000D;
-	public static double CENTIGRAMA = 100000000D;
-	public static double QUILATE = 5000000D;
-	public static double MILIGRAMA = 1000000000D;
-	public static double MICROGRAMA = 1000000000000D;
-	public static double NANOGRAMA = 1000000000000000D;
+	
+	public enum Unidade {
+		TONELADA(1D), QUILOGRAMA(1000D), HECTOGRAMA(10000D), GRAMA(1000000D), CENTIGRAMA(100000000D), 
+		QUILATE(5000000D), MILIGRAMA(1000000000D), MICROGRAMA(1000000000000D), NANOGRAMA(1000000000000000D);
+		
+		private Double unidade;
+		private Unidade(Double unidade) {
+			this.unidade = unidade;
+		}
+		@Override
+		public String toString() {
+			return String.valueOf(unidade);
+		}
+	}
 
 	private Massa() {}
 
@@ -40,35 +45,13 @@ final public class Massa {
 	 * 
 	 * @param valor Valor a ser convertido.
 	 * @param unidadeEntrada Unidade de Entrada.
-	 * @param unidadeSaida Unidade de Sa�da.
+	 * @param unidadeSaida Unidade de Saída.
 	 * @return Valor convertido.
 	 */
-	public static double converter(double valor, double unidadeEntrada, double unidadeSaida) {
-		if ( unidadeEntrada > unidadeSaida )
-			return (valor/(unidadeEntrada/unidadeSaida));
-		else return (valor*(unidadeSaida/unidadeEntrada));
-	}
-
-	/**
-	 * Converter Quilograma em Grama.
-	 * 
-	 * @param kg Quilograma.
-	 * @return Grama.
-	 */
-	@Deprecated
-	public static double converterKgEmGrama(double kg) {
-		return (kg*1000);
-	}
-
-	/**
-	 * Converter Grama em Quilograma.
-	 * 
-	 * @param g Grama.
-	 * @return Quilograma.
-	 */
-	@Deprecated
-	public static double converterGramaEmKg(double g) {
-		return (g/1000);
+	public static double converter(double valor, Unidade unidadeEntrada, Unidade unidadeSaida) {
+		if ( unidadeEntrada.unidade > unidadeSaida.unidade )
+			return (valor/(unidadeEntrada.unidade/unidadeSaida.unidade));
+		else return (valor*(unidadeSaida.unidade/unidadeEntrada.unidade));
 	}
 
 }
