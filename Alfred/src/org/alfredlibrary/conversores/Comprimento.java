@@ -23,15 +23,22 @@ package org.alfredlibrary.conversores;
  * @since 03/06/2009
  */
 final public class Comprimento {
-	public static double QUILOMETRO = 1D;
-	public static double METRO = 1000D;
-	public static double DECIMETRO  = 10000D;
-	public static double CENTIMETRO = 100000D;
-	public static double MILIMETRO = 1000000D;
-	public static double MICROMETRO = 1000000000D;
-	public static double NANOMETRO = 1000000000000D;
-	public static double ANGSTROM = 10000000000000D;
-	
+	public enum Unidade {
+		KM(1D), METRO(1000D), DECIMETRO(10000D), CENTIMETRO(100000D), MILIMETRO(1000000D), MICROMETRO(1000000000D),
+		NANOMETRO(1000000000000D), ANGSTROM(10000000000000D);
+		
+		private Double unidade;
+		
+		private Unidade(Double unidade) {
+			this.unidade = unidade;
+		}
+		
+		@Override
+		public String toString() {
+			return String.valueOf(this.unidade);
+		}
+	}
+
 	private Comprimento() {}
 	
 	/**
@@ -42,10 +49,10 @@ final public class Comprimento {
 	 * @param unidadeSaida Unidade de Sa�da.
 	 * @return Valor convertido.
 	 */
-	public static double converter(double valor, double unidadeEntrada, double unidadeSaida) {
-		if ( unidadeEntrada > unidadeSaida )
-			return (valor/(unidadeEntrada/unidadeSaida));
-		else return (valor*(unidadeSaida/unidadeEntrada));
+	public static double converter(double valor, Unidade unidadeEntrada, Unidade unidadeSaida) {
+		if ( unidadeEntrada.unidade > unidadeSaida.unidade )
+			return (valor/(unidadeEntrada.unidade/unidadeSaida.unidade));
+		else return (valor*(unidadeSaida.unidade/unidadeEntrada.unidade));
 	}
 
 	/**
