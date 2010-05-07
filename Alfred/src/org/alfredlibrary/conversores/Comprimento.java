@@ -47,27 +47,6 @@ final public class Comprimento {
 			return (valor/(unidadeEntrada/unidadeSaida));
 		else return (valor*(unidadeSaida/unidadeEntrada));
 	}
-	
-	/**
-	 * Converter quil�metros em metros.
-	 * 
-	 * @param km Quil�metros.
-	 * @return Metros.
-	 */
-	@Deprecated
-	public static double converterKmEmMetros(double km) {
-		return (km*1000);
-	}
-
-	/**
-	 * Converter metros em quil�metros.
-	 * @param m Metros.
-	 * @return Km.
-	 */
-	@Deprecated
-	public static double converterMetrosEmKm(double m) {
-		return (m/1000);
-	}
 
 	/**
 	 * Converter Milhas em Quil�metros.
