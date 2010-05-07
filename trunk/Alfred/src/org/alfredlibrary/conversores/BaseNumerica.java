@@ -21,7 +21,7 @@ import org.alfredlibrary.validadores.Numeros;
 
 
 /**
- * Utilit�rio para convers�o entre bases num�ricas.
+ * Utilitário para conversão entre bases numéricas.
  * 
  * @author Marlon Silva Carvalho
  * @since 02/06/2009
