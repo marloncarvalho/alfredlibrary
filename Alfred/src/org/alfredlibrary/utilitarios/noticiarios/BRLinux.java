@@ -14,7 +14,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with Alfred Library.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.alfredlibrary.utilitarios.brlinux;
+package org.alfredlibrary.utilitarios.noticiarios;
 
 import java.io.IOException;
 import java.io.Reader;
