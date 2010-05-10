@@ -17,13 +17,18 @@
 package org.alfredlibrary.utilitarios.correios;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.alfredlibrary.AlfredException;
 import org.alfredlibrary.utilitarios.io.CSVReader;
+import org.alfredlibrary.utilitarios.net.WorldWideWeb;
+import org.alfredlibrary.utilitarios.texto.Texto;
 
 /**
- * Classe utilit�ria para CEPs.
+ * Classe utilitária para CEPs.
  * 
  * @author Marlon Silva Carvalho
  * @since 04/06/2009
@@ -33,46 +38,58 @@ final public class CEP {
 	private CEP() {}
 
 	/**
-	 * Realizar a formata��o do CEP passado.
-	 * A formata��o � do tipo XX.XXX-XXX.
-	 * 
-	 * @param cep CEP a ser formatado.
-	 * @return CEP formatado.
-	 */
-	public static String formatar(String cep) {
-		if ( "".equals(cep) || cep.length() != 8 )
-			throw new AlfredException("Informe um CEP v�lido.");
-		return new StringBuilder().append(cep.substring(0,2)).append(".").append(cep.substring(2,5)).append("-").append(cep.substring(5,8)).toString();
-	}
-
-	/**
-	 * Realizar a formata��o do CEP passado.
-	 * A formata��o � do tipo XXXXX-XXX.
-	 * 
-	 * @param cep CEP a ser formatado.
-	 * @return CEP formatado.
-	 */
-	public static String formatarSimples(String cep) {
-		if ( "".equals(cep) || cep.length() != 8 )
-			throw new AlfredException("Informe um CEP v�lido.");
-		return new StringBuilder().append(cep.substring(0,5)).append("-").append(cep.substring(5,8)).toString();
-	}
-
-	/**
-	 * Consultar um Endere�o pelo CEP.
-	 * Ser� retornado um Array contendo 6 posi��es, que conter�o, respectivamente, os campos (tipo de logradouro, logradouro, bairro, cidade, sigla do estado, estado).
+	 * Consultar um Endereço pelo CEP.
+	 * Será retornado um Array contendo 4 posições, que conterão, respectivamente, os campos cep, endereço, bairro e cidade/estado).
+	 * Utiliza o site dos Correios para extrair as informações.
 	 * 
 	 * @param cep CEP a ser consultado.
 	 * @return Array contendo o resultado da consulta.
 	 */
-	public static String[] consultarEndereco(String cep) { 
-		String cepFormatado = formatarSimples(cep);
+	public static String[] consultarEnderecoCorreios(String cep) {
+		Map<String, String> parametros = new HashMap<String, String>();
+		parametros.put("resposta","paginaCorreios");
+		parametros.put("servico","40010");
+		parametros.put("cepOrigem", cep);
+		parametros.put("cepDestino", cep);
+		parametros.put("embalagem","");
+		parametros.put("peso", Integer.toString(1));
+		String conteudo = WorldWideWeb.getConteudoSite("http://www.correios.com.br/encomendas/prazo/prazo.cfm", parametros);
+		
+		String[] re = new String[4];
+		Pattern padrao = Pattern.compile("<td align=\"center\">(\\w| |/)*</td>");  
+		Matcher pesquisa = padrao.matcher(conteudo);
+		if ( !pesquisa.find() ) {
+			throw new AlfredException("CEP não encontrado.");
+		}
+		re[0] = Texto.removerTags(pesquisa.group()).trim();
+		pesquisa.find();
+		pesquisa.find();
+		re[1] = Texto.removerTags(pesquisa.group()).trim();
+		pesquisa.find();
+		pesquisa.find();
+		re[2] = Texto.removerTags(pesquisa.group()).trim();
+		pesquisa.find();
+		pesquisa.find();
+		re[3] = Texto.removerTags(pesquisa.group()).trim();
+		return re;
+	}
+
+	/**
+	 * Consultar um Endereço pelo CEP.
+	 * Será retornado um Array contendo 6 posições, que conterão, respectivamente, os campos (tipo de logradouro, logradouro, bairro, cidade, sigla do estado, estado).
+	 * Utiliza a base de dados do site CEP Livre. Nâo é constantemente atualizada.
+	 * 
+	 * @param cep CEP a ser consultado.
+	 * @return Array contendo o resultado da consulta.
+	 */
+	public static String[] consultarEnderecoCEPLivre(String cep) { 
+		String cepFormatado = org.alfredlibrary.formatadores.CEP.formatar(cep, true);
 		Collection<Map<String, String>> r = CSVReader.interpretar("http://ceplivre.pc2consultoria.com/index.php?module=cep&cep=" + cepFormatado + "&formato=csv");
 		if ( r.size() <= 0 )
-			throw new AlfredException("Endere�o n�o encontrado.");
+			throw new AlfredException("Endereço não encontrado.");
 		Map<String, String> endereco = (Map<String, String>) r.iterator().next();
 		if ( endereco == null )
-			throw new AlfredException("Endere�o n�o encontrado.");
+			throw new AlfredException("Endereçoo não encontrado.");
 		return new String[] {endereco.get("tipo_logradouro"),endereco.get("logradouro"), endereco.get("bairro"), endereco.get("cidade"),endereco.get("sigla"),endereco.get("estado")};
 	}
 
