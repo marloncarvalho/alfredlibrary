@@ -64,10 +64,13 @@ final public class BaseNumerica {
 		if ( baseEntrada == Base.OCTAL && Long.valueOf(valor) >= 8 ) {
 			throw new AlfredException("Informe um Número Octal válido!");
 		}
-		if ( baseEntrada == Base.BINARIO && Long.valueOf(valor) > 1 ) {
-			throw new AlfredException("Informe um Número Binário válido!");
+		if ( baseEntrada == Base.BINARIO ) {
+			for(int x=0; x < valor.length(); x++) {
+				if ( Integer.valueOf(String.valueOf(valor.charAt(x))) > 1 ) {
+					throw new AlfredException("Informe um Número Binário válido!");					
+				}
+			}
 		}
-
 		if ( baseEntrada == Base.DECIMAL && baseSaida == Base.BINARIO ) {
 			return Long.toBinaryString(Long.valueOf(valor));
 		}

@@ -14,35 +14,27 @@
  *  You should have received a copy of the GNU General Public License
  *  along with Alfred Library.  If not, see <http://www.gnu.org/licenses/>.
  */
-package net.marloncarvalho.alfred.testes.brlinux;
+package org.alfredlibrary.test.conversores;
 
+import junit.framework.Assert;
 
-import org.alfredlibrary.AlfredException;
-import org.alfredlibrary.utilitarios.noticiarios.BRLinux;
-import org.junit.Assert;
+import org.alfredlibrary.conversores.Binario;
 import org.junit.Test;
 
 /**
- * Teste das noticias do BRLinux.
+ * Testar conversáo de Binário.
  * 
- * @author Carlos Daniel de Mattos Mercer
- * @since 21/07/2009
+ * @author Marlon Silva Carvalho
+ * @since 10/07/2009
  */
-public class BRLinuxTest {
+public class BinarioTest {
 
 	@Test
-	public void testarResultadoNoticias() {
-		try {
-			String[] resultado = BRLinux.obterNoticiasBRLinux();
-			if (resultado.length < 32)
-				Assert.fail();
-			for (int i = 0; i < resultado.length; i++) {
-				if (resultado[i] == null || "".equals(resultado[i]))
-					Assert.fail();
-			}
-		} catch (AlfredException e) {
-			Assert.fail();
-		} 
+	public void testarConversaoBase64() {
+		String valorOriginal = "Marlon";
+		String codificado = Binario.codificarBase64(valorOriginal.getBytes());
+		String descodificado = new String(Binario.decodificarBase64(codificado));
+		Assert.assertEquals(valorOriginal, descodificado);
 	}
 
 }
