@@ -25,7 +25,7 @@ import java.util.regex.Pattern;
 import org.alfredlibrary.AlfredException;
 import org.alfredlibrary.utilitarios.io.CSVReader;
 import org.alfredlibrary.utilitarios.net.WorldWideWeb;
-import org.alfredlibrary.utilitarios.texto.Texto;
+import org.alfredlibrary.utilitarios.texto.HTML;
 
 /**
  * Classe utilitária para CEPs.
@@ -61,16 +61,16 @@ final public class CEP {
 		if ( !pesquisa.find() ) {
 			throw new AlfredException("CEP não encontrado.");
 		}
-		re[0] = Texto.removerTags(pesquisa.group()).trim();
+		re[0] = HTML.removerTags(pesquisa.group()).trim();
 		pesquisa.find();
 		pesquisa.find();
-		re[1] = Texto.removerTags(pesquisa.group()).trim();
+		re[1] = HTML.removerTags(pesquisa.group()).trim();
 		pesquisa.find();
 		pesquisa.find();
-		re[2] = Texto.removerTags(pesquisa.group()).trim();
+		re[2] = HTML.removerTags(pesquisa.group()).trim();
 		pesquisa.find();
 		pesquisa.find();
-		re[3] = Texto.removerTags(pesquisa.group()).trim();
+		re[3] = HTML.removerTags(pesquisa.group()).trim();
 		return re;
 	}
 

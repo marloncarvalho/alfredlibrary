@@ -17,7 +17,7 @@
 package org.alfredlibrary.utilitarios.horoscopos;
 
 import org.alfredlibrary.utilitarios.net.WorldWideWeb;
-import org.alfredlibrary.utilitarios.texto.Texto;
+import org.alfredlibrary.utilitarios.texto.HTML;
 
 /**
  * Utilitário para obter o horóscopo de um Signo através do site Estrela Guia.
@@ -37,7 +37,7 @@ final public class EstrelaGuia {
 		String url = "http://www.estrelaguia.com.br/horoscopo/" + signo + "/";
 		String conteudo = WorldWideWeb.getConteudoSite(url);
 		String horoscopo = conteudo.substring(conteudo.indexOf("<p class=\"txtsigno\">"), conteudo.indexOf("<br />", conteudo.indexOf("<p class=\"txtsigno\">")));
-		return Texto.removerTags(horoscopo);
+		return HTML.removerTags(horoscopo);
 	}
 
 }

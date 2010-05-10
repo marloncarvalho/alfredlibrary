@@ -17,7 +17,7 @@
 package org.alfredlibrary.utilitarios.bulario;
 
 import org.alfredlibrary.utilitarios.net.WorldWideWeb;
-import org.alfredlibrary.utilitarios.texto.Texto;
+import org.alfredlibrary.utilitarios.texto.HTML;
 
 /**
  * Obter bula de um remédio através do site Bulário Online.
@@ -38,7 +38,7 @@ final public class BularioOnline {
 		String conteudo = WorldWideWeb.getConteudoSite(url);
 		String bula = conteudo.substring(conteudo.indexOf("<a name=\"indicacoes\" rel=\"nofollow\">"), 
 				conteudo.indexOf("<a name=\"laboratorio\" rel=\"nofollow\"></a>", conteudo.indexOf("a name=\"indicacoes\" rel=\"nofollow\">")));
-		return Texto.removerTags(Texto.desconverterElementosHTMLEspeciais(bula, 0));
+		return HTML.removerTags(HTML.desconverterElementosHTMLEspeciais(bula, 0));
 	}
 
 }

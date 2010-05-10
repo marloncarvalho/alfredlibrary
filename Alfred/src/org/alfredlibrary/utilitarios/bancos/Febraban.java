@@ -25,7 +25,6 @@ import java.util.Collection;
 import org.alfredlibrary.AlfredException;
 import org.alfredlibrary.utilitarios.net.WorldWideWeb;
 import org.alfredlibrary.utilitarios.texto.HTML;
-import org.alfredlibrary.utilitarios.texto.Texto;
 import org.alfredlibrary.validadores.Numeros;
 
 /**
@@ -54,7 +53,7 @@ final public class Febraban {
 		try {
 			while( (linha = br.readLine()) != null ) {
 				if ( linha.indexOf("<td width=\"80\" class=\"Estilo2\">") > -1 ) {
-					String codigo = Texto.removerTags(linha).trim();
+					String codigo = HTML.removerTags(linha).trim();
 					Banco banco = new Banco();
 					banco.setCodigo(codigo);
 					br.readLine(); br.readLine(); br.readLine();

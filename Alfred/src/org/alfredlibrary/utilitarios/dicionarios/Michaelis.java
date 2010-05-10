@@ -21,10 +21,10 @@ import java.net.URLDecoder;
 
 import org.alfredlibrary.AlfredException;
 import org.alfredlibrary.utilitarios.net.WorldWideWeb;
-import org.alfredlibrary.utilitarios.texto.Texto;
+import org.alfredlibrary.utilitarios.texto.HTML;
 
 /**
- * Obter o significado de uma palavra atrav�s do Michaelis.
+ * Obter o significado de uma palavra através do Michaelis.
  * 
  * @author Marlon Silva Carvalho
  * @since 27/04/2010
@@ -36,9 +36,9 @@ final public class Michaelis {
 		String resultado = WorldWideWeb.getConteudoSite(url);
 		String parte = resultado.substring(resultado.indexOf("<span class='descricao'>"));
 		parte = parte.substring(0,parte.indexOf("</span>"));
-		parte = Texto.desconverterElementosHTMLEspeciais(parte, 0);
+		parte = HTML.desconverterElementosHTMLEspeciais(parte, 0);
 		if ( ! formatacaoHTML )
-			parte = Texto.removerTags(parte);
+			parte = HTML.removerTags(parte);
 		try {
 			parte = URLDecoder.decode(parte,"UTF-8");
 		} catch (UnsupportedEncodingException e) {
