@@ -18,7 +18,7 @@ package org.alfredlibrary.utilitarios.musica;
 
 import org.alfredlibrary.AlfredException;
 import org.alfredlibrary.utilitarios.net.WorldWideWeb;
-import org.alfredlibrary.utilitarios.texto.Texto;
+import org.alfredlibrary.utilitarios.texto.HTML;
 
 /**
  * Obter a letra de uma música.
@@ -43,8 +43,8 @@ final public class Letras {
 			throw new AlfredException("Letra ou artista não encontrado.");
 		}
 		String letra = conteudo.substring(conteudo.indexOf("<div class=\"tab_original\">"), conteudo.indexOf("</div>", conteudo.indexOf("<div class=\"tab_original\">")));
-		letra = Texto.desconverterElementosHTMLEspeciais(letra, 0);
-		letra = Texto.removerTags(letra);
+		letra = HTML.desconverterElementosHTMLEspeciais(letra, 0);
+		letra = HTML.removerTags(letra);
 		return letra;
 	}
 

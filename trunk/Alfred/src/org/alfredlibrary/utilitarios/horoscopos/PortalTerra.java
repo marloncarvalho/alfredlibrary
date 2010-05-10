@@ -17,7 +17,7 @@
 package org.alfredlibrary.utilitarios.horoscopos;
 
 import org.alfredlibrary.utilitarios.net.WorldWideWeb;
-import org.alfredlibrary.utilitarios.texto.Texto;
+import org.alfredlibrary.utilitarios.texto.HTML;
 
 /**
  * Utilitário para obter o horóscopo de um Signo através do Portal Terra.
@@ -37,7 +37,7 @@ final public class PortalTerra {
 		String url = "http://www.terra.com.br/esoterico/horoscopo/seu-signo-diario-" + signo + ".htm";
 		String conteudo = WorldWideWeb.getConteudoSite(url);
 		String horoscopo = conteudo.substring(conteudo.indexOf("<!--- TEXTO --->"), conteudo.indexOf("<!--- /TEXTO --->"));
-		return Texto.removerTags(horoscopo);
+		return HTML.removerTags(horoscopo);
 	}
 
 }
