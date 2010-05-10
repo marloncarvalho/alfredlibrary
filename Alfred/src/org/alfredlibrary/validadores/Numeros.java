@@ -17,7 +17,6 @@
 package org.alfredlibrary.validadores;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 
 /**
  * Validador de Números
@@ -87,10 +86,10 @@ final public class Numeros {
 	}
 
 	/**
-	 * Verificar se o numero da String eh um Float.
+	 * Verificar se o número da String é um Float.
 	 * 
-	 * @param numero Numero.
-	 * @return Verdadeiro caso seja Float. Falso, caso contrario.
+	 * @param numero Número.
+	 * @return Verdadeiro caso seja Float. Falso, caso contrário.
 	 */
 	public static boolean isFloat(String numero) {
 		try {
@@ -102,10 +101,10 @@ final public class Numeros {
 	}
 
 	/**
-	 * Verificar se o n�mero da String � um BigDecimal.
+	 * Verificar se o número da String é um BigDecimal.
 	 * 
-	 * @param numero N�mero.
-	 * @return Verdadeiro caso seja BigDecimal. Falso, caso contr�rio.
+	 * @param numero Número.
+	 * @return Verdadeiro caso seja BigDecimal. Falso, caso contrário.
 	 */
 	public static boolean isBigDecimal(String numero) {
 		try {
@@ -117,10 +116,10 @@ final public class Numeros {
 	}
 
 	/**
-	 * Verificar se o n�mero da String � um Long.
+	 * Verificar se o número da String  é um Long.
 	 * 
-	 * @param numero N�mero.
-	 * @return Verdadeiro caso seja Long. Falso, caso contr�rio.
+	 * @param numero Número.
+	 * @return Verdadeiro caso seja Long. Falso, caso contrário.
 	 */
 	public static boolean isLong(String numero) {
 		try {
@@ -129,24 +128,6 @@ final public class Numeros {
 		} catch (RuntimeException exception) {
 			return false;
 		}
-	}
-
-	/**
-	 * Obter uma String contendo os n�meros primos at� 'numero' seperados por espa�o.
-	 * 
-	 * @param numero 
-	 * @return N�meros primos separados por espa�o.
-	 */
-	public static String obterNumerosPrimosAte(int numero) {
-		StringBuilder sb = new StringBuilder();
-		for(int i=2;i<=numero;i++) {
-			BigInteger bigInteger = BigInteger.valueOf(i);
-			if ( bigInteger.isProbablePrime(100) ) {
-				sb.append(bigInteger);
-				sb.append(" ");
-			}
-		}
-		return sb.toString().trim();
 	}
 
 }

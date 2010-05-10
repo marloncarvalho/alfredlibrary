@@ -34,6 +34,8 @@ import java.util.Locale;
  */
 public final class Data {
 
+	private Data() { }
+
 	/**
 	 * Obtém uma String correspondente a uma determinada data,
 	 * de acordo com o formato especificado.
@@ -74,8 +76,7 @@ public final class Data {
 	 * @return Data formatada.
 	 */
 	public static String formatarPorExtenso(Date data) {
-		Calendar cal = null;
-		cal = new GregorianCalendar();
+		Calendar cal = new GregorianCalendar();
 		cal.setTime(data);
 		String mes = new DateFormatSymbols(Locale.getDefault()).getMonths()[cal.get(Calendar.MONTH)];
 		String dia = (cal.get(Calendar.DAY_OF_MONTH) < 10)  ?  "0" + cal.get(Calendar.DAY_OF_MONTH) : String.valueOf(cal.get(Calendar.DAY_OF_MONTH));
