@@ -26,9 +26,6 @@ final public class Banco {
 	private String codigo;
 	private String nome;
 	private String site;
-	private Origem origem;
-	private Naturalidade naturalidade;
-	private Tipo tipo;
 	private Integer quantidadeAgencias;
 	
 	public void setCodigo(String codigo) {
@@ -53,30 +50,6 @@ final public class Banco {
 
 	public String getSite() {
 		return site;
-	}
-
-	public void setOrigem(Origem origem) {
-		this.origem = origem;
-	}
-
-	public Origem getOrigem() {
-		return origem;
-	}
-
-	public void setNaturalidade(Naturalidade naturalidade) {
-		this.naturalidade = naturalidade;
-	}
-
-	public Naturalidade getNaturalidade() {
-		return naturalidade;
-	}
-
-	public void setTipo(Tipo tipo) {
-		this.tipo = tipo;
-	}
-
-	public Tipo getTipo() {
-		return tipo;
 	}
 
 	public void setQuantidadeAgencias(Integer quantidadeAgencias) {

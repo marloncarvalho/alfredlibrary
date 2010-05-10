@@ -20,7 +20,7 @@ import org.alfredlibrary.utilitarios.texto.Texto;
 
 
 /**
- * Classe utilit�ria para Telefones.
+ * Formatador de Telefones.
  * 
  * @author Marlon Silva Carvalho
  * @since 03/06/2009
@@ -31,11 +31,11 @@ final public class Telefone {
 
 	/**
 	 * Formatar um Telefone.
-	 * A formata��o depende da quantidade de n�meros informados.
+	 * A formatação depende da quantidade de números informados.
 	 * Por exemplo:
-	 *  12345678 ser� formatado para 1234-5678
-	 *  1234567890 ser� formatado para (12) 3456-7890
-	 *  1112345678 ser� formatado para +11 (12) 3456-7890
+	 *  12345678 será formatado para 1234-5678
+	 *  1234567890 será formatado para (12) 3456-7890
+	 *  1112345678 será formatado para +11 (12) 3456-7890
 	 *  
 	 * @param telefone Telefone a ser formatado.
 	 * @return Telefone formatado.
