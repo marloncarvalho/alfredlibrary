@@ -85,8 +85,4 @@ final public class Febraban {
 		return bancos;
 	}
 
-	public static void main(String[] args) {
-		System.out.println(Febraban.obterListaBancos(Tipo.CAIXA, Origem.TODOS, Naturalidade.TODOS));
-	}
-
 }
