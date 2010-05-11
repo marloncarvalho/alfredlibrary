@@ -20,13 +20,28 @@ package org.alfredlibrary.conversores;
  * Classe para conversão entre medidas de massa.
  * 
  * @author Marlon Silva Carvalho
+ * @author Rodrigo Moreira Fagundes
  * @since 07/06/2009
  */
 final public class Massa {
 	
 	public enum Unidade {
 		TONELADA(1D), QUILOGRAMA(1000D), HECTOGRAMA(10000D), GRAMA(1000000D), CENTIGRAMA(100000000D), 
-		QUILATE(5000000D), MILIGRAMA(1000000000D), MICROGRAMA(1000000000000D), NANOGRAMA(1000000000000000D);
+		QUILATE(5000000D), MILIGRAMA(1000000000D), MICROGRAMA(1000000000000D), NANOGRAMA(1000000000000000D),
+		ONCA_TROY(32150.7453282234D), ONCA_AVORDUPIOS(35273.9619495804D), LIBRA_TROY(2679.228880719D),
+		LIBRA_AVORDUPOIS(2204.62262184878D), LIBRA_IMPERIAL(2204.62277738034D), ARROBA(35.2739619495804D),
+		ARROBA_PT_BR(68.0781537204711D), ARROBA_PT_BR_APROX(66.6666666666667D), ARROBA_SPA(61.2395172735771D);
+		
+		/* ONCA_TROY = 31.103478g - para metais preciosos, gemas ou medicamentos
+		 * ONCA_AVORDUPIOS = 28.349523125 g - para objetos em geral
+		 * LIBRA_TROY = 373.2417216 g - para metais preciosos, gemas ou medicamentos
+		 * LIBRA_AVORDUPOIS = 453.592370 g - para objetos em geral
+		 * LIBRA_IMPERIAL = 453.592338 g - definição obsoleta do Ato de Pesos e Medidas de 1878 (UK)
+		 * ARROBA = 28349.523125 g - para a conversão original
+		 * ARROBA_PT_BR = 14689 g - para padrão brasileiro (gado) e português (cereais)
+		 * ARROBA_PT_BR_APROX = 15000 g - para padrão brasileiro (gado) e português (cereais) aproximado
+		 * ARROBA_SPA = 16329.32532 g - para padrão da região de Aragão, na Espanha
+		 */ 
 		
 		private Double unidade;
 		private Unidade(Double unidade) {
@@ -53,5 +68,5 @@ final public class Massa {
 			return (valor/(unidadeEntrada.unidade/unidadeSaida.unidade));
 		else return (valor*(unidadeSaida.unidade/unidadeEntrada.unidade));
 	}
-
+	
 }
