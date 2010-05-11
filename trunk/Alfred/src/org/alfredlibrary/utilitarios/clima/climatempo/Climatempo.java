@@ -28,6 +28,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.alfredlibrary.AlfredException;
+import org.alfredlibrary.utilitarios.clima.Clima;
 import org.alfredlibrary.utilitarios.net.WorldWideWeb;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -38,19 +39,21 @@ import org.xml.sax.SAXException;
 
 
 /**
- * Utilit�rio para obter informa��es sobre o Clima atrav�s do site Climatempo.
+ * Utilitário para obter informações sobre o Clima através do site Climatempo.
  * 
  * @author Marlon Silva Carvalho
  * @since 26/05/2010
  */
 final public class Climatempo {
+	
+	private Climatempo() { }
 
 	/**
-	 * Obter as informa��es de Clima atrav�s do site Climatempo.
-	 * Retorna um objeto Clima contendo a Data, M�xima, M�nima e a Frase para o dia.
+	 * Obter as informações de Clima através do site Climatempo.
+	 * Retorna um objeto Clima contendo a Data, Máxima, Mínima e a Frase para o dia.
 	 * 
-	 * @param codigo C�digo da cidade. Deve ser obtido atrav�s do site da Climatempo. Pode usar v�rios c�digos de cidade separados por v�rgula.
-	 * @return Cole��o de Climas, um para cada dia e para as cidades informadas.
+	 * @param codigo Código da cidade. Deve ser obtido através do site da Climatempo. Pode usar vários códigos de cidade separados por vírgula.
+	 * @return Coleção de Climas, um para cada dia e para as cidades informadas.
 	 */
 	public static Collection<Clima> obterClima(String codigo) {
 		String url = "http://selos.climatempo.com.br/selos/selo.php?CODCIDADE=" + codigo;
