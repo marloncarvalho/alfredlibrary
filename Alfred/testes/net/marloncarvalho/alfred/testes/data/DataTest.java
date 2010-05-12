@@ -24,7 +24,7 @@ import java.util.Locale;
 
 import junit.framework.Assert;
 
-import org.alfredlibrary.formatadores.data.FormatadorData;
+import org.alfredlibrary.formatadores.Data;
 import org.junit.Test;
 
 /**
@@ -38,7 +38,7 @@ public class DataTest {
 	@Test
 	public void testarFormatacaoExtensa() {
 		Date agora = new Date();
-		String data = FormatadorData.formatarDataPorExtenso(agora);
+		String data = Data.formatarDataPorExtenso(agora);
 		
 		Calendar cal = null;
 		cal = new GregorianCalendar();

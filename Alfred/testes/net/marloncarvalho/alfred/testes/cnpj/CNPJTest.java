@@ -17,7 +17,7 @@
 package net.marloncarvalho.alfred.testes.cnpj;
 
 import org.alfredlibrary.AlfredException;
-import org.alfredlibrary.validadores.cnpj.CNPJ;
+import org.alfredlibrary.validadores.CNPJ;
 import org.junit.Assert;
 import org.junit.Test;
 
