@@ -18,7 +18,7 @@ package net.marloncarvalho.alfred.testes.telefones;
 
 import junit.framework.Assert;
 
-import org.alfredlibrary.formatadores.telefones.Telefones;
+import org.alfredlibrary.formatadores.Telefone;
 import org.junit.Test;
 
 /**
@@ -34,7 +34,7 @@ public class TelefonesTest {
 	 */
 	@Test
 	public void testarFormatacao8Numeros() {
-		String telefone = Telefones.formatar("12345678");
+		String telefone = Telefone.formatar("12345678");
 		if ( telefone.charAt(4) != '-' )
 			Assert.fail();
 	}
@@ -44,7 +44,7 @@ public class TelefonesTest {
 	 */
 	@Test
 	public void testarFormatacao10Numeros() {
-		String telefone = Telefones.formatar("1234567890");
+		String telefone = Telefone.formatar("1234567890");
 		if ( telefone.charAt(0) != '(' )
 			Assert.fail();
 		if ( telefone.charAt(3) != ')' )
@@ -58,7 +58,7 @@ public class TelefonesTest {
 	 */
 	@Test
 	public void testarFormatacao12Numeros() {
-		String telefone = Telefones.formatar("111234567890");
+		String telefone = Telefone.formatar("111234567890");
 		if ( telefone.charAt(0) != '+' )
 			Assert.fail();
 		if ( telefone.charAt(4) != '(' )
@@ -74,7 +74,7 @@ public class TelefonesTest {
 	 */
 	@Test
 	public void testarFormatacaoNumerosTamanhoDiferente81012() {
-		String telefone = Telefones.formatar("123");
+		String telefone = Telefone.formatar("123");
 		if ( ! telefone.equals("123") )
 			Assert.fail();
 	}

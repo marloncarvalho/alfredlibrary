@@ -16,7 +16,7 @@
  */
 package net.marloncarvalho.alfred.testes.email;
 
-import org.alfredlibrary.validadores.email.Email;
+import org.alfredlibrary.validadores.Email;
 import org.junit.Assert;
 import org.junit.Test;
 

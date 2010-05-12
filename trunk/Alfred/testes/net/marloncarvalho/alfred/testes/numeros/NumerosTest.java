@@ -18,7 +18,7 @@ package net.marloncarvalho.alfred.testes.numeros;
 
 import junit.framework.Assert;
 
-import org.alfredlibrary.validadores.numeros.Numeros;
+import org.alfredlibrary.validadores.Numeros;
 import org.junit.Test;
 
 /**
