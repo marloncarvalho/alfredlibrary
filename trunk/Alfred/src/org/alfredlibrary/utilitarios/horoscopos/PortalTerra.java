@@ -35,7 +35,7 @@ final public class PortalTerra {
 	 */
 	public static String obter(Signo signo) {
 		String url = "http://www.terra.com.br/esoterico/horoscopo/seu-signo-diario-" + signo + ".htm";
-		String conteudo = WorldWideWeb.getConteudoSite(url);
+		String conteudo = WorldWideWeb.obterConteudoSite(url);
 		String horoscopo = conteudo.substring(conteudo.indexOf("<!--- TEXTO --->"), conteudo.indexOf("<!--- /TEXTO --->"));
 		return HTML.removerTags(horoscopo);
 	}

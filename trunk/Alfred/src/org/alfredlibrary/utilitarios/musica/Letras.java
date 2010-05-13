@@ -38,7 +38,7 @@ final public class Letras {
 		String artistaTrocado = artista.toLowerCase().replaceAll(" ", "-");
 		String nomeMusicaTrocado = nomeMusica.toLowerCase().replaceAll(" ", "-");
 		String url = "http://vagalume.uol.com.br/" + artistaTrocado + "/" + nomeMusicaTrocado + ".html";
-		String conteudo = WorldWideWeb.getConteudoSite(url);
+		String conteudo = WorldWideWeb.obterConteudoSite(url);
 		if ( conteudo.indexOf("Oops") > -1 || conteudo.indexOf("<div class=\"tab_original\">") == -1) {
 			throw new AlfredException("Letra ou artista não encontrado.");
 		}

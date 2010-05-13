@@ -33,14 +33,14 @@ import org.alfredlibrary.AlfredConfig;
 import org.alfredlibrary.AlfredException;
 
 /**
- * Utilit�rios para WWW.
+ * Utilitários para WWW.
  * 
  * @author Marlon Silva Carvalho
  * @since 02/06/2009
  */
 final public class WorldWideWeb {
 
-	public static InputStream getConteudoArquivo(String u) {
+	public static InputStream obterConteudoArquivo(String u) {
 		URL url;
 		try {
 			url = new URL(u);
@@ -58,12 +58,12 @@ final public class WorldWideWeb {
 	}
 
 	/**
-	 * Obter o conte�do de um site.
+	 * Obter o conteúdo de um site.
 	 * 
 	 * @param u URL do Site.
-	 * @return String contendo todo o conte�do do site em HTML.
+	 * @return String contendo todo o conteúdo do site em HTML.
 	 */
-	public static String getConteudoSite(String u) {
+	public static String obterConteudoSite(String u) {
         URL url;
 		try {
 			url = new URL(u);
@@ -82,20 +82,20 @@ final public class WorldWideWeb {
 	        rd.close();
 	        return resultado.toString();
 		} catch (MalformedURLException e) {
-			throw new AlfredException("N�o foi poss�vel obter contato com o site " + u, e);
+			throw new AlfredException("Não foi possível obter contato com o site " + u, e);
 		} catch (IOException e) {
-			throw new AlfredException("N�o foi poss�vel obter contato com o site " + u, e);
+			throw new AlfredException("Não foi possível obter contato com o site " + u, e);
 		}
 	}
 
 	/**
-	 * Obter o conte�do de um site usando o m�todo POST.
+	 * Obter o conteúdo de um site usando o método POST.
 	 * 
 	 * @param u URL do Site.
-	 * @param parametros Par�metros que ser�o usandos na requisi��o ao site.
-	 * @return String contendo todo o conte�do do site em HTML.
+	 * @param parametros Parâmetros que serão usandos na requisição ao site.
+	 * @return String contendo todo o conteúdo do site em HTML.
 	 */
-	public static String getConteudoSite(String u, Map<String,String> parametros) {
+	public static String obterConteudoSite(String u, Map<String,String> parametros) {
         URL url;
 		try {
 			StringBuilder strParams = new StringBuilder();
@@ -126,9 +126,9 @@ final public class WorldWideWeb {
 	        rd.close();
 	        return resultado.toString();
 		} catch (MalformedURLException e) {
-			throw new AlfredException("N�o foi poss�vel obter contato com o site " + u, e);
+			throw new AlfredException("Não foi possível obter contato com o site " + u, e);
 		} catch (IOException e) {
-			throw new AlfredException("N�o foi poss�vel obter contato com o site " + u, e);
+			throw new AlfredException("Não foi possível obter contato com o site " + u, e);
 		}
 	}
 }

@@ -53,7 +53,7 @@ public class WorldWideWebTest {
 	@Test
 	public void testarObterConteudoSemPost() {
 		try {
-			String conteudo = WorldWideWeb.getConteudoSite("http://alfredlibrary.googlecode.com/");
+			String conteudo = WorldWideWeb.obterConteudoSite("http://alfredlibrary.googlecode.com/");
 			if ( conteudo == null || "".equals(conteudo ) ) {
 				Assert.fail();
 			}
@@ -67,7 +67,7 @@ public class WorldWideWebTest {
 		try {
 			Map<String, String> mapa = new HashMap<String, String>();
 			mapa.put("teste","1");
-			String conteudo = WorldWideWeb.getConteudoSite("http://code.google.com/p/alfredlibrary/",mapa);
+			String conteudo = WorldWideWeb.obterConteudoSite("http://code.google.com/p/alfredlibrary/",mapa);
 			if ( conteudo == null || "".equals(conteudo ) ) {
 				Assert.fail();
 			}
@@ -79,7 +79,7 @@ public class WorldWideWebTest {
 	@Test
 	public void testarObterConteudoArquivo() {
 		try {
-			InputStream conteudo = WorldWideWeb.getConteudoArquivo("http://code.google.com/p/alfredlibrary/logo?logo_id=1246636913");
+			InputStream conteudo = WorldWideWeb.obterConteudoArquivo("http://code.google.com/p/alfredlibrary/logo?logo_id=1246636913");
 			if ( conteudo == null || "".equals(conteudo ) ) {
 				Assert.fail();
 			}

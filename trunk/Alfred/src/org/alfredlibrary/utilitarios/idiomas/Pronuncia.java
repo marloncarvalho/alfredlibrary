@@ -48,7 +48,7 @@ final public class Pronuncia {
 	 */
 	public static AudioInputStream obterPronuncia(int idioma, String palavra) {
 		String url = "http://www.merriam-webster.com/dictionary/" + palavra;
-		String conteudo = WorldWideWeb.getConteudoSite(url);
+		String conteudo = WorldWideWeb.obterConteudoSite(url);
 		String arquivoWav = "";
 		Pattern padrao = Pattern.compile("return au\\('" + palavra + "[0-9]*");
 		Matcher pesquisa = padrao.matcher(conteudo);
@@ -60,7 +60,7 @@ final public class Pronuncia {
 			throw new AlfredException("N�o foi encontrada a pron�ncia da palavra " + palavra + ".");
 		arquivoWav = arquivoWav.replace("return au('", "");
 		url = "http://media.merriam-webster.com/soundc11/" + arquivoWav.charAt(0) + "/" + arquivoWav;
-		InputStream is = WorldWideWeb.getConteudoArquivo(url);		
+		InputStream is = WorldWideWeb.obterConteudoArquivo(url);		
 		try {
 			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(is);
 			return audioInputStream;

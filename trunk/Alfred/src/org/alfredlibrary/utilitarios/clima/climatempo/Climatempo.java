@@ -57,7 +57,7 @@ final public class Climatempo {
 	 */
 	public static Collection<Clima> obterClima(String codigo) {
 		String url = "http://selos.climatempo.com.br/selos/selo.php?CODCIDADE=" + codigo;
-		String conteudoXML = WorldWideWeb.getConteudoSite(url);
+		String conteudoXML = WorldWideWeb.obterConteudoSite(url);
 		Collection<Clima> climas = new ArrayList<Clima>();
 		DocumentBuilder builder;
 		try {

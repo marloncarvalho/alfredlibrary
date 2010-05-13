@@ -143,7 +143,7 @@ final public class GoogleTranslate {
 	public static String traduzir(String frase, Idioma idiomaOrigem, Idioma idiomaFim) {
 		frase = frase.replaceAll(" ", "%20");
 		String url = "http://ajax.googleapis.com/ajax/services/language/translate?v=1.0&langpair=" + idiomaOrigem + "|" + "" + idiomaFim + "&q=" + frase;
-		String conteudo = WorldWideWeb.getConteudoSite(url);
+		String conteudo = WorldWideWeb.obterConteudoSite(url);
 		String traducao = conteudo.substring(36,conteudo.indexOf('}',35)-1);
 		return traducao;
 	}

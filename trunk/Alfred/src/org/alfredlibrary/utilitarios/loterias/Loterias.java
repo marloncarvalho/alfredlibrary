@@ -41,7 +41,7 @@ final public class Loterias {
 		} else {
 			url = "http://www1.caixa.gov.br/loterias/loterias/megasena/megasena_pesquisa_new.asp?submeteu=sim&opcao=concurso&txtConcurso=" + concurso;
 		}			
-		String conteudo = WorldWideWeb.getConteudoSite(url);
+		String conteudo = WorldWideWeb.obterConteudoSite(url);
 		String resultado = conteudo.split("\\|")[2].replaceAll("<ul>", "").replaceAll("</ul>","").replaceAll("<li>", "").replaceAll("<span class=\"num_sorteio\">","").replaceAll("</span>","").replaceAll("</li>","|");
 		String[] resultadoMegaSena = resultado.split("\\|");
 		return resultadoMegaSena;
@@ -60,7 +60,7 @@ final public class Loterias {
 		} else {
 			url = "http://www1.caixa.gov.br/loterias/loterias/duplasena/duplasena_pesquisa_new.asp?submeteu=sim&opcao=concurso&txtConcurso=" + concurso;
 		}			
-		String conteudo = WorldWideWeb.getConteudoSite(url);
+		String conteudo = WorldWideWeb.obterConteudoSite(url);
 		String resultado = conteudo.split("\\|")[3].replaceAll("<ul>", "").replaceAll("</ul>","").replaceAll("<li>", "").replaceAll("<span class=\"num_sorteio\">","").replaceAll("</span>","").replaceAll("</li>","|");
 		String[] resultadoSorteio1 = resultado.split("\\|");
 		resultado = conteudo.split("\\|")[4].replaceAll("<ul>", "").replaceAll("</ul>","").replaceAll("<li>", "").replaceAll("<span class=\"num_sorteio\">","").replaceAll("</span>","").replaceAll("</li>","|");
@@ -81,7 +81,7 @@ final public class Loterias {
 		} else {
 			url = "http://www1.caixa.gov.br/loterias/loterias/lotofacil/lotofacil_pesquisa_new.asp?submeteu=sim&opcao=concurso&txtConcurso=" + concurso;
 		}			
-		String conteudo = WorldWideWeb.getConteudoSite(url);
+		String conteudo = WorldWideWeb.obterConteudoSite(url);
 		String[] resultado = conteudo.split("\\|");
 		String[] resultadoMegaSena = new String[] {resultado[3],resultado[4],resultado[5],resultado[6],
 						resultado[7],resultado[8],resultado[9],resultado[10],resultado[11],
@@ -102,7 +102,7 @@ final public class Loterias {
 		} else {
 			url = "http://www1.caixa.gov.br/loterias/loterias/lotomania/lotomania_pesquisa.asp?submeteu=sim&opcao=concurso&txtConcurso=" + concurso;
 		}			
-		String conteudo = WorldWideWeb.getConteudoSite(url);
+		String conteudo = WorldWideWeb.obterConteudoSite(url);
 		String[] resultado = conteudo.split("\\|");
 		String[] resultadoMegaSena = new String[] {resultado[6],resultado[7],resultado[8],resultado[9],
 						resultado[10],resultado[11],resultado[12],resultado[13],resultado[14],
@@ -118,7 +118,7 @@ final public class Loterias {
 	 */
 	public static String obterNumeroUltimoConcursoMegaSena() {
 		String url = "http://www1.caixa.gov.br/loterias/loterias/megasena/megasena_pesquisa_new.asp?f_megasena=" + new Date().getTime();
-		String conteudo = WorldWideWeb.getConteudoSite(url);
+		String conteudo = WorldWideWeb.obterConteudoSite(url);
 		return conteudo.split("\\|")[0];
 	}
 
@@ -135,7 +135,7 @@ final public class Loterias {
 		} else {
 			url = "http://www1.caixa.gov.br/loterias/loterias/quina/quina_pesquisa_new.asp?submeteu=sim&opcao=concurso&txtConcurso=" + concurso;
 		}			
-		String conteudo = WorldWideWeb.getConteudoSite(url);
+		String conteudo = WorldWideWeb.obterConteudoSite(url);
 		String resultado = conteudo.split("\\|",-1)[14].replaceAll("<ul>", "").replaceAll("</ul>","").replaceAll("<li>", "").replaceAll("<span id=\"sorteio2\">","").replaceAll("</span>","").replaceAll("<span style=\"display:none;\" id=\"sorteio1\" style=\"display:none;\">", "").replaceAll("</li>","|");
 		String[] resultadoQuina = resultado.split("\\|");
 		return new String[] { resultadoQuina[0], resultadoQuina[1], resultadoQuina[2], resultadoQuina[3], resultadoQuina[4]};

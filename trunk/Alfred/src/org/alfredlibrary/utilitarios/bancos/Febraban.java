@@ -47,7 +47,7 @@ final public class Febraban {
 	public static Collection<Banco> obterListaBancos(Tipo tipo, Origem origem, Naturalidade naturalidade) {
 		Collection<Banco> bancos = new ArrayList<Banco>();
 		String url = "http://www.febraban.org.br/buscabanco/AgenciasBancos.asp?uf=&ordem=banco&wbanco=&tipo=" + tipo + "&origem=" + origem + "&natural=" + naturalidade;
-		String conteudo = WorldWideWeb.getConteudoSite(url);
+		String conteudo = WorldWideWeb.obterConteudoSite(url);
 		BufferedReader br = new BufferedReader(new StringReader(conteudo));
 		String linha = null;
 		try {
