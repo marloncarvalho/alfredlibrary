@@ -127,7 +127,7 @@ final public class PAC {
 		parametros.put("peso", Integer.toString(peso));
 
 		// Realizar a requisi��o.
-		String conteudo = WorldWideWeb.getConteudoSite("http://www.correios.com.br/encomendas/prazo/prazo.cfm", parametros);
+		String conteudo = WorldWideWeb.obterConteudoSite("http://www.correios.com.br/encomendas/prazo/prazo.cfm", parametros);
 
 		// Usar express�o regular para achar o pre�o.
 		Pattern padrao = Pattern.compile("<b>R\\$ \\d{1,3},\\d{2}</b>");  
@@ -191,7 +191,7 @@ final public class PAC {
 		parametros.put("Comprimento", String.valueOf(comprimento));
 		parametros.put("peso", Integer.toString(peso));
 		// Realizar a requisi��o.
-		String conteudo = WorldWideWeb.getConteudoSite("http://www.correios.com.br/encomendas/prazo/prazo.cfm", parametros);
+		String conteudo = WorldWideWeb.obterConteudoSite("http://www.correios.com.br/encomendas/prazo/prazo.cfm", parametros);
 
 		// Usar express�o regular para achar o pre�o.
 		Pattern padrao = Pattern.compile("<b>R\\$ \\d{1,3},\\d{2}</b>");  

@@ -35,7 +35,7 @@ final public class BularioOnline {
 	 */
 	public static String obter(String nomeRemedio) {
 		String url = "http://www.bulario.net/" + nomeRemedio.replaceAll(" ", "_") + "/";
-		String conteudo = WorldWideWeb.getConteudoSite(url);
+		String conteudo = WorldWideWeb.obterConteudoSite(url);
 		String bula = conteudo.substring(conteudo.indexOf("<a name=\"indicacoes\" rel=\"nofollow\">"), 
 				conteudo.indexOf("<a name=\"laboratorio\" rel=\"nofollow\"></a>", conteudo.indexOf("a name=\"indicacoes\" rel=\"nofollow\">")));
 		return HTML.removerTags(HTML.desconverterElementosHTMLEspeciais(bula, 0));

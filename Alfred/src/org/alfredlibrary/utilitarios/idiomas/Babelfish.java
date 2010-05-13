@@ -92,7 +92,7 @@ final public class Babelfish {
 		parametros.put("trtext", palavra);
 
 		// Realizar a requisi��o.
-		String conteudo = new String(WorldWideWeb.getConteudoSite("http://br.babelfish.yahoo.com/translate_txt", parametros));
+		String conteudo = new String(WorldWideWeb.obterConteudoSite("http://br.babelfish.yahoo.com/translate_txt", parametros));
 		
 		// Usar express�o regular para achar o pre�o.
 		Pattern padrao = Pattern.compile("<div id=\"result\"><div style=\"padding:0.6em;\">[\\d\\s\\w-]+</div></div>");  
