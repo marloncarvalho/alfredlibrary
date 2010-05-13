@@ -14,7 +14,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with Alfred Library.  If not, see <http://www.gnu.org/licenses/>.
  */
-package net.marloncarvalho.alfred.testes.clima.climatempo;
+package org.alfredlibrary.test.utilitarios.clima;
 
 import java.util.Collection;
 
@@ -25,24 +25,23 @@ import org.alfredlibrary.utilitarios.clima.climatempo.Climatempo;
 import org.junit.Test;
 
 /**
- * Teste do utilit�rio de Climatempo.
+ * Classe de teste para o utilitário de Clima da Climatempo.
  * 
  * @author Marlon Silva Carvalho
- * @since 27/05/2010
+ * @since 13/05/2010
  */
 public class ClimatempoTest {
 
 	@Test
-	public void testarObtencaoClima() {
+	public void testObter() {
 		try {
 			Collection<Clima> climas = Climatempo.obterClima("800");
 			if ( climas == null || climas.size() <= 0 ) {
-				Assert.fail("N�o foram encontrados climas para a localidade 857. Deveria existir!");
+				Assert.fail("Não foram encontrados climas para a localidade 857. Deveria existir!");
 			}
 		} catch (Exception e) {
 			Assert.fail(e.getMessage());
 		}
-		
 	}
 
 }

@@ -14,35 +14,30 @@
  *  You should have received a copy of the GNU General Public License
  *  along with Alfred Library.  If not, see <http://www.gnu.org/licenses/>.
  */
-package net.marloncarvalho.alfred.testes.clima.climatempo;
+package org.alfredlibrary.test.utilitarios.bulario;
 
-import java.util.Collection;
-
-import junit.framework.Assert;
-
-import org.alfredlibrary.utilitarios.clima.Clima;
-import org.alfredlibrary.utilitarios.clima.climatempo.Climatempo;
+import org.alfredlibrary.utilitarios.bulario.BularioOnline;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * Teste do utilit�rio de Climatempo.
+ * Classe de Teste para o Utilitário de Bulas.
  * 
  * @author Marlon Silva Carvalho
- * @since 27/05/2010
+ * @since 13/05/2010
  */
-public class ClimatempoTest {
+public class BularioTest {
 
 	@Test
-	public void testarObtencaoClima() {
+	public void testObter() {
 		try {
-			Collection<Clima> climas = Climatempo.obterClima("800");
-			if ( climas == null || climas.size() <= 0 ) {
-				Assert.fail("N�o foram encontrados climas para a localidade 857. Deveria existir!");
+			String dorflex = BularioOnline.obter("dorflex");
+			if ( dorflex.indexOf("dorflex") == -1 ) {
+				Assert.fail();
 			}
-		} catch (Exception e) {
-			Assert.fail(e.getMessage());
+		} catch ( Exception e ) {
+			Assert.fail();
 		}
-		
 	}
 
 }
