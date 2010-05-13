@@ -23,10 +23,11 @@ import java.util.regex.Pattern;
 
 import org.alfredlibrary.AlfredException;
 import org.alfredlibrary.utilitarios.net.WorldWideWeb;
+import org.alfredlibrary.utilitarios.texto.HTML;
 
 
 /**
- * Utilit�rios para obter informa��es de entrega para PAC atrav�s do site dos Correios.
+ * Utilitários para obter informações de entrega para PAC através do site dos Correios.
  * 
  * @author Marlon Silva Carvalho
  * @since 13/06/2009
@@ -36,7 +37,7 @@ final public class PAC {
 	private static String FORMATO_ROLO_PRISMA = "2";
 
 	/**
-	 * M�todo privado apenas para validar os par�metros do PAC.
+	 * Método privado apenas para validar os parâmetros do PAC.
 	 * 
 	 * @param cepOrigem CEP de Origem.
 	 * @param cepDestino CEP de Destino.
@@ -71,21 +72,21 @@ final public class PAC {
 		if ( altura > 60 )
 			throw new AlfredException("Altura deve ser menor que 60cm.");
 		if ( altura > comprimento )
-			throw new AlfredException("Altura n�o pode ser maior que o comprimento.");
+			throw new AlfredException("Altura não pode ser maior que o comprimento.");
 		if ( comprimento <= 25 )
 			if ( largura < 11 )
-				throw new AlfredException("A largura n�o pode ser menor que 11cm, quando o comprimento for menor que 25cm.");
+				throw new AlfredException("A largura não pode ser menor que 11cm, quando o comprimento for menor que 25cm.");
 		if ( (comprimento+largura+altura) > 150 )
-			throw new AlfredException("A soma resultante do comprimento + largura + altura n�o deve superar a 150 cm.");
+			throw new AlfredException("A soma resultante do comprimento + largura + altura não deve superar a 150 cm.");
 	}
 
 	/**
-	 * M�todo privado para validar os par�metros de um envio PAC por Rolo ou Prisma.
+	 * Método privado para validar os parâmetros de um envio PAC por Rolo ou Prisma.
 	 * 
 	 * @param cepOrigem CEP de Origem.
 	 * @param cepDestino CEP de Destino.
 	 * @param peso Peso.
-	 * @param diametro Di�metro.
+	 * @param diametro Diâmetro.
 	 * @param comprimento Comprimento.
 	 */
 	private static void validarParametrosRoloPrisma(String cepOrigem, String cepDestino, int peso, int diametro, int comprimento) {
@@ -96,22 +97,22 @@ final public class PAC {
 		if ( peso <= 0 )
 			throw new AlfredException("Informe o Peso da encomenda.");
 		if ( diametro < 5 || diametro > 60)
-			throw new AlfredException("Di�metro deve ser maior que 5cm e menor que 60cm.");
+			throw new AlfredException("Diâmetro deve ser maior que 5cm e menor que 60cm.");
 		if ( comprimento < 18 && comprimento > 90 )
 			throw new AlfredException("Comprimento deve ser maior que 18cm e menor que 90cm.");
 		if ( (comprimento + (2 * diametro)) > 104 ) 
-			throw new AlfredException("A soma resultante do comprimento + o dobro do di�metro n�o deve superar a 104 cm.");
+			throw new AlfredException("A soma resultante do comprimento + o dobro do diâmetro não deve superar a 104 cm.");
 	}
 
 	/**
-	 * Obter o pre�o e o prazo de entrega para uma encomenda do tipo PAC para uma Rolo ou Prisma.
+	 * Obter o preço e o prazo de entrega para uma encomenda do tipo PAC para uma Rolo ou Prisma.
 	 * 
 	 * @param cepOrigem CEP de Origem.
 	 * @param cepDestino CEP de destino.
 	 * @param peso Peso da Encomenda.
-	 * @param diametro Di�metro.
+	 * @param diametro Diâmetro.
 	 * @param comprimento Comprimento da Caixa ou Pacote.
-	 * @return Pre�o e Prazo de Entrega.
+	 * @return Preço e Prazo de Entrega.
 	 */
 	public static String[] obterPrecoPrazoEntregaParaRoloPrisma(String cepOrigem, String cepDestino, int peso, int diametro, int comprimento) {
 		validarParametrosRoloPrisma(cepOrigem, cepDestino, peso, diametro, comprimento);
@@ -126,25 +127,20 @@ final public class PAC {
 		parametros.put("Comprimento", String.valueOf(comprimento));
 		parametros.put("peso", Integer.toString(peso));
 
-		// Realizar a requisi��o.
 		String conteudo = WorldWideWeb.obterConteudoSite("http://www.correios.com.br/encomendas/prazo/prazo.cfm", parametros);
 
-		// Usar express�o regular para achar o pre�o.
 		Pattern padrao = Pattern.compile("<b>R\\$ \\d{1,3},\\d{2}</b>");  
 		Matcher pesquisa = padrao.matcher(conteudo);
 
-		// Deve encontrar apenas um.
 		String preco = "";
 		while(pesquisa.find()) {
 			preco = pesquisa.group();
 		}
 
-		// Se pre�o n�o encontrado, emitir erro.
 		if ( "".equals(preco) ) {
-			throw new AlfredException("N�o foi poss�vel obter as informa��es do site dos Correios. Verifique se os CEPs informados est�o corretos.");
+			throw new AlfredException("Não foi possível obter as informações do site dos Correios. Verifique se os CEPs informados estão corretos.");
 		}
 
-		// Usar express�o regular para achar o prazo.
 		padrao = Pattern.compile("<b>\\d{1,2} DIA(S)? &Uacute;(TIL|TEIS)</b>");  
 		pesquisa = padrao.matcher(conteudo);
 
@@ -153,12 +149,10 @@ final public class PAC {
 			prazo = pesquisa.group();
 		}
 
-		// Se prazo n�o encontrado, emitir erro.
 		if ( "".equals(prazo) ) {
-			throw new AlfredException("N�o foi poss�vel obter as informa��es do site dos Correios. Verifique se os CEPs informados est�o corretos.");
+			throw new AlfredException("Não foi possível obter as informações do site dos Correios. Verifique se os CEPs informados estão corretos.");
 		}
 
-		// Remover as tags <b></b> das strings.
 		String precoFinal = preco.replace("<b>","").replace("</b>","");
 		String prazoFinal = prazo.replace("<b>","").replace("</b>","");
 
@@ -166,7 +160,7 @@ final public class PAC {
 	}
 
 	/**
-	 * Obter o pre�o e o prazo de entrega para uma encomenda do tipo PAC para uma Caixa ou Pacote.
+	 * Obter o preço e o prazo de entrega para uma encomenda do tipo PAC para uma Caixa ou Pacote.
 	 * 
 	 * @param cepOrigem CEP de Origem.
 	 * @param cepDestino CEP de destino.
@@ -174,10 +168,9 @@ final public class PAC {
 	 * @param largura Largura da Caixa ou Pacote.
 	 * @param altura Altura da Caixa ou Pacote.
 	 * @param comprimento Comprimento da Caixa ou Pacote.
-	 * @return Pre�o e Prazo de Entrega.
+	 * @return Preço e Prazo de Entrega.
 	 */
 	public static String[] obterPrecoPrazoEntregaParaCaixaPacote(String cepOrigem, String cepDestino, int peso, int largura, int altura, int comprimento) {
-		// Caso algum esteja errado, ser� lan�ada uma exce��o.
 		validarParametrosCaixaPacote(cepOrigem, cepDestino, peso, largura, altura, comprimento);
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("resposta","paginaCorreios");
@@ -190,25 +183,20 @@ final public class PAC {
 		parametros.put("Formato", FORMATO_CAIXA_PACOTE);
 		parametros.put("Comprimento", String.valueOf(comprimento));
 		parametros.put("peso", Integer.toString(peso));
-		// Realizar a requisi��o.
 		String conteudo = WorldWideWeb.obterConteudoSite("http://www.correios.com.br/encomendas/prazo/prazo.cfm", parametros);
 
-		// Usar express�o regular para achar o pre�o.
 		Pattern padrao = Pattern.compile("<b>R\\$ \\d{1,3},\\d{2}</b>");  
 		Matcher pesquisa = padrao.matcher(conteudo);
 
-		// Deve encontrar apenas um.
 		String preco = "";
 		while(pesquisa.find()) {
 			preco = pesquisa.group();
 		}
 
-		// Se pre�o n�o encontrado, emitir erro.
 		if ( "".equals(preco) ) {
-			throw new AlfredException("N�o foi poss�vel obter as informa��es do site dos Correios. Verifique se os CEPs informados est�o corretos.");
+			throw new AlfredException("Não foi possível obter as informações do site dos Correios. Verifique se os CEPs informados estão corretos.");
 		}
 
-		// Usar express�o regular para achar o prazo.
 		padrao = Pattern.compile("<b>\\d{1,2} DIA(S)? &Uacute;(TIL|TEIS)</b>");  
 		pesquisa = padrao.matcher(conteudo);
 
@@ -217,16 +205,14 @@ final public class PAC {
 			prazo = pesquisa.group();
 		}
 
-		// Se prazo n�o encontrado, emitir erro.
 		if ( "".equals(prazo) ) {
-			throw new AlfredException("N�o foi poss�vel obter as informa��es do site dos Correios. Verifique se os CEPs informados est�o corretos.");
+			throw new AlfredException("Não foi possível obter as informações do site dos Correios. Verifique se os CEPs informados estão corretos.");
 		}
 
-		// Remover as tags <b></b> das strings.
 		String precoFinal = preco.replace("<b>","").replace("</b>","");
 		String prazoFinal = prazo.replace("<b>","").replace("</b>","");
 
-		return new String[] {precoFinal,prazoFinal};
+		return new String[] {precoFinal,HTML.desconverterElementosHTMLEspeciais(prazoFinal,0)};
 	}
 
 }
