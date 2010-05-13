@@ -14,45 +14,27 @@
  *  You should have received a copy of the GNU General Public License
  *  along with Alfred Library.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.alfredlibrary.test.formatadores;
+package org.alfredlibrary.test.inutilitarios;
 
-import org.alfredlibrary.AlfredException;
-import org.alfredlibrary.formatadores.CNPJ;
+import org.alfredlibrary.inutilitarios.Miguxeitor;
 import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * Classe de Teste para Formatador de CNPJ.
+ * Classe de Teste do Inutilitário Miguxeitor.
  * 
  * @author Marlon Silva Carvalho
- * @since 11/05/2010
+ * @since 12/05/2010
  */
-public class CNPJTest {
+public class MiguxeitorTest {
 
 	@Test
-	public void testarFormatarCNPJMenos15Numeros() {
-		try {
-			CNPJ.formatar("15.139.23/0001-84");
-			Assert.fail();
-		} catch(AlfredException ex) {
-		}
-	}
+	public void testMiguxo() {
+		String miguxada = Miguxeitor.miguxar("você é muito lindo, menino! Que fofura! Estou meio triste. Mas estou melhor!", 1);
+		Assert.assertEquals("vc eh mto lindo, menino!! q fofura!! tou 1/2 triste. mas tou melhor!!", miguxada);
+		miguxada = Miguxeitor.miguxar("você é muito lindo, menino! Que fofura! Estou meio triste. Mas estou melhor!", 2);
+		Assert.assertEquals("vc eh mtu leenu... meninu!!!!! ke fofura!!!!! to 1/2 tristi...... mas to melhor!!!!!...", miguxada);
 
-	@Test
-	public void testarFormatarCNPJCorreto() {
-		try {
-			String cnpj = CNPJ.formatar("15193923000184");
-			Assert.assertNotNull(cnpj);
-			if ( cnpj.length() < 18 ) {
-				Assert.fail();
-			}
-			Assert.assertEquals(cnpj.charAt(2), '.');
-			Assert.assertEquals(cnpj.charAt(6), '.');
-			Assert.assertEquals(cnpj.charAt(10), '/');
-			Assert.assertEquals(cnpj.charAt(15), '-');
-		} catch(AlfredException ex) {
-			Assert.fail();
-		}
 	}
 
 }

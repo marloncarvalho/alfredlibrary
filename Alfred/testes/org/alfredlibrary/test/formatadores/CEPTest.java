@@ -31,17 +31,13 @@ public class CEPTest {
 	@Test
 	public void testarFormatacaoCEP() {
 		String cep = CEP.formatar("40290280", false);
-		if ( cep.charAt(2) != '.' )
-			Assert.fail();
-		if ( cep.charAt(6) != '-' )
-			Assert.fail();
+		Assert.assertEquals("40.290-280", cep);
 	}
 
 	@Test
 	public void testarFormatacaoCEPSimples() {
 		String cep = CEP.formatar("40290280", true);
-		if ( cep.charAt(5) != '-' )
-			Assert.fail();
+		Assert.assertEquals("40290-280", cep);
 	}
 
 }

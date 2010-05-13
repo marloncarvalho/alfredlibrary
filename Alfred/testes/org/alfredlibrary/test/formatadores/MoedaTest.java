@@ -16,43 +16,25 @@
  */
 package org.alfredlibrary.test.formatadores;
 
-import org.alfredlibrary.AlfredException;
-import org.alfredlibrary.formatadores.CNPJ;
+import org.alfredlibrary.formatadores.Moeda;
 import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * Classe de Teste para Formatador de CNPJ.
+ * Classe de Teste para o Formatador de Moedas.
  * 
  * @author Marlon Silva Carvalho
- * @since 11/05/2010
+ * @since 12/06/2010
  */
-public class CNPJTest {
+public class MoedaTest {
 
 	@Test
-	public void testarFormatarCNPJMenos15Numeros() {
-		try {
-			CNPJ.formatar("15.139.23/0001-84");
-			Assert.fail();
-		} catch(AlfredException ex) {
-		}
-	}
-
-	@Test
-	public void testarFormatarCNPJCorreto() {
-		try {
-			String cnpj = CNPJ.formatar("15193923000184");
-			Assert.assertNotNull(cnpj);
-			if ( cnpj.length() < 18 ) {
-				Assert.fail();
-			}
-			Assert.assertEquals(cnpj.charAt(2), '.');
-			Assert.assertEquals(cnpj.charAt(6), '.');
-			Assert.assertEquals(cnpj.charAt(10), '/');
-			Assert.assertEquals(cnpj.charAt(15), '-');
-		} catch(AlfredException ex) {
-			Assert.fail();
-		}
+	public void testFormatacao() {
+		Assert.assertEquals("DOIS REAIS", Moeda.formatar(2.0).toUpperCase());
+		Assert.assertEquals("VINTE E UM REAIS E DEZ CENTAVOS", Moeda.formatar(21.10).toUpperCase());
+		Assert.assertEquals("UM MILHÃO DE REAIS", Moeda.formatar(1000000.0).toUpperCase());
+		Assert.assertEquals("UM MILHÃO E CEM MIL DE REAIS E DEZ CENTAVOS", Moeda.formatar(1100000.10).toUpperCase());
+		Assert.assertEquals("DEZ MIL E CEM REAIS E DEZ CENTAVOS", Moeda.formatar(10100.10).toUpperCase());
 	}
 
 }
