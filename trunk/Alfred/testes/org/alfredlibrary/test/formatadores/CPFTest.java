@@ -16,43 +16,24 @@
  */
 package org.alfredlibrary.test.formatadores;
 
-import org.alfredlibrary.AlfredException;
-import org.alfredlibrary.formatadores.CNPJ;
+import org.alfredlibrary.formatadores.CPF;
 import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * Classe de Teste para Formatador de CNPJ.
+ * Classe de Teste para o Formatador de CPF.
  * 
  * @author Marlon Silva Carvalho
- * @since 11/05/2010
+ * @since 12/05/2010
  */
-public class CNPJTest {
+public class CPFTest {
 
 	@Test
-	public void testarFormatarCNPJMenos15Numeros() {
-		try {
-			CNPJ.formatar("15.139.23/0001-84");
-			Assert.fail();
-		} catch(AlfredException ex) {
-		}
-	}
-
-	@Test
-	public void testarFormatarCNPJCorreto() {
-		try {
-			String cnpj = CNPJ.formatar("15193923000184");
-			Assert.assertNotNull(cnpj);
-			if ( cnpj.length() < 18 ) {
-				Assert.fail();
-			}
-			Assert.assertEquals(cnpj.charAt(2), '.');
-			Assert.assertEquals(cnpj.charAt(6), '.');
-			Assert.assertEquals(cnpj.charAt(10), '/');
-			Assert.assertEquals(cnpj.charAt(15), '-');
-		} catch(AlfredException ex) {
-			Assert.fail();
-		}
+	public void testarFormatacao() {
+		String cpf = CPF.formatar("11111111111");
+		Assert.assertEquals(cpf.charAt(3), '.');
+		Assert.assertEquals(cpf.charAt(7), '.');
+		Assert.assertEquals(cpf.charAt(11), '-');
 	}
 
 }

@@ -19,7 +19,6 @@ package org.alfredlibrary.formatadores;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  * Formatador de Moedas.
@@ -132,15 +131,6 @@ class Extenso {
       setNumber(new BigDecimal(dec));
    }
 
-   public void show() {
-      Iterator<Integer> valores = nro.iterator();
-
-      while (valores.hasNext()) {
-         System.out.println(((Integer) valores.next()).intValue());
-      }
-      System.out.println(toString());
-   }
-
    public String toString() {
       StringBuffer buf = new StringBuffer();
       int ct;
@@ -185,6 +175,7 @@ class Extenso {
       num = newNum[0];
    }
 
+   // FIXME Quando é Um milhão, ele coloca, por exemplo, UM MILHÃO E CEM MIL DE REAIS... Este "DE" não existe.
    private boolean ehUnicoGrupo() {
       if (nro.size() <= 3)
          return false;

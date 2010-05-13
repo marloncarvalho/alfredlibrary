@@ -16,6 +16,7 @@
  */
 package org.alfredlibrary.formatadores;
 
+import org.alfredlibrary.AlfredException;
 import org.alfredlibrary.utilitarios.texto.Texto;
 
 
@@ -41,6 +42,9 @@ final public class Telefone {
 	 * @return Telefone formatado.
 	 */
 	public static String formatar(String telefone) {
+		if ( telefone == null || telefone.length() < 8) {
+			throw new AlfredException("Informe um Telefone.");
+		}
 		String soNumeros = Texto.manterNumeros(telefone);
 		StringBuilder s = new StringBuilder();
 		if ( soNumeros.length() == 8 ) {

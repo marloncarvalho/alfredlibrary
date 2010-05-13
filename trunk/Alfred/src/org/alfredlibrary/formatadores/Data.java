@@ -25,6 +25,8 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
+import org.alfredlibrary.AlfredException;
+
 /**
  * Utilitário para formatar Datas.
  * 
@@ -60,10 +62,14 @@ public final class Data {
 	 * @param formato Formato do texto passado em "strData".
 	 * @return Date Data.
 	 */
-	public static Date formatar (String strData, String formato) throws ParseException {
+	public static Date formatar (String strData, String formato) {
 		if (strData != null) {
 			DateFormat df = new SimpleDateFormat(formato);
-			return (Date)df.parse(strData);
+			try {
+				return (Date)df.parse(strData);
+			} catch (ParseException e) {
+				throw new AlfredException(e);
+			}
 		}
 		return null;
 	}
