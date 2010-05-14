@@ -44,6 +44,7 @@ public class UnidadeComposta {
 		super();
 		this.unidade = unidade;
 		this.potencia = (potencia != 0 ? potencia : 1);
+		this.numerador = numerador;
 	}
 	
 	public Object getUnidade() {

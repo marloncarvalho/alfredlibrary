@@ -84,6 +84,8 @@ public final class MedidasCompostas {
 			return Temperatura.converter(valor, (Temperatura.Unidade)unidadeEntrada, (Temperatura.Unidade)unidadeSaida);
 		} else if (unidadeEntrada instanceof Volume.Unidade && unidadeSaida instanceof Volume.Unidade) {
 			return Volume.converter(valor, (Volume.Unidade)unidadeEntrada, (Volume.Unidade)unidadeSaida);
+		} else if (unidadeEntrada instanceof Tempo.Unidade && unidadeSaida instanceof Tempo.Unidade) {
+			return Tempo.converter(valor, (Tempo.Unidade)unidadeEntrada, (Tempo.Unidade)unidadeSaida);
 		} else {
 			throw new AlfredException("A conversão entre as medidas não pode ser realizada! Tipos incompatíveis");
 		}
