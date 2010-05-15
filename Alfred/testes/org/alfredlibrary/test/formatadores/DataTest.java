@@ -37,7 +37,7 @@ public class DataTest {
 		calendar.set(Calendar.DAY_OF_MONTH, 12);
 		calendar.set(Calendar.MONTH, 05);
 		calendar.set(Calendar.YEAR, 2010);
-		String data = Data.formatar(new Date(), "dd/MM/yyyy");
+		String data = Data.formatar(calendar.getTime(), "dd/MM/yyyy");
 		Assert.assertEquals(data.charAt(2), '/');
 		Assert.assertEquals(data.charAt(5), '/');
 		Assert.assertEquals("12", data.substring(0,2));
