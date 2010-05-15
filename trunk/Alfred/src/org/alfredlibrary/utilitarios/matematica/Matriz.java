@@ -59,7 +59,7 @@ final public class Matriz {
 		if ( matriz1[0].length != matriz2[0].length ) {
 			throw new AlfredException("Só podem ser somadas matrizes de mesma ordem.");
 		}
-		Double[][] soma = new Double[matriz1.length][matriz2.length-1];
+		Double[][] soma = new Double[matriz1.length][matriz2.length];
 		for(int x=0; x < matriz1.length; x++) {
 			Double[] linha1 = matriz1[x];
 			for(int y=0; y < linha1.length; y++ ) {
@@ -83,7 +83,7 @@ final public class Matriz {
 		if ( matriz1[0].length != matriz2[0].length ) {
 			throw new AlfredException("Só podem ser subtraídas matrizes de mesma ordem.");
 		}
-		Double[][] soma = new Double[matriz1.length][matriz2.length-1];
+		Double[][] soma = new Double[matriz1.length][matriz2.length];
 		for(int x=0; x < matriz1.length; x++) {
 			Double[] linha1 = matriz1[x];
 			for(int y=0; y < linha1.length; y++ ) {
