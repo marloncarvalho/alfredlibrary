@@ -34,7 +34,7 @@ public class Sedex10Test {
 		try {
 			String[] r = Sedex10.obterPrecoPrazoEntrega("40290280", "40290280", 1);
 			Assert.assertEquals("R$ 18,20", r[0]);
-			Assert.assertEquals("10 horas da manh� do dia �til seguinte", r[1]);
+			Assert.assertEquals("10 horas da manhã do dia útil seguinte", r[1]);
 		} catch ( AlfredException exception ) {
 			Assert.fail();
 		}
