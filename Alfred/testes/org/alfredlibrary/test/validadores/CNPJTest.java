@@ -16,6 +16,38 @@
  */
 package org.alfredlibrary.test.validadores;
 
+import org.alfredlibrary.AlfredException;
+import org.alfredlibrary.validadores.CNPJ;
+import org.junit.Assert;
+import org.junit.Test;
+
+/**
+ * Classe de Teste para o Validador de CNPJ.
+ * 
+ * @author Marlon Silva Carvalho
+ * @since 15/04/2010
+ */
 public class CNPJTest {
 
+	@Test
+	public void testValidarCerto() {
+		try {
+			if ( !CNPJ.isValido("15.193.923/0001-84") ) {
+				Assert.fail();
+			}
+		} catch(AlfredException ex) {
+			Assert.fail();
+		}
+	}
+
+	@Test
+	public void testarValidarCNPJInvalido() {
+		try {
+			if ( CNPJ.isValido("15.193.923/0001-85") ) {
+				Assert.fail();
+			}
+		} catch(AlfredException ex) {
+			Assert.fail();
+		}
+	}
 }

@@ -94,4 +94,27 @@ public class MatrizTest {
 			Assert.fail(e.getMessage());
 		}
 	}
+	
+	@Test
+	public void testMultiplicacaoErrado() {
+		try {
+			Matriz.multiplicar(new Double[][] {{1d,1d,1d}, {2d,2d,2d}}, new Double[][]{{2d,2d}});
+			Assert.fail();
+		} catch(Exception e) {
+			
+		}
+	}
+
+	@Test
+	public void testMultiplicacaoCerto() {
+		try {
+			Double[][] mult = Matriz.multiplicar(new Double[][] {{1d,1d,1d}, {2d,2d,2d}}, new Double[][]{{2d,2d},{2d,2d},{2d,2d}});
+			Assert.assertEquals(6d,mult[0][0]);
+			Assert.assertEquals(6d,mult[0][1]);
+			Assert.assertEquals(12d,mult[1][0]);
+			Assert.assertEquals(12d,mult[1][1]);
+		} catch(Exception e) {
+			Assert.fail();
+		}
+	}
 }

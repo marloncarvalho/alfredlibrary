@@ -14,29 +14,52 @@
  *  You should have received a copy of the GNU General Public License
  *  along with Alfred Library.  If not, see <http://www.gnu.org/licenses/>.
  */
-package net.marloncarvalho.alfred.testes.idiomas;
+package org.alfredlibrary.test.validadores;
 
 import junit.framework.Assert;
 
-import org.alfredlibrary.utilitarios.idiomas.GoogleTranslate;
-import org.alfredlibrary.utilitarios.idiomas.GoogleTranslate.Idioma;
+import org.alfredlibrary.validadores.Numeros;
 import org.junit.Test;
 
 /**
- * Teste do utilit�rio Google Translate.
+ * Classe de Teste para o Validador de Números.
  * 
  * @author Marlon Silva Carvalho
- * @since 27/05/2010
+ * @since 15/05/2010
  */
-public class GoogleTranslateTest {
-	
+public class NumerosTest {
+
 	@Test
-	public void testarTraducaoPortuguesIngles() {
-		Assert.assertEquals("o melhor", GoogleTranslate.traduzir("the best", Idioma.ENGLISH, Idioma.PORTUGUESE));
+	public void testarInteiro() {
+		Assert.assertTrue(Numeros.isInteger("1"));
+		Assert.assertFalse(Numeros.isInteger("1.5"));
 	}
 
 	@Test
-	public void testarTraducaoInglesPortugues() {
-		Assert.assertEquals("best", GoogleTranslate.traduzir("o melhor", Idioma.PORTUGUESE, Idioma.ENGLISH));
+	public void testarShort() {
+		Assert.assertTrue(Numeros.isShort("1"));
+		Assert.assertFalse(Numeros.isShort("1.5"));
 	}
+
+	@Test
+	public void testarLong() {
+		Assert.assertTrue(Numeros.isLong("1"));
+		Assert.assertFalse(Numeros.isLong("1.5"));
+	}
+
+	@Test
+	public void testarFloat() {
+		Assert.assertTrue(Numeros.isFloat("1.5"));
+	}
+
+	@Test
+	public void testarDouble() {
+		Assert.assertTrue(Numeros.isFloat("1.5"));
+	}
+
+	@Test
+	public void testarBigDecimal() {
+		Assert.assertTrue(Numeros.isBigDecimal("1.5"));
+	}
+
 }

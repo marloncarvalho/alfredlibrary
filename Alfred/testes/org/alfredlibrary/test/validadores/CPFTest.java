@@ -14,35 +14,34 @@
  *  You should have received a copy of the GNU General Public License
  *  along with Alfred Library.  If not, see <http://www.gnu.org/licenses/>.
  */
-package net.marloncarvalho.alfred.testes.clima.climatempo;
-
-import java.util.Collection;
+package org.alfredlibrary.test.validadores;
 
 import junit.framework.Assert;
 
-import org.alfredlibrary.utilitarios.clima.Clima;
-import org.alfredlibrary.utilitarios.clima.climatempo.Climatempo;
+import org.alfredlibrary.validadores.CPF;
 import org.junit.Test;
 
 /**
- * Teste do utilit�rio de Climatempo.
+ * Classe de Teste para o Validador de CPF.
  * 
  * @author Marlon Silva Carvalho
- * @since 27/05/2010
+ * @since 15/05/2010
  */
-public class ClimatempoTest {
+public class CPFTest {
+
 
 	@Test
-	public void testarObtencaoClima() {
-		try {
-			Collection<Clima> climas = Climatempo.obterClima("800");
-			if ( climas == null || climas.size() <= 0 ) {
-				Assert.fail("N�o foram encontrados climas para a localidade 857. Deveria existir!");
-			}
-		} catch (Exception e) {
-			Assert.fail(e.getMessage());
+	public void testarValidarCPFValido() {
+		if ( !CPF.isValido("111.111.111-11") ) {
+			Assert.fail();
 		}
-		
 	}
 
+	@Test
+	public void testarValidarCPFInvalido() {
+		if ( CPF.isValido("111.111.111-12") ) {
+			Assert.fail();
+		}
+	}
+	
 }
