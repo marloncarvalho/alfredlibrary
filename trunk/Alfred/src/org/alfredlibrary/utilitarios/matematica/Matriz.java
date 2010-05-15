@@ -245,10 +245,4 @@ final public class Matriz {
 		return true;
 	}
 
-	public static void main(String[] args) {
-		Double[][] m1 = new Double[][]{ {1D,0D,2D}, {-1D,3D,1D} };
-		Double[][] m2 = new Double[][]{ {3D, 1D}, {2D, 1D}, {1D, 0D}};
-		Double[][] m3 = Matriz.multiplicar(m1, m2);
-		System.out.println(m3);
-	}
 }
