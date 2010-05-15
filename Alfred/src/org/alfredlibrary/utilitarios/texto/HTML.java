@@ -74,8 +74,7 @@ final public class HTML {
 	 *            Onde iniciar a troca.
 	 * @return Texto com os valores convertidos.
 	 */
-	public static String desconverterElementosHTMLEspeciais(String source,
-			int start) {
+	public static String desconverterElementosHTMLEspeciais(String source, int start) {
 		HashMap<String, String> htmlEntities;
 		htmlEntities = new HashMap<String, String>();
 		htmlEntities.put("&lt;", "<");
@@ -152,154 +151,78 @@ final public class HTML {
 	}
 
 	/**
-	 * Converte caracteres especiais para elementos HTML. Código
-	 * "gentilmente sugado" do site
-	 * http://www.rgagnon.com/javadetails/java-0306.html.
+	 * Converte caracteres especiais para elementos HTML. Código "gentilmente sugado" do site
 	 * 
-	 * @param s
-	 *            String que terá os elementos substituídos.
-	 * @return
+	 * @param source String que terá os elementos substituídos.
+	 * @return Texto formatado.
 	 */
-	public static final String converterParaElementosHTMLEspeciais(String s) {
-		StringBuffer sb = new StringBuffer();
-		int n = s.length();
-		for (int i = 0; i < n; i++) {
-			char c = s.charAt(i);
-			switch (c) {
-			case '<':
-				sb.append("&lt;");
-				break;
-			case '>':
-				sb.append("&gt;");
-				break;
-			case '&':
-				sb.append("&amp;");
-				break;
-			case '"':
-				sb.append("&quot;");
-				break;
-			case 'à':
-				sb.append("&agrave;");
-				break;
-			case 'À':
-				sb.append("&Agrave;");
-				break;
-			case 'â':
-				sb.append("&acirc;");
-				break;
-			case 'Â':
-				sb.append("&Acirc;");
-				break;
-			case 'ä':
-				sb.append("&auml;");
-				break;
-			case 'Ä':
-				sb.append("&Auml;");
-				break;
-			case 'å':
-				sb.append("&aring;");
-				break;
-			case 'Å':
-				sb.append("&Aring;");
-				break;
-			case 'æ':
-				sb.append("&aelig;");
-				break;
-			case 'Æ':
-				sb.append("&AElig;");
-				break;
-			case 'ç':
-				sb.append("&ccedil;");
-				break;
-			case 'Ç':
-				sb.append("&Ccedil;");
-				break;
-			case 'é':
-				sb.append("&eacute;");
-				break;
-			case 'É':
-				sb.append("&Eacute;");
-				break;
-			case 'è':
-				sb.append("&egrave;");
-				break;
-			case 'È':
-				sb.append("&Egrave;");
-				break;
-			case 'ê':
-				sb.append("&ecirc;");
-				break;
-			case 'Ê':
-				sb.append("&Ecirc;");
-				break;
-			case 'ë':
-				sb.append("&euml;");
-				break;
-			case 'Ë':
-				sb.append("&Euml;");
-				break;
-			case 'ï':
-				sb.append("&iuml;");
-				break;
-			case 'Ï':
-				sb.append("&Iuml;");
-				break;
-			case 'ô':
-				sb.append("&ocirc;");
-				break;
-			case 'Ô':
-				sb.append("&Ocirc;");
-				break;
-			case 'ö':
-				sb.append("&ouml;");
-				break;
-			case 'Ö':
-				sb.append("&Ouml;");
-				break;
-			case 'ø':
-				sb.append("&oslash;");
-				break;
-			case 'Ø':
-				sb.append("&Oslash;");
-				break;
-			case 'ß':
-				sb.append("&szlig;");
-				break;
-			case 'ù':
-				sb.append("&ugrave;");
-				break;
-			case 'Ù':
-				sb.append("&Ugrave;");
-				break;
-			case 'û':
-				sb.append("&ucirc;");
-				break;
-			case 'Û':
-				sb.append("&Ucirc;");
-				break;
-			case 'ü':
-				sb.append("&uuml;");
-				break;
-			case 'Ü':
-				sb.append("&Uuml;");
-				break;
-			case '®':
-				sb.append("&reg;");
-				break;
-			case '©':
-				sb.append("&copy;");
-				break;
-			case '€':
-				sb.append("&euro;");
-				break;
-			// be carefull with this one (non-breaking whitee space)
-			case ' ':
-				sb.append("&nbsp;");
-				break;
-
-			default:
-				sb.append(c);
-				break;
+	public static final String converterParaElementosHTMLEspeciais(String source) {
+		HashMap<Character, String> htmlEntities;
+		htmlEntities = new HashMap<Character, String>();
+		htmlEntities.put('<', "&lt;");
+		htmlEntities.put('>', "&gt;");
+		htmlEntities.put('&', "&amp;");
+		htmlEntities.put('\\', "&quot;");
+		htmlEntities.put('à', "&agrave;");
+		htmlEntities.put('À', "&Agrave;");
+		htmlEntities.put('ã', "&atilde;");
+		htmlEntities.put('Ã', "&Atilde;");
+		htmlEntities.put('á', "&aacute;");
+		htmlEntities.put('Á', "&Aacute;");
+		htmlEntities.put('â', "&acirc;");
+		htmlEntities.put('ä', "&auml;");
+		htmlEntities.put('Ä', "&Auml;");
+		htmlEntities.put('Â', "&Acirc;");
+		htmlEntities.put('å', "&aring;");
+		htmlEntities.put('Å', "&Aring;");
+		htmlEntities.put('æ', "&aelig;");
+		htmlEntities.put('Æ', "&AElig;");
+		htmlEntities.put('ç', "&ccedil;");
+		htmlEntities.put('Ç', "&Ccedil;");
+		htmlEntities.put('é', "&eacute;");
+		htmlEntities.put('É', "&Eacute;");
+		htmlEntities.put('è', "&egrave;");
+		htmlEntities.put('È', "&Egrave;");
+		htmlEntities.put('ê', "&ecirc;");
+		htmlEntities.put('Ê', "&Ecirc;");
+		htmlEntities.put('ë', "&euml;");
+		htmlEntities.put('Ë', "&Euml;");
+		htmlEntities.put('ï', "&iuml;");
+		htmlEntities.put('Ï', "&Iuml;");
+		htmlEntities.put('í', "&iacute;");
+		htmlEntities.put('Í', "&Iacute;");
+		htmlEntities.put('ô', "&ocirc;");
+		htmlEntities.put('Ô', "&Ocirc;");
+		htmlEntities.put('õ', "&otilde;");
+		htmlEntities.put('Õ', "&Otilde;");
+		htmlEntities.put('ó', "&oacute;");
+		htmlEntities.put('Ó', "&Oacute;");
+		htmlEntities.put('ú', "&uacute;");
+		htmlEntities.put('Ú', "&Uacute;");
+		htmlEntities.put('ö', "&ouml;");
+		htmlEntities.put('Ö', "&Ouml;");
+		htmlEntities.put('ø', "&oslash;");
+		htmlEntities.put('Ø', "&Oslash;");
+		htmlEntities.put('ß', "&szlig;");
+		htmlEntities.put('ù', "&ugrave;");
+		htmlEntities.put('Ù', "&Ugrave;");
+		htmlEntities.put('û', "&ucirc;");
+		htmlEntities.put('Û', "&Ucirc;");
+		htmlEntities.put('ü', "&uuml;");
+		htmlEntities.put('Ü', "&Uuml;");
+		htmlEntities.put(' ', "&nbsp;");
+		htmlEntities.put('\u00a9', "&copy;");
+		htmlEntities.put('\u00ae', "&reg;");
+		htmlEntities.put('\u20a0', "&euro;");
+		int length = source.length();
+		StringBuilder sb = new StringBuilder();
+		for(int i=0; i < length; i++) {
+			char ch = source.charAt(i);
+			if ( htmlEntities.containsKey(ch) ) {
+				String o = htmlEntities.get(ch);
+				sb.append(o);
+			} else {
+				sb.append(ch);
 			}
 		}
 		return sb.toString();

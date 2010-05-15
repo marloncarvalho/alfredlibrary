@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
 import org.alfredlibrary.validadores.Numeros;
 
 /**
- * Utilitï¿½rios para manipulaï¿½ï¿½o de Textos.
+ * Utilitï¿½rios para manipulação de Textos.
  * 
  * @author Marlon Silva Carvalho
  * @since 03/06/2009
@@ -30,10 +30,10 @@ import org.alfredlibrary.validadores.Numeros;
 public class Texto {
 
 	/**
-	 * Manter no Texto apenas os nï¿½meros.
+	 * Manter no Texto apenas os números.
 	 * 
 	 * @param str Texto.
-	 * @return Texto contendo apenas os nï¿½meros.
+	 * @return Texto contendo apenas os números.
 	 */
 	public static String manterNumeros(String str) {
 		StringBuilder s = new StringBuilder();
@@ -46,12 +46,12 @@ public class Texto {
 	}
 
 	/**
-	 * Incluir uma determinada quantidade de vezes um determinado caracter no inï¿½cio do texto.
+	 * Incluir uma determinada quantidade de vezes um determinado caracter no início do texto.
 	 * 
-	 * @param texto Texto que terï¿½ o caracter inserido no inï¿½cio.
-	 * @param c Caracter que serï¿½ incluï¿½do.
-	 * @param q Quantidade de vezes que o caracter serï¿½ incluï¿½do.
-	 * @return Texto com os caracteres incluï¿½dos.
+	 * @param texto Texto que teráo caracter inserido no início.
+	 * @param c Caracter que será incluído.
+	 * @param q Quantidade de vezes que o caracter será incluído.
+	 * @return Texto com os caracteres incluídos.
 	 */
 	public static String incluirCaracterInicio(String texto, char c, int q) {
 		StringBuilder s = new StringBuilder();
@@ -64,8 +64,8 @@ public class Texto {
 	/**
 	 * Capitalizar a primeira letra de todas as palavras do texto.
 	 * 
-	 * @param texto Texto que terï¿½ as palavras capitalizadas.
-	 * @return Texto com a formataï¿½ï¿½o aplicada.
+	 * @param texto Texto que terá as palavras capitalizadas.
+	 * @return Texto com a formatação aplicada.
 	 */
 	public static String capitalizarIniciais(String texto) {
 		String[] split = texto.split(" ");
@@ -80,11 +80,11 @@ public class Texto {
 
 	/**
 	 * Contar a quantidade de vezes que uma palavra ocorre em um texto.
-	 * Nï¿½o usar caracteres especiais na palavra a ser pesquisada.
+	 * Não usar caracteres especiais na palavra a ser pesquisada.
 	 * 
 	 * @param texto Texto.
-	 * @param palavra Palavra que serï¿½ contada no texto.
-	 * @param ignoreCase Considerar maiï¿½sculas ou minï¿½sculas.
+	 * @param palavra Palavra que será contada no texto.
+	 * @param ignoreCase Considerar maíusculas ou minúsculas.
 	 * @return Quantidade de vezes que a palavra ocorre.
 	 */
 	public static int contarQuantidadePalavra(String texto, String palavra, boolean ignoreCase) {
