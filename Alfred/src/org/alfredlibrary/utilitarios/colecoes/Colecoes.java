@@ -28,7 +28,7 @@ import org.alfredlibrary.AlfredException;
 import org.alfredlibrary.utilitarios.texto.Texto;
 
 /**
- * Utilit�rios para Cole��es.
+ * Utilitários para Coleções.
  * 
  * @author Marlon Silva Carvalho
  * @author Rodrigo Moreira Fagundes
@@ -37,9 +37,9 @@ import org.alfredlibrary.utilitarios.texto.Texto;
 final public class Colecoes {
 
 	/**
-	 * Remover de uma cole��o todos os itens que possuam o campo "nomeCampo" com
-	 * o valor "valor". N�o passar cole��o de tipos primitivos como par�metro. A
-	 * cole��o deve ser composta de objetos que seguem o padr�o JavaBean.
+	 * Remover de uma coleção todos os itens que possuam o campo "nomeCampo" com
+	 * o valor "valor". Não passar coleção de tipos primitivos como parâmetro. A
+	 * coleção deve ser composta de objetos que seguem o padrão JavaBean.
 	 * <br>
 	 * <code> 
 	 * class MeuObjeto { private String id;<br><br>
@@ -53,12 +53,12 @@ final public class Colecoes {
 	 * <br><br>
 	 * c = Colecoes.removerItem(c,"id", "1");<br>
 	 * <br><br>
-	 * // Ir� remover o item anteriormente adicionado. </code>
+	 * // Irá remover o item anteriormente adicionado. </code>
 	 * 
-	 * @param colecao Cole��o.
-	 * @param nomeCampo Nome do campo que ser� checado.
+	 * @param colecao Coleção.
+	 * @param nomeCampo Nome do campo que será checado.
 	 * @param valor Valor do campo.
-	 * @return Cole��o sem os itens.
+	 * @return Coleção sem os itens.
 	 */
 	@SuppressWarnings("all")
 	public static Collection removerItem(Collection colecao, String nomeCampo, Object valor) {
@@ -75,13 +75,13 @@ final public class Colecoes {
 			}
 			return retorno;
 		} catch (InstantiationException e) {
-			throw new AlfredException("N�o foi poss�vel instanciar um tipo de cole��o igual ao tipo informado.");
+			throw new AlfredException("Não foi posível instanciar um tipo de coleção igual ao tipo informado.");
 		} catch (IllegalAccessException e) {
 			throw new AlfredException(e);
 		} catch (SecurityException e) {
 			throw new AlfredException(e);
 		} catch (NoSuchMethodException e) {
-			throw new AlfredException("N�o existe o m�todo de acesso ao campo informado. Verifique se sua classe implementa o padr�o JavaBean.",e);
+			throw new AlfredException("Não existe o método de acesso ao campo informado. Verifique se sua classe implementa o padrão JavaBean.",e);
 		} catch (IllegalArgumentException e) {
 			throw new AlfredException(e);
 		} catch (InvocationTargetException e) {
@@ -90,12 +90,12 @@ final public class Colecoes {
 	}
 
 	/**
-	 * Ordenar uma cole��o conforme um determinado atributo do objeto contido na cole��o.
-	 * Os objetos contidos na cole��o devem ser do mesmo tipo e implementarem a interface Comparable.
+	 * Ordenar uma coleção conforme um determinado atributo do objeto contido na coleção.
+	 * Os objetos contidos na coleção devem ser do mesmo tipo e implementarem a interface Comparable.
 	 * 
-	 * @param colecao Cole��o.
+	 * @param colecao Coleção.
 	 * @param nomeCampo Nome do campo.
-	 * @return Cole��o ordenada.
+	 * @return Coleção ordenada.
 	 */
 	@SuppressWarnings("all")
 	public static List ordenar(List colecao, final String nomeCampo) {
@@ -124,14 +124,14 @@ final public class Colecoes {
 	}
 	
 	/**
-	 * Ordenar uma cole��o conforme um determinado atributo do objeto contido na cole��o
+	 * Ordenar uma coleção conforme um determinado atributo do objeto contido na coleção
 	 * de forma ascendente ou descendente.
 	 * 
-	 * @param colecao Cole��o.
-	 * @param ascendente Ordena��o ascendente (true) ou descendente (false)  
+	 * @param colecao Coleção.
+	 * @param ascendente Ordenação ascendente (true) ou descendente (false)  
 	 * @param nomeCampo Nome do campo.
 	 * @param clazz Classe do campo selecionado.
-	 * @return Cole��o ordenada.
+	 * @return Coleção ordenada.
 	 */
 	@SuppressWarnings("all")
 	public static List ordenar(List colecao, boolean ascendente, String nomeCampo, Class clazz) {
@@ -143,15 +143,15 @@ final public class Colecoes {
 	}
 	
 	/**
-	 * Ordenar uma cole��o conforme um determinado atributo do objeto contido
-	 * indiretamente na cole��o, em qualquer grau, de forma ascendente ou descendente.
+	 * Ordenar uma coleção conforme um determinado atributo do objeto contido
+	 * indiretamente na coleção, em qualquer grau, de forma ascendente ou descendente.
 	 * 
-	 * @param colecao Cole��o.
-	 * @param ascendente Ordena��o ascendente (true) ou descendente (false)  
+	 * @param colecao Coleção.
+	 * @param ascendente Ordenação ascendente (true) ou descendente (false)  
 	 * @param colNomeCampo Cadeia de nome de campo para chegar no atributo base para
 	 * 						a ordenação.
 	 * @param clazz Classe do campo selecionado.
-	 * @return Cole��o ordenada.
+	 * @return Coleção ordenada.
 	 */
 	@SuppressWarnings("all")
 	public static List ordenar(List colecao, boolean ascendente, Collection colNomeCampo, Class clazz) {

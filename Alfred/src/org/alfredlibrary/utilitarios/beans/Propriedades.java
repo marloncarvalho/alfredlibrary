@@ -26,7 +26,7 @@ import org.alfredlibrary.AlfredException;
 import org.alfredlibrary.utilitarios.texto.Texto;
 
 /**
- * Utilit�rios para trabalhar com propriedades de objetos que seguem o padr�o Java Bean.
+ * Utilitários para trabalhar com propriedades de objetos que seguem o padrão Java Bean.
  * 
  * @author Marlon Silva Carvalho
  * @since 17/06/2009
@@ -56,7 +56,6 @@ final public class Propriedades {
 						Object valor = method.invoke(objeto, null);
 						map.put(field.getName(),valor);
 					} catch (NoSuchMethodException e) { 
-						// Ignorar a exce��o e copiar os demais campos. 
 					}
 				} else {
 					Object valor = field.get(objeto);
@@ -109,14 +108,10 @@ final public class Propriedades {
 			method = objeto.getClass().getMethod("get" + Texto.capitalizarIniciais(prop), null);
 			Object valor = method.invoke(objeto, null);
 			return valor;
-		} catch (NoSuchMethodException e) { 
-			// Ignorar a exce��o e copiar os demais campos. 
+		} catch (NoSuchMethodException e) {  
 		} catch (IllegalArgumentException e) {
-			// Ignorar a exce��o e copiar os demais campos.
 		} catch (IllegalAccessException e) {
-			// Ignorar a exce��o e copiar os demais campos.
 		} catch (InvocationTargetException e) {
-			// Ignorar a exce��o e copiar os demais campos.
 		}
 		return null;
 	}
