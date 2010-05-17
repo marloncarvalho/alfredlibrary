@@ -16,13 +16,16 @@
  */
 package org.alfredlibrary.utilitarios.transito;
 
+import java.io.Serializable;
+
 /**
  * Classe representando uma Infração de Trânsito.
  * 
  * @author Marlon Silva Carvalho
  * @since 13/05/2010
  */
-public class Infracao {
+public class Infracao implements Serializable {
+	private static final long serialVersionUID = -1763492785388989062L;
 	private String codigo;
 	private String descricao;
 	private String amparoLegal;
