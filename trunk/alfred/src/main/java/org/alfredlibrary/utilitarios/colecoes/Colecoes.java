@@ -102,7 +102,6 @@ final public class Colecoes {
 		if ( colecao.size() <= 0 ) 
 			return colecao;
 		Comparator comparator = new Comparator() {
-			@Override
 			public int compare(Object ob1, Object ob2) {
 				try {
 					Method m1 = ob1.getClass().getMethod("get" + Texto.capitalizarIniciais(nomeCampo), null);

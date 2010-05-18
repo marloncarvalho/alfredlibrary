@@ -7,7 +7,6 @@ import org.alfredlibrary.utilitarios.clima.ProvedorClima;
 
 public class ClimatempoProvedor implements ProvedorClima {
 
-	@Override
 	public Collection<Clima> prover(String idLocalidade) {
 		return Climatempo.obterClima(idLocalidade);
 	}
