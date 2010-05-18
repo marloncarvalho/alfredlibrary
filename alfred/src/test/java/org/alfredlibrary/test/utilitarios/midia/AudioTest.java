@@ -44,7 +44,7 @@ public class AudioTest {
 		InputStream is;
 		try {
 			String userDir = System.getProperty("user.dir");
-			is = new FileInputStream(userDir + "\\testes\\net\\marloncarvalho\\alfred\\testes\\midia\\love.wav");
+			is = new FileInputStream(userDir + "/src/test/java/org/alfredlibrary/test/utilitarios/midia/love.wav");
 			AudioInputStream ais = AudioSystem.getAudioInputStream(is);
 			Audio.executar(ais);
 		} catch (FileNotFoundException e) {
