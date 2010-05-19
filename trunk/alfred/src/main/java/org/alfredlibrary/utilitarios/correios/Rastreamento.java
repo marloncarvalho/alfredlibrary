@@ -91,8 +91,8 @@ final public class Rastreamento {
 		} else if (codObjeto.length() != 13) {
 			throw new AlfredException("Código de Rastreamento deve ter tamanho 13.");
 		} else if (!"".equals(Texto.manterNumeros(codObjeto.substring(0, 1)))
-				|| !"".equals(Texto.manterNumeros(codObjeto.substring(11, 12)))
-				|| Texto.manterNumeros(codObjeto.substring(2, 10)).length() != 9) {
+				|| !"".equals(Texto.manterNumeros(codObjeto.substring(11, 13)))
+				|| Texto.manterNumeros(codObjeto.substring(2, 11)).length() != 9) {
 			throw new AlfredException("Código de Rastreamento fora do padrão.");
 		}
 	}

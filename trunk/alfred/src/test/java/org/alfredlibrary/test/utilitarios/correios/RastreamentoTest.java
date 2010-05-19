@@ -20,6 +20,7 @@ import java.util.Collection;
 
 import junit.framework.Assert;
 
+import org.alfredlibrary.AlfredException;
 import org.alfredlibrary.formatadores.Data;
 import org.alfredlibrary.utilitarios.correios.Rastreamento;
 import org.alfredlibrary.utilitarios.correios.RegistroRastreamento;
@@ -54,6 +55,20 @@ public class RastreamentoTest {
 				iteration++;
 			}
 			
+		} catch (Exception e) {
+			e.printStackTrace();
+			Assert.fail();
+		}
+	}
+	
+	@Test
+	public void testValidar() {
+		try {
+			try {
+				Collection<RegistroRastreamento> colRegistoRastreamento = Rastreamento.rastrear("RJ377032643BR");
+			} catch (AlfredException ae) {
+				Assert.fail();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			Assert.fail();
