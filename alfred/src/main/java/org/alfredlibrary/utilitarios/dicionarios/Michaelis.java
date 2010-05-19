@@ -33,7 +33,7 @@ final public class Michaelis {
 
 	public static String obterSignificado(String palavra, boolean formatacaoHTML) {
 		String url = "http://michaelis.uol.com.br/moderno/portugues/index.php?lingua=portugues-portugues&palavra=" + palavra;
-		String resultado = WorldWideWeb.obterConteudoSite(url);
+		String resultado = WorldWideWeb.obterConteudoSite(url, "UTF-8");
 		String parte = resultado.substring(resultado.indexOf("<span class='descricao'>"));
 		parte = parte.substring(0,parte.indexOf("</span>"));
 		parte = HTML.desconverterElementosHTMLEspeciais(parte, 0);

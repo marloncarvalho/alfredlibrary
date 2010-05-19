@@ -42,7 +42,7 @@ public class Infracoes {
 	 */
 	public static Collection<Infracao> obterInfracoes() {
 		Collection<Infracao> infracoes = new ArrayList<Infracao>();
-		String conteudo = WorldWideWeb.obterConteudoSite("https://wwws.detrannet.mg.gov.br/detran/tbinfr.asp");
+		String conteudo = WorldWideWeb.obterConteudoSite("https://wwws.detrannet.mg.gov.br/detran/tbinfr.asp", "UTF-8");
 		BufferedReader br = new BufferedReader(new StringReader(conteudo));
 		String linha = null;
 		try {

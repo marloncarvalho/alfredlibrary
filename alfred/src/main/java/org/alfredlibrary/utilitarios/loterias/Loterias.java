@@ -21,7 +21,7 @@ import java.util.Date;
 import org.alfredlibrary.utilitarios.net.WorldWideWeb;
 
 /**
- * Obter resultado de Loterias da Caixa Ec�nomica Federal.
+ * Obter resultado de Loterias da Caixa Ecônomica Federal.
  * 
  * @author Marlon Silva Carvalho
  * @since 13/06/2009
@@ -31,7 +31,7 @@ final public class Loterias {
 	/**
 	 * Obter o resultado da Megasena.
 	 * 
-	 * @param concurso N�mero do Concurso.
+	 * @param concurso Número do Concurso.
 	 * @return Resultado da Megasena.
 	 */
 	public static String[] obterResultadoMegaSena(String concurso) {
@@ -41,7 +41,7 @@ final public class Loterias {
 		} else {
 			url = "http://www1.caixa.gov.br/loterias/loterias/megasena/megasena_pesquisa_new.asp?submeteu=sim&opcao=concurso&txtConcurso=" + concurso;
 		}			
-		String conteudo = WorldWideWeb.obterConteudoSite(url);
+		String conteudo = WorldWideWeb.obterConteudoSite(url, "UTF-8");
 		String resultado = conteudo.split("\\|")[2].replaceAll("<ul>", "").replaceAll("</ul>","").replaceAll("<li>", "").replaceAll("<span class=\"num_sorteio\">","").replaceAll("</span>","").replaceAll("</li>","|");
 		String[] resultadoMegaSena = resultado.split("\\|");
 		return resultadoMegaSena;
@@ -50,7 +50,7 @@ final public class Loterias {
 	/**
 	 * Obter o resultado da Duplasena.
 	 * 
-	 * @param concurso N�mero do Concurso.
+	 * @param concurso Número do Concurso.
 	 * @return Resultado da Duplasena.
 	 */
 	public static String[][] obterResultadoDuplaSena(String concurso) {
@@ -60,7 +60,7 @@ final public class Loterias {
 		} else {
 			url = "http://www1.caixa.gov.br/loterias/loterias/duplasena/duplasena_pesquisa_new.asp?submeteu=sim&opcao=concurso&txtConcurso=" + concurso;
 		}			
-		String conteudo = WorldWideWeb.obterConteudoSite(url);
+		String conteudo = WorldWideWeb.obterConteudoSite(url, "UTF-8");
 		String resultado = conteudo.split("\\|")[3].replaceAll("<ul>", "").replaceAll("</ul>","").replaceAll("<li>", "").replaceAll("<span class=\"num_sorteio\">","").replaceAll("</span>","").replaceAll("</li>","|");
 		String[] resultadoSorteio1 = resultado.split("\\|");
 		resultado = conteudo.split("\\|")[4].replaceAll("<ul>", "").replaceAll("</ul>","").replaceAll("<li>", "").replaceAll("<span class=\"num_sorteio\">","").replaceAll("</span>","").replaceAll("</li>","|");
@@ -69,10 +69,10 @@ final public class Loterias {
 	}
 
 	/**
-	 * Obter o resultado da Lotof�cil.
+	 * Obter o resultado da Lotofácil.
 	 * 
-	 * @param concurso N�mero do Concurso.
-	 * @return Resultado da Lotof�cil.
+	 * @param concurso Número do Concurso.
+	 * @return Resultado da Lotofácil.
 	 */
 	public static String[] obterResultadoLotofacil(String concurso) {
 		String url;
@@ -81,7 +81,7 @@ final public class Loterias {
 		} else {
 			url = "http://www1.caixa.gov.br/loterias/loterias/lotofacil/lotofacil_pesquisa_new.asp?submeteu=sim&opcao=concurso&txtConcurso=" + concurso;
 		}			
-		String conteudo = WorldWideWeb.obterConteudoSite(url);
+		String conteudo = WorldWideWeb.obterConteudoSite(url, "UTF-8");
 		String[] resultado = conteudo.split("\\|");
 		String[] resultadoMegaSena = new String[] {resultado[3],resultado[4],resultado[5],resultado[6],
 						resultado[7],resultado[8],resultado[9],resultado[10],resultado[11],
@@ -92,7 +92,7 @@ final public class Loterias {
 	/**
 	 * Obter o resultado da Lotomania.
 	 * 
-	 * @param concurso N�mero do Concurso.
+	 * @param concurso Número do Concurso.
 	 * @return Resultado da Lotomania.
 	 */
 	public static String[] obterResultadoLotomania(String concurso) {
@@ -102,7 +102,7 @@ final public class Loterias {
 		} else {
 			url = "http://www1.caixa.gov.br/loterias/loterias/lotomania/lotomania_pesquisa.asp?submeteu=sim&opcao=concurso&txtConcurso=" + concurso;
 		}			
-		String conteudo = WorldWideWeb.obterConteudoSite(url);
+		String conteudo = WorldWideWeb.obterConteudoSite(url, "UTF-8");
 		String[] resultado = conteudo.split("\\|");
 		String[] resultadoMegaSena = new String[] {resultado[6],resultado[7],resultado[8],resultado[9],
 						resultado[10],resultado[11],resultado[12],resultado[13],resultado[14],
@@ -112,20 +112,20 @@ final public class Loterias {
 	}
 
 	/**
-	 * Obter o n�mero do concurso mais atual da megasena.
+	 * Obter o número do concurso mais atual da megasena.
 	 * 
-	 * @return N�mero do Concurso.
+	 * @return Número do Concurso.
 	 */
 	public static String obterNumeroUltimoConcursoMegaSena() {
 		String url = "http://www1.caixa.gov.br/loterias/loterias/megasena/megasena_pesquisa_new.asp?f_megasena=" + new Date().getTime();
-		String conteudo = WorldWideWeb.obterConteudoSite(url);
+		String conteudo = WorldWideWeb.obterConteudoSite(url, "UTF-8");
 		return conteudo.split("\\|")[0];
 	}
 
 	/**
 	 * Obter o resultado da Quina.
 	 * 
-	 * @param concurso N�mero do Concurso.
+	 * @param concurso Número do Concurso.
 	 * @return Resultado da Quina.
 	 */
 	public static String[] obterResultadoQuina(String concurso) {
@@ -135,7 +135,7 @@ final public class Loterias {
 		} else {
 			url = "http://www1.caixa.gov.br/loterias/loterias/quina/quina_pesquisa_new.asp?submeteu=sim&opcao=concurso&txtConcurso=" + concurso;
 		}			
-		String conteudo = WorldWideWeb.obterConteudoSite(url);
+		String conteudo = WorldWideWeb.obterConteudoSite(url, "UTF-8");
 		String resultado = conteudo.split("\\|",-1)[14].replaceAll("<ul>", "").replaceAll("</ul>","").replaceAll("<li>", "").replaceAll("<span id=\"sorteio2\">","").replaceAll("</span>","").replaceAll("<span style=\"display:none;\" id=\"sorteio1\" style=\"display:none;\">", "").replaceAll("</li>","|");
 		String[] resultadoQuina = resultado.split("\\|");
 		return new String[] { resultadoQuina[0], resultadoQuina[1], resultadoQuina[2], resultadoQuina[3], resultadoQuina[4]};
