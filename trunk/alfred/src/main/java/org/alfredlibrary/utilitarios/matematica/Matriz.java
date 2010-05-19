@@ -22,6 +22,7 @@ import org.alfredlibrary.AlfredException;
  * Utilitário com operações sobre matrizes.
  * 
  * @author Marlon Silva Carvalho
+ * @author Rodrigo Moreira Fagundes
  * @since 12/05/2010
  */
 final public class Matriz {
@@ -35,6 +36,7 @@ final public class Matriz {
 	 * @return Transposta.
 	 */
 	public static Double[][] transpor(Double[][] matriz) {
+		validarMatriz(matriz);
 		Double[][] transposta = new Double[matriz[0].length][matriz.length];
 		for(int x=0; x < matriz.length; x++) {
 			Double[] linha = matriz[x];
@@ -53,6 +55,7 @@ final public class Matriz {
 	 * @return Matriz com a soma.
 	 */
 	public static Double[][] somar(Double[][] matriz1, Double[][] matriz2) {
+		validarMatriz(matriz1, matriz2);
 		if ( matriz1.length != matriz2.length ) {
 			throw new AlfredException("Só podem ser somadas matrizes de mesma ordem.");
 		}
@@ -77,6 +80,7 @@ final public class Matriz {
 	 * @return Matriz com a soma.
 	 */
 	public static Double[][] subtrair(Double[][] matriz1, Double[][] matriz2) {
+		validarMatriz(matriz1, matriz2);
 		if ( matriz1.length != matriz2.length ) {
 			throw new AlfredException("Só podem ser subtraídas matrizes de mesma ordem.");
 		}
@@ -101,6 +105,7 @@ final public class Matriz {
 	 * @return Matriz resultante da multiplicação.
 	 */
 	public static Double[][] multiplicar(Double[][] matriz1, Double[][] matriz2) {
+		validarMatriz(matriz1, matriz2);
 		int colunasMatriz1 = matriz1[0].length;
 		int linhasMatriz2 = matriz2.length;
 		if ( colunasMatriz1 != linhasMatriz2 ) {
@@ -126,6 +131,7 @@ final public class Matriz {
 	 * @return Matriz resultante da operação.
 	 */
 	public static Double[][] multiplicar(Double[][] matriz, Double valor) {
+		validarMatriz(matriz);
 		Double[][] mult = new Double[matriz.length][matriz.length];
 		for(int x=0; x < matriz.length; x++) {
 			for(int y=0; y < matriz[0].length; y++ ) {
@@ -142,6 +148,7 @@ final public class Matriz {
 	 * @return Matriz oposta.
 	 */
 	public static Double[][] oposta(Double[][] matriz) {
+		validarMatriz(matriz);
 		return Matriz.multiplicar(matriz, -1D);
 	}
 
@@ -152,6 +159,7 @@ final public class Matriz {
 	 * @return Verdadeiro caso seja.
 	 */
 	public static boolean isIdentidade(Double[][] matriz) {
+		validarMatriz(matriz);
 		if ( ! Matriz.isQuadrada(matriz) ) {
 			return false;
 		}
@@ -175,6 +183,7 @@ final public class Matriz {
 	 * @return Verdadeiro caso seja.
 	 */
 	public static boolean isQuadrada(Double[][] matriz) {
+		validarMatriz(matriz);
 		if ( matriz != null ) {
 			if ( matriz.length == matriz[0].length ) {
 				return true;
@@ -190,6 +199,7 @@ final public class Matriz {
 	 * @return Verdadeiro caso seja.
 	 */
 	public static boolean isDiagonal(Double[][] matriz) {
+		validarMatriz(matriz);
 		if ( ! Matriz.isQuadrada(matriz) ) {
 			return false;
 		}
@@ -213,6 +223,7 @@ final public class Matriz {
 	 * @return Verdadeiro caso seja.
 	 */
 	public static boolean isSimetrica(Double[][] matriz) {
+		validarMatriz(matriz);
 		if ( ! Matriz.isQuadrada(matriz) ) {
 			return false;
 		}
@@ -228,6 +239,7 @@ final public class Matriz {
 	 * @return Verdadeiro caso sejam.
 	 */
 	public static boolean isIgual(Double[][] matriz1, Double[][] matriz2) {
+		validarMatriz(matriz1, matriz2);
 		if ( matriz1.length != matriz2.length ) {
 			return false;
 		}
@@ -243,6 +255,135 @@ final public class Matriz {
 			}
 		}
 		return true;
+	}
+	
+	/**
+	 * Calcular determinante da matriz.
+	 * 
+	 * @param matriz Matriz para cálculo do determinante.
+	 * @return Determinante.
+	 */
+	public static double determinante(Double[][] matriz) {
+		validarMatriz(matriz);
+		double resultado = 0;	
+		if (isDiagonal(matriz)) {
+			resultado = 1;
+			for (int i = 0; i < matriz.length; i++) {
+				resultado *= matriz[i][i];
+			}
+		}
+		if (matriz.length >= matriz[0].length) {
+			for (int inicio = 0; inicio < matriz.length; inicio++) {
+				double parcela = 1;
+				for (int i = 0; i < matriz.length; i++) {
+					parcela *= matriz[i][(inicio + i) % matriz[inicio].length];
+				}
+				resultado += parcela;
+				double subtraendo = 1;
+				for (int i = 0; i < matriz.length; i++) {
+					subtraendo *= matriz[i][(matriz[inicio].length - 1 - (i % matriz[inicio].length) - inicio) % matriz[inicio].length];
+				}
+				resultado -= subtraendo;
+			}
+			return resultado;
+		} else {
+			return determinante(transpor(matriz));
+		}
+	}
+	
+	/**
+	 * Verifica se o vetor informado é realmente matriz.
+	 * 
+	 * @param matriz Matriz para validação.
+	 */
+	private static void validarMatriz (Double[][] matriz) {
+		int largura = matriz[0].length;
+		for (int i = 0; i < matriz.length; i ++) {
+			if (matriz[i].length != largura) {
+				throw new AlfredException("O parâmetro informado não é matriz!");
+			}
+		}
+	}
+	
+	/**
+	 * Verifica se os vetores informados são realmente matrizes.
+	 * 
+	 * @param matriz1 Matriz para validação.
+	 * @param matriz2 Matriz para validação.
+	 */
+	private static void validarMatriz (Double[][] matriz1, Double[][] matriz2) {
+		try {
+			validarMatriz(matriz1);
+		} catch (AlfredException ae) {
+			throw new AlfredException("O primeiro parâmetro informado não é matriz!");
+		}
+		try {
+			validarMatriz(matriz2);
+		} catch (AlfredException ae) {
+			throw new AlfredException("O segundo parâmetro informado não é matriz!");
+		}
+	}
+	
+	/**
+	 * Método público para avaliar se um vetor é matriz
+	 * 
+	 * @param matriz Matriz para validação
+	 * @return VERDADEIRO se for matriz
+	 */
+	public static boolean isMatriz (Double[][] matriz) {
+		try {
+			validarMatriz(matriz);
+		} catch (AlfredException ae) {
+			return false;
+		}
+		return true;
+	}
+	
+	/**
+	 * Verifica se a matriz possui linhas proporcionais
+	 * 
+	 * @param matriz Matriz para verificação
+	 * @return VERDADEIRO se possuir linhas proporcionais
+	 */
+	public static boolean temLinhasProporcionais (Double[][] matriz) {
+		validarMatriz(matriz);
+		for (int pivot = 0; pivot < matriz.length; pivot++) {
+			for (int i = pivot + 1; i < matriz.length; i++) {
+				boolean linhaProporcional = true;
+				double proporcao = 0;
+				lacoColunaComparada: for (int j = 0; j < matriz[i].length; j++) {
+					if (matriz[pivot][j] == 0) {
+						if (matriz[i][j] != 0) {
+							linhaProporcional = false;
+							break lacoColunaComparada;
+						}
+					} else {
+						if (proporcao == 0) {
+							proporcao = matriz[i][j] / matriz[pivot][j];
+						} else {
+							if (matriz[i][j] / matriz[pivot][j] != proporcao) {
+								linhaProporcional = false;
+								break lacoColunaComparada;
+							}
+						}
+					}
+				}
+				if (linhaProporcional) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * Verifica se a matriz possui colunas proporcionais
+	 * 
+	 * @param matriz Matriz para verificação
+	 * @return VERDADEIRO se possuir colunas proporcionais
+	 */
+	public static boolean temColunasProporcionais (Double[][] matriz) {
+		return temLinhasProporcionais(transpor(matriz));
 	}
 
 }
