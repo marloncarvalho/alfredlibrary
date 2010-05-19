@@ -28,6 +28,7 @@ import org.alfredlibrary.AlfredException;
 import org.alfredlibrary.formatadores.Data;
 import org.alfredlibrary.utilitarios.net.WorldWideWeb;
 import org.alfredlibrary.utilitarios.texto.HTML;
+import org.alfredlibrary.utilitarios.texto.Texto;
 
 /**
  * Utilitários para obter informações de rastreamento de objetos através do site dos Correios.
@@ -44,18 +45,12 @@ final public class Rastreamento {
 	 * @return Coleção de movimentações de rastreamento
 	 */
 	public static List <RegistroRastreamento> rastrear(String codObjeto) {
-		if ( "".equals(codObjeto) ) {
-			throw new AlfredException("Informe o Código do objeto.");
-		} else if (codObjeto.length() != 13) {
-			throw new AlfredException("Código de Rastreamento deve ter tamanho 13.");
-		} else if (!validarCodObjeto(codObjeto)) {
-			throw new AlfredException("Código de Rastreamento em formato inválido.");
-		}
+		validarCodObjeto(codObjeto);
 		
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("codObjeto", codObjeto);
 		
-		String conteudo = WorldWideWeb.obterConteudoSite("http://websro.correios.com.br/sro_bin/txect01$.QueryList?P_LINGUA=001&P_TIPO=001&P_COD_UNI=" + codObjeto, "UNICODE");
+		String conteudo = WorldWideWeb.obterConteudoSite("http://websro.correios.com.br/sro_bin/txect01$.QueryList?P_LINGUA=001&P_TIPO=001&P_COD_UNI=" + codObjeto, "UTF-8");
 
 		BufferedReader br = new BufferedReader(new StringReader(conteudo));
 		String linha = null;
@@ -88,9 +83,18 @@ final public class Rastreamento {
 	 * @param codObjeto
 	 * @return boolean
 	 */
-	private static boolean validarCodObjeto(String codObjeto) {
-		// TODO Auto-generated method stub
-		return true;
+	private static void validarCodObjeto(String codObjeto) {
+		if (codObjeto == null) {
+			throw new AlfredException("Informe o Código do objeto.");
+		} else if ( "".equals(codObjeto) ) {
+			throw new AlfredException("Informe o Código do objeto.");
+		} else if (codObjeto.length() != 13) {
+			throw new AlfredException("Código de Rastreamento deve ter tamanho 13.");
+		} else if (!"".equals(Texto.manterNumeros(codObjeto.substring(0, 1)))
+				|| !"".equals(Texto.manterNumeros(codObjeto.substring(11, 12)))
+				|| Texto.manterNumeros(codObjeto.substring(2, 10)).length() != 9) {
+			throw new AlfredException("Código de Rastreamento fora do padrão.");
+		}
 	}
 
 	/**
