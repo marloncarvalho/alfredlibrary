@@ -56,5 +56,11 @@ public class PropriedadesTest {
 		Assert.assertEquals(c.getCampo1(), "A1");
 		Assert.assertEquals(c.getCampo2(), "A2");
 	}
-	
+
+	@Test
+	public void testarObterValorPropriedade() {
+		ClasseTeste a1 = new ClasseTeste("A1","A2");
+		Assert.assertEquals("A1", Propriedades.obterValorPropriedade("campo1", a1));
+	}
+
 }
