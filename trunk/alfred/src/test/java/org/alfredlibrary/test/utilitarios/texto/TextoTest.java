@@ -68,4 +68,13 @@ public class TextoTest {
 		}
 	}
 
+	@Test
+	public void testTrocarCaracteresAcentuados() {
+		try {
+			Assert.assertEquals("a e i o u a e i o u a e i o u a e i o u", Texto.trocarCaracteresAcentuados("â ê í ó ú á è ì ò ù ä ë ĩ õ ũ ã é ï ö ü"));
+		} catch ( Exception e ) {
+			Assert.fail(e.getMessage());
+		}
+	}
+
 }

@@ -101,6 +101,29 @@ public class Texto {
 	}
 
 	/**
+	 * Trocar os caracteres acentuados por seus equivalentes sem acentuação.
+	 * 
+	 * @param frase Frase que terá os caracteres trocados.
+	 * @return Frase com os caracteres trocados.
+	 */
+	public static String trocarCaracteresAcentuados(String frase) {
+		return frase.replaceAll("[ãâàáä]", "a")   
+        .replaceAll("[êèéë]", "e")   
+        .replaceAll("[îìíïĩ]", "i")   
+        .replaceAll("[õôòóö]", "o")   
+        .replaceAll("[ûúùüũ]", "u")   
+        .replaceAll("[ÃÂÀÁÄ]", "A")   
+        .replaceAll("[ÊÈÉË]", "E")   
+        .replaceAll("[ÎÌÍĨÏ]", "I")   
+        .replaceAll("[ÕÔÒÓÖ]", "O")   
+        .replaceAll("[ÛÙÚŨÜ]", "U")   
+        .replace('ç', 'c')   
+        .replace('Ç', 'C')   
+        .replace('ñ', 'n')   
+        .replace('Ñ', 'N'); 
+	}
+
+	/**
 	 * Obter a cadeia de caracteres que forma o alfabeto brasileiro em minï¿½sculas.
 	 * 
 	 * @return Array de caracteres.
