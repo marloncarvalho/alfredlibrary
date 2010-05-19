@@ -52,7 +52,7 @@ final public class BRLinux {
 	public static String[] obterNoticiasBRLinux() {
 		String url;
 		url = "http://br-linux.org/feed/";
-		String conteudo = WorldWideWeb.obterConteudoSite(url);
+		String conteudo = WorldWideWeb.obterConteudoSite(url, "UTF-8");
 
 		SAXParserFactory parserFactory = SAXParserFactory.newInstance();
 		SAXParser parser;

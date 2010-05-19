@@ -191,7 +191,7 @@ final public class Moeda {
 		String valorFinal = Texto.incluirCaracterInicio(valorSoNumeros, '0', 17-valorSoNumeros.length());
 		queryString.append(valorFinal);
 
-		String conteudo = WorldWideWeb.obterConteudoSite("http://www4.bcb.gov.br/pec/conversao/Resultado.asp" + queryString.toString());
+		String conteudo = WorldWideWeb.obterConteudoSite("http://www4.bcb.gov.br/pec/conversao/Resultado.asp" + queryString.toString(), "UTF-8");
 
 		Pattern padrao = Pattern.compile("<strong>Resultado da convers&atilde;o:</strong> \\d+,\\d{2}");  
 		Matcher pesquisa = padrao.matcher(conteudo);

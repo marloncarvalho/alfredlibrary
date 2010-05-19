@@ -53,7 +53,7 @@ public class WorldWideWebTest {
 	@Test
 	public void testarObterConteudoSemPost() {
 		try {
-			String conteudo = WorldWideWeb.obterConteudoSite("http://alfredlibrary.googlecode.com/");
+			String conteudo = WorldWideWeb.obterConteudoSite("http://alfredlibrary.googlecode.com/", "UTF-8");
 			if ( conteudo == null || "".equals(conteudo ) ) {
 				Assert.fail();
 			}

@@ -48,7 +48,7 @@ final public class Pronuncia {
 	 */
 	public static AudioInputStream obterPronuncia(int idioma, String palavra) {
 		String url = "http://www.merriam-webster.com/dictionary/" + palavra;
-		String conteudo = WorldWideWeb.obterConteudoSite(url);
+		String conteudo = WorldWideWeb.obterConteudoSite(url, "UTF-8");
 		String arquivoWav = "";
 		Pattern padrao = Pattern.compile("return au\\('" + palavra + "[0-9]*");
 		Matcher pesquisa = padrao.matcher(conteudo);
