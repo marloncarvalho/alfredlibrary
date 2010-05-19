@@ -65,6 +65,7 @@ public class RastreamentoTest {
 	public void testValidar() {
 		try {
 			try {
+				@SuppressWarnings("unused")
 				Collection<RegistroRastreamento> colRegistoRastreamento = Rastreamento.rastrear("RJ377032643BR");
 			} catch (AlfredException ae) {
 				Assert.fail();
