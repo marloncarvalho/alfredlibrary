@@ -31,16 +31,16 @@ public class Modulo11Test {
 	
 	@Test
 	public void testObterDV() {
-		Assert.assertEquals("1", Modulo11.obterDV("111111111"));
-		Assert.assertEquals("1", Modulo11.obterDV("1111111111"));
-		Assert.assertEquals("9", Modulo11.obterDV("000000000001"));
-		Assert.assertEquals("1", Modulo11.obterDV("0000000000019"));
+		Assert.assertEquals("1", Modulo11.obterDV("111111111", false));
+		Assert.assertEquals("1", Modulo11.obterDV("1111111111", false));
+		Assert.assertEquals("9", Modulo11.obterDV("000000000001", false));
+		Assert.assertEquals("1", Modulo11.obterDV("0000000000019", false));
 	}
 	
 	@Test
 	public void testObterDV2Digitos() {
-		Assert.assertEquals("11", Modulo11.obterDV("111111111", 2));
-		Assert.assertEquals("91", Modulo11.obterDV("000000000001", 2));
+		Assert.assertEquals("11", Modulo11.obterDV("111111111", false, 2));
+		Assert.assertEquals("91", Modulo11.obterDV("000000000001", false, 2));
 	}
 	
 }
