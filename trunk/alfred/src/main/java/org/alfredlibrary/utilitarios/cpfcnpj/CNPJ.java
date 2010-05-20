@@ -16,7 +16,7 @@
  */
 package org.alfredlibrary.utilitarios.cpfcnpj;
 
-import org.alfredlibrary.utilitarios.texto.Texto;
+import org.alfredlibrary.utilitarios.digitoverificador.Modulo11;
 
 /**
  * Utilitário para CNPJ.
@@ -51,32 +51,6 @@ public final class CNPJ {
 	 * @return Dígito verificador.
 	 */
 	public static String gerarDigitoVerificador(String cnpj) {
-		int soma = 0, dig;
-		String str_cnpj = Texto.manterNumeros(cnpj);
-		String cnpj_calc = str_cnpj;
-
-		char[] chr_cnpj = (str_cnpj + "00").toCharArray();
-
-		for (int i = 0; i < 4; i++)
-			if (chr_cnpj[i] - 48 >= 0 && chr_cnpj[i] - 48 <= 9)
-				soma += (chr_cnpj[i] - 48) * (6 - (i + 1));
-		for (int i = 0; i < 8; i++)
-			if (chr_cnpj[i + 4] - 48 >= 0 && chr_cnpj[i + 4] - 48 <= 9)
-				soma += (chr_cnpj[i + 4] - 48) * (10 - (i + 1));
-		dig = 11 - (soma % 11);
-
-		cnpj_calc += (dig == 10 || dig == 11) ? "0" : Integer.toString(dig);
-		chr_cnpj[12] = cnpj_calc.charAt(12);
-
-		soma = 0;
-		for (int i = 0; i < 5; i++)
-			if (chr_cnpj[i] - 48 >= 0 && chr_cnpj[i] - 48 <= 9)
-				soma += (chr_cnpj[i] - 48) * (7 - (i + 1));
-		for (int i = 0; i < 8; i++)
-			if (chr_cnpj[i + 5] - 48 >= 0 && chr_cnpj[i + 5] - 48 <= 9)
-				soma += (chr_cnpj[i + 5] - 48) * (10 - (i + 1));
-		dig = 11 - (soma % 11);
-		cnpj_calc += (dig == 10 || dig == 11) ? "0" : Integer.toString(dig);
-		return String.valueOf(cnpj_calc.charAt(12)) + String.valueOf(cnpj_calc.charAt(13));
+		return Modulo11.obterDV(cnpj, 2);
 	}
 }
