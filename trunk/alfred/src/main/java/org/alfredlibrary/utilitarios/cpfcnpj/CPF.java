@@ -54,6 +54,6 @@ final public class CPF {
 	 * @return Dígito verificador.
 	 */
 	public static String gerarDigitoVerificador(String num) {
-		return Modulo11.obterDV(num, 2);
+		return Modulo11.obterDV(num, false, 2);
 	}
 }
