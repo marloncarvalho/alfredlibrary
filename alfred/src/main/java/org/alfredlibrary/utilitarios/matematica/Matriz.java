@@ -265,30 +265,63 @@ final public class Matriz {
 	 */
 	public static double determinante(Double[][] matriz) {
 		validarMatriz(matriz);
+		int altura = obterAltura(matriz);
+		int largura = obterLargura(matriz);
 		double resultado = 0;	
 		if (isDiagonal(matriz)) {
 			resultado = 1;
 			for (int i = 0; i < matriz.length; i++) {
 				resultado *= matriz[i][i];
 			}
-		}
-		if (matriz.length >= matriz[0].length) {
-			for (int inicio = 0; inicio < matriz.length; inicio++) {
+		} else {
+			for (int inicio = 0; inicio < largura; inicio++) {
 				double parcela = 1;
-				for (int i = 0; i < matriz.length; i++) {
-					parcela *= matriz[i][(inicio + i) % matriz[inicio].length];
+				for (int i = 0; i < altura; i++) {
+					parcela *= matriz[i][(inicio + i) % largura];
 				}
 				resultado += parcela;
 				double subtraendo = 1;
-				for (int i = 0; i < matriz.length; i++) {
-					subtraendo *= matriz[i][(matriz[inicio].length - 1 - (i % matriz[inicio].length) - inicio) % matriz[inicio].length];
+				for (int i = 0; i < altura; i++) {
+					// CÁLCULO DE ÍNDICE REGRESSIVO DE COLUNA  
+					// Pega a parte inteira da proporção para auxiliar no cálculo que impede a geração de índice negativo para a matriz
+					int parteInteiraProporcao;
+					if (altura >= largura) {
+						parteInteiraProporcao = (altura - (altura % largura)) / largura;
+					} else {
+						parteInteiraProporcao = (largura - (largura % altura)) / altura;
+					}
+					// Calcula a base que garante a não geração de índice negativo
+					int base = (parteInteiraProporcao + 1) * largura;
+					// Calcula o índice e garante que ele não seja maior que a última coluna
+					int indice = (base - (inicio + i)) % largura;
+					// USO DO ÍNDICE
+					// Usa o índice calculado para a obtenção de cada fator do subtraendo
+					subtraendo *= matriz[i][indice];
 				}
 				resultado -= subtraendo;
 			}
-			return resultado;
-		} else {
-			return determinante(transpor(matriz));
 		}
+		return resultado;
+	}
+	
+	/**
+	 * Calcular Altura da matriz.
+	 * 
+	 * @param matriz Matriz para cálculo da altura.
+	 * @return Altura da matriz.
+	 */
+	private static int obterAltura(Double[][] matriz) {
+		return matriz.length;
+	}
+	
+	/**
+	 * Calcular Largura da matriz.
+	 * 
+	 * @param matriz Matriz para cálculo da largura.
+	 * @return Largura da matriz.
+	 */
+	private static int obterLargura(Double[][] matriz) {
+		return matriz[0].length;
 	}
 	
 	/**
@@ -297,9 +330,11 @@ final public class Matriz {
 	 * @param matriz Matriz para validação.
 	 */
 	private static void validarMatriz (Double[][] matriz) {
-		int largura = matriz[0].length;
-		for (int i = 0; i < matriz.length; i ++) {
-			if (matriz[i].length != largura) {
+		if (obterAltura(matriz) == 0 || obterLargura(matriz) == 0) {
+			throw new AlfredException("O parâmetro informado não é matriz!");
+		}
+		for (int i = 0; i < obterAltura(matriz); i ++) {
+			if (matriz[i].length != obterLargura(matriz)) {
 				throw new AlfredException("O parâmetro informado não é matriz!");
 			}
 		}
