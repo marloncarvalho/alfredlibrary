@@ -159,7 +159,7 @@ public class MatrizTest {
 			Assert.fail();
 		}
 	}
-	// TODO
+	
 	@Test
 	public void testDeterminanteMatrizDiagonal() {
 		Assert.assertEquals(6d, Matriz.determinante(new Double[][] {{1d,0d,0d}, {0d,2d,0d}, {0d,0d,3d}}));
