@@ -38,7 +38,7 @@ public class MedidasCompostasTest {
 
 	@Test
 	public void testarConversaoMSKmH() {
-		//try {
+		try {
 			UnidadeComposta uc = new UnidadeComposta(Comprimento.Unidade.METRO, 1, true);
 			UnidadeComposta uc2 = new UnidadeComposta(Tempo.Unidade.SEGUNDO, 1, false);
 			List <UnidadeComposta> unidadeEntrada = new ArrayList<UnidadeComposta>();
@@ -52,9 +52,9 @@ public class MedidasCompostasTest {
 			unidadeSaida.add(uc4);
 			
 			Assert.assertEquals(3.6D, MedidasCompostas.converter(1, unidadeEntrada, unidadeSaida), 0);
-		/*} catch ( Exception e ) {
+		} catch ( Exception e ) {
 			Assert.fail();
-		}*/
+		}
 	}
 	
 	@Test
