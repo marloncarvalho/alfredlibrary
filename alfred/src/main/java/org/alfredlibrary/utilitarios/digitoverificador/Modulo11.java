@@ -32,9 +32,11 @@ public final class Modulo11 {
 	 * enviada.
 	 * 
 	 * @param fonte Sequência de números para cálculo do DV
+	 * @param dezPorX Indica se deve haver substituição de resultado 10
+	 * 			por X durante o cálculo - padrão usado em alguns lugares
 	 * @return DV gerado.
 	 */
-	public static String obterDV (String fonte) {
+	public static String obterDV (String fonte, boolean dezPorX) {
 		validarFonte(fonte);
 		int peso = fonte.length() + 1;
 		int dv = 0;
@@ -42,12 +44,13 @@ public final class Modulo11 {
 			dv += Integer.parseInt(fonte.substring(i, i + 1)) * peso--;
 		}
 		dv = dv % 11;
-		if (dv <= 1) {
-			dv = 0;
-		} else {
-			dv = 11 - dv;
+		if (dv > 1) {
+			return String.valueOf(11 - dv);
+		} else if (dv == 1 && dezPorX) {
+			return "X";
 		}
-		return String.valueOf(dv);
+		return "0";
+		
 	}
 	
 	/**
@@ -66,15 +69,17 @@ public final class Modulo11 {
 	 * a partir de uma sequência de números enviada.
 	 * 
 	 * @param fonte Sequência de números para cálculo do DV
+	 * @param dezPorX Indica se deve haver substituição de resultado 10
+	 * 			por X durante o cálculo - padrão usado em alguns lugares
 	 * @param quantidadeDigitos Quantidade de dígitos a serem retornados
 	 * @return DV gerado.
 	 */
-	public static String obterDV (String fonte, int quantidadeDigitos) {
+	public static String obterDV (String fonte, boolean dezPorX, int quantidadeDigitos) {
 		if (quantidadeDigitos > 1) {
-			String parcial = obterDV(fonte);
-			return parcial + obterDV(fonte + parcial, --quantidadeDigitos);
+			String parcial = obterDV(fonte, dezPorX);
+			return parcial + obterDV(fonte + parcial, dezPorX, --quantidadeDigitos);
 		} else {
-			return obterDV(fonte);
+			return obterDV(fonte, dezPorX);
 		}
 	}
 
