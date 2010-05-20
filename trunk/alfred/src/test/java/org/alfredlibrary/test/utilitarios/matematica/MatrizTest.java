@@ -117,4 +117,66 @@ public class MatrizTest {
 			Assert.fail();
 		}
 	}
+	
+	@Test
+	public void testValidarMatrizValida() {
+		if (!Matriz.isMatriz(new Double[][] {{1d,1d,1d}, {2d,2d,2d}})) {
+			Assert.fail();
+		}
+	}
+	
+	@Test
+	public void testValidarMatrizInvalida() {
+		if (Matriz.isMatriz(new Double[][] {{1d,1d,1d}, {2d,2d}})) {
+			Assert.fail();
+		}
+	}
+	
+	@Test
+	public void testTemLinhaProporcionalVerdade() {
+		if (!Matriz.temLinhasProporcionais(new Double[][] {{1d,1d,1d}, {0d,4d,3d}, {2d,2d,2d}})) {
+			Assert.fail();
+		}
+	}
+	
+	@Test
+	public void testTemLinhaIgualFalso() {
+		if (Matriz.temLinhasProporcionais(new Double[][] {{1d,1d,1d}, {0d,4d,3d}, {2d,5d,1d}})) {
+			Assert.fail();
+		}
+	}
+	
+	@Test
+	public void testTemColunaProporcionalVerdade() {
+		if (!Matriz.temColunasProporcionais(new Double[][] {{1d,2d,1d}, {1d,2d,3d}, {1d,2d,2d}})) {
+			Assert.fail();
+		}
+	}
+	
+	@Test
+	public void testTemColunaIgualFalso() {
+		if (Matriz.temColunasProporcionais(new Double[][] {{1d,1d,1d}, {0d,4d,3d}, {2d,5d,1d}})) {
+			Assert.fail();
+		}
+	}
+	// TODO
+	@Test
+	public void testDeterminanteMatrizDiagonal() {
+		Assert.assertEquals(6d, Matriz.determinante(new Double[][] {{1d,0d,0d}, {0d,2d,0d}, {0d,0d,3d}}));
+	}
+	
+	@Test
+	public void testDeterminanteMatrizQuadrada() {
+		Assert.assertEquals(-13d, Matriz.determinante(new Double[][] {{1d,1d,1d}, {0d,4d,3d}, {2d,5d,1d}}));
+	}
+	
+	@Test
+	public void testDeterminanteMatrizIJ() { // Número de linhas maior que o de colunas
+		Assert.assertEquals(-31d, Matriz.determinante(new Double[][] {{1d,1d,1d}, {0d,4d,3d}, {2d,5d,1d}, {3d,7d,5d}}));
+	}
+	
+	@Test
+	public void testDeterminanteMatrizJI() { // Número de colunas maior que o de linhas 
+		Assert.assertEquals(11d, Matriz.determinante(new Double[][] {{1d,1d,1d,1d}, {0d,4d,3d,9d}, {2d,5d,1d,7d}}));
+	}
 }
