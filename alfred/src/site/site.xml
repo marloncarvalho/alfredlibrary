@@ -40,8 +40,9 @@
 	<body>
 	
 		<links>
-			<item name="Projeto" href="http://sourceforge.net/projects/demoiselle-comp/" />
-			<item name="Portal" href="http://www.frameworkdemoiselle.gov.br" />
+			<item name="Blog" href="http://www.alfredlibrary.org/" />
+			<item name="Twitter" href="http://twitter.com/marlonscarvalho" />
+			<item name="Marlon" href="http://marlon.silvacarvalho.net/" />
 		</links>
 
 		<menu name="${project.name}">
