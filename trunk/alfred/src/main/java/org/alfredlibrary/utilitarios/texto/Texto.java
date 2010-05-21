@@ -107,6 +107,7 @@ public class Texto {
 	 * @return Frase com os caracteres trocados.
 	 */
 	public static String trocarCaracteresAcentuados(String frase) {
+		if ( frase == null ) return frase;
 		return frase.replaceAll("[ãâàáä]", "a")   
         .replaceAll("[êèéë]", "e")   
         .replaceAll("[îìíïĩ]", "i")   
