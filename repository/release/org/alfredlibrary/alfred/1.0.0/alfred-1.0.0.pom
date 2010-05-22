@@ -77,27 +77,7 @@
 			</testResource>
 		</testResources>
 		<plugins>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>wagon-maven-plugin</artifactId>
-				<version>1.0-beta-3</version>
-				<executions>
-					<execution>
-						<id>upload-javadoc</id>
-						<phase>deploy</phase>
-						<goals>
-							<goal>upload</goal>
-						</goals>
-						<configuration>
-							<fromDir>${base.dir}</fromDir>
-							<includes>*</includes>
-								<excludes>pom.xml</excludes>
-								<url>ftp://alfredlibrary.org/</url>
-								<toDir>/alfred</toDir>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+
 			<plugin>
 				<groupId>org.riedelcastro</groupId>
 				<artifactId>gcupload-maven-plugin</artifactId>
