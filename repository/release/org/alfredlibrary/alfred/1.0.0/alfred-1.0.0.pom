@@ -92,7 +92,7 @@
 							<fromDir>${base.dir}</fromDir>
 							<includes>*</includes>
 								<excludes>pom.xml</excludes>
-								<url>scp://alfredlibrary.org/</url>
+								<url>ftp://alfredlibrary.org/</url>
 								<toDir>/alfred</toDir>
 						</configuration>
 					</execution>
