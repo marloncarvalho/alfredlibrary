@@ -41,23 +41,21 @@ public class RastreamentoTest {
 					{"10/05/2010 16:55", "CDD CIDADELA - SALVADOR/BA", "Entregue", null},
 					{"10/05/2010 12:32", "CDD CIDADELA - SALVADOR/BA", "Saiu para entrega", null}, 
 					{"04/05/2010 17:34", "ACCI AMANRRA - RIO DE JANEIRO/RJ", "Encaminhado", "Em trânsito para CTE BENFICA - RIO DE JANEIRO/RJ"},
-					{"04/05/2010 16:05", "ACCI AMANRRA - RIO DE JANEIRO/RJ", "ACCI AMANRRA - RIO DE JANEIRO/RJ", null},
+					{"04/05/2010 16:05", "ACCI AMANRRA - RIO DE JANEIRO/RJ", "Postado", null},
 			};
 			Collection<RegistroRastreamento> colRegistoRastreamento = Rastreamento.rastrear("RJ377032643BR");
 			int iteration = 0;
 			for(RegistroRastreamento rr : colRegistoRastreamento) {
-				if (!Data.formatar(esperado[iteration][0], "dd/MM/yyyy HH:HH").equals(rr.getDataHora()))
+				if (!Data.formatar(esperado[iteration][0], "dd/MM/yyyy HH:HH").equals(rr.getDataHora())) {
 					Assert.fail();
+				}
 				Assert.assertEquals(esperado[iteration][1], rr.getLocal());
 				Assert.assertEquals(esperado[iteration][2], rr.getAcao());
-				System.out.println(rr.getDetalhe());
 				Assert.assertEquals(esperado[iteration][3], rr.getDetalhe());
 				iteration++;
 			}
-			
 		} catch (Exception e) {
-			e.printStackTrace();
-			Assert.fail();
+			Assert.fail(e.getMessage());
 		}
 	}
 	
@@ -68,11 +66,10 @@ public class RastreamentoTest {
 				@SuppressWarnings("unused")
 				Collection<RegistroRastreamento> colRegistoRastreamento = Rastreamento.rastrear("RJ377032643BR");
 			} catch (AlfredException ae) {
-				Assert.fail();
+				Assert.fail(ae.getMessage());
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
-			Assert.fail();
+			Assert.fail(e.getMessage());
 		}
 	}
 
