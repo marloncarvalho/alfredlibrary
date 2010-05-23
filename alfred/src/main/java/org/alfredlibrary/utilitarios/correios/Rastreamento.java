@@ -50,7 +50,7 @@ final public class Rastreamento {
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("codObjeto", codObjeto);
 		
-		String conteudo = WorldWideWeb.obterConteudoSite("http://websro.correios.com.br/sro_bin/txect01$.QueryList?P_LINGUA=001&P_TIPO=001&P_COD_UNI=" + codObjeto, "UTF-8");
+		String conteudo = WorldWideWeb.obterConteudoSite("http://websro.correios.com.br/sro_bin/txect01$.QueryList?P_LINGUA=001&P_TIPO=001&P_COD_UNI=" + codObjeto, "ISO-8859-1");
 
 		BufferedReader br = new BufferedReader(new StringReader(conteudo));
 		String linha = null;

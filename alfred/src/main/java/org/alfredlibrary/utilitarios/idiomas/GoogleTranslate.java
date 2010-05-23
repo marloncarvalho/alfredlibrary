@@ -19,7 +19,7 @@ package org.alfredlibrary.utilitarios.idiomas;
 import org.alfredlibrary.utilitarios.net.WorldWideWeb;
 
 /**
- * Utilit�rio que realiza a tradu��o de uma frase usando o Google Traslator.
+ * Utilitário que realiza a tradução de uma frase usando o Google Traslator.
  * 
  * @author Marlon Silva Carvalho
  * @since 27/05/2010
@@ -138,7 +138,7 @@ final public class GoogleTranslate {
 	 * @param frase Frase a ser traduzida.
 	 * @param idiomaOrigem Idioma de origem.
 	 * @param idiomaFim Idioma fim.
-	 * @return Tradu��o.
+	 * @return Tradução.
 	 */
 	public static String traduzir(String frase, Idioma idiomaOrigem, Idioma idiomaFim) {
 		frase = frase.replaceAll(" ", "%20");
