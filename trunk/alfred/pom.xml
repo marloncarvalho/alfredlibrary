@@ -5,6 +5,8 @@
 	<artifactId>alfred</artifactId>
 	<version>1.0.0</version>
 	<name>Biblioteca Alfred</name>
+	<packaging>jar</packaging>
+	<url>http://www.alfredlibrary.org/</url>
 	<description>Biblioteca de Utilitários em Java</description>
 	<inceptionYear>2009</inceptionYear>
 	<licenses>
@@ -24,6 +26,11 @@
 			<email>rmfagundes@gmail.com</email>
 		</developer>
 	</developers>
+	<scm>
+		<connection>scm:svn:http://alfredlibrary.googlecode.com/svn</connection>
+		<developerConnection>scm:svn:https://alfredlibrary.googlecode.com/svn</developerConnection>
+		<url>https://alfredlibrary.googlecode.com/svn</url>
+	</scm>
 	<repositories>
 		<repository>
 			<id>alfredlibrary-snapshot.googlecode.com</id>
@@ -36,6 +43,10 @@
 			<url>http://code.google.com/p/alfredlibrary/source/browse/repository/release</url>
 		</repository>
 	</repositories>
+    <issueManagement>
+        <system>Google Code</system>
+        <url>http://code.google.com/p/alfredlibrary/issues/list</url>
+    </issueManagement>
 	<distributionManagement>
 		<site>
 			<id>alfred-site</id>
@@ -82,13 +93,21 @@
 				<artifactId>gcupload-maven-plugin</artifactId>
 				<version>0.9</version>
 				<configuration>
+					<serverId>googlecode</serverId>
+					<allowSnapshots>false</allowSnapshots>
 					<projectName>alfredlibrary</projectName>
 					<uploads>
 						<upload>
-							<extension>jar</extension>
+							<extensions>jar</extensions>
+							<labels>Featured</labels>
 						</upload>
 						<upload>
-							<postfix>src</postfix>
+							<postfix>javadoc</postfix>
+							<extensions>jar</extensions>
+							<labels>Featured</labels>
+						</upload>
+						<upload>
+							<postfix>sources</postfix>
 							<extensions>jar</extensions>
 							<labels>Featured</labels>
 						</upload>
