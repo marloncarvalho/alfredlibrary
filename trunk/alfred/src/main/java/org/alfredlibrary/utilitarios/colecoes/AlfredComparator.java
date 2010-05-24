@@ -180,7 +180,7 @@ public class AlfredComparator implements Comparator {
 			    	} else if (this.getClazz().equals(Long.class)) {
 			    		arg1 = new Long(0);
 			    	} else if (this.getClazz().equals(Date.class)) {
-			    		arg1 = Calendar.getInstance();
+			    		arg1 = Calendar.getInstance().getTime();
 			    	} else if (this.getClazz().equals(Boolean.class)) {
 			    		arg1 = new Boolean(false);
 			    	}
@@ -192,7 +192,7 @@ public class AlfredComparator implements Comparator {
 			    	} else if (this.getClazz().equals(Long.class)) {
 			    		arg2 = new Long(0);
 			    	} else if (this.getClazz().equals(Date.class)) {
-			    		arg2 = Calendar.getInstance();
+			    		arg2 = Calendar.getInstance().getTime();
 			    	} else if (this.getClazz().equals(Boolean.class)) {
 			    		arg2 = new Boolean(false);
 			    	}
