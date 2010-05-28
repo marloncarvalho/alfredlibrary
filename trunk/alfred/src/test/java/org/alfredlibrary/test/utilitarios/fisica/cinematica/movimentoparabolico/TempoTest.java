@@ -14,45 +14,39 @@
  *  You should have received a copy of the GNU General Public License
  *  along with Alfred Library.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.alfredlibrary.test.utilitarios.fisica.cinematica.movimentocircularuniformementevariado;
+package org.alfredlibrary.test.utilitarios.fisica.cinematica.movimentoparabolico;
 
 import junit.framework.Assert;
 
 import org.alfredlibrary.AlfredException;
-import org.alfredlibrary.utilitarios.fisica.cinematica.movimentocircularuniformementevariado.VelocidadeAngularInicial;
+import org.alfredlibrary.utilitarios.fisica.cinematica.movimentoparabolico.Tempo;
 import org.junit.Test;
 
 /**
- * Classe de Teste para o Utilitário Raio.
+ * Classe de Teste para o Utilitário Tempo.
  * 
  * @author Rodrigo Moreira Fagundes
- * @since 27/05/2010
+ * @since 28/05/2010
  */
-public class VelocidadeAngularInicialTest {
+public class TempoTest {
 	
 	@Test
 	public void calcular() {
-		Assert.assertEquals(-2d, VelocidadeAngularInicial.calcular(4d, 3d, 2d));
-		Assert.assertEquals(2d, VelocidadeAngularInicial.calcularPorAngulo(4d, 2d, 3d, 0d));
-		Assert.assertEquals(4d, VelocidadeAngularInicial.calcularPorTempo(12d, 0d, 2d, 2d));
+		Assert.assertEquals(0.19999999999999998d, Tempo.calcular(2d, Math.PI / 6, 10d));
+		Assert.assertEquals(1.1547005383792515d, Tempo.calcularPorAlcance(2d, Math.PI / 6, 2d));
 	}
 	
 	@Test
-	public void calcularExcecaoIrracional() {
+	public void calcularDivisaoPorZero() {
 		try {
-			VelocidadeAngularInicial.calcularPorAngulo(1d, 2d, 21d, 0d);
+			Tempo.calcular(2d, Math.PI / 6, 0d);
+			Assert.fail();
+		} catch (AlfredException ae) {	
+		}
+		try {
+			Tempo.calcularPorAlcance(0d, Math.PI / 6, 2d);
 			Assert.fail();
 		} catch (AlfredException ae) {	
 		}
 	}
-	
-	@Test
-	public void calculardivisaoPorZero() {
-		try {
-			VelocidadeAngularInicial.calcularPorTempo(12d, 0d, 0d, 2d);
-			Assert.fail();
-		} catch (AlfredException ae) {	
-		}
-	}
-	
 }
