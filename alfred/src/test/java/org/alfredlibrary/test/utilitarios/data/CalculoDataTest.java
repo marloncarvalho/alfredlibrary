@@ -21,6 +21,7 @@ import java.util.Date;
 
 import junit.framework.Assert;
 
+import org.alfredlibrary.formatadores.Data;
 import org.alfredlibrary.utilitarios.data.CalculoData;
 import org.junit.Test;
 
@@ -148,6 +149,70 @@ public class CalculoDataTest {
 		cal2.set(Calendar.YEAR, 2000);
 
 		Assert.assertEquals(19, CalculoData.calcularDiferencaDias(cal1.getTime(), cal2.getTime()));
+	}
+	
+	@Test
+	public void testarCalculoIntersecao() {
+		Date[] esperado = new Date[] {Data.formatar("01/06/2010", "dd/MM/yyyy"), Data.formatar("10/06/2010", "dd/MM/yyyy")};
+		Date[] realizado = CalculoData.calcularIntersecao(new Date[] {Data.formatar("01/06/2010", "dd/MM/yyyy"), Data.formatar("10/06/2010", "dd/MM/yyyy")},
+				new Date[] {Data.formatar("01/05/2010", "dd/MM/yyyy"), Data.formatar("10/07/2010", "dd/MM/yyyy")});
+		for (int i = 0; i < esperado.length; i++) {
+			if (esperado[i].compareTo(realizado[i]) != 0) {
+				Assert.fail();
+			}
+		}
+		esperado = new Date[] {Data.formatar("01/06/2010", "dd/MM/yyyy"), Data.formatar("10/06/2010", "dd/MM/yyyy")};
+		realizado = CalculoData.calcularIntersecao(new Date[] {Data.formatar("01/06/2010", "dd/MM/yyyy"), Data.formatar("10/07/2010", "dd/MM/yyyy")},
+				new Date[] {Data.formatar("01/05/2010", "dd/MM/yyyy"), Data.formatar("10/06/2010", "dd/MM/yyyy")});
+		for (int i = 0; i < esperado.length; i++) {
+			if (esperado[i].compareTo(realizado[i]) != 0) {
+				Assert.fail();
+			}
+		}
+		esperado = new Date[] {Data.formatar("01/06/2010", "dd/MM/yyyy"), Data.formatar("10/06/2010", "dd/MM/yyyy")};
+		realizado = CalculoData.calcularIntersecao(new Date[] {Data.formatar("01/05/2010", "dd/MM/yyyy"), Data.formatar("10/07/2010", "dd/MM/yyyy")},
+				new Date[] {Data.formatar("01/06/2010", "dd/MM/yyyy"), Data.formatar("10/06/2010", "dd/MM/yyyy")});
+		for (int i = 0; i < esperado.length; i++) {
+			if (esperado[i].compareTo(realizado[i]) != 0) {
+				Assert.fail();
+			}
+		}
+		esperado = new Date[] {Data.formatar("01/06/2010", "dd/MM/yyyy"), Data.formatar("10/06/2010", "dd/MM/yyyy")};
+		realizado = CalculoData.calcularIntersecao(new Date[] {Data.formatar("01/05/2010", "dd/MM/yyyy"), Data.formatar("10/06/2010", "dd/MM/yyyy")},
+				new Date[] {Data.formatar("01/06/2010", "dd/MM/yyyy"), Data.formatar("10/07/2010", "dd/MM/yyyy")});
+		for (int i = 0; i < esperado.length; i++) {
+			if (esperado[i].compareTo(realizado[i]) != 0) {
+				Assert.fail();
+			}
+		}
+		Assert.assertEquals(null,
+				CalculoData.calcularIntersecao(new Date[] {Data.formatar("01/06/2010", "dd/MM/yyyy"), Data.formatar("10/06/2010", "dd/MM/yyyy")},
+						new Date[] {Data.formatar("01/05/2010", "dd/MM/yyyy"), Data.formatar("10/05/2010", "dd/MM/yyyy")}));
+		Assert.assertEquals(null,
+				CalculoData.calcularIntersecao(new Date[] {Data.formatar("01/05/2010", "dd/MM/yyyy"), Data.formatar("10/05/2010", "dd/MM/yyyy")},
+						new Date[] {Data.formatar("01/06/2010", "dd/MM/yyyy"), Data.formatar("10/06/2010", "dd/MM/yyyy")}));
+	}
+	
+	@Test
+	public void testarCalculoCompreensao() {
+		Assert.assertEquals(-1,
+				CalculoData.calcularCompreensao(new Date[] {Data.formatar("01/06/2010", "dd/MM/yyyy"), Data.formatar("10/06/2010", "dd/MM/yyyy")},
+						new Date[] {Data.formatar("01/05/2010", "dd/MM/yyyy"), Data.formatar("10/07/2010", "dd/MM/yyyy")}));	
+		Assert.assertEquals(0,
+				CalculoData.calcularCompreensao(new Date[] {Data.formatar("01/06/2010", "dd/MM/yyyy"), Data.formatar("10/07/2010", "dd/MM/yyyy")},
+						new Date[] {Data.formatar("01/05/2010", "dd/MM/yyyy"), Data.formatar("10/06/2010", "dd/MM/yyyy")}));
+		Assert.assertEquals(0,
+				CalculoData.calcularCompreensao(new Date[] {Data.formatar("01/06/2010", "dd/MM/yyyy"), Data.formatar("10/06/2010", "dd/MM/yyyy")},
+						new Date[] {Data.formatar("01/05/2010", "dd/MM/yyyy"), Data.formatar("10/05/2010", "dd/MM/yyyy")}));
+		Assert.assertEquals(1,
+				CalculoData.calcularCompreensao(new Date[] {Data.formatar("01/05/2010", "dd/MM/yyyy"), Data.formatar("10/07/2010", "dd/MM/yyyy")},
+						new Date[] {Data.formatar("01/06/2010", "dd/MM/yyyy"), Data.formatar("10/06/2010", "dd/MM/yyyy")}));	
+		Assert.assertEquals(0,
+				CalculoData.calcularCompreensao(new Date[] {Data.formatar("01/05/2010", "dd/MM/yyyy"), Data.formatar("10/06/2010", "dd/MM/yyyy")},
+						new Date[] {Data.formatar("01/06/2010", "dd/MM/yyyy"), Data.formatar("10/07/2010", "dd/MM/yyyy")}));
+		Assert.assertEquals(0,
+				CalculoData.calcularCompreensao(new Date[] {Data.formatar("01/05/2010", "dd/MM/yyyy"), Data.formatar("10/05/2010", "dd/MM/yyyy")},
+						new Date[] {Data.formatar("01/06/2010", "dd/MM/yyyy"), Data.formatar("10/06/2010", "dd/MM/yyyy")}));
 	}
 
 }
