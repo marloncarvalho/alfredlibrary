@@ -19,6 +19,8 @@ package org.alfredlibrary.utilitarios.data;
 import java.util.Calendar;
 import java.util.Date;
 
+import org.alfredlibrary.AlfredException;
+
 /**
  * Utilit�rio para realizar c�lculos com Data.
  * 
@@ -147,6 +149,86 @@ final public class CalculoData {
 		} else {
 			return calcularDiferencaDias(data1, data2);
 		}
+	}
+	
+	/**
+	 * Calcular qual a interseção entre dois períodos
+	 * 
+	 * @param data1 Período para comparação - array de tamanho 2
+	 * @param data2 Período para comparação - array de tamanho 2
+	 * @return Período da interseção
+	 */
+	public static Date[] calcularIntersecao(Date[] data1, Date[] data2) {
+		if (data1.length != 2 || data2.length != 2) {
+			throw new AlfredException("Arrays devem possuir tamanho dois em ambos os parâmetros!");
+		}
+		
+		Date dataInicio1, dataTermino1, dataInicio2, dataTermino2;  
+		if (data1[0].compareTo(data1[1]) <= 0) {
+			dataInicio1 = data1[0];
+			dataTermino1 = data1[1];
+		} else {
+			dataInicio1 = data1[1];
+			dataTermino1 = data1[0];
+		}
+		if (data2[0].compareTo(data2[1]) <= 0) {
+			dataInicio2 = data2[0];
+			dataTermino2 = data2[1];
+		} else {
+			dataInicio2 = data2[1];
+			dataTermino2 = data2[0];
+		}
+		
+		Date[] dataIntersecao = new Date[2];
+		if (dataTermino1.compareTo(dataInicio2) < 0 || dataInicio1.compareTo(dataTermino2) > 0) {
+			return null;
+		} else {
+			dataIntersecao[0] = (dataInicio1.compareTo(dataInicio2) >= 0 ? dataInicio1 : dataInicio2);
+			dataIntersecao[1] = (dataTermino1.compareTo(dataTermino2) <= 0 ? dataTermino1 : dataTermino2);
+			return dataIntersecao;
+		}
+	}
+	
+	/**
+	 * Verifica se um período está compreendido pelo outro
+	 * 
+	 * @param data1 Período para comparação - array de tamanho 2
+	 * @param data2 Período para comparação - array de tamanho 2
+	 * @return Indicador de compreensão:
+	 * 			-1 se data1 contiver data2
+	 * 			 0 se os períodos não tiverem interseção ou se a interseção não coincidir com um deles
+	 * 			 1 se data2 contiver data1
+	 */
+	public static int calcularCompreensao(Date[] data1, Date[] data2) {
+		if (data1.length != 2 || data2.length != 2) {
+			throw new AlfredException("Arrays devem possuir tamanho dois em ambos os parâmetros!");
+		}
+		
+		Date dataInicio1, dataTermino1, dataInicio2, dataTermino2;  
+		if (data1[0].compareTo(data1[1]) <= 0) {
+			dataInicio1 = data1[0];
+			dataTermino1 = data1[1];
+		} else {
+			dataInicio1 = data1[1];
+			dataTermino1 = data1[0];
+		}
+		if (data2[0].compareTo(data2[1]) <= 0) {
+			dataInicio2 = data2[0];
+			dataTermino2 = data2[1];
+		} else {
+			dataInicio2 = data2[1];
+			dataTermino2 = data2[0];
+		}
+		
+		Date[] dataIntersecao = calcularIntersecao(data1, data2);
+		if (dataIntersecao != null) {
+			if (dataInicio1.compareTo(dataIntersecao[0]) == 0 && dataTermino1.compareTo(dataIntersecao[1]) == 0) {
+				return -1;
+			} else if (dataInicio2.compareTo(dataIntersecao[0]) == 0 && dataTermino2.compareTo(dataIntersecao[1]) == 0) {
+				return 1;
+			}
+		}
+		return 0;
 	}
 
 }
