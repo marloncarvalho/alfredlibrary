@@ -18,7 +18,10 @@ package org.alfredlibrary.formatadores;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * Formatador de Moedas.
@@ -27,6 +30,23 @@ import java.util.ArrayList;
  * @since 07/05/2010
  */
 final public class Moeda {
+	
+	public enum MoedaLocal {
+		ESTADOS_UNIDOS(Locale.US, "¤ ###,###,##0.00"),
+		ALEMANHA(Locale.GERMANY, "¤ ###,###,##0.00"),
+		FRANCA(Locale.FRANCE, "¤ ###,###,##0.00"),
+		ITALIA(Locale.ITALY, "¤ ###,###,##0.00"),
+		REINO_UNIDO(Locale.UK, "¤ ###,###,##0.00"),
+		BRASIL(new Locale("pt","BR"), "¤ ###,###,##0.00");
+				
+		private Locale locale;
+		private String formato;
+		private MoedaLocal(Locale locale, String formato) {
+			this.locale = locale;
+			this.formato = formato;
+		}
+		
+	}
 
 	/**
 	 * Formatar para Extenso um valor monetário em Real.
@@ -38,7 +58,29 @@ final public class Moeda {
 		Extenso extenso = new Extenso(valor);
 		return extenso.toString();		
 	}
+	
+	/**
+	 * Converte o valor Double para a expressão da moeda em um formato padrão do local especificado
+	 * 
+	 * @param valor Double que deveser formatado
+	 * @param moedaLocal Indicação do padrão de formatação
+	 * @return Valor convertido (ex: 100.00 -> R$100,00)
+	 */
+	public static String formatar(Double valor, MoedaLocal moedaLocal) {
+		return new DecimalFormat(moedaLocal.formato, new DecimalFormatSymbols(moedaLocal.locale)).format(valor);
+	}
 
+	/**
+	 * Converte o valor Double para a expressão da moeda no formato especificado, ignorando o padrão do local
+	 * 
+	 * @param valor Double que deveser formatado
+	 * @param moedaLocal Indicação do padrão de formatação
+	 * @param formato Formato para conversão
+	 * @return Valor convertido
+	 */
+	public static String formatar(Double valor, MoedaLocal moedaLocal, String formato) {
+		return new DecimalFormat(formato, new DecimalFormatSymbols(moedaLocal.locale)).format(valor);
+	}
 }
 
 /**
