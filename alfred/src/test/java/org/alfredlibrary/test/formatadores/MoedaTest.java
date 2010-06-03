@@ -17,6 +17,7 @@
 package org.alfredlibrary.test.formatadores;
 
 import org.alfredlibrary.formatadores.Moeda;
+import org.alfredlibrary.formatadores.Moeda.MoedaLocal;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -35,6 +36,26 @@ public class MoedaTest {
 		Assert.assertEquals("UM MILHÃO DE REAIS", Moeda.formatar(1000000.0).toUpperCase());
 		Assert.assertEquals("UM MILHÃO E CEM MIL DE REAIS E DEZ CENTAVOS", Moeda.formatar(1100000.10).toUpperCase());
 		Assert.assertEquals("DEZ MIL E CEM REAIS E DEZ CENTAVOS", Moeda.formatar(10100.10).toUpperCase());
+	}
+	
+	@Test
+	public void testFormatacaoPorLocal() {
+		Assert.assertEquals("R$ 1.000,99", Moeda.formatar(1000.99d, MoedaLocal.BRASIL));
+		Assert.assertEquals("R$ 1.001,00", Moeda.formatar(1000.9999d, MoedaLocal.BRASIL));
+		Assert.assertEquals("R$ 1.000,99", Moeda.formatar(1000.991d, MoedaLocal.BRASIL));
+		Assert.assertEquals("$ 1,000.99", Moeda.formatar(1000.99d, MoedaLocal.ESTADOS_UNIDOS));
+		Assert.assertEquals("$ 1,001.00", Moeda.formatar(1000.9999d, MoedaLocal.ESTADOS_UNIDOS));
+		Assert.assertEquals("$ 1,000.99", Moeda.formatar(1000.991d, MoedaLocal.ESTADOS_UNIDOS));
+	}
+	
+	@Test
+	public void testFormatacaoPorLocalEFormato() {
+		Assert.assertEquals("R$ 1000", Moeda.formatar(1000d, MoedaLocal.BRASIL, "¤ ########0"));
+		Assert.assertEquals("R$ 1001", Moeda.formatar(1000.99d, MoedaLocal.BRASIL, "¤ ########0"));
+		Assert.assertEquals("R$ 1000", Moeda.formatar(1000.1d, MoedaLocal.BRASIL, "¤ ########0"));
+		Assert.assertEquals("$ 1000", Moeda.formatar(1000d, MoedaLocal.ESTADOS_UNIDOS, "¤ ########0"));
+		Assert.assertEquals("$ 1001", Moeda.formatar(1000.99d, MoedaLocal.ESTADOS_UNIDOS, "¤ ########0"));
+		Assert.assertEquals("$ 1000", Moeda.formatar(1000.1d, MoedaLocal.ESTADOS_UNIDOS, "¤ ########0"));
 	}
 
 }
