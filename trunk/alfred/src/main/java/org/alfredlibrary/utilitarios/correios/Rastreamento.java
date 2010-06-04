@@ -106,7 +106,7 @@ final public class Rastreamento {
 	private static RegistroRastreamento formarRegisto(String linha) {
 		int linhaIndex = linha.indexOf("rowspan=") + 10;
 		RegistroRastreamento rr = new RegistroRastreamento();
-		rr.setDataHora(Data.formatar(linha.substring(linhaIndex, linha.indexOf("</td><td>", linhaIndex) + 1), "dd/MM/yyyy HH:HH"));
+		rr.setDataHora(Data.formatar(linha.substring(linhaIndex, linha.indexOf("</td><td>", linhaIndex) + 1), "dd/MM/yyyy HH:mm"));
 		linhaIndex = linha.indexOf("</td><td>", linhaIndex) + 9;
 		rr.setLocal(linha.substring(linhaIndex, linha.indexOf("</td><td>", linhaIndex)));
 		linhaIndex = linha.indexOf("</td><td>", linhaIndex) + 30;
