@@ -43,10 +43,10 @@ public class RastreamentoTest {
 					{"04/05/2010 17:34", "ACCI AMANRRA - RIO DE JANEIRO/RJ", "Encaminhado", "Em trânsito para CTE BENFICA - RIO DE JANEIRO/RJ"},
 					{"04/05/2010 16:05", "ACCI AMANRRA - RIO DE JANEIRO/RJ", "Postado", null},
 			};
-			Collection<RegistroRastreamento> colRegistoRastreamento = Rastreamento.rastrear("RJ377032643BR");
+			Collection<RegistroRastreamento> colRegistoRastreamento = Rastreamento.rastrear("RB087729223HK");
 			int iteration = 0;
 			for(RegistroRastreamento rr : colRegistoRastreamento) {
-				if (!Data.formatar(esperado[iteration][0], "dd/MM/yyyy HH:HH").equals(rr.getDataHora())) {
+				if (!Data.formatar(esperado[iteration][0], "dd/MM/yyyy HH:mm").equals(rr.getDataHora())) {
 					Assert.fail();
 				}
 				Assert.assertEquals(esperado[iteration][1], rr.getLocal());
