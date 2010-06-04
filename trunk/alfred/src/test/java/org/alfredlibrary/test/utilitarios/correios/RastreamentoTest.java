@@ -27,9 +27,10 @@ import org.alfredlibrary.utilitarios.correios.RegistroRastreamento;
 import org.junit.Test;
 
 /**
- * Classe de Teste para o Utilitário de Bancos da Febraban.
+ * Classe de Teste para o Utilitário de Rastreamento.
  * 
  * @author Marlon Silva Carvalho
+ * @author Rodrigo Moreira Fagundes
  * @since 12/06/2010
  */
 public class RastreamentoTest {
@@ -43,7 +44,7 @@ public class RastreamentoTest {
 					{"04/05/2010 17:34", "ACCI AMANRRA - RIO DE JANEIRO/RJ", "Encaminhado", "Em trânsito para CTE BENFICA - RIO DE JANEIRO/RJ"},
 					{"04/05/2010 16:05", "ACCI AMANRRA - RIO DE JANEIRO/RJ", "Postado", null},
 			};
-			Collection<RegistroRastreamento> colRegistoRastreamento = Rastreamento.rastrear("RB087729223HK");
+			Collection<RegistroRastreamento> colRegistoRastreamento = Rastreamento.rastrear("RJ377032643BR");
 			int iteration = 0;
 			for(RegistroRastreamento rr : colRegistoRastreamento) {
 				if (!Data.formatar(esperado[iteration][0], "dd/MM/yyyy HH:mm").equals(rr.getDataHora())) {
