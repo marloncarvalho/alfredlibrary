@@ -51,7 +51,7 @@ final public class Rastreamento {
 		
 		List<RegistroRastreamento> listRegistroRastreamento = new ArrayList <RegistroRastreamento>();
 		
-		if ( conteudo.indexOf("O nosso sistema não possui dados sobre o objeto informado") > -1 ) {
+		if ( conteudo.indexOf("O nosso sistema não possui dados sobre o objeto") > -1 ) {
 			throw new AlfredException("O sistema dos Correios não possui dados sobre o objeto informado");
 		}
 
