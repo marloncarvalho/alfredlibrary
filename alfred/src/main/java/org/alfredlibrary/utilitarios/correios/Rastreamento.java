@@ -20,9 +20,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.alfredlibrary.AlfredException;
 import org.alfredlibrary.formatadores.Data;
@@ -46,10 +44,6 @@ final public class Rastreamento {
 	 */
 	public static List <RegistroRastreamento> rastrear(String codObjeto) {
 		validarCodObjeto(codObjeto);
-		
-		Map<String, String> parametros = new HashMap<String, String>();
-		parametros.put("codObjeto", codObjeto);
-		
 		String conteudo = WorldWideWeb.obterConteudoSite("http://websro.correios.com.br/sro_bin/txect01$.QueryList?P_LINGUA=001&P_TIPO=001&P_COD_UNI=" + codObjeto, "ISO-8859-1");
 
 		BufferedReader br = new BufferedReader(new StringReader(conteudo));
@@ -63,7 +57,7 @@ final public class Rastreamento {
 				if ( linha.indexOf("<tr><td ") > -1 ) {
 					if (linha.indexOf("rowspan=1") > -1) {
 						listRegistroRastreamento.add(formarRegisto(linha));
-					} else if (linha.indexOf("rowspan=2") > -1) {
+					} else if (linha.indexOf("rowspan=2") > -1|| linha.indexOf("rowspan=3") > -1) {
 						RegistroRastreamento rr = formarRegisto(linha);
 						linha = br.readLine();
 						rr = complementarRegistro(rr, linha);
