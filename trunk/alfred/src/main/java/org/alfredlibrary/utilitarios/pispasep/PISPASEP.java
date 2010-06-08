@@ -37,7 +37,7 @@ final public class PISPASEP {
     public static String gerar() {
         StringBuilder iniciais = new StringBuilder();
         Integer numero;
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 10; i++) {
             numero = Integer.valueOf((int) (Math.random() * 10));
             iniciais.append(numero.toString());
         }
@@ -51,6 +51,6 @@ final public class PISPASEP {
 	 * @return Dígito verificador.
 	 */
 	public static String gerarDigitoVerificador(String num) {
-		return Modulo11.obterDVBase10(num, false, 2);
+		return Modulo11.obterDVBase10(num, false);
 	}
 }

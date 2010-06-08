@@ -40,8 +40,8 @@ final public class PISPASEP {
 		pisPasep = Texto.manterNumeros(pisPasep);
         if (pisPasep.length() != 11)
             return false;
-        String numDig = pisPasep.substring(0, 9);
-        return org.alfredlibrary.utilitarios.pispasep.PISPASEP.gerarDigitoVerificador(numDig).equals(pisPasep.substring(9, 11));
+        String numDig = pisPasep.substring(0, 10);
+        return org.alfredlibrary.utilitarios.pispasep.PISPASEP.gerarDigitoVerificador(numDig).equals(pisPasep.substring(10, 11));
 	}
 
 }

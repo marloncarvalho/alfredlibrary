@@ -97,7 +97,7 @@ public final class Modulo11 {
 		validarFonte(fonte);
 		int peso = 2;
 		int dv = 0;
-		for (int i = fonte.length() - 1; i >= 0; i++) {
+		for (int i = fonte.length() - 1; i >= 0; i--) {
 			dv += Integer.parseInt(fonte.substring(i, i + 1)) * peso;
 			peso = ++peso % 10;
 			if (peso < 2) peso = 9;
