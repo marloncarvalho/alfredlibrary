@@ -82,5 +82,54 @@ public final class Modulo11 {
 			return obterDV(fonte, dezPorX);
 		}
 	}
+	
+	/**
+	 * Calcular um dígito verificador a partir de uma sequência de números
+	 * enviada.
+	 * O maior peso usado é 9. Quando hega a 10, retorna a 1
+	 * 
+	 * @param fonte Sequência de números para cálculo do DV
+	 * @param dezPorX Indica se deve haver substituição de resultado 10
+	 * 			por X durante o cálculo - padrão usado em alguns lugares
+	 * @return DV gerado.
+	 */
+	public static String obterDVBase10 (String fonte, boolean dezPorX) {
+		validarFonte(fonte);
+		int peso = 2;
+		int dv = 0;
+		for (int i = fonte.length() - 1; i >= 0; i++) {
+			dv += Integer.parseInt(fonte.substring(i, i + 1)) * peso;
+			peso = ++peso % 10;
+			if (peso < 2) peso = 9;
+		}
+		dv = dv % 11;
+		if (dv > 1) {
+			return String.valueOf(11 - dv);
+		} else if (dv == 1 && dezPorX) {
+			return "X";
+		}
+		return "0";
+		
+	}
+	
+	/**
+	 * Calcular um dígito verificador usando o módulo 11, base 10, com
+	 * a quantidade de casas indicadas a partir de uma sequência de
+	 * números enviada.
+	 * 
+	 * @param fonte Sequência de números para cálculo do DV
+	 * @param dezPorX Indica se deve haver substituição de resultado 10
+	 * 			por X durante o cálculo - padrão usado em alguns lugares
+	 * @param quantidadeDigitos Quantidade de dígitos a serem retornados
+	 * @return DV gerado.
+	 */
+	public static String obterDVBase10 (String fonte, boolean dezPorX, int quantidadeDigitos) {
+		if (quantidadeDigitos > 1) {
+			String parcial = obterDVBase10(fonte, dezPorX);
+			return parcial + obterDVBase10(fonte + parcial, dezPorX, --quantidadeDigitos);
+		} else {
+			return obterDVBase10(fonte, dezPorX);
+		}
+	}
 
 }
