@@ -44,12 +44,18 @@ import org.xml.sax.SAXException;
  */
 final public class CID10 {
 	
-	/* TODO Verificar se todas as extrações de texto estão usando o método correto.
-	 * Inclusive a adição de detalhes como restrições e dupla classificação. 
-	 */
-	
 	private CID10() { }
 
+	// Localização e instanciação do arquivo CID10.XML, que traz consigo o .DTD 
+	private static final File arquivo = new File("src" + System.getProperty("file.separator") +
+			"main" + System.getProperty("file.separator") +
+			"java" + System.getProperty("file.separator") +
+			"org" + System.getProperty("file.separator") +
+			"alfredlibrary" + System.getProperty("file.separator") +
+			"utilitarios" + System.getProperty("file.separator") +
+			"saude" + System.getProperty("file.separator") +
+			"cid10" + System.getProperty("file.separator") +
+			"CID10.xml");
 	/*
 	 *	<!ELEMENT document (cid10)>
 	 *
@@ -164,8 +170,12 @@ final public class CID10 {
 	 * @return Texto contido no nó
 	 */
 	private static String extrairTextNode(Node no) {
-		if (no.getNodeType() == Node.TEXT_NODE) {
-			return no.getTextContent();
+		NodeList listNoCandidato = no.getChildNodes(); 
+		for (int indice = 0; indice < listNoCandidato.getLength(); indice++) {
+			Node noCandidato = listNoCandidato.item(indice);
+			if (noCandidato.getNodeType() == Node.TEXT_NODE) {
+				return noCandidato.getTextContent();
+			}
 		}
 		return "";
 	}
@@ -182,16 +192,6 @@ final public class CID10 {
 		Collection<Map<String,Object>> resultado = new ArrayList<Map<String,Object>>();
 				
 		try {
-			// TODO Decidir como vai ser o esquema do arquivo: se passado por parâmetro ou armazenadno na Alfred
-			File arquivo = new File("src" + System.getProperty("file.separator") +
-									"main" + System.getProperty("file.separator") +
-									"java" + System.getProperty("file.separator") +
-									"org" + System.getProperty("file.separator") +
-									"alfredlibrary" + System.getProperty("file.separator") +
-									"utilitarios" + System.getProperty("file.separator") +
-									"saude" + System.getProperty("file.separator") +
-									"cid10" + System.getProperty("file.separator") +
-									"CID10.xml");
 			
 			DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 			Document doc = builder.parse(arquivo);
@@ -738,7 +738,7 @@ final public class CID10 {
 				if (noFilho.getNodeName().equals( "referencia" )) {
 					Map<String,Object> registroDetalhe = new HashMap<String,Object>();
 					registroDetalhe.put("codrefer", noFilho.getAttributes().getNamedItem("codrefer").getNodeValue());
-					registroDetalhe.put("valor", noFilho.getNodeValue());
+					registroDetalhe.put("valor", extrairTextNode(noFilho));
 					if (resultado == null) {
 						resultado = new ArrayList<Map<String,Object>>();
 					}
