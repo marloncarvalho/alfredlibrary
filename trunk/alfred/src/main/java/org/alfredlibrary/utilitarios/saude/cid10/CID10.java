@@ -45,17 +45,7 @@ import org.xml.sax.SAXException;
 final public class CID10 {
 	
 	private CID10() { }
-
-	// Localização e instanciação do arquivo CID10.XML, que traz consigo o .DTD 
-	private static final File arquivo = new File("src" + System.getProperty("file.separator") +
-			"main" + System.getProperty("file.separator") +
-			"java" + System.getProperty("file.separator") +
-			"org" + System.getProperty("file.separator") +
-			"alfredlibrary" + System.getProperty("file.separator") +
-			"utilitarios" + System.getProperty("file.separator") +
-			"saude" + System.getProperty("file.separator") +
-			"cid10" + System.getProperty("file.separator") +
-			"CID10.xml");
+	
 	/*
 	 *	<!ELEMENT document (cid10)>
 	 *
@@ -144,24 +134,29 @@ final public class CID10 {
 	/**
 	 * Obter as informações sobre doenças pelo código no CID-10.
 	 * 
+	 * @param arquivo CID10.xml, na versão V2007, obtido no site
+	 * 					http://www.datasus.gov.br/cid10/v2008/cid10.htm
+	 * 
 	 * @param codigo Código CID.
 	 * @return Lista de registros no CID-10 encontrados.
 	 */
-	public static Collection<Map<String,Object>> obter(String codigo) {
+	public static Collection<Map<String,Object>> obter(File arquivo, String codigo) {
 		codigo = preparar(codigo);
 		validar(codigo);
-		return obter(codigo, true, "codigo");
+		return obter(arquivo, codigo, true, "codigo");
 	}
 	
 	/**
 	 * Obter as informações sobre doenças por parte do nome no CID-10.
 	 * 
+	 * @param arquivo CID10.xml, na versão V2007, obtido no site
+	 * 					http://www.datasus.gov.br/cid10/v2008/cid10.htm
 	 * @param texto Nome para busca.
 	 * @param inicio Se pesquisa deve ser pelo início (TRUE) ou qualquer parte da descrição da doença (FALSE)
 	 * @return Lista de registros no CID-10 encontrados.
 	 */
-	public static Collection<Map<String,Object>> obter(String texto, boolean inicio) {
-		return obter(texto, inicio, "texto");
+	public static Collection<Map<String,Object>> obter(File arquivo, String texto, boolean inicio) {
+		return obter(arquivo, texto, inicio, "texto");
 	}
 	
 	/**
@@ -188,7 +183,7 @@ final public class CID10 {
 	 * @param inicio Se pesquisa deve ser pelo início (TRUE) ou qualquer parte da descrição da doença (FALSE)
 	 * @return Lista de registros no CID-10 encontrados.
 	 */
-	private static Collection<Map<String,Object>> obter(String parametro, boolean inicio, String tipoPesquisa) {
+	private static Collection<Map<String,Object>> obter(File arquivo, String parametro, boolean inicio, String tipoPesquisa) {
 		Collection<Map<String,Object>> resultado = new ArrayList<Map<String,Object>>();
 				
 		try {
@@ -209,6 +204,8 @@ final public class CID10 {
 			
 			if (noPrincipal == null) {
 				throw new AlfredException("Nó principal não encontrado no XML de CID-10!");
+			} else if (! noPrincipal.getAttributes().getNamedItem("versao").getNodeValue().equals("V2007")) {
+				throw new AlfredException("XML incompatível! Alfred compatível com versão V2007 do XML de CID-10!");
 			}
 			
 			/*	<!ELEMENT cid10 (capitulo+)>

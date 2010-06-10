@@ -16,6 +16,7 @@
  */
 package org.alfredlibrary.test.utilitarios.saude.cid10;
 
+import java.io.File;
 import java.util.Collection;
 import java.util.Map;
 
@@ -33,9 +34,20 @@ import org.junit.Test;
  */
 public class CID10Test {
 	
+	// Localização e instanciação do arquivo CID10.XML, que traz consigo o .DTD 
+	private static final File arquivo = new File("src" + System.getProperty("file.separator") +
+			"test" + System.getProperty("file.separator") +
+			"resources" + System.getProperty("file.separator") +
+			"org" + System.getProperty("file.separator") +
+			"alfredlibrary" + System.getProperty("file.separator") +
+			"utilitarios" + System.getProperty("file.separator") +
+			"saude" + System.getProperty("file.separator") +
+			"cid10" + System.getProperty("file.separator") +
+			"CID10.xml");
+	
 	@Test
 	public void testObterPorCodigo() {
-		Collection<Map<String,Object>> resultado = CID10.obter("C18");
+		Collection<Map<String,Object>> resultado = CID10.obter(arquivo, "C18");
 		Assert.assertEquals(1, resultado.size());
 		for (Map<String, Object> map : resultado) {
 			Assert.assertEquals("C18", map.get("codcat"));
@@ -47,17 +59,17 @@ public class CID10Test {
 	@Test
 	public void testObterPorCodigoInvalido() {
 		try {
-			CID10.obter("C1");
+			CID10.obter(arquivo, "C1");
 			Assert.fail();
 		} catch (AlfredException ae) {
 		}
 		try {
-			CID10.obter("C1888");
+			CID10.obter(arquivo, "C1888");
 			Assert.fail();
 		} catch (AlfredException ae) {
 		}
 		try {
-			CID10.obter("CC1888");
+			CID10.obter(arquivo, "CC1888");
 			Assert.fail();
 		} catch (AlfredException ae) {
 		}
@@ -66,7 +78,7 @@ public class CID10Test {
 	@Test
 	public void testObterPorCodigoMalFormatado() {
 		try {
-			Collection<Map<String,Object>> resultado = CID10.obter("Ç1.8-?+");
+			Collection<Map<String,Object>> resultado = CID10.obter(arquivo, "Ç1.8-?+");
 			Assert.assertEquals(1, resultado.size());
 		} catch (Exception e) {
 			Assert.fail();
@@ -76,7 +88,7 @@ public class CID10Test {
 	@Test
 	public void testObterPorCodigoComPonto() {
 		try {
-			Collection<Map<String,Object>> resultado = CID10.obter("C18.0");
+			Collection<Map<String,Object>> resultado = CID10.obter(arquivo, "C18.0");
 			Assert.assertEquals(1, resultado.size());
 		} catch (Exception e) {
 			Assert.fail();
@@ -86,7 +98,7 @@ public class CID10Test {
 	@Test
 	public void testObterPorCodigoSemResultado() {
 		try {
-			Collection<Map<String,Object>> resultado = CID10.obter("C20.9");
+			Collection<Map<String,Object>> resultado = CID10.obter(arquivo, "C20.9");
 			Assert.assertEquals(0, resultado.size());
 		} catch (Exception e) {
 			Assert.fail();
@@ -95,7 +107,7 @@ public class CID10Test {
 	
 	@Test
 	public void testObterPorTextoInicial() {
-		Collection<Map<String,Object>> resultado = CID10.obter("Neoplasia maligna do cól", true);
+		Collection<Map<String,Object>> resultado = CID10.obter(arquivo, "Neoplasia maligna do cól", true);
 		Assert.assertEquals(7, resultado.size());
 		for (Map<String, Object> map : resultado) {
 			if (map.get("codcat") != null) {
@@ -114,7 +126,7 @@ public class CID10Test {
 	
 	@Test
 	public void testObterPorTextoIntermediario() {
-		Collection<Map<String,Object>> resultado = CID10.obter("plasia maligna do cól", false);
+		Collection<Map<String,Object>> resultado = CID10.obter(arquivo, "plasia maligna do cól", false);
 		Assert.assertEquals(7, resultado.size());
 		for (Map<String, Object> map : resultado) {
 			if (map.get("codcat") != null) {
