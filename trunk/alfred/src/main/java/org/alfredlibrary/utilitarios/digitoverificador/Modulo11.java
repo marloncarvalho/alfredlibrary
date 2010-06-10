@@ -99,8 +99,11 @@ public final class Modulo11 {
 		int dv = 0;
 		for (int i = fonte.length() - 1; i >= 0; i--) {
 			dv += Integer.parseInt(fonte.substring(i, i + 1)) * peso;
-			peso = ++peso % 10;
-			if (peso < 2) peso = 9;
+			if (peso == 9) {
+				peso = 2;
+			} else {
+				peso++;
+			}
 		}
 		dv = dv % 11;
 		if (dv > 1) {

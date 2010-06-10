@@ -32,7 +32,7 @@ public class PISPASEPTest {
 	@Test
 	public void testGerarDigitoVerificador() {
 		String digito = PISPASEP.gerarDigitoVerificador("1111111111");
-		Assert.assertEquals("4", digito);
+		Assert.assertEquals("6", digito);
 	}
 	
 	@Test
