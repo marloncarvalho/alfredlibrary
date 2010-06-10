@@ -39,6 +39,12 @@ import org.xml.sax.SAXException;
 /**
  * Utilitário para obter informações sobre doenças pelo CID-10, baseado na versão V2007 do CID-10.
  * 
+ * Apenas a versão V2007 do arquivo CID10.xml é compatível com este utilitário. Essa versão pode
+ * ser obtida no site da Datasus (http://www.datasus.gov.br/cid10/v2008/cid10.htm).
+ * 
+ * Caso a versão do arquivo seja alterada pela Datasus, reporte o problema para os colaboradores
+ * da alfredlibrary (http://www.alfredlibrary.org).  
+ * 
  * @author Rodrigo Moreira Fagundes
  * @since 08/06/2010
  */
@@ -178,6 +184,8 @@ final public class CID10 {
 	/**
 	 * Inicia a busca no CID-0.
 	 * 
+	 * @param arquivo CID10.xml, na versão V2007, obtido no site
+	 * 					http://www.datasus.gov.br/cid10/v2008/cid10.htm
 	 * @param parametro Código CID ou Texto para busca.
 	 * @param tipoBusca Tipo da busca realizada (texto ou código)
 	 * @param inicio Se pesquisa deve ser pelo início (TRUE) ou qualquer parte da descrição da doença (FALSE)
