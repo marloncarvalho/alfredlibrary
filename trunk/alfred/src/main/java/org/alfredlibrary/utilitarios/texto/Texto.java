@@ -123,6 +123,18 @@ public class Texto {
         .replace('ñ', 'n')   
         .replace('Ñ', 'N'); 
 	}
+	
+	/**
+	 * Remove os caracteres de pontuação.
+	 * 
+	 * @param frase Frase que terá as pontuações removidas.
+	 * @return Frase sem pontuações.
+	 */
+	public static String removerPontuacao(String frase) {
+		if ( frase == null ) return frase;
+		return frase.replaceAll("[-!,.:;?/]", "")   
+           .replace("\b\t\n\f\r\"\'\\", "");
+	}
 
 	/**
 	 * Obter a cadeia de caracteres que forma o alfabeto brasileiro em minï¿½sculas.
@@ -140,6 +152,40 @@ public class Texto {
 	 */
 	public static char[] obterAlfabetoMaiusculas() {
 		return new char[] {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','X','Y','W','Z'};
+	}
+	
+	/**
+	 * Comparar textos de diversas formas, de acordo com os parâmetros passados.
+	 * 
+	 * @param texto1 Texto para comparação
+	 * @param texto2 Texto com o qual texto1 deve ser comparado
+	 * @param ignoraMaiuscula Se a comparação não será "case sensitive"
+	 * @param ignoraEspaco Se a comparação deve ignorar a presença de espaços
+	 * @param ignoraAcentuacao Se a comparação não deve levar em conta a acentuação
+	 * 							nos textos comparados
+	 * @param ignoraPontuacao Se a comparação deve ignorar os caracteres de pontuação.
+	 * @return Comparação entre texto1 e texto2 na mesma forma de texto1.compareTo(texto2).
+	 */
+	public static int comparar(String texto1, String texto2,
+			boolean ignoraMaiuscula, boolean ignoraEspaco, boolean ignoraAcentuacao,
+			boolean ignoraPontuacao) {
+		if (ignoraMaiuscula) {
+			texto1 = texto1.toLowerCase();
+			texto2 = texto2.toLowerCase();
+		}
+		if (ignoraEspaco) {
+			texto1 = texto1.replace(" ", "");
+			texto2 = texto2.replace(" ", "");
+		}
+		if (ignoraAcentuacao) {
+			texto1 = trocarCaracteresAcentuados(texto1);
+			texto2 = trocarCaracteresAcentuados(texto2);
+		}
+		if (ignoraPontuacao) {
+			texto1 = removerPontuacao(texto1);
+			texto2 = removerPontuacao(texto2);
+		}
+		return texto1.compareTo(texto2);
 	}
 
 }
