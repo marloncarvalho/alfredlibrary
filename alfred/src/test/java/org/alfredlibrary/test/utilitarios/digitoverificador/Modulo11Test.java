@@ -43,4 +43,18 @@ public class Modulo11Test {
 		Assert.assertEquals("91", Modulo11.obterDV("000000000001", false, 2));
 	}
 	
+	@Test
+	public void testObterDVBase10() {
+		Assert.assertEquals("9", Modulo11.obterDVBase10("111111111", false));
+		Assert.assertEquals("6", Modulo11.obterDVBase10("1111111111", false));
+		Assert.assertEquals("9", Modulo11.obterDVBase10("000000000001", false));
+		Assert.assertEquals("1", Modulo11.obterDVBase10("0000000000019", false));
+	}
+	
+	@Test
+	public void testObterDVBase102Digitos() {
+		Assert.assertEquals("91", Modulo11.obterDVBase10("111111111", false, 2));
+		Assert.assertEquals("91", Modulo11.obterDVBase10("000000000001", false, 2));
+	}
+	
 }
