@@ -76,5 +76,31 @@ public class TextoTest {
 			Assert.fail(e.getMessage());
 		}
 	}
+	
+	@Test
+	public void testRemoverPontuacao() {
+		try {
+			Assert.assertEquals("", Texto.removerPontuacao("-!,.:;?/\b\t\n\f\r\"\'\\"));
+		} catch ( Exception e ) {
+			Assert.fail(e.getMessage());
+		}
+	}
+	
+	@Test
+	public void testComparar() {
+		try {
+			if (Texto.comparar("lotadotodoobrasilesta", "Lotado, todo o Brasil está aqui!", true, true, true, true) >= 0) {
+				Assert.fail();
+			}
+			if (Texto.comparar("lotadotodoobrasilestaaqui", "Lotado, todo o Brasil está aqui!", true, true, true, true) != 0) {
+				Assert.fail();
+			}
+			if (Texto.comparar("lotadotodoobrasilestaaquidentro", "Lotado, todo o Brasil está aqui!", true, true, true, true) <= 0) {
+				Assert.fail();
+			}
+		} catch ( Exception e ) {
+			Assert.fail(e.getMessage());
+		}
+	}
 
 }
