@@ -18,6 +18,7 @@ package org.alfredlibrary.utilitarios.inscricaoestadual;
 
 import org.alfredlibrary.utilitarios.digitoverificador.Modulo10;
 import org.alfredlibrary.utilitarios.digitoverificador.Modulo11;
+import org.alfredlibrary.utilitarios.digitoverificador.PesoPosicional;
 
 /**
  * Utilitários de Inscrição Estadual.
@@ -34,6 +35,11 @@ final public class InscricaoEstadual {
 		 *		7- Micro-Empresa Ambulante, 8-Micro-Empresa) 
 		 * M = 1 se matriz, o restante para filiais
 		 * CCC = Código do município
+		 * GG = Constante de Goiás (pode ser 10, 11 ou 15)
+		 * TT = 01 = Produtor Rural ( não possui CGC),
+		 *		02 = Industria e Comércio
+		 *		03 = Empresas Rudimentares
+		 *		99 = Empresas do Cadastro Antigo (SUSPENSAS)
 		 */
 		ACRE("MOD11BASE10", "NN.NN.NNNN-D"),
 		ALAGOAS("MOD11BASE10", "24XNNNNND"), 
@@ -47,11 +53,20 @@ final public class InscricaoEstadual {
 		 * 0 é substitutivo de resto 1
 		 */
 		AMAZONAS("MOD11BASE10", "NN.NNN.NNN-D"),
-		// TODO BAHIA (),
+		BAHIA ("METODOVARIAVEL", "NNNNNN-DD"),
+		/*
+		 * Para Inscrições cujo primeiro dígito da I.E. é 0,1,2,3,4,5,8 cálculo pelo módulo 10
+		 * Para Inscrições cujo primeiro dígito da I.E. é 6, 7 ou 9 cálculo pelo módulo 11
+		 */
 		CEARA("MOD11BASE10", "NNNNNNNN-D"),
 		DISTRITO_FEDERAL("MOD11BASE10", "073.NNNNN.MMM-DD"),
 		ESPIRITO_SANTO("MOD11BASE10", "NNNNNNNN-D"),
-		// TODO GOIAS(),
+		GOIAS("MOD11BASE10","GG.NNN.NNN-D"),
+		/* 
+		 * Quando o resto da divisão for zero (0), o dígito verificador será zero (0);
+		 * Quando o resto da divisão for um (1), e a inscrição for maior ou igual a 10103105 e menor ou igual a 10119997, o dígito verificador será um (1);
+		 * Quando o resto da divisão for um (1), e a inscrição estiver fora do intervalo citado acima, o dígito verificador será zero (0);
+		 */
 		MARANHAO("MOD11BASE10", "12NNNNNN-D"),
 		MATO_GROSSO("MOD11BASE10", "NNNNNNNNNN-D"),
 		MATO_GROSSO_DO_SUL("MOD11BASE10", "28NNNNNN-D"),
@@ -67,11 +82,11 @@ final public class InscricaoEstadual {
 		// Código de município varia de 001 a 467
 		RONDONIA("MOD11BASE10", "CCCNNNNND"),
 		// Despreza-se os três primeiros dígitos no cálculo do DV
-		// TODO RORAIMA(),
+		RORAIMA("PESOPOSICIONAL", "24NNNNNN-D"),
 		SANTA_CATARINA("MOD11BASE10", "NNN.NNN.NND"),
 		// TODO SAO_PAULO(),
-		SERGIPE("MOD11BASE10", "NNNNNNNN-D")//,
-		// TODO TOCANTINS()
+		SERGIPE("MOD11BASE10", "NNNNNNNN-D"),
+		TOCANTINS("MOD11BASE10", "NN.TT.NNNNNN-D")
 		;
 				
 		private String calculoDv;
@@ -144,6 +159,11 @@ final public class InscricaoEstadual {
             				atribuido = true;
             			}
             		} else {
+            			String codigoMunicipio = numero.toString();
+        				for (int iTexto = 0; iTexto < 3 - codigoMunicipio.length(); iTexto++) {
+        					codigoMunicipio = "0" + codigoMunicipio; 
+        				}
+        				iniciais.append(codigoMunicipio);
             			atribuido = true;
             		}
         		} while (!atribuido);
@@ -156,16 +176,48 @@ final public class InscricaoEstadual {
         			i++; // Avança para poder criar um código randômico de tamanhos diversos
         			tamanho++;
         		}
+        		numero = Integer.valueOf((int) (Math.random() * Math.pow(10, tamanho)));
+            	String codigoFilial = numero.toString();
+            	for (int iTexto = 0; iTexto < tamanho - codigoFilial.length(); iTexto++) {
+            		codigoFilial = "0" + codigoFilial; 
+            	}
+            	iniciais.append(codigoFilial);
+        	} else if (mascara.charAt(i) == 'G') {
+        		/* 
+        		 * GG = Constante de Goiás (pode ser 10, 11 ou 15)
+        		 */
+        		i++; // Salta 1, pois o conteúdo de GG sempre tem 2 caracteres
         		do {
-        			numero = Integer.valueOf((int) (Math.random() * Math.pow(10, tamanho)));
-            		String codigoFilial = numero.toString();
-            		for (int iTexto = 0; iTexto < tamanho - codigoFilial.length(); iTexto++) {
-            			codigoFilial = "0" + codigoFilial; 
+        			numero = Integer.valueOf((int) (Math.random() * 100));
+            		String codigoGoias = numero.toString();
+            		for (int iTexto = 0; iTexto < 2 - codigoGoias.length(); iTexto++) {
+            			codigoGoias = "0" + codigoGoias; 
             		}
-            		iniciais.append(codigoFilial);
-            		atribuido = true;
+            		if (codigoGoias.equals("10") || codigoGoias.equals("11") || codigoGoias.equals("15")) {
+            			iniciais.append(codigoGoias);
+            			atribuido = true;
+            		}
         		} while (!atribuido);
-        	}
+        	} else if (mascara.charAt(i) == 'G') {
+         		/* TT = 01 = Produtor Rural ( não possui CGC),
+         		 *		02 = Industria e Comércio
+         		 *		03 = Empresas Rudimentares
+         		 *		99 = Empresas do Cadastro Antigo (SUSPENSAS)
+         		 */
+         		i++; // Salta 1, pois o conteúdo de GG sempre tem 2 caracteres
+         		do {
+         			numero = Integer.valueOf((int) (Math.random() * 100));
+             		String codigoGoias = numero.toString();
+             		for (int iTexto = 0; iTexto < 2 - codigoGoias.length(); iTexto++) {
+             			codigoGoias = "0" + codigoGoias; 
+             		}
+             		if (codigoGoias.equals("01") || codigoGoias.equals("02")
+             				|| codigoGoias.equals("03") || codigoGoias.equals("99")) {
+             			iniciais.append(codigoGoias);
+             			atribuido = true;
+             		}
+         		} while (!atribuido);
+         	}
         }
         return iniciais.toString() + gerarDigitoVerificador(padrao, iniciais.toString());
     }
@@ -184,7 +236,20 @@ final public class InscricaoEstadual {
 			num = num.substring(3);
 		}
 		// Obtem a sequência de métodos a serem aplicados para o cálculo dos DVs
-		String[] metodoCalculo = padrao.calculoDv.split("|");
+		String[] metodoCalculo;
+		/* 
+		 * Para Inscrições cujo primeiro dígito da I.E. é 0,1,2,3,4,5,8 cálculo pelo módulo 10
+		 * Para Inscrições cujo primeiro dígito da I.E. é 6, 7 ou 9 cálculo pelo módulo 11
+		 */
+		if (padrao.equals(PadraoInscricaoEstadual.BAHIA)) {
+			if (num.charAt(0) == '6' || num.charAt(0) == '7' || num.charAt(0) == '9') {
+				metodoCalculo = new String[] {"MOD11BASE10"};
+			} else {
+				metodoCalculo = new String[] {"MOD11BASE10"};
+			}
+		} else {
+			metodoCalculo = padrao.calculoDv.split("|");
+		}
 		/* Permite a inclusão de N DVs ao final, sem precisar repetir o método de cálculo,
 		 * pela inclusão de parâmetro de quantidade de DVs. A necessidade atual indica
 		 * que apenas a repetição ao final resolve, pois há apenas multiplicidade no
@@ -234,24 +299,56 @@ final public class InscricaoEstadual {
 			int modulo = 0, base = 0;
 			if (metodoCalculo[indice].indexOf("MOD") == 0) {
 				modulo = Integer.valueOf(metodoCalculo[indice].substring(3,5)); 
-				base = Integer.valueOf(metodoCalculo[indice].substring(metodoCalculo[indice].indexOf("BASE") + 4,5));
-			}
-			if (modulo == 11) {
-				if (!padrao.equals(PadraoInscricaoEstadual.AMAPA)) {
-					if (qtdDigitos[indice] == 1) {
-						dv = dv + Modulo11.obterDVBaseParametrizada(num + dv, base, subZero, subUm);
-					} else if (qtdDigitos[indice] > 1) {
-						dv = dv + Modulo11.obterDVBaseParametrizada(num + dv, base, subZero, subUm, qtdDigitos[indice]);
-					}
+				if (metodoCalculo[indice].indexOf("BASE") != -1) {
+					base = Integer.valueOf(metodoCalculo[indice].substring(metodoCalculo[indice].indexOf("BASE") + 4,5));
 				} else {
-					dv = dv + Modulo11.obterDVBaseParametrizadaComConstante(num + dv, base, subZero, subUm, constante);
+					base = 0;
 				}
-			} else if (modulo == 10) {
-				if (qtdDigitos[indice] == 1) {
-					dv = dv + Modulo10.obterDV(num + dv);
-				} else if (qtdDigitos[indice] > 1) {
-					dv = dv + Modulo10.obterDV(num + dv, qtdDigitos[indice]);
+				if (modulo == 11) {
+					if (padrao.equals(PadraoInscricaoEstadual.AMAPA)) {
+						dv = dv + Modulo11.obterDVBaseParametrizadaComConstante(num + dv, base, subZero, subUm, constante);
+					} else if (padrao.equals(PadraoInscricaoEstadual.GOIAS)) {
+						/* 
+						 * Quando o resto da divisão for zero (0), o dígito verificador será zero (0);
+						 * Quando o resto da divisão for um (1), e a inscrição for maior ou igual a 10103105 e menor ou igual a 10119997, o dígito verificador será um (1);
+						 * Quando o resto da divisão for um (1), e a inscrição estiver fora do intervalo citado acima, o dígito verificador será zero (0);
+						 */
+						subZero = 0;
+						if (Long.valueOf(num.substring(0,8)).compareTo(Long.valueOf("10103105")) >= 0
+								&& Long.valueOf(num.substring(0,8)).compareTo(Long.valueOf("10119997")) <= 0) {
+							subUm = 1;
+						} else {
+							subUm = 0;
+						}
+						if (qtdDigitos[indice] == 1) {
+							dv = dv + Modulo11.obterDVBaseParametrizada(num + dv, base, subZero, subUm);
+						} else if (qtdDigitos[indice] > 1) {
+							dv = dv + Modulo11.obterDVBaseParametrizada(num + dv, base, subZero, subUm, qtdDigitos[indice]);
+						}
+					} else {
+						if (qtdDigitos[indice] == 1) {
+							dv = dv + Modulo11.obterDVBaseParametrizada(num + dv, base, subZero, subUm);
+						} else if (qtdDigitos[indice] > 1) {
+							dv = dv + Modulo11.obterDVBaseParametrizada(num + dv, base, subZero, subUm, qtdDigitos[indice]);
+						}
+					}
+				} else if (modulo == 10) {
+					if (base == 0) {
+						if (qtdDigitos[indice] == 1) {
+							dv = dv + Modulo10.obterDV(num + dv);
+						} else if (qtdDigitos[indice] > 1) {
+							dv = dv + Modulo10.obterDV(num + dv, qtdDigitos[indice]);
+						}
+					} else {
+						if (qtdDigitos[indice] == 1) {
+							dv = dv + Modulo10.obterDVBaseParametrizada(num + dv, base, subZero, subUm);
+						} else if (qtdDigitos[indice] > 1) {
+							dv = dv + Modulo10.obterDVBaseParametrizada(num + dv, base, subZero, subUm, qtdDigitos[indice]);
+						}
+					}
 				}
+			} else if (metodoCalculo[indice].indexOf("PESOPOSICIONAL") == 0) {
+				dv = dv + PesoPosicional.obterDV(num);
 			}
 		}
 		return dv;

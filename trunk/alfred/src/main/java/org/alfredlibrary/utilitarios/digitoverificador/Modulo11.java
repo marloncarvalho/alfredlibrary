@@ -155,7 +155,7 @@ public final class Modulo11 {
 	}
 	
 	/**
-	 * Calcular um dígito verificador usando o módulo 11, base 10, com
+	 * Calcular um dígito verificador usando o módulo 11, com
 	 * a quantidade de casas indicadas a partir de uma sequência de
 	 * números enviada.
 	 * 
