@@ -109,7 +109,30 @@ final public class InscricaoEstadual {
     				return false;
     			}
         		i = --w;
-        	}
+        	} else if (padrao.getFormato().charAt(i) == 'G') {
+        		/* 
+        		 * GG = Constante de Goiás (pode ser 10, 11 ou 15)
+        		 */
+        		if (ie.charAt(i) != '1') {
+        			return false;
+        		}
+        		i++; // Salta 1, pois o conteúdo de GG sempre tem 2 caracteres
+        		if (ie.charAt(i) != '0' && ie.charAt(i) != '1' && ie.charAt(i) != '5') {
+        			return false;
+        		}
+        	} else if (padrao.getFormato().charAt(i) == 'G') {
+         		/* TT = 01 = Produtor Rural ( não possui CGC),
+         		 *		02 = Industria e Comércio
+         		 *		03 = Empresas Rudimentares
+         		 *		99 = Empresas do Cadastro Antigo (SUSPENSAS)
+         		 */
+        		
+        		if (!ie.substring(i, i + 2).equals("01") && !ie.substring(i, i + 2).equals("02")
+        				&& !ie.substring(i, i + 2).equals("03") && !ie.substring(i, i + 2).equals("99")) {
+        			return false;
+        		}
+        		i++; // Salta 1, pois o conteúdo de GG sempre tem 2 caracteres
+         	}
 		}
         return true;
 	}
