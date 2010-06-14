@@ -48,6 +48,10 @@ final public class InscricaoEstadual {
 		StringBuilder sb = new StringBuilder();
 		int indicePadrao = 0;
 		for (int i = 0; i < ieSoNumeros.length(); i++) {
+			if (padrao.getFormato().charAt(indicePadrao) == 'P') {
+				sb.append(padrao.getFormato().charAt(indicePadrao));
+				indicePadrao++;
+			}
 			if (padrao.getFormato().charAt(indicePadrao) == '.'
 				|| padrao.getFormato().charAt(indicePadrao) == '-'
 				|| padrao.getFormato().charAt(indicePadrao) == '/') {

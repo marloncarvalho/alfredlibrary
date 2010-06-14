@@ -17,6 +17,8 @@
 package org.alfredlibrary.validadores;
  
 
+import org.alfredlibrary.utilitarios.digitoverificador.Modulo11;
+import org.alfredlibrary.utilitarios.digitoverificador.PesoPersonalizado;
 import org.alfredlibrary.utilitarios.inscricaoestadual.InscricaoEstadual.PadraoInscricaoEstadual;
 import org.alfredlibrary.utilitarios.texto.Texto;
 
@@ -44,6 +46,7 @@ final public class InscricaoEstadual {
 		}
         if (ie.length() != padrao.getFormato().length())
             return false;
+        int numDig = 1; // Para saber em que sequencia de digitos do padrão de SP está a validação
         for (int i = 0; i < ie.length(); i++) {
         	if (padrao.getFormato().charAt(i) == '.'
 				|| padrao.getFormato().charAt(i) == '-'
@@ -70,19 +73,29 @@ final public class InscricaoEstadual {
 					}
 				}
         	} else if (padrao.getFormato().charAt(i) == 'D') {
-        		/* 
-        		 * M = 1 se matriz, o restante para filiais
-        		 */
         		StringBuilder sb = new StringBuilder();
         		int w = i;
         		do {
         			sb.append(ie.charAt(w));
         			w++;
         		} while (padrao.getFormato().charAt(w) == 'D');
-        		if (ie.substring(i,i + sb.length()).compareTo(org.alfredlibrary.utilitarios.inscricaoestadual.InscricaoEstadual.gerarDigitoVerificador(padrao, Texto.manterNumeros(ie))) != 0) {
-    				return false;
-    			}
+        		if (padrao.equals(PadraoInscricaoEstadual.SAO_PAULO_INDUSTRIAIS_COMERCIANTES)) {
+        			if (numDig == 1) {
+                		if (ie.substring(i, i + sb.length()).compareTo(PesoPersonalizado.obterDV(Texto.manterNumeros(ie.substring(0, i)), "1|3|4|5|6|7|8|10")) != 0) {
+                			return false;
+                		}
+                	} else {
+                		if (ie.substring(i, i + sb.length()).compareTo(Modulo11.obterDVBaseParametrizada(Texto.manterNumeros(ie.substring(0, i)), 11, '1', '0')) != 0) {
+                			return false;
+                		}
+                	}
+                } else {
+                	if (ie.substring(i,i + sb.length()).compareTo(org.alfredlibrary.utilitarios.inscricaoestadual.InscricaoEstadual.gerarDigitoVerificador(padrao, Texto.manterNumeros(ie.substring(0, i)))) != 0) {
+        				return false;
+        			}
+                }
         		i = --w;
+        		numDig++;
         	} else if (padrao.getFormato().charAt(i) == 'C') {
         		/* 
         		 * CCC = Código do município
@@ -132,7 +145,11 @@ final public class InscricaoEstadual {
         			return false;
         		}
         		i++; // Salta 1, pois o conteúdo de GG sempre tem 2 caracteres
-         	}
+         	} else if (padrao.getFormato().charAt(i) == 'P') {
+				if (padrao.getFormato().charAt(i) != ie.charAt(i)) {
+					return false;
+				}
+			}
 		}
         return true;
 	}
