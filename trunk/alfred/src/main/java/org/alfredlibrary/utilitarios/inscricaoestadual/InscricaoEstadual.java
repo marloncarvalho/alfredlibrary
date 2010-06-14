@@ -18,6 +18,7 @@ package org.alfredlibrary.utilitarios.inscricaoestadual;
 
 import org.alfredlibrary.utilitarios.digitoverificador.Modulo10;
 import org.alfredlibrary.utilitarios.digitoverificador.Modulo11;
+import org.alfredlibrary.utilitarios.digitoverificador.PesoPersonalizado;
 import org.alfredlibrary.utilitarios.digitoverificador.PesoPosicional;
 
 /**
@@ -74,7 +75,7 @@ final public class InscricaoEstadual {
 		PARA("MOD11BASE10", "15-NNNNNN-D"),
 		PARAIBA("MOD11BASE10", "NNNNNNNN-D"),
 		PARANA("MOD11BASE07", "NNNNNNNN-DD"),
-		// TODO PERNAMBUCO(),
+		PERNAMBUCO("PESOPROPRIO", "NNNNNNNNNNNNN-D"),
 		PIAUI("MOD11BASE10", "NNNNNNNN-D"),
 		RIO_DE_JANEIRO("MOD11BASE07", "NN.NNN.NN-D"),
 		RIO_GRANDE_DO_NORTE("MOD11BASE10", "NN.NNN.NNN-D"),
@@ -84,7 +85,23 @@ final public class InscricaoEstadual {
 		// Despreza-se os três primeiros dígitos no cálculo do DV
 		RORAIMA("PESOPOSICIONAL", "24NNNNNN-D"),
 		SANTA_CATARINA("MOD11BASE10", "NNN.NNN.NND"),
-		// TODO SAO_PAULO(),
+		SAO_PAULO_INDUSTRIAIS_COMERCIANTES("PESOPROPRIO|MOD11BASE11", "NNN.NNN.NND.NND"),
+		/* 
+		 * I – Industriais e comerciantes (exceto produtores rurais a eles não equiparados):
+		 *		> Formato: 12 dígitos sendo que o 9º e o 12º são dígitos verificadores
+		 *		> Exemplo: Inscrição Estadual 110.042.490.114
+		 */
+		SAO_PAULO_PRODUTOR_RURAL("PESOPROPRIO", "P-NNNNNNNN.D/NNN"),
+		/* 
+		 * II – Inscrição estadual de Produtor Rural (Não equiparado a industrial ou comerciante, cujas inscrições obedecem a Regra descrita no item anterior):
+		 *		> Formato: - P0MMMSSSSD000
+		 *		- 13 caracteres dos quais o 10º caracter contado a partir da esquerda ("D") é o dígito verificador 
+		 *		- Inicia sempre com "P" e apresenta a sequência 0MMMSSSSD000, onde:
+		 *		0MMMSSSS-algarismos que serão utilizados no cálculo do dígito verificador "D"
+		 *		"D" - Dígito verificador que consiste os 8 (oito)dígitos imediatamente anteriores
+		 *		000 - 3 (três) dígitos que compõem o nº de inscrição mas não utilizados no cálculo do dígito verificador 
+		 *		> Exemplo: Inscrição Estadual P-01100424.3/002
+		 */
 		SERGIPE("MOD11BASE10", "NNNNNNNN-D"),
 		TOCANTINS("MOD11BASE10", "NN.TT.NNNNNN-D")
 		;
@@ -217,9 +234,16 @@ final public class InscricaoEstadual {
              			atribuido = true;
              		}
          		} while (!atribuido);
+         	} else if (mascara.charAt(i) == 'P') {
+         		iniciais.append('P');
          	}
         }
-        return iniciais.toString() + gerarDigitoVerificador(padrao, iniciais.toString());
+        if (!padrao.equals(PadraoInscricaoEstadual.SAO_PAULO_INDUSTRIAIS_COMERCIANTES)) {
+        	return iniciais.toString() + gerarDigitoVerificador(padrao, iniciais.toString());
+        } else {
+        	String[] dvSplit = gerarDigitoVerificador(padrao, iniciais.toString()).split("|");
+        	return iniciais.substring(0, 8) + dvSplit[0] + iniciais.substring(8) + dvSplit[1];
+        }
     }
     
 	/**
@@ -236,6 +260,8 @@ final public class InscricaoEstadual {
 			num = num.substring(3);
 		} else if (padrao.equals(PadraoInscricaoEstadual.TOCANTINS)) {
 			num = num.substring(0, 2) + num.substring(4);
+		} else if (padrao.equals(PadraoInscricaoEstadual.SAO_PAULO_PRODUTOR_RURAL)) {
+			num = num.substring(2, 10);
 		}
 		// Obtem a sequência de métodos a serem aplicados para o cálculo dos DVs
 		String[] metodoCalculo;
@@ -351,6 +377,16 @@ final public class InscricaoEstadual {
 				}
 			} else if (metodoCalculo[indice].indexOf("PESOPOSICIONAL") == 0) {
 				dv = dv + PesoPosicional.obterDV(num);
+			} else if (metodoCalculo[indice].indexOf("PESOPROPRIO") == 0) {
+				if (padrao.equals(PadraoInscricaoEstadual.PERNAMBUCO)) {
+					dv = PesoPersonalizado.obterDV(num, "5|4|3|2|1|9|8|7|6|5|4|3|2");
+				} else if (padrao.equals(PadraoInscricaoEstadual.SAO_PAULO_PRODUTOR_RURAL)) {
+					dv = PesoPersonalizado.obterDV(num, "1|3|4|5|6|7|8|10");
+				} else if (padrao.equals(PadraoInscricaoEstadual.SAO_PAULO_INDUSTRIAIS_COMERCIANTES)) {
+					dv = PesoPersonalizado.obterDV(num.substring(0, 8), "1|3|4|5|6|7|8|10");
+					num = num.substring(0, 8) + dv + num.substring(8);
+					dv = dv + "|";
+				}
 			}
 		}
 		return dv;
