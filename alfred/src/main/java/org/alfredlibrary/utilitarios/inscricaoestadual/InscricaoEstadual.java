@@ -231,9 +231,11 @@ final public class InscricaoEstadual {
 	 */
 	public static String gerarDigitoVerificador(PadraoInscricaoEstadual padrao, String num) {
 		// Retira números que devem ser desprezados na hora de calcular o DV
-		if (!padrao.equals(PadraoInscricaoEstadual.RONDONIA)) {
+		if (padrao.equals(PadraoInscricaoEstadual.RONDONIA)) {
 			// Despreza-se os três primeiros dígitos no cálculo do DV
 			num = num.substring(3);
+		} else if (padrao.equals(PadraoInscricaoEstadual.TOCANTINS)) {
+			num = num.substring(0, 2) + num.substring(4);
 		}
 		// Obtem a sequência de métodos a serem aplicados para o cálculo dos DVs
 		String[] metodoCalculo;
