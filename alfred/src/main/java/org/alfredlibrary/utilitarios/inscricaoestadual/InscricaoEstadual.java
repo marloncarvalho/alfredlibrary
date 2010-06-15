@@ -16,6 +16,9 @@
  */
 package org.alfredlibrary.utilitarios.inscricaoestadual;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.alfredlibrary.utilitarios.digitoverificador.Modulo10;
 import org.alfredlibrary.utilitarios.digitoverificador.Modulo11;
 import org.alfredlibrary.utilitarios.digitoverificador.PesoPersonalizado;
@@ -73,9 +76,9 @@ final public class InscricaoEstadual {
 		MATO_GROSSO_DO_SUL("MOD11BASE10", "28NNNNNN-D"),
 		MINAS_GERAIS("MOD10|MOD11BASE12", "CCC.NNN.NNN/MMDD"),
 		PARA("MOD11BASE10", "15-NNNNNN-D"),
-		PARAIBA("MOD11BASE10", "NNNNNNNN-D"),
-		PARANA("MOD11BASE07", "NNNNNNNN-DD"),
-		PERNAMBUCO("PESOPROPRIO", "NNNNNNNNNNNNN-D"),
+		PARAIBA("MOD11BASE10", "NN.NNN.NNN-D"),
+		PARANA("MOD11BASE07", "NNN.NNNNN-DD"),
+		PERNAMBUCO("PESOPROPRIO", "NN.N.NNN.NNNNNNN-D"),
 		PIAUI("MOD11BASE10", "NNNNNNNN-D"),
 		RIO_DE_JANEIRO("MOD11BASE07", "NN.NNN.NN-D"),
 		RIO_GRANDE_DO_NORTE("MOD11BASE10", "NN.NNN.NNN-D"),
@@ -264,31 +267,40 @@ final public class InscricaoEstadual {
 			num = num.substring(2, 10);
 		}
 		// Obtem a sequência de métodos a serem aplicados para o cálculo dos DVs
-		String[] metodoCalculo;
+		List<String> metodoCalculo = new ArrayList<String>();
 		/* 
 		 * Para Inscrições cujo primeiro dígito da I.E. é 0,1,2,3,4,5,8 cálculo pelo módulo 10
 		 * Para Inscrições cujo primeiro dígito da I.E. é 6, 7 ou 9 cálculo pelo módulo 11
 		 */
 		if (padrao.equals(PadraoInscricaoEstadual.BAHIA)) {
 			if (num.charAt(0) == '6' || num.charAt(0) == '7' || num.charAt(0) == '9') {
-				metodoCalculo = new String[] {"MOD11BASE10"};
+				metodoCalculo.add("MOD11BASE10");
 			} else {
-				metodoCalculo = new String[] {"MOD11BASE10"};
+				metodoCalculo.add("MOD10BASE10");
 			}
 		} else {
-			metodoCalculo = padrao.calculoDv.split("|");
+			StringBuilder sbSplitter = new StringBuilder();
+			for (int splitter = 0; splitter < padrao.getCalculoDv().length(); splitter++) {
+				if (splitter == padrao.getCalculoDv().length() - 1 ||
+						padrao.getCalculoDv().charAt(splitter) == '|') {
+					metodoCalculo.add(sbSplitter.toString());
+					sbSplitter = new StringBuilder();
+				} else {
+					sbSplitter.append(padrao.getCalculoDv().charAt(splitter));
+				}
+			}
 		}
 		/* Permite a inclusão de N DVs ao final, sem precisar repetir o método de cálculo,
 		 * pela inclusão de parâmetro de quantidade de DVs. A necessidade atual indica
 		 * que apenas a repetição ao final resolve, pois há apenas multiplicidade no
 		 * número de DV ou nos métodos de cálculo (um para cada DV).
 		 */
-		int[] qtdDigitos = new int[metodoCalculo.length];
+		int[] qtdDigitos = new int[metodoCalculo.size()];
 		int posMetodo = 0;
 		String mascara = padrao.formato;
 		for (int i = 0; i < mascara.length(); i++) {
         	if (mascara.charAt(i) == 'D') {
-        		if (metodoCalculo.length < i) {
+        		if (metodoCalculo.size() < i) {
         			qtdDigitos[posMetodo]++;
         		} else {
         			qtdDigitos[i] = 1;
@@ -300,7 +312,7 @@ final public class InscricaoEstadual {
 		char subZero = '0';
 		char subUm = '1';
 		int constante = 0;
-		if (!padrao.equals(PadraoInscricaoEstadual.AMAPA)) {
+		if (padrao.equals(PadraoInscricaoEstadual.AMAPA)) {
 			/* Define-se dois valores, p e d, de acordo com as seguintes faixas de Inscrição Estadual:
 			 *		De 03000001 a 03017000 => p = 5 e d = 0
 			 *		De 03017001 a 03019022 => p = 9 e d = 1
@@ -323,12 +335,12 @@ final public class InscricaoEstadual {
 		}
 		// Calcula os DV de acordo com o método e a quantidade de DVs para cada um deles
 		String dv = "";
-		for (int indice = 0; indice < metodoCalculo.length; indice++) {
+		for (int indice = 0; indice < metodoCalculo.size(); indice++) {
 			int modulo = 0, base = 0;
-			if (metodoCalculo[indice].indexOf("MOD") == 0) {
-				modulo = Integer.valueOf(metodoCalculo[indice].substring(3,5)); 
-				if (metodoCalculo[indice].indexOf("BASE") != -1) {
-					base = Integer.valueOf(metodoCalculo[indice].substring(metodoCalculo[indice].indexOf("BASE") + 4,5));
+			if (metodoCalculo.get(indice).indexOf("MOD") == 0) {
+				modulo = Integer.valueOf(metodoCalculo.get(indice).substring(3,5)); 
+				if (metodoCalculo.get(indice).indexOf("BASE") != -1) {
+					base = Integer.valueOf(metodoCalculo.get(indice).substring(metodoCalculo.get(indice).indexOf("BASE") + 4,metodoCalculo.get(indice).indexOf("BASE") + 5));
 				} else {
 					base = 0;
 				}
@@ -375,9 +387,9 @@ final public class InscricaoEstadual {
 						}
 					}
 				}
-			} else if (metodoCalculo[indice].indexOf("PESOPOSICIONAL") == 0) {
+			} else if (metodoCalculo.get(indice).indexOf("PESOPOSICIONAL") == 0) {
 				dv = dv + PesoPosicional.obterDV(num);
-			} else if (metodoCalculo[indice].indexOf("PESOPROPRIO") == 0) {
+			} else if (metodoCalculo.get(indice).indexOf("PESOPROPRIO") == 0) {
 				if (padrao.equals(PadraoInscricaoEstadual.PERNAMBUCO)) {
 					dv = PesoPersonalizado.obterDV(num, "5|4|3|2|1|9|8|7|6|5|4|3|2");
 				} else if (padrao.equals(PadraoInscricaoEstadual.SAO_PAULO_PRODUTOR_RURAL)) {
