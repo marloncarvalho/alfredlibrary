@@ -63,22 +63,25 @@ final public class InscricaoEstadual {
         		/* X = Tipo de empresa (0-Normal, 3-Produtor Rural, 5-Substituta,
         		 *		7- Micro-Empresa Ambulante, 8-Micro-Empresa)
         		 */
-				if (padrao.getFormato().charAt(i) != '0'
-					&& padrao.getFormato().charAt(i) != '3'
-					&& padrao.getFormato().charAt(i) != '5'
-					&& padrao.getFormato().charAt(i) != '7'
-					&& padrao.getFormato().charAt(i) != '8') {
-					if (padrao.getFormato().charAt(i) != ie.charAt(i)) {
-						return false;
-					}
+				if (ie.charAt(i) != '0'	&& ie.charAt(i) != '3'
+					&& ie.charAt(i) != '5' && ie.charAt(i) != '7'
+					&& ie.charAt(i) != '8') {
+					return false;
 				}
         	} else if (padrao.getFormato().charAt(i) == 'D') {
         		StringBuilder sb = new StringBuilder();
         		int w = i;
+        		boolean exitCondition = false;
         		do {
         			sb.append(ie.charAt(w));
-        			w++;
-        		} while (padrao.getFormato().charAt(w) == 'D');
+        			try {
+        				if (padrao.getFormato().charAt(++w) != 'D') {
+        					exitCondition = true;
+        				}
+        			} catch (StringIndexOutOfBoundsException sioobe) {
+        				exitCondition = true;
+        			}
+        		} while (!exitCondition);
         		if (padrao.equals(PadraoInscricaoEstadual.SAO_PAULO_INDUSTRIAIS_COMERCIANTES)) {
         			if (numDig == 1) {
                 		if (ie.substring(i, i + sb.length()).compareTo(PesoPersonalizado.obterDV(Texto.manterNumeros(ie.substring(0, i)), "1|3|4|5|6|7|8|10")) != 0) {
@@ -147,6 +150,10 @@ final public class InscricaoEstadual {
         		i++; // Salta 1, pois o conteúdo de GG sempre tem 2 caracteres
          	} else if (padrao.getFormato().charAt(i) == 'P') {
 				if (padrao.getFormato().charAt(i) != ie.charAt(i)) {
+					return false;
+				}
+			} else if (padrao.getFormato().charAt(i) == 'N') {
+				if (ie.charAt(i) < '0' || ie.charAt(i) > '9') {
 					return false;
 				}
 			}

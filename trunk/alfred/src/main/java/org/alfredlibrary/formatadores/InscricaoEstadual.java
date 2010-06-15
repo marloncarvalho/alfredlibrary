@@ -39,7 +39,7 @@ final public class InscricaoEstadual {
 	 * @return Inscrição Estadual formatada.
 	 */
 	public static String formatar(PadraoInscricaoEstadual padrao, String ie) {
-		String ieSoNumeros = limpar(ie);
+		String ieSoNumeros = limpar(padrao, ie);
 		// Verificar tamanho da Inscrição Estadual.
 		if (ieSoNumeros.length() != Texto.removerPontuacao(padrao.getFormato()).length())
 			throw new AlfredException("Inscrição Estadual inválida. Tamanho de uma Inscrição Estadual válida para a UF informada é " +
@@ -51,6 +51,7 @@ final public class InscricaoEstadual {
 			if (padrao.getFormato().charAt(indicePadrao) == 'P') {
 				sb.append(padrao.getFormato().charAt(indicePadrao));
 				indicePadrao++;
+				i++;
 			}
 			if (padrao.getFormato().charAt(indicePadrao) == '.'
 				|| padrao.getFormato().charAt(indicePadrao) == '-'
@@ -67,11 +68,12 @@ final public class InscricaoEstadual {
 	/**
 	 * Limpar a Inscrição Estadual, mantendo somente os números.
 	 * Não verifica se é uma Inscrição Estaudal válida.
+	 * @param padrao 
 	 * 
 	 * @param ie Inscrição Estadual que deve ser limpa.
 	 * @return Inscrição Estadual apenas com números.
 	 */
-	public static String limpar(String ie) {
+	public static String limpar(PadraoInscricaoEstadual padrao, String ie) {
 		if (ie == null)
 			throw new AlfredException("A Inscrição Estadual informada é nula.");
 		if ("".equals(ie))
@@ -80,6 +82,9 @@ final public class InscricaoEstadual {
 		StringBuilder sb = new StringBuilder();
 		for (int indice = 0; indice < chars.length; indice++) {
 			if (Numeros.isInteger(String.valueOf(chars[indice]))) {
+				sb.append(chars[indice]);
+			} else if (padrao.equals(PadraoInscricaoEstadual.SAO_PAULO_PRODUTOR_RURAL)
+					&& chars[indice] == 'P') {
 				sb.append(chars[indice]);
 			}
 		}
