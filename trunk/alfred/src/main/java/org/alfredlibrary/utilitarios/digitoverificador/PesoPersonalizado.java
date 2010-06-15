@@ -16,6 +16,9 @@
  */
 package org.alfredlibrary.utilitarios.digitoverificador;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.alfredlibrary.AlfredException;
 import org.alfredlibrary.utilitarios.texto.Texto;
 
@@ -36,19 +39,30 @@ public final class PesoPersonalizado {
 	 * @return DV gerado.
 	 */
 	public static String obterDV (String fonte, String peso) {
-		String[] pesoSplit = peso.split("|");
+		List<String> pesoSplit = new ArrayList<String>();
+		StringBuilder sbSplitter = new StringBuilder();
+		for (int splitter = 0; splitter < peso.length(); splitter++) {
+			if (splitter == peso.length() - 1) {
+				sbSplitter.append(peso.charAt(splitter));
+				pesoSplit.add(sbSplitter.toString());
+				sbSplitter = new StringBuilder();
+			} else if (peso.charAt(splitter) == '|') {
+				pesoSplit.add(sbSplitter.toString());
+				sbSplitter = new StringBuilder();
+			} else {
+				sbSplitter.append(peso.charAt(splitter));
+			}
+		}
 		validar(fonte, pesoSplit);
 		int dv = 0;
 		for (int i = 0; i < fonte.length(); i++) {
-			dv += Integer.valueOf(fonte.charAt(i)) * Integer.parseInt(pesoSplit[i]);
+			dv += Integer.valueOf(fonte.charAt(i)) * Integer.parseInt(pesoSplit.get(i));
 		}
 		dv = dv % 11;
-		if (dv > 1) {
-			return String.valueOf(11 - dv);
-		} else if (dv == 1) {
-			return "0";
-		}
-		return "1";
+		if (dv < 10) {
+			return String.valueOf(dv);
+		} 
+		return String.valueOf(dv - 10);
 	}
 	
 	/**
@@ -57,18 +71,15 @@ public final class PesoPersonalizado {
 	 * @param fonte Texto a ser validado
 	 * @param peso Peso a ser validado
 	 */
-	private static void validar(String fonte, String[] peso) {
-		if (Texto.manterNumeros(fonte).length() != fonte.length()) {
-			throw new AlfredException("Texto informado contém caracteres não numéricos!");
-		}
-		for (int i = 0; i < peso.length; i++) {
+	private static void validar(String fonte, List<String> peso) {
+		for (int i = 0; i < peso.size(); i++) {
 			try {
-				Integer.valueOf(peso[i]);
+				Integer.valueOf(peso.get(i));
 			} catch (Exception e) {
 				throw new AlfredException("Peso informado contém caracteres não numéricos!");
 			}
 		}
-		if (Texto.manterNumeros(fonte).length() != peso.length) {
+		if (Texto.manterNumeros(fonte).length() != peso.size()) {
 			throw new AlfredException("Texto e peso possuem tamanhos diferentes!");
 		}
 	}

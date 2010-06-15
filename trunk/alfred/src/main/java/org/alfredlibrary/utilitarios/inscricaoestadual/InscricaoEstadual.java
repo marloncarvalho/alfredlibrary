@@ -23,6 +23,7 @@ import org.alfredlibrary.utilitarios.digitoverificador.Modulo10;
 import org.alfredlibrary.utilitarios.digitoverificador.Modulo11;
 import org.alfredlibrary.utilitarios.digitoverificador.PesoPersonalizado;
 import org.alfredlibrary.utilitarios.digitoverificador.PesoPosicional;
+import org.alfredlibrary.utilitarios.texto.Texto;
 
 /**
  * Utilitários de Inscrição Estadual.
@@ -77,10 +78,10 @@ final public class InscricaoEstadual {
 		MINAS_GERAIS("MOD10|MOD11BASE12", "CCC.NNN.NNN/MMDD"),
 		PARA("MOD11BASE10", "15-NNNNNN-D"),
 		PARAIBA("MOD11BASE10", "NN.NNN.NNN-D"),
-		PARANA("MOD11BASE07", "NNN.NNNNN-DD"),
+		PARANA("MOD11BASE08", "NNN.NNNNN-DD"),
 		PERNAMBUCO("PESOPROPRIO", "NN.N.NNN.NNNNNNN-D"),
 		PIAUI("MOD11BASE10", "NNNNNNNN-D"),
-		RIO_DE_JANEIRO("MOD11BASE07", "NN.NNN.NN-D"),
+		RIO_DE_JANEIRO("MOD11BASE08", "NN.NNN.NN-D"),
 		RIO_GRANDE_DO_NORTE("MOD11BASE10", "NN.NNN.NNN-D"),
 		RIO_GRANDE_DO_SUL("MOD11BASE10", "CCC/NNNNNND"),
 		// Código de município varia de 001 a 467
@@ -218,7 +219,7 @@ final public class InscricaoEstadual {
             			atribuido = true;
             		}
         		} while (!atribuido);
-        	} else if (mascara.charAt(i) == 'G') {
+        	} else if (mascara.charAt(i) == 'T') {
          		/* TT = 01 = Produtor Rural ( não possui CGC),
          		 *		02 = Industria e Comércio
          		 *		03 = Empresas Rudimentares
@@ -227,13 +228,13 @@ final public class InscricaoEstadual {
          		i++; // Salta 1, pois o conteúdo de GG sempre tem 2 caracteres
          		do {
          			numero = Integer.valueOf((int) (Math.random() * 100));
-             		String codigoGoias = numero.toString();
-             		for (int iTexto = 0; iTexto < 2 - codigoGoias.length(); iTexto++) {
-             			codigoGoias = "0" + codigoGoias; 
+             		String codigoTocantins = numero.toString();
+             		for (int iTexto = 0; iTexto < 2 - codigoTocantins.length(); iTexto++) {
+             			codigoTocantins = "0" + codigoTocantins; 
              		}
-             		if (codigoGoias.equals("01") || codigoGoias.equals("02")
-             				|| codigoGoias.equals("03") || codigoGoias.equals("99")) {
-             			iniciais.append(codigoGoias);
+             		if (codigoTocantins.equals("01") || codigoTocantins.equals("02")
+             				|| codigoTocantins.equals("03") || codigoTocantins.equals("99")) {
+             			iniciais.append(codigoTocantins);
              			atribuido = true;
              		}
          		} while (!atribuido);
@@ -241,11 +242,14 @@ final public class InscricaoEstadual {
          		iniciais.append('P');
          	}
         }
-        if (!padrao.equals(PadraoInscricaoEstadual.SAO_PAULO_INDUSTRIAIS_COMERCIANTES)) {
-        	return iniciais.toString() + gerarDigitoVerificador(padrao, iniciais.toString());
-        } else {
+        if (padrao.equals(PadraoInscricaoEstadual.SAO_PAULO_INDUSTRIAIS_COMERCIANTES)) {
         	String[] dvSplit = gerarDigitoVerificador(padrao, iniciais.toString()).split("|");
         	return iniciais.substring(0, 8) + dvSplit[0] + iniciais.substring(8) + dvSplit[1];
+        } else if (padrao.equals(PadraoInscricaoEstadual.SAO_PAULO_PRODUTOR_RURAL)) {
+        	return iniciais.toString().substring(0,9) + gerarDigitoVerificador(padrao, Texto.manterNumeros(iniciais.toString()))
+        			+ iniciais.toString().substring(9,12);
+        } else {
+        	return iniciais.toString() + gerarDigitoVerificador(padrao, iniciais.toString());
         }
     }
     
@@ -264,7 +268,7 @@ final public class InscricaoEstadual {
 		} else if (padrao.equals(PadraoInscricaoEstadual.TOCANTINS)) {
 			num = num.substring(0, 2) + num.substring(4);
 		} else if (padrao.equals(PadraoInscricaoEstadual.SAO_PAULO_PRODUTOR_RURAL)) {
-			num = num.substring(2, 10);
+			num = num.substring(0, 8);
 		}
 		// Obtem a sequência de métodos a serem aplicados para o cálculo dos DVs
 		List<String> metodoCalculo = new ArrayList<String>();
@@ -281,8 +285,11 @@ final public class InscricaoEstadual {
 		} else {
 			StringBuilder sbSplitter = new StringBuilder();
 			for (int splitter = 0; splitter < padrao.getCalculoDv().length(); splitter++) {
-				if (splitter == padrao.getCalculoDv().length() - 1 ||
-						padrao.getCalculoDv().charAt(splitter) == '|') {
+				if (splitter == padrao.getCalculoDv().length() - 1) {
+					sbSplitter.append(padrao.getCalculoDv().charAt(splitter));
+					metodoCalculo.add(sbSplitter.toString());
+					sbSplitter = new StringBuilder();
+				} else if (padrao.getCalculoDv().charAt(splitter) == '|') {
 					metodoCalculo.add(sbSplitter.toString());
 					sbSplitter = new StringBuilder();
 				} else {
@@ -311,6 +318,22 @@ final public class InscricaoEstadual {
 		// Cria uma constante para calcular o DV e registra as variáveis de substituição
 		char subZero = '0';
 		char subUm = '1';
+		if (padrao.equals(PadraoInscricaoEstadual.PARANA)
+				|| padrao.equals(PadraoInscricaoEstadual.RIO_GRANDE_DO_SUL)) {
+			subUm = '0';
+		} else if (padrao.equals(PadraoInscricaoEstadual.GOIAS)) {
+			/* 
+			 * Quando o resto da divisão for zero (0), o dígito verificador será zero (0);
+			 * Quando o resto da divisão for um (1), e a inscrição for maior ou igual a 10103105 e menor ou igual a 10119997, o dígito verificador será um (1);
+			 * Quando o resto da divisão for um (1), e a inscrição estiver fora do intervalo citado acima, o dígito verificador será zero (0);
+			 */
+			if (Long.valueOf(num.substring(0,8)).compareTo(Long.valueOf("10103105")) >= 0
+					&& Long.valueOf(num.substring(0,8)).compareTo(Long.valueOf("10119997")) <= 0) {
+				subUm = 1;
+			} else {
+				subUm = 0;
+			}
+		}
 		int constante = 0;
 		if (padrao.equals(PadraoInscricaoEstadual.AMAPA)) {
 			/* Define-se dois valores, p e d, de acordo com as seguintes faixas de Inscrição Estadual:
@@ -340,7 +363,7 @@ final public class InscricaoEstadual {
 			if (metodoCalculo.get(indice).indexOf("MOD") == 0) {
 				modulo = Integer.valueOf(metodoCalculo.get(indice).substring(3,5)); 
 				if (metodoCalculo.get(indice).indexOf("BASE") != -1) {
-					base = Integer.valueOf(metodoCalculo.get(indice).substring(metodoCalculo.get(indice).indexOf("BASE") + 4,metodoCalculo.get(indice).indexOf("BASE") + 5));
+					base = Integer.valueOf(metodoCalculo.get(indice).substring(metodoCalculo.get(indice).indexOf("BASE") + 4,metodoCalculo.get(indice).indexOf("BASE") + 6));
 				} else {
 					base = 0;
 				}
@@ -348,18 +371,6 @@ final public class InscricaoEstadual {
 					if (padrao.equals(PadraoInscricaoEstadual.AMAPA)) {
 						dv = dv + Modulo11.obterDVBaseParametrizadaComConstante(num + dv, base, subZero, subUm, constante);
 					} else if (padrao.equals(PadraoInscricaoEstadual.GOIAS)) {
-						/* 
-						 * Quando o resto da divisão for zero (0), o dígito verificador será zero (0);
-						 * Quando o resto da divisão for um (1), e a inscrição for maior ou igual a 10103105 e menor ou igual a 10119997, o dígito verificador será um (1);
-						 * Quando o resto da divisão for um (1), e a inscrição estiver fora do intervalo citado acima, o dígito verificador será zero (0);
-						 */
-						subZero = 0;
-						if (Long.valueOf(num.substring(0,8)).compareTo(Long.valueOf("10103105")) >= 0
-								&& Long.valueOf(num.substring(0,8)).compareTo(Long.valueOf("10119997")) <= 0) {
-							subUm = 1;
-						} else {
-							subUm = 0;
-						}
 						if (qtdDigitos[indice] == 1) {
 							dv = dv + Modulo11.obterDVBaseParametrizada(num + dv, base, subZero, subUm);
 						} else if (qtdDigitos[indice] > 1) {
@@ -391,7 +402,7 @@ final public class InscricaoEstadual {
 				dv = dv + PesoPosicional.obterDV(num);
 			} else if (metodoCalculo.get(indice).indexOf("PESOPROPRIO") == 0) {
 				if (padrao.equals(PadraoInscricaoEstadual.PERNAMBUCO)) {
-					dv = PesoPersonalizado.obterDV(num, "5|4|3|2|1|9|8|7|6|5|4|3|2");
+					dv = PesoPersonalizado.obterDV(Texto.manterNumeros(num), "5|4|3|2|1|9|8|7|6|5|4|3|2");
 				} else if (padrao.equals(PadraoInscricaoEstadual.SAO_PAULO_PRODUTOR_RURAL)) {
 					dv = PesoPersonalizado.obterDV(num, "1|3|4|5|6|7|8|10");
 				} else if (padrao.equals(PadraoInscricaoEstadual.SAO_PAULO_INDUSTRIAIS_COMERCIANTES)) {
