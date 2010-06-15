@@ -41,8 +41,15 @@ final public class InscricaoEstadual {
 	 */
 	public static boolean isValido(PadraoInscricaoEstadual padrao, String ie) {
 		// Se não estiver formatado, formatar
-		if (Texto.manterNumeros(ie).length() == ie.length()) {
-			ie = org.alfredlibrary.formatadores.InscricaoEstadual.formatar(padrao, ie);
+		if (padrao.equals(PadraoInscricaoEstadual.SAO_PAULO_PRODUTOR_RURAL)) {
+			// Nesse caso, há um 'P' no início de IE
+			if (Texto.manterNumeros(ie).length() == ie.length() - 1) {
+				ie = org.alfredlibrary.formatadores.InscricaoEstadual.formatar(padrao, ie);
+			}
+		} else {
+			if (Texto.manterNumeros(ie).length() == ie.length()) {
+				ie = org.alfredlibrary.formatadores.InscricaoEstadual.formatar(padrao, ie);
+			}
 		}
         if (ie.length() != padrao.getFormato().length())
             return false;
