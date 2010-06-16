@@ -169,24 +169,18 @@ final public class InscricaoEstadual {
             			if (numero.compareTo(1) >= 0 && numero.compareTo(467) <= 0) {
             				atribuido = true;
             			} else {
-            				atribuido = true;
-            			}
-            			if (atribuido) {
-            				String codigoMunicipio = numero.toString();
-            				for (int iTexto = 0; iTexto < 3 - codigoMunicipio.length(); iTexto++) {
-            					codigoMunicipio = "0" + codigoMunicipio; 
-            				}
-            				iniciais.append(codigoMunicipio);
-            				atribuido = true;
+            				atribuido = false;
             			}
             		} else {
-            			String codigoMunicipio = numero.toString();
+            			atribuido = true;
+            		}
+            		if (atribuido) {
+        				String codigoMunicipio = numero.toString();
         				for (int iTexto = 0; iTexto < 3 - codigoMunicipio.length(); iTexto++) {
         					codigoMunicipio = "0" + codigoMunicipio; 
         				}
         				iniciais.append(codigoMunicipio);
-            			atribuido = true;
-            		}
+        			}
         		} while (!atribuido);
         	} else if (mascara.charAt(i) == 'M') {
         		/* 

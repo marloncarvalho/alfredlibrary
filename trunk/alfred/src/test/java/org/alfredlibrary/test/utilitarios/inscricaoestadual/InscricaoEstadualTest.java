@@ -84,7 +84,6 @@ public class InscricaoEstadualTest {
 		Assert.assertTrue(org.alfredlibrary.validadores.InscricaoEstadual.isValido(PadraoInscricaoEstadual.PIAUI, InscricaoEstadual.gerar(PadraoInscricaoEstadual.PIAUI)));
 		Assert.assertTrue(org.alfredlibrary.validadores.InscricaoEstadual.isValido(PadraoInscricaoEstadual.RIO_DE_JANEIRO, InscricaoEstadual.gerar(PadraoInscricaoEstadual.RIO_DE_JANEIRO)));
 		Assert.assertTrue(org.alfredlibrary.validadores.InscricaoEstadual.isValido(PadraoInscricaoEstadual.RIO_GRANDE_DO_NORTE, InscricaoEstadual.gerar(PadraoInscricaoEstadual.RIO_GRANDE_DO_NORTE)));
-		// TODO Verificar porque às vezes esse teste com Rio Grande do Sul não funciona
 		Assert.assertTrue(org.alfredlibrary.validadores.InscricaoEstadual.isValido(PadraoInscricaoEstadual.RIO_GRANDE_DO_SUL, InscricaoEstadual.gerar(PadraoInscricaoEstadual.RIO_GRANDE_DO_SUL)));
 		Assert.assertTrue(org.alfredlibrary.validadores.InscricaoEstadual.isValido(PadraoInscricaoEstadual.RONDONIA, InscricaoEstadual.gerar(PadraoInscricaoEstadual.RONDONIA)));
 		Assert.assertTrue(org.alfredlibrary.validadores.InscricaoEstadual.isValido(PadraoInscricaoEstadual.RORAIMA, InscricaoEstadual.gerar(PadraoInscricaoEstadual.RORAIMA)));

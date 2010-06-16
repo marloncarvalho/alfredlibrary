@@ -41,10 +41,12 @@ final public class InscricaoEstadual {
 	public static String formatar(PadraoInscricaoEstadual padrao, String ie) {
 		String ieSoNumeros = limpar(padrao, ie);
 		// Verificar tamanho da Inscrição Estadual.
-		if (ieSoNumeros.length() != Texto.removerPontuacao(padrao.getFormato()).length())
+		if (ieSoNumeros.length() != Texto.removerPontuacao(padrao.getFormato()).length()) {
+			System.out.println(padrao.getFormato() + " - " + ieSoNumeros.toString());
 			throw new AlfredException("Inscrição Estadual inválida. Tamanho de uma Inscrição Estadual válida para a UF informada é " +
 					Texto.removerPontuacao(padrao.getFormato()).length() +
 					". Esta Inscrição Estadual possui " + ieSoNumeros.length() + " números.");
+		}
 		StringBuilder sb = new StringBuilder();
 		int indicePadrao = 0;
 		for (int i = 0; i < ieSoNumeros.length(); i++) {
