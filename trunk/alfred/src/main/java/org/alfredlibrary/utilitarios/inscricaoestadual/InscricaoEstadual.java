@@ -89,7 +89,7 @@ final public class InscricaoEstadual {
 		// Despreza-se os três primeiros dígitos no cálculo do DV
 		RORAIMA("PESOPOSICIONAL", "24NNNNNN-D"),
 		SANTA_CATARINA("MOD11BASE10", "NNN.NNN.NND"),
-		SAO_PAULO_INDUSTRIAIS_COMERCIANTES("PESOPROPRIO|MOD11BASE11", "NNN.NNN.NND.NND"),
+		SAO_PAULO_INDUSTRIAIS_COMERCIANTES("PESOPROPRIO|RESTO11SP", "NNN.NNN.NND.NND"),
 		/* 
 		 * I – Industriais e comerciantes (exceto produtores rurais a eles não equiparados):
 		 *		> Formato: 12 dígitos sendo que o 9º e o 12º são dígitos verificadores
@@ -307,7 +307,7 @@ final public class InscricaoEstadual {
 		String mascara = padrao.formato;
 		for (int i = 0; i < mascara.length(); i++) {
         	if (mascara.charAt(i) == 'D') {
-        		if (metodoCalculo.size() < i) {
+        		if (metodoCalculo.size() - 1 < i) {
         			qtdDigitos[posMetodo]++;
         		} else {
         			qtdDigitos[i] = 1;
@@ -315,11 +315,18 @@ final public class InscricaoEstadual {
         		}
         	}
         }
+		if (padrao.equals(PadraoInscricaoEstadual.MINAS_GERAIS)) {
+			// Registra a quantidade de dígitos de cada método - 1+1 no caso de MG 
+			qtdDigitos[0] = 1;
+			qtdDigitos[1] = 1;
+		}
 		// Cria uma constante para calcular o DV e registra as variáveis de substituição
 		char subZero = '0';
 		char subUm = '1';
+		int constante = 0;
 		if (padrao.equals(PadraoInscricaoEstadual.PARANA)
-				|| padrao.equals(PadraoInscricaoEstadual.RIO_GRANDE_DO_SUL)) {
+				|| padrao.equals(PadraoInscricaoEstadual.RIO_GRANDE_DO_SUL)
+				|| padrao.equals(PadraoInscricaoEstadual.DISTRITO_FEDERAL)) {
 			subUm = '0';
 		} else if (padrao.equals(PadraoInscricaoEstadual.GOIAS)) {
 			/* 
@@ -329,13 +336,11 @@ final public class InscricaoEstadual {
 			 */
 			if (Long.valueOf(num.substring(0,8)).compareTo(Long.valueOf("10103105")) >= 0
 					&& Long.valueOf(num.substring(0,8)).compareTo(Long.valueOf("10119997")) <= 0) {
-				subUm = 1;
+				subUm = '1';
 			} else {
-				subUm = 0;
+				subUm = '0';
 			}
-		}
-		int constante = 0;
-		if (padrao.equals(PadraoInscricaoEstadual.AMAPA)) {
+		} else if (padrao.equals(PadraoInscricaoEstadual.AMAPA)) {
 			/* Define-se dois valores, p e d, de acordo com as seguintes faixas de Inscrição Estadual:
 			 *		De 03000001 a 03017000 => p = 5 e d = 0
 			 *		De 03017001 a 03019022 => p = 9 e d = 1
@@ -384,17 +389,22 @@ final public class InscricaoEstadual {
 						}
 					}
 				} else if (modulo == 10) {
+					String numMod10 = new String(num);
+					if (padrao.equals(PadraoInscricaoEstadual.MINAS_GERAIS)) {
+						// Inclui um "0" após o código do município para calcular o primeiro DV
+						numMod10 = Texto.manterNumeros(numMod10).substring(0,3) + "0" + Texto.manterNumeros(numMod10).substring(3,11);
+					}
 					if (base == 0) {
 						if (qtdDigitos[indice] == 1) {
-							dv = dv + Modulo10.obterDV(num + dv);
+							dv = dv + Modulo10.obterDV(numMod10 + dv);
 						} else if (qtdDigitos[indice] > 1) {
-							dv = dv + Modulo10.obterDV(num + dv, qtdDigitos[indice]);
+							dv = dv + Modulo10.obterDV(numMod10 + dv, qtdDigitos[indice]);
 						}
 					} else {
 						if (qtdDigitos[indice] == 1) {
-							dv = dv + Modulo10.obterDVBaseParametrizada(num + dv, base, subZero, subUm);
+							dv = dv + Modulo10.obterDVBaseParametrizada(numMod10 + dv, base, subZero, subUm);
 						} else if (qtdDigitos[indice] > 1) {
-							dv = dv + Modulo10.obterDVBaseParametrizada(num + dv, base, subZero, subUm, qtdDigitos[indice]);
+							dv = dv + Modulo10.obterDVBaseParametrizada(numMod10 + dv, base, subZero, subUm, qtdDigitos[indice]);
 						}
 					}
 				}
@@ -402,14 +412,16 @@ final public class InscricaoEstadual {
 				dv = dv + PesoPosicional.obterDV(num);
 			} else if (metodoCalculo.get(indice).indexOf("PESOPROPRIO") == 0) {
 				if (padrao.equals(PadraoInscricaoEstadual.PERNAMBUCO)) {
-					dv = PesoPersonalizado.obterDV(Texto.manterNumeros(num), "5|4|3|2|1|9|8|7|6|5|4|3|2");
+					dv = dv + PesoPersonalizado.obterDV(Texto.manterNumeros(num), "5|4|3|2|1|9|8|7|6|5|4|3|2", "mod11");
 				} else if (padrao.equals(PadraoInscricaoEstadual.SAO_PAULO_PRODUTOR_RURAL)) {
-					dv = PesoPersonalizado.obterDV(num, "1|3|4|5|6|7|8|10");
+					dv = dv + PesoPersonalizado.obterDV(num, "1|3|4|5|6|7|8|10", "caracterDireito");
 				} else if (padrao.equals(PadraoInscricaoEstadual.SAO_PAULO_INDUSTRIAIS_COMERCIANTES)) {
-					dv = PesoPersonalizado.obterDV(num.substring(0, 8), "1|3|4|5|6|7|8|10");
+					dv = dv + PesoPersonalizado.obterDV(num.substring(0, 8), "1|3|4|5|6|7|8|10", "caracterDireito");
 					num = num.substring(0, 8) + dv + num.substring(8);
 					dv = dv + "|";
 				}
+			} else if (metodoCalculo.get(indice).indexOf("RESTO11SP") == 0) {
+				dv = dv + Modulo11.obterDVResto11BaseParametrizada(num, 11, '0');
 			}
 		}
 		return dv;

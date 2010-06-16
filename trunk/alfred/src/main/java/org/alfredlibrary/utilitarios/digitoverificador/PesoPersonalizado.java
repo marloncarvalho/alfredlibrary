@@ -38,7 +38,7 @@ public final class PesoPersonalizado {
 	 * @param peso Sequência de pesos para cálculo do DV
 	 * @return DV gerado.
 	 */
-	public static String obterDV (String fonte, String peso) {
+	public static String obterDV (String fonte, String peso, String forma) {
 		List<String> pesoSplit = new ArrayList<String>();
 		StringBuilder sbSplitter = new StringBuilder();
 		for (int splitter = 0; splitter < peso.length(); splitter++) {
@@ -56,13 +56,21 @@ public final class PesoPersonalizado {
 		validar(fonte, pesoSplit);
 		int dv = 0;
 		for (int i = 0; i < fonte.length(); i++) {
-			dv += Integer.valueOf(fonte.charAt(i)) * Integer.parseInt(pesoSplit.get(i));
+			dv += Integer.valueOf(String.valueOf(fonte.charAt(i))) * Integer.parseInt(String.valueOf(pesoSplit.get(i)));
 		}
 		dv = dv % 11;
-		if (dv < 10) {
-			return String.valueOf(dv);
-		} 
-		return String.valueOf(dv - 10);
+		if (forma.equals("caracterDireito")) {
+			if (dv < 10) {
+				return String.valueOf(dv);
+			} 
+			return String.valueOf(dv - 10);
+		} else if (forma.equals("mod11")) {
+			dv = 11 - dv;
+			if (dv > 9) dv -= 10;
+			return String.valueOf(dv);			
+		} else {
+			return null;
+		}
 	}
 	
 	/**
@@ -83,4 +91,5 @@ public final class PesoPersonalizado {
 			throw new AlfredException("Texto e peso possuem tamanhos diferentes!");
 		}
 	}
+
 }
