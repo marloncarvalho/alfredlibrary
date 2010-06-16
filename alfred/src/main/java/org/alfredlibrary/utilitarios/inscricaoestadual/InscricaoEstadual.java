@@ -243,8 +243,22 @@ final public class InscricaoEstadual {
          	}
         }
         if (padrao.equals(PadraoInscricaoEstadual.SAO_PAULO_INDUSTRIAIS_COMERCIANTES)) {
-        	String[] dvSplit = gerarDigitoVerificador(padrao, iniciais.toString()).split("|");
-        	return iniciais.substring(0, 8) + dvSplit[0] + iniciais.substring(8) + dvSplit[1];
+        	List <String> dvSplit = new ArrayList<String>();
+        	String dvGerado = gerarDigitoVerificador(padrao, iniciais.toString());
+        	StringBuilder sbSplitter = new StringBuilder();
+			for (int splitter = 0; splitter < dvGerado.length(); splitter++) {
+				if (splitter == dvGerado.length() - 1) {
+					sbSplitter.append(dvGerado.charAt(splitter));
+					dvSplit.add(sbSplitter.toString());
+					sbSplitter = new StringBuilder();
+				} else if (dvGerado.charAt(splitter) == '|') {
+					dvSplit.add(sbSplitter.toString());
+					sbSplitter = new StringBuilder();
+				} else {
+					sbSplitter.append(dvGerado.charAt(splitter));
+				}
+			}
+        	return iniciais.substring(0, 8) + dvSplit.get(0) + iniciais.substring(8) + dvSplit.get(1);
         } else if (padrao.equals(PadraoInscricaoEstadual.SAO_PAULO_PRODUTOR_RURAL)) {
         	return iniciais.toString().substring(0,9) + gerarDigitoVerificador(padrao, Texto.manterNumeros(iniciais.toString()))
         			+ iniciais.toString().substring(9,12);
