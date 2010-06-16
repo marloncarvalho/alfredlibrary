@@ -18,6 +18,7 @@ package org.alfredlibrary.test.validadores;
 
 import junit.framework.Assert;
 
+import org.alfredlibrary.AlfredException;
 import org.alfredlibrary.utilitarios.inscricaoestadual.InscricaoEstadual.PadraoInscricaoEstadual;
 import org.alfredlibrary.validadores.InscricaoEstadual;
 import org.junit.Test;
@@ -51,10 +52,9 @@ public class InscricaoEstadualTest {
 		if ( !InscricaoEstadual.isValido(PadraoInscricaoEstadual.CEARA, "06000001-5") ) {
 			Assert.fail();
 		}
-		/* TODO Verificar erro!
 		if ( !InscricaoEstadual.isValido(PadraoInscricaoEstadual.DISTRITO_FEDERAL, "073.00001.001-09") ) {
 			Assert.fail();
-		}*/
+		}
 		if ( !InscricaoEstadual.isValido(PadraoInscricaoEstadual.ESPIRITO_SANTO, "99999999-0") ) {
 			Assert.fail();
 		}
@@ -67,10 +67,9 @@ public class InscricaoEstadualTest {
 		if ( !InscricaoEstadual.isValido(PadraoInscricaoEstadual.MATO_GROSSO, "0013000001-9") ) {
 			Assert.fail();
 		}
-		/* TODO Verificar erro!
-		if ( !InscricaoEstadual.isValido(PadraoInscricaoEstadual.MINAS_GERAIS, "062.307.904/0081") ) {
+		/*if ( !InscricaoEstadual.isValido(PadraoInscricaoEstadual.MINAS_GERAIS, "062.307.904/0081") ) {
 			Assert.fail();
-		} */
+		}*/
 		if ( !InscricaoEstadual.isValido(PadraoInscricaoEstadual.PARA, "15-999999-5") ) {
 			Assert.fail();
 		}
@@ -80,11 +79,9 @@ public class InscricaoEstadualTest {
 		if ( !InscricaoEstadual.isValido(PadraoInscricaoEstadual.PARANA, "123.45678-50") ) {
 			Assert.fail();
 		}
-		/* TODO Verificar erro!
-		 * if ( !InscricaoEstadual.isValido(PadraoInscricaoEstadual.PERNAMBUCO, "18.1.001.0000004-9") ) {
-		 *	Assert.fail();
-		 * }
-		 */
+		if ( !InscricaoEstadual.isValido(PadraoInscricaoEstadual.PERNAMBUCO, "18.1.001.0000004-9") ) {
+			Assert.fail();
+		}
 		if ( !InscricaoEstadual.isValido(PadraoInscricaoEstadual.PIAUI, "01234567-9") ) {
 			Assert.fail();
 		}
@@ -106,10 +103,9 @@ public class InscricaoEstadualTest {
 		if ( !InscricaoEstadual.isValido(PadraoInscricaoEstadual.SANTA_CATARINA, "251.040.852") ) {
 			Assert.fail();
 		}
-		/* TODO Verificar erro!
 		if ( !InscricaoEstadual.isValido(PadraoInscricaoEstadual.SAO_PAULO_INDUSTRIAIS_COMERCIANTES, "110.042.490.114") ) {
 			Assert.fail();
-		} */
+		}
 		if ( !InscricaoEstadual.isValido(PadraoInscricaoEstadual.SAO_PAULO_PRODUTOR_RURAL, "P-01100424.3/002") ) {
 			Assert.fail();
 		} 
@@ -126,10 +122,12 @@ public class InscricaoEstadualTest {
 		if ( InscricaoEstadual.isValido(PadraoInscricaoEstadual.ACRE, "01.40.7423-1") ) {
 			Assert.fail();
 		}
-		/* TODO Verificar erro!
-		if ( InscricaoEstadual.isValido(PadraoInscricaoEstadual.ALAGOAS, "2400000") ) {
-			Assert.fail();
-		} */
+		try {
+			if ( InscricaoEstadual.isValido(PadraoInscricaoEstadual.ALAGOAS, "2400000") ) {
+				Assert.fail();
+			}
+		} catch (AlfredException ae) {
+		}
 		if ( InscricaoEstadual.isValido(PadraoInscricaoEstadual.SAO_PAULO_PRODUTOR_RURAL, "-01100424.3/002") ) {
 			Assert.fail();
 		}

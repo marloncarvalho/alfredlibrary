@@ -91,11 +91,11 @@ final public class InscricaoEstadual {
         		} while (!exitCondition);
         		if (padrao.equals(PadraoInscricaoEstadual.SAO_PAULO_INDUSTRIAIS_COMERCIANTES)) {
         			if (numDig == 1) {
-                		if (ie.substring(i, i + sb.length()).compareTo(PesoPersonalizado.obterDV(Texto.manterNumeros(ie.substring(0, i)), "1|3|4|5|6|7|8|10")) != 0) {
+                		if (ie.substring(i, i + sb.length()).compareTo(Texto.manterNumeros(PesoPersonalizado.obterDV(Texto.manterNumeros(ie.substring(0, i)), "1|3|4|5|6|7|8|10", "caracterDireito"))) != 0) {
                 			return false;
                 		}
                 	} else {
-                		if (ie.substring(i, i + sb.length()).compareTo(Modulo11.obterDVBaseParametrizada(Texto.manterNumeros(ie.substring(0, i)), 11, '1', '0')) != 0) {
+                		if (ie.substring(i, i + sb.length()).compareTo(Modulo11.obterDVResto11BaseParametrizada(Texto.manterNumeros(ie.substring(0, i)), 11, '0')) != 0) {
                 			return false;
                 		}
                 	}
@@ -103,8 +103,8 @@ final public class InscricaoEstadual {
                 	if (ie.substring(i,i + sb.length()).compareTo(org.alfredlibrary.utilitarios.inscricaoestadual.InscricaoEstadual.gerarDigitoVerificador(padrao, Texto.manterNumeros(ie.substring(0, i)))) != 0) {
         				return false;
         			}
+                	i = --w;
                 }
-        		i = --w;
         		numDig++;
         	} else if (padrao.getFormato().charAt(i) == 'C') {
         		/* 
@@ -124,11 +124,11 @@ final public class InscricaoEstadual {
         		StringBuilder sb = new StringBuilder();
         		int w = i;
         		do {
-        			sb.append(ie.charAt(w));
+        			sb.append("9");
         			w++;
         		} while (padrao.getFormato().charAt(w) == 'M');
         		if (Integer.valueOf(ie.substring(i,i + sb.length())).compareTo(Integer.valueOf(1)) < 0
-    					|| Integer.valueOf(ie.substring(i,i+3)).compareTo(Integer.valueOf(sb.toString())) > 0) {
+    					|| Integer.valueOf(ie.substring(i,i+sb.length())).compareTo(Integer.valueOf(sb.toString())) > 0) {
     				return false;
     			}
         		i = --w;

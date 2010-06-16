@@ -210,4 +210,33 @@ public final class Modulo11 {
 		return String.valueOf(subZero);
 	}
 
+	/**
+	 * Calcular um dígito verificador a partir de uma sequência de números
+	 * enviada. Considera apenas o resto da divisão.
+	 * O maior peso usado atinge a base, retorna a 2
+	 * 
+	 * @param fonte Sequência de números para cálculo do DV
+	 * @param base Valor da base que se deseja usar para o cálculo do DV
+	 * @param subDez Caracter que deve substituir o resultado quando o resto for 10
+	 * @return DV gerado.
+	 */
+	public static String obterDVResto11BaseParametrizada (String fonte, int base,
+			char subDez) {
+		validarFonte(fonte);
+		int peso = 2;
+		int dv = 0;
+		for (int i = fonte.length() - 1; i >= 0; i--) {
+			dv += Integer.parseInt(fonte.substring(i, i + 1)) * peso;
+			if (peso == base - 1) {
+				peso = 2;
+			} else {
+				peso++;
+			}
+		}
+		dv = dv % 11;
+		if (dv == 10) {
+			return String.valueOf(subDez);
+		}
+		return String.valueOf(dv);
+	}
 }
