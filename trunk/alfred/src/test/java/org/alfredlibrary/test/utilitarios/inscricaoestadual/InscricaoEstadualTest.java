@@ -76,9 +76,7 @@ public class InscricaoEstadualTest {
 		Assert.assertTrue(org.alfredlibrary.validadores.InscricaoEstadual.isValido(PadraoInscricaoEstadual.MARANHAO, InscricaoEstadual.gerar(PadraoInscricaoEstadual.MARANHAO)));
 		Assert.assertTrue(org.alfredlibrary.validadores.InscricaoEstadual.isValido(PadraoInscricaoEstadual.MATO_GROSSO, InscricaoEstadual.gerar(PadraoInscricaoEstadual.MATO_GROSSO)));
 		Assert.assertTrue(org.alfredlibrary.validadores.InscricaoEstadual.isValido(PadraoInscricaoEstadual.MATO_GROSSO_DO_SUL, InscricaoEstadual.gerar(PadraoInscricaoEstadual.MATO_GROSSO_DO_SUL)));
-		/*
-		 * Assert.assertTrue(org.alfredlibrary.validadores.InscricaoEstadual.isValido(PadraoInscricaoEstadual.MINAS_GERAIS, InscricaoEstadual.gerar(PadraoInscricaoEstadual.MINAS_GERAIS)));
-		 */
+		Assert.assertTrue(org.alfredlibrary.validadores.InscricaoEstadual.isValido(PadraoInscricaoEstadual.MINAS_GERAIS, InscricaoEstadual.gerar(PadraoInscricaoEstadual.MINAS_GERAIS)));
 		Assert.assertTrue(org.alfredlibrary.validadores.InscricaoEstadual.isValido(PadraoInscricaoEstadual.PARA, InscricaoEstadual.gerar(PadraoInscricaoEstadual.PARA)));
 		Assert.assertTrue(org.alfredlibrary.validadores.InscricaoEstadual.isValido(PadraoInscricaoEstadual.PARAIBA, InscricaoEstadual.gerar(PadraoInscricaoEstadual.PARAIBA)));
 		Assert.assertTrue(org.alfredlibrary.validadores.InscricaoEstadual.isValido(PadraoInscricaoEstadual.PARANA, InscricaoEstadual.gerar(PadraoInscricaoEstadual.PARANA)));
@@ -91,9 +89,7 @@ public class InscricaoEstadualTest {
 		Assert.assertTrue(org.alfredlibrary.validadores.InscricaoEstadual.isValido(PadraoInscricaoEstadual.RONDONIA, InscricaoEstadual.gerar(PadraoInscricaoEstadual.RONDONIA)));
 		Assert.assertTrue(org.alfredlibrary.validadores.InscricaoEstadual.isValido(PadraoInscricaoEstadual.RORAIMA, InscricaoEstadual.gerar(PadraoInscricaoEstadual.RORAIMA)));
 		Assert.assertTrue(org.alfredlibrary.validadores.InscricaoEstadual.isValido(PadraoInscricaoEstadual.SANTA_CATARINA, InscricaoEstadual.gerar(PadraoInscricaoEstadual.SANTA_CATARINA)));
-		/* TODO Verificar erro!
-		 * Assert.assertTrue(org.alfredlibrary.validadores.InscricaoEstadual.isValido(PadraoInscricaoEstadual.SAO_PAULO_INDUSTRIAIS_COMERCIANTES, InscricaoEstadual.gerar(PadraoInscricaoEstadual.SAO_PAULO_INDUSTRIAIS_COMERCIANTES)));
-		 */
+		Assert.assertTrue(org.alfredlibrary.validadores.InscricaoEstadual.isValido(PadraoInscricaoEstadual.SAO_PAULO_INDUSTRIAIS_COMERCIANTES, InscricaoEstadual.gerar(PadraoInscricaoEstadual.SAO_PAULO_INDUSTRIAIS_COMERCIANTES)));
 		Assert.assertTrue(org.alfredlibrary.validadores.InscricaoEstadual.isValido(PadraoInscricaoEstadual.SAO_PAULO_PRODUTOR_RURAL, InscricaoEstadual.gerar(PadraoInscricaoEstadual.SAO_PAULO_PRODUTOR_RURAL)));
 		Assert.assertTrue(org.alfredlibrary.validadores.InscricaoEstadual.isValido(PadraoInscricaoEstadual.SERGIPE, InscricaoEstadual.gerar(PadraoInscricaoEstadual.SERGIPE)));
 		Assert.assertTrue(org.alfredlibrary.validadores.InscricaoEstadual.isValido(PadraoInscricaoEstadual.TOCANTINS, InscricaoEstadual.gerar(PadraoInscricaoEstadual.TOCANTINS)));
