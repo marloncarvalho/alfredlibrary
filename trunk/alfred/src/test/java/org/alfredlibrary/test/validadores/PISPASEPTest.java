@@ -32,7 +32,7 @@ public class PISPASEPTest {
 
 	@Test
 	public void testarValidarPISPASEPValido() {
-		if ( !PISPASEP.isValido("111.11111.11-4") ) {
+		if ( !PISPASEP.isValido("111.11111.11-6") ) {
 			Assert.fail();
 		}
 	}
