@@ -94,4 +94,10 @@ public class InscricaoEstadualTest {
 		Assert.assertTrue(org.alfredlibrary.validadores.InscricaoEstadual.isValido(PadraoInscricaoEstadual.TOCANTINS, InscricaoEstadual.gerar(PadraoInscricaoEstadual.TOCANTINS)));
 	}
 
+	@Test
+	public void testExaustivoGerarInscricaoEstadual() {
+		for (int i = 0; i <= 100; i++) {
+			testGerarInscricaoEstadual();
+		}
+	}
 }

@@ -51,6 +51,9 @@ public final class Modulo10 {
 			}
 		}
 		dv = dv % 10;
+		if (dv == 0) {
+			return "0";
+		}	
 		return String.valueOf(10 - dv);
 	}
 	
