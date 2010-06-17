@@ -161,7 +161,11 @@ final public class InscricaoEstadual {
         		/* 
         		 * CCC = Código do município
         		 */
-        		i = i + 2; // Salta 2 posições, pois o código do município é sempre em 3
+        		int tamanho = 1;
+        		while (mascara.charAt(i + 1) == 'C') {
+        			i++; // Avança para poder criar um código randômico de tamanhos diversos
+        			tamanho++;
+        		}
         		do {
         			numero = Integer.valueOf((int) (Math.random() * 1000));
             		// RIO_GRANDE_DO_SUL :: Código de município varia de 001 a 467
@@ -171,13 +175,15 @@ final public class InscricaoEstadual {
             			} else {
             				atribuido = false;
             			}
-            		} else {
-            			atribuido = true;
+            		} else if (numero.compareTo(1) >= 0 && numero.compareTo(999) <= 0) {
+        				atribuido = true;
+        			} else {
+            			atribuido = false;
             		}
             		if (atribuido) {
         				String codigoMunicipio = numero.toString();
-        				for (int iTexto = 0; iTexto < 3 - codigoMunicipio.length(); iTexto++) {
-        					codigoMunicipio = "0" + codigoMunicipio; 
+        				while (codigoMunicipio.length() < tamanho) {
+        					codigoMunicipio = "0" + codigoMunicipio;
         				}
         				iniciais.append(codigoMunicipio);
         			}
@@ -193,8 +199,8 @@ final public class InscricaoEstadual {
         		}
         		numero = Integer.valueOf((int) (Math.random() * Math.pow(10, tamanho)));
             	String codigoFilial = numero.toString();
-            	for (int iTexto = 0; iTexto < tamanho - codigoFilial.length(); iTexto++) {
-            		codigoFilial = "0" + codigoFilial; 
+            	while (codigoFilial.length() < tamanho) {
+            		codigoFilial = "0" + codigoFilial;
             	}
             	iniciais.append(codigoFilial);
         	} else if (mascara.charAt(i) == 'G') {
