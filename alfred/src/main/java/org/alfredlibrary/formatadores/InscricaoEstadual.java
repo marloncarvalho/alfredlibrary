@@ -42,7 +42,6 @@ final public class InscricaoEstadual {
 		String ieSoNumeros = limpar(padrao, ie);
 		// Verificar tamanho da Inscrição Estadual.
 		if (ieSoNumeros.length() != Texto.removerPontuacao(padrao.getFormato()).length()) {
-			System.out.println(padrao.getFormato() + " - " + ieSoNumeros.toString());
 			throw new AlfredException("Inscrição Estadual inválida. Tamanho de uma Inscrição Estadual válida para a UF informada é " +
 					Texto.removerPontuacao(padrao.getFormato()).length() +
 					". Esta Inscrição Estadual possui " + ieSoNumeros.length() + " números.");
