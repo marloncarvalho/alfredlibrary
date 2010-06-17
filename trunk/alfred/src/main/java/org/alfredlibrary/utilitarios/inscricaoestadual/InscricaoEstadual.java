@@ -193,12 +193,17 @@ final public class InscricaoEstadual {
         		 * M = 1 se matriz, o restante para filiais
         		 */
         		int tamanho = 1;
+        		StringBuilder sbLimSuperior = new StringBuilder("9");
         		while (mascara.charAt(i + 1) == 'M') {
         			i++; // Avança para poder criar um código randômico de tamanhos diversos
         			tamanho++;
+        			sbLimSuperior.append('9');
         		}
-        		numero = Integer.valueOf((int) (Math.random() * Math.pow(10, tamanho)));
-            	String codigoFilial = numero.toString();
+        		Integer nroCandidato = Integer.valueOf(0);
+        		do {
+        			nroCandidato = Integer.valueOf((int) (Math.random() * Math.pow(10, tamanho)));
+        		} while (nroCandidato.compareTo(0) <= 0 || nroCandidato.compareTo(Integer.valueOf(sbLimSuperior.toString())) > 0);
+            	String codigoFilial = nroCandidato.toString();
             	while (codigoFilial.length() < tamanho) {
             		codigoFilial = "0" + codigoFilial;
             	}
