@@ -499,7 +499,7 @@ final public class CID10 {
 		}
 		if (adicionaNo) {
 			Map<String,Object> registroCID = new HashMap<String,Object>();
-			registroCID.put("tipoRegistro", "grupo");
+			registroCID.put("tipoRegistro", "categoria");
 			registroCID.put("nome", nome);
 			registroCID.put("nome50", nome50);
 			registroCID.put("codcat", noCategoria.getAttributes().getNamedItem("codcat").getNodeValue());
@@ -587,7 +587,7 @@ final public class CID10 {
 		}
 		if (adicionaNo) {
 			Map<String,Object> registroCID = new HashMap<String,Object>();
-			registroCID.put("tipoRegistro", "grupo");
+			registroCID.put("tipoRegistro", "subcategoria");
 			registroCID.put("nome", nome);
 			registroCID.put("nome50", nome50);
 			registroCID.put("codsubcat", noCategoria.getAttributes().getNamedItem("codsubcat").getNodeValue());
