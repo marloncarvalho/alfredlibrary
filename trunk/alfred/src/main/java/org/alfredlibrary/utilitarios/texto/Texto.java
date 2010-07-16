@@ -187,5 +187,32 @@ public class Texto {
 		}
 		return texto1.compareTo(texto2);
 	}
+	
+	/**
+	 * Completa o texto até o tamanho especificado com o caractere
+	 * desejado à esquerda ou à direita. Se o texto informado tiver
+	 * tamanho maior ou igual ao desejado, retorna o texto original.
+	 *  
+	 * @param original Texto original
+	 * @param caracter Caracter usado para preenchimento
+	 * @param tamanhoFinal Tamanho total do texto de retorno
+	 * @param aoFinal Indicador se o texto deve receber caracteres
+	 * 					à direita (TRUE) ou à esquerda (FALSE) 
+	 * @return Texto preenchido com caracteres na forma solicitada
+	 */
+	public static String completar(String original, char caracter,
+			int tamanhoFinal, boolean aoFinal) {
+		if (original.length() >= tamanhoFinal) { // Não há o que completar
+			return original;
+		}
+		while (original.length() < tamanhoFinal) {
+			if (aoFinal) {
+				original = original + caracter;
+			} else {
+				original = caracter + original;
+			}
+		}
+		return original;
+	}
 
 }
