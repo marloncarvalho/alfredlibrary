@@ -102,5 +102,13 @@ public class TextoTest {
 			Assert.fail(e.getMessage());
 		}
 	}
+	
+	@Test
+	public void testCompletar() {
+		Assert.assertEquals("XXXXXTESTE", Texto.completar("TESTE", 'X', 10, false));
+		Assert.assertEquals("TESTEXXXXX", Texto.completar("TESTE", 'X', 10, true));
+		Assert.assertEquals("99999TESTE", Texto.completar("TESTE", '9', 10, false));
+		Assert.assertEquals("TESTE99999", Texto.completar("TESTE", '9', 10, true));
+	}
 
 }
