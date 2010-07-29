@@ -17,7 +17,6 @@
 package org.alfredlibrary.test.utilitarios.musica;
 
 import org.alfredlibrary.utilitarios.musica.Letras;
-import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -30,11 +29,7 @@ public class LetrasTest {
 
 	@Test
 	public void testObterLetra() {
-		try {
-			Letras.obter("Raul Seixas", "Ouro de Tolo");
-		} catch (Exception e) {
-			Assert.fail();
-		}
+		Letras.obter("Raul Seixas", "Ouro de Tolo");
 	}
 
 }
