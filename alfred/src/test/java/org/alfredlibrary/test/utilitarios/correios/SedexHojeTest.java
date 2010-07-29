@@ -31,13 +31,9 @@ final public class SedexHojeTest {
 
 	@Test
 	public void testarPrecoPrazoCEPsCorretos() {
-		try {
 			String[] r = SedexHoje.obterPrecoPrazoEntrega("40290280", "40290280", 1);
 			Assert.assertEquals("R$ 21,50", r[0]);
 			Assert.assertEquals("No mesmo dia da postagem", r[1]);
-		} catch ( AlfredException exception ) {
-			Assert.fail();
-		}
 	}
 
 	@Test
