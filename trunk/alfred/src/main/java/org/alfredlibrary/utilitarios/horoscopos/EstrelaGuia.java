@@ -34,10 +34,10 @@ final public class EstrelaGuia {
 	 * @return Horóscopo.
 	 */
 	public static String obter(Signo signo) {
-		String url = "http://www.estrelaguia.com.br/horoscopo/" + signo + "/";
+		String url = "http://www.estrelaguia.com.br/horoscopo/" + signo + "/diario/";
 		String conteudo = WorldWideWeb.obterConteudoSite(url, "UTF-8");
-		String horoscopo = conteudo.substring(conteudo.indexOf("<p class=\"txtsigno\">"), conteudo.indexOf("<br />", conteudo.indexOf("<p class=\"txtsigno\">")));
-		return HTML.removerTags(horoscopo);
+		String horoscopo = conteudo.substring(conteudo.indexOf("<h4>Hor&oacute;scopo"), conteudo.indexOf("</p>", conteudo.indexOf("<h4>Hor&oacute;scopo")));
+		return HTML.desconverterElementosHTMLEspeciais(HTML.removerTags(horoscopo).trim(),0);
 	}
 
 }
