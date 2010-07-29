@@ -18,7 +18,7 @@ Notas de Versão
  	* Adicionados Utilitários de Cinemática no pacote de Física.
  	* Adicionado validador, formatador e utilitário de PIS/PASEP.
  	* Adicionado Utilitário de Equação de Segundo Grau em Matemática.
-  	* Utilitário de Horóscopo Estrela Guia foi modificado para atender ao novo formato do site.
+  	* Utilitário de Horóscopo Estrela Guia foi modificado para atender ao novo formato do site. Agora é obtido o horóscopo do dia.
   	* Utilitário de Letras corrigido para o novo formato do site.
   	* Testes de PAC corrigidos.
   
