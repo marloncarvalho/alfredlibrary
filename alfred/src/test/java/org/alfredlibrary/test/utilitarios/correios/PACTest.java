@@ -18,13 +18,12 @@ package org.alfredlibrary.test.utilitarios.correios;
 
 import junit.framework.Assert;
 
-import org.alfredlibrary.AlfredException;
 import org.alfredlibrary.utilitarios.correios.PAC;
 import org.junit.Test;
 
 /**
  * Classe de Teste para PAC.
- *  
+ * 
  * @author Marlon Silva Carvalho
  * @since 13/06/2009
  */
@@ -32,24 +31,18 @@ public class PACTest {
 
 	@Test
 	public void testarPrecoPrazoEntregaCaixaPacoteDadosCorretos() {
-		try {
-			String[] r = PAC.obterPrecoPrazoEntregaParaCaixaPacote("40290280", "40290280", 1, 12, 6, 16);
-			Assert.assertEquals("R$ 10,10", r[0]);
-			Assert.assertEquals("3 DIAS ÚTEIS", r[1]);
-		} catch (AlfredException ae) {
-			Assert.fail();
-		}
+		String[] r = PAC.obterPrecoPrazoEntregaParaCaixaPacote("40290280",
+				"40290280", 1, 12, 6, 16);
+		Assert.assertEquals("R$ 10,10", r[0]);
+		Assert.assertEquals("3 DIAS ÚTEIS", r[1]);
 	}
 
 	@Test
 	public void testarPrecoPrazoEntregaRoloPrismaDadosCorretos() {
-		try {
-			String[] r = PAC.obterPrecoPrazoEntregaParaCaixaPacote("40290280", "40290280", 1, 12, 6, 16);
-			Assert.assertEquals("R$ 10,10", r[0]);
-			Assert.assertEquals("3 DIAS ÚTEIS", r[1]);
-		} catch (AlfredException ae) {
-			Assert.fail();
-		}
+		String[] r = PAC.obterPrecoPrazoEntregaParaCaixaPacote("40290280",
+				"40290280", 1, 12, 6, 16);
+		Assert.assertEquals("R$ 10,10", r[0]);
+		Assert.assertEquals("3 DIAS ÚTEIS", r[1]);
 	}
 
 }
