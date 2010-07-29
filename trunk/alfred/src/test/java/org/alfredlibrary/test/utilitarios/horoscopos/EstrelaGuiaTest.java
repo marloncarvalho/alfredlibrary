@@ -18,7 +18,6 @@ package org.alfredlibrary.test.utilitarios.horoscopos;
 
 import org.alfredlibrary.utilitarios.horoscopos.EstrelaGuia;
 import org.alfredlibrary.utilitarios.horoscopos.Signo;
-import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -31,11 +30,7 @@ public class EstrelaGuiaTest {
 
 	@Test
 	public void testObterHoroscopo() {
-		try {
-			EstrelaGuia.obter(Signo.AQUARIO);
-		} catch ( Exception e ) {
-			Assert.fail();
-		}
+		EstrelaGuia.obter(Signo.AQUARIO);
 	}
 
 }
