@@ -44,39 +44,23 @@ import java.util.regex.Pattern;
  * URL                 - endereço WWW              - http://www.google.com
  * 
  * @author Mario Jorge Pereira
+ * @author Marlon Silva Carvalho
  * @since 27/06/2010
  */
-public class ExpressaoRegular {
-
-    
-
+public class Diversos {
     public static final String DATASIMPLES =  "(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/((19|20)\\d\\d)";
-
     public static final String DECIMAL = "^\\d*[0-9](\\.\\d*[0-9])?$";
-    
     public static final String DOCUMENTOS = "^[a-zA-Z0-9-_ \\.]+\\.(pdf|txt|doc|csv)$";
-    
-    //public static final String EMAIL = "^([0-9a-zA-Z]+([_.-]?[0-9a-zA-Z]+)*@[0-9a-zA-Z]+[0-9,a-z,A-Z,.,-]*(.){1}[a-zA-Z]{2,4})+$";
     public static final String EMAIL = "^([a-zA-Z0-9_\\-\\.]+)@((\\[a-z]{1,3}\\.[a-z]{1,3}\\.[a-z]{1,3}\\.)|(([a-zA-Z\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)";
-    
     public static final String COR_HTML = "^#?([a-f]|[A-F]|[0-9]){3}(([a-f]|[A-F]|[0-9]){3})?$";
-    
     public static final String IMAGEM = "^[a-zA-Z0-9-_ \\.]+\\.(jpg|gif|png)$";
-    
     public static final String IP = "\\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b";
-    
     public static final String MULTIMIDIA = "^[a-zA-Z0-9-_ \\.]+\\.(swf|mov|wma|mpg|mp3|wav)$";
-      
     public static final String DATA_MYSQL = "^(19|20)\\d\\d-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$";
-    
     public static final String TELEFONE_BR = "^\\(?\\d{2}\\)?[\\s-]?\\d{4}-?\\d{4}$";
-    
     public static final String CODIGO_POSTAL_US = "^([A-Z][0-9]){3}$";
-    
     public static final String HORA = "^([0-1][0-9]|[2][0-3])(:([0-5][0-9])){1,2}$";
-    
     public static final String URL = "^(http[s]?://|ftp://)?(www\\.)?[a-zA-Z0-9-\\.]+\\.(com|org|net|mil|edu|ca|co.uk|com.au|gov|br)$";
-    
 
 	/**
 	 * Verificar se valor é compativel no formato requerido.
@@ -85,7 +69,7 @@ public class ExpressaoRegular {
          * @param expressao expressão regular no formato requerido.
 	 * @return Verdadeiro caso seja valido. Falso, caso contrario.
 	 */
-	public static boolean isValido(String valor,String expressao) {
+	public static boolean isValido(String valor, String expressao) {
 		Pattern pattern = Pattern.compile(expressao);
 		Matcher m = pattern.matcher(valor);
 		return m.matches();
