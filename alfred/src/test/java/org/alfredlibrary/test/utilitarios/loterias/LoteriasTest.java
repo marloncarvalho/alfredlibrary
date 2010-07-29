@@ -16,7 +16,6 @@
  */
 package org.alfredlibrary.test.utilitarios.loterias;
 
-import org.alfredlibrary.AlfredException;
 import org.alfredlibrary.utilitarios.loterias.Loterias;
 import org.junit.Assert;
 import org.junit.Test;
@@ -31,76 +30,56 @@ public class LoteriasTest {
 
 	@Test
 	public void testarResultadoMegaSena() {
-		try {
-			String[] resultado = Loterias.obterResultadoMegaSena("1");
-			if ( resultado.length < 6 )
-				Assert.fail();
-			for(int i=0; i<resultado.length;i++) {
-				if ( resultado[i] == null || "".equals(resultado[i]) ) 
-					Assert.fail();
-			}
-		} catch ( AlfredException exc ) {
+		String[] resultado = Loterias.obterResultadoMegaSena("1");
+		if (resultado.length < 6)
 			Assert.fail();
+		for (int i = 0; i < resultado.length; i++) {
+			if (resultado[i] == null || "".equals(resultado[i]))
+				Assert.fail();
 		}
 	}
 
 	@Test
 	public void testarResultadoQuina() {
-		try {
-			String[] resultado = Loterias.obterResultadoQuina("2072");
-			if ( resultado.length < 5 )
-				Assert.fail();
-			for(int i=0; i<resultado.length;i++) {
-				if ( resultado[i] == null || "".equals(resultado[i]) ) 
-					Assert.fail();
-			}
-		} catch ( AlfredException exc ) {
+		String[] resultado = Loterias.obterResultadoQuina("2072");
+		if (resultado.length < 5)
 			Assert.fail();
+		for (int i = 0; i < resultado.length; i++) {
+			if (resultado[i] == null || "".equals(resultado[i]))
+				Assert.fail();
 		}
 	}
-	
+
 	@Test
 	public void testarResultadoLotofacil() {
-		try {
-			String[] resultado = Loterias.obterResultadoLotofacil("1");
-			if ( resultado.length < 15 )
-				Assert.fail();
-			for(int i=0; i<resultado.length;i++) {
-				if ( resultado[i] == null || "".equals(resultado[i]) ) 
-					Assert.fail();
-			}
-		} catch ( AlfredException exc ) {
+		String[] resultado = Loterias.obterResultadoLotofacil("1");
+		if (resultado.length < 15)
 			Assert.fail();
+		for (int i = 0; i < resultado.length; i++) {
+			if (resultado[i] == null || "".equals(resultado[i]))
+				Assert.fail();
 		}
 	}
 
 	@Test
 	public void testarResultadoLotomania() {
-		try {
-			String[] resultado = Loterias.obterResultadoLotomania("1030");
-			if ( resultado.length < 20 )
-				Assert.fail();
-			for(int i=0; i<resultado.length;i++) {
-				if ( resultado[i] == null || "".equals(resultado[i]) ) 
-					Assert.fail();
-			}
-		} catch ( AlfredException exc ) {
+		String[] resultado = Loterias.obterResultadoLotomania("1030");
+		if (resultado.length < 20)
 			Assert.fail();
+		for (int i = 0; i < resultado.length; i++) {
+			if (resultado[i] == null || "".equals(resultado[i]))
+				Assert.fail();
 		}
 	}
 
 	@Test
 	public void testarResultadoDuplasena() {
-		try {
-			String[][] resultado = Loterias.obterResultadoDuplaSena("857");
-			for(int i=0; i < resultado.length;i++) {
-				for(int j=0;j<resultado[i].length;j++) {
-					if ( resultado[i][j] == null || "".equals(resultado[i][j]) ) 
-						Assert.fail();
-				}
+		String[][] resultado = Loterias.obterResultadoDuplaSena("857");
+		for (int i = 0; i < resultado.length; i++) {
+			for (int j = 0; j < resultado[i].length; j++) {
+				if (resultado[i][j] == null || "".equals(resultado[i][j]))
+					Assert.fail();
 			}
-		} catch ( AlfredException exc ) {
-			Assert.fail();
 		}
 	}
 
