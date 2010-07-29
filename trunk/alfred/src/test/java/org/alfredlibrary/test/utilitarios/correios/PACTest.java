@@ -33,7 +33,7 @@ public class PACTest {
 	public void testarPrecoPrazoEntregaCaixaPacoteDadosCorretos() {
 		String[] r = PAC.obterPrecoPrazoEntregaParaCaixaPacote("40290280",
 				"40290280", 1, 12, 6, 16);
-		Assert.assertEquals("R$ 10,10", r[0]);
+		Assert.assertEquals("R$ 10,50", r[0]);
 		Assert.assertEquals("3 DIAS ÚTEIS", r[1]);
 	}
 
@@ -41,7 +41,7 @@ public class PACTest {
 	public void testarPrecoPrazoEntregaRoloPrismaDadosCorretos() {
 		String[] r = PAC.obterPrecoPrazoEntregaParaCaixaPacote("40290280",
 				"40290280", 1, 12, 6, 16);
-		Assert.assertEquals("R$ 10,10", r[0]);
+		Assert.assertEquals("R$ 10,50", r[0]);
 		Assert.assertEquals("3 DIAS ÚTEIS", r[1]);
 	}
 
