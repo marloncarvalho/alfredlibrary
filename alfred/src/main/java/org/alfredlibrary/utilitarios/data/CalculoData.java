@@ -22,7 +22,7 @@ import java.util.Date;
 import org.alfredlibrary.AlfredException;
 
 /**
- * Utilit�rio para realizar c�lculos com Data.
+ * Utilitário para realizar cálculos com Data.
  * 
  * @author Marlon Silva Carvalho
  * @since 03/06/2009
@@ -48,7 +48,7 @@ final public class CalculoData {
 	 * 
 	 * @param data Data.
 	 * @param quantidadeDias Quantidade de dias a subtrair.
-	 * @return Data com a subtra��o de dias.
+	 * @return Data com a subtração de dias.
 	 */
 	public static Date subtrairDias(Date data, int quantidadeDias) {
 		Calendar calendar = Calendar.getInstance();
@@ -76,7 +76,7 @@ final public class CalculoData {
 	 * 
 	 * @param data Data.
 	 * @param quantidadeMeses Quantidade de meses a subtrair.
-	 * @return Data com a subtra��o de meses.
+	 * @return Data com a subtração de meses.
 	 */
 	public static Date subtrairMeses(Date data, int quantidadeMeses) {
 		Calendar calendar = Calendar.getInstance();
@@ -104,7 +104,7 @@ final public class CalculoData {
 	 * 
 	 * @param data Data.
 	 * @param quantidadeAnos Quantidade de anos a subtrair.
-	 * @return Data com a subtra��o de anos.
+	 * @return Data com a subtração de anos.
 	 */
 	public static Date subtrairAnos(Date data, int quantidadeAnos) {
 		Calendar calendar = Calendar.getInstance();
@@ -118,7 +118,7 @@ final public class CalculoData {
 	 * 
 	 * @param data1 Data 1.
 	 * @param data2 Data 2.
-	 * @return Diferen�a em dias.
+	 * @return Diferença em dias.
 	 */
 	public static int calcularDiferencaDias(Date data1, Date data2) {
 		Calendar calendarData1 = Calendar.getInstance();
@@ -140,7 +140,7 @@ final public class CalculoData {
 	 * @param data1 Data Maior.
 	 * @param data2 Data Menor.
 	 * @param isInclusiva Se a data inicial é ou não incluída no cálculo
-	 * @return Diferen�a em dias.
+	 * @return Diferença em dias.
 	 * 
 	 */
 	public static int calcularDiferencaDias(Date data1, Date data2, boolean isInclusiva) {
@@ -231,4 +231,31 @@ final public class CalculoData {
 		return 0;
 	}
 
+	public static Date criarDataComPrimeiroDiaDoMes(int mes, int ano) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.MONTH, mes);
+		calendar.set(Calendar.YEAR, ano);
+		calendar.set(Calendar.DAY_OF_MONTH, 1);
+		calendar.set(Calendar.HOUR, 0);
+		calendar.set(Calendar.MINUTE, 0);
+		calendar.set(Calendar.SECOND, 0);
+		return calendar.getTime();
+	}
+
+	public static Date criarDataComUltimaDiaDoMes(int mes, int ano) {
+		if ( mes == Calendar.DECEMBER) {
+			mes = Calendar.JANUARY;
+		} else {
+			mes++;
+		}
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.MONTH, mes);
+		calendar.set(Calendar.YEAR, ano);
+		calendar.set(Calendar.DAY_OF_MONTH, 1);
+		calendar.set(Calendar.HOUR, 0);
+		calendar.set(Calendar.MINUTE, 0);
+		calendar.set(Calendar.SECOND, 0);
+		return subtrairDias(calendar.getTime(), 1);
+	}
+	
 }
