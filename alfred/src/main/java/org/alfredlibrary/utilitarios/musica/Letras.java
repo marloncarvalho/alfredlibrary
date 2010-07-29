@@ -37,12 +37,12 @@ final public class Letras {
 	public static String obter(String artista, String nomeMusica) {
 		String artistaTrocado = artista.toLowerCase().replaceAll(" ", "-");
 		String nomeMusicaTrocado = nomeMusica.toLowerCase().replaceAll(" ", "-");
-		String url = "http://vagalume.uol.com.br/" + artistaTrocado + "/" + nomeMusicaTrocado + ".html";
+		String url = "http://www.vagalume.com.br/" + artistaTrocado + "/" + nomeMusicaTrocado + ".html";
 		String conteudo = WorldWideWeb.obterConteudoSite(url, "UTF-8");
-		if ( conteudo.indexOf("Oops") > -1 || conteudo.indexOf("<div class=\"tab_original\">") == -1) {
+		if ( conteudo.indexOf("Oops") > -1 || conteudo.indexOf("<div class=\"tab_original sideBySide lyricArea originalOnly\">") == -1) {
 			throw new AlfredException("Letra ou artista não encontrado.");
 		}
-		String letra = conteudo.substring(conteudo.indexOf("<div class=\"tab_original\">"), conteudo.indexOf("</div>", conteudo.indexOf("<div class=\"tab_original\">")));
+		String letra = conteudo.substring(conteudo.indexOf("<div class=\"tab_original sideBySide lyricArea originalOnly\">"), conteudo.indexOf("</div>", conteudo.indexOf("<div class=\"tab_original sideBySide lyricArea originalOnly\">")));
 		letra = HTML.desconverterElementosHTMLEspeciais(letra, 0);
 		letra = HTML.removerTags(letra);
 		return letra;
