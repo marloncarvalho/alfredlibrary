@@ -2,7 +2,26 @@
                                     Notas de Versão
 
 Notas de Versão
+
+* v1.1.0
  
+ 	* Adicionado método completar() na classe Texto.
+ 	* Adicionado método removerPontuacao() na classe Texto.
+ 	* Adicionado método comparar() na classe Texto.
+ 	* Adicionado o validador "Diversos" que usa expressões regulares e já fornece algumas validações básicas.
+ 	* Adicionado o utilitário CID10.
+ 	* Adicionado Utilitário de Digito Verificador Mod11.
+ 	* Adicionado método para formatar moeda conforme padrão local (locale).
+ 	* Adicionado método de cálculo de interseção de data na classe CalculoData.
+ 	* Adicionado método para verificar se um período está compreendido em outro na classe CalculoData.
+ 	* Adicionado validador, formatador e utilitário de Inscrição Estadual.
+ 	* Adicionados Utilitários de Cinemática no pacote de Física.
+ 	* Adicionado validador, formatador e utilitário de PIS/PASEP.
+ 	* Adicionado Utilitário de Equação de Segundo Grau em Matemática.
+  	* Utilitário de Horóscopo Estrela Guia foi modificado para atender ao novo formato do site.
+  	* Utilitário de Letras corrigido para o novo formato do site.
+  	* Testes de PAC corrigidos.
+  
 * v1.0.0
   
   * Versão inicial do Alfred.
