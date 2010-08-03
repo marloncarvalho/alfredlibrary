@@ -1,6 +1,10 @@
                                     ------
                                     Biblioteca Alfred
                                     
-  Alfred é uma biblioteca para Java que contém dezenas de classes utilitárias que faz de tudo para você. 
-  Desde uma simples formatação de CPF ao cálculo de envio de encomendas por Sedex. O que o Alfred é capaz de fazer? 
-  Muitas coisas, acredite. A inspiração para fazer esta biblioteca veio após ver e usar as Funções ZZ, do Aurélio Verde.
+	Bem vindo ao site Maven da Biblioteca Alfred. Este site destina-se principalmente aos desenvolvedores da biblioteca, assim como aos que se interessam em
+	saber detalhes de desenvolvimento da biblioteca. Caso você tenha chegado aqui mas deseja apenas usar o Alfred, então acesse o site http://www.alfredlibrary.org/.
+	Caso queira baixar imediatamente a biblioteca, então acesse nosso site no Google Code, local onde estão todos nossos artefatos, incluindo código fonte. O site fica em
+	http://alfredlibrary.googlecode.com/
+	
+	Este site está em constante desenvolvimento e ainda não possui todas as informações que gostaríamos. Contudo, a cada versão desejamos torná-lo mais completo.
+	Aos desenvolvedores, navegue pelas opções listadas abaixo. Qualquer dúvida, entre em contato conosco.
