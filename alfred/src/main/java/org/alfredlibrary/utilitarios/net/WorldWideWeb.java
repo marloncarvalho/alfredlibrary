@@ -29,8 +29,8 @@ import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.util.Map;
 
-import org.alfredlibrary.AlfredConfig;
 import org.alfredlibrary.AlfredException;
+import org.alfredlibrary.ProxyConfig;
 
 /**
  * Utilitários para WWW.
@@ -39,14 +39,19 @@ import org.alfredlibrary.AlfredException;
  * @since 02/06/2009
  */
 final public class WorldWideWeb {
+	private static ProxyConfig proxy = null;
+	
+	public static void setProxyConfig(ProxyConfig proxyConfig) {
+		proxy = proxyConfig;
+	}
 
 	public static InputStream obterConteudoArquivo(String u) {
 		URL url;
 		try {
 			url = new URL(u);
 			URLConnection conn = null;
-			if ( AlfredConfig.getInstancia().isUsingProxy() )
-				conn = url.openConnection(AlfredConfig.getInstancia().getProxy());
+			if ( proxy != null )
+				conn = url.openConnection(proxy.getProxy());
 			else conn = url.openConnection();
 
 		    return new DataInputStream(conn.getInputStream());
@@ -69,8 +74,8 @@ final public class WorldWideWeb {
 		try {
 			url = new URL(u);
 			URLConnection conn = null;
-			if ( AlfredConfig.getInstancia().isUsingProxy() )
-				conn = url.openConnection(AlfredConfig.getInstancia().getProxy());
+			if ( proxy != null )
+				conn = url.openConnection(proxy.getProxy());
 			else conn = url.openConnection();
 	        conn.setDoOutput(true);
 	        BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream(),Charset.forName("UTF-8")));
@@ -100,8 +105,8 @@ final public class WorldWideWeb {
 		try {
 			url = new URL(u);
 			URLConnection conn = null;
-			if ( AlfredConfig.getInstancia().isUsingProxy() )
-				conn = url.openConnection(AlfredConfig.getInstancia().getProxy());
+			if ( proxy != null )
+				conn = url.openConnection(proxy.getProxy());
 			else conn = url.openConnection();
 	        conn.setDoOutput(true);
 	        BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream(),Charset.forName(characterSet)));
@@ -134,8 +139,8 @@ final public class WorldWideWeb {
 			}
 			url = new URL(u);
 			URLConnection conn = null;
-			if ( AlfredConfig.getInstancia().isUsingProxy() )
-				conn = url.openConnection(AlfredConfig.getInstancia().getProxy());
+			if ( proxy != null )
+				conn = url.openConnection(proxy.getProxy());
 			else conn = url.openConnection();
 	        conn.setDoOutput(true);
 	        OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
@@ -178,8 +183,8 @@ final public class WorldWideWeb {
 			}
 			url = new URL(u);
 			URLConnection conn = null;
-			if ( AlfredConfig.getInstancia().isUsingProxy() )
-				conn = url.openConnection(AlfredConfig.getInstancia().getProxy());
+			if ( proxy != null )
+				conn = url.openConnection(proxy.getProxy());
 			else conn = url.openConnection();
 	        conn.setDoOutput(true);
 	        OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
