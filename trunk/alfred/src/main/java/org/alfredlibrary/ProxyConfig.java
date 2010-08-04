@@ -10,11 +10,11 @@ public class ProxyConfig {
 	private String host;
 	private int port;
 	
-	public ProxyConfig(String host, int port) {
+	public ProxyConfig(String host, int port, Type proxyType) {
 		this.setHost(host);
 		this.setPort(port);
 		SocketAddress sa = new InetSocketAddress(host, port);
-		this.setProxy(new Proxy(Type.HTTP, sa));
+		this.setProxy(new Proxy(proxyType, sa));
 	}
 
 	public void setProxy(Proxy proxy) {
