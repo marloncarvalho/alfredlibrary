@@ -17,12 +17,14 @@
 package org.alfredlibrary.test.utilitarios.net;
 
 import java.io.InputStream;
+import java.net.Proxy.Type;
 import java.util.HashMap;
 import java.util.Map;
 
 import junit.framework.Assert;
 
 import org.alfredlibrary.AlfredException;
+import org.alfredlibrary.ProxyConfig;
 import org.alfredlibrary.utilitarios.net.WorldWideWeb;
 import org.junit.Test;
 
@@ -34,30 +36,22 @@ import org.junit.Test;
  */
 public class WorldWideWebTest {
 
-//	@Test
-//	public void testarObterConteudoSemPostComProxy() {
-//		try {
-//			AlfredConfig.getInstancia().setUsingProxy(true);
-//			AlfredConfig.getInstancia().setProxy("189.56.61.33", 3128);
-//			String conteudo = WorldWideWeb.getConteudoSite("http://alfredlibrary.googlecode.com/");
-//			AlfredConfig.getInstancia().setUsingProxy(false);
-//			if ( conteudo == null || "".equals(conteudo ) ) {
-//				Assert.fail();
-//			}
-//		} catch ( AlfredException ae ) {
-//			AlfredConfig.getInstancia().setUsingProxy(true);
-//			Assert.fail(ae.getMessage());
-//		}
-//	}
-//	
+	@Test
+	public void testarObterConteudoSemPostComProxy() {
+		WorldWideWeb.setProxyConfig(new ProxyConfig("189.56.61.33", 3128, Type.HTTP));
+		String conteudo = WorldWideWeb.obterConteudoSite("http://alfredlibrary.googlecode.com/", "UTF-8");
+		if (conteudo == null || "".equals(conteudo))
+			Assert.fail();
+	}
+
 	@Test
 	public void testarObterConteudoSemPost() {
 		try {
 			String conteudo = WorldWideWeb.obterConteudoSite("http://alfredlibrary.googlecode.com/", "UTF-8");
-			if ( conteudo == null || "".equals(conteudo ) ) {
+			if (conteudo == null || "".equals(conteudo)) {
 				Assert.fail();
 			}
-		} catch ( AlfredException ae ) {
+		} catch (AlfredException ae) {
 			Assert.fail(ae.getMessage());
 		}
 	}
@@ -66,12 +60,12 @@ public class WorldWideWebTest {
 	public void testarObterConteudoComPost() {
 		try {
 			Map<String, String> mapa = new HashMap<String, String>();
-			mapa.put("teste","1");
-			String conteudo = WorldWideWeb.obterConteudoSite("http://code.google.com/p/alfredlibrary/",mapa);
-			if ( conteudo == null || "".equals(conteudo ) ) {
+			mapa.put("teste", "1");
+			String conteudo = WorldWideWeb.obterConteudoSite("http://code.google.com/p/alfredlibrary/", mapa);
+			if (conteudo == null || "".equals(conteudo)) {
 				Assert.fail();
 			}
-		} catch ( AlfredException ae ) {
+		} catch (AlfredException ae) {
 			Assert.fail(ae.getMessage());
 		}
 	}
@@ -80,10 +74,10 @@ public class WorldWideWebTest {
 	public void testarObterConteudoArquivo() {
 		try {
 			InputStream conteudo = WorldWideWeb.obterConteudoArquivo("http://code.google.com/p/alfredlibrary/logo?logo_id=1246636913");
-			if ( conteudo == null || "".equals(conteudo ) ) {
+			if (conteudo == null || "".equals(conteudo)) {
 				Assert.fail();
 			}
-		} catch ( AlfredException ae ) {
+		} catch (AlfredException ae) {
 			Assert.fail(ae.getMessage());
 		}
 	}
