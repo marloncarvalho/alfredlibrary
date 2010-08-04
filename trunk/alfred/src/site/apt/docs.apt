@@ -5,4 +5,45 @@ Documentação
 
 *{Introdução}
 
- A
+ Esta documentação visa orientar os atuais e futuros desenvolvedores do Alfred. Aqui vocês encontrarão algumas convenções adotadas no Alfred e também o motivo de terem sido adotadas.
+ 
+ *{Métodos Estáticos}
+ 
+ A primeira pergunta que surge para aqueles que entram no desenvolvimento do Alfred, ou até mesmo para aqueles que dissecam o seu código fonte só por curiosidade, é que todos os utilitários 
+ do Alfred são construídos usando métodos estáticos. Inicialmente as pessoas se assustam. Mas, após a explicação, passam a entender a ideia. Então, vamos tentar explicar aqui o motivo de o Alfred
+ ter majoritariamente métodos estáticos.
+ 
+ Primeiro, a ideia de métodos estáticos tem tudo a ver com o Alfred. Queremos facilitar ao máximo o uso da biblioteca e métodos estáticos caem bem neste contexto. Sabemos que o Alfred tem uso específico,
+ não são todos os projetos que precisam do Alfred. Nosso objetivo não é ter uma biblioteca de propósito específico, mas uma que abrange várias áreas. Por exemplo, uma biblioteca de Log tem apenas este objetivo.
+ Mas, imagine uma biblioteca que pode lhe ajudar a validar um CPF até a lhe informar as condições do tempo em uma cidade... não há escopo definido aqui. Aliás, o Alfred é assim: não há escopo.
+ 
+ *{Dependências}
+ 
+ Outra coisa que todos percebem é a ausência de dependências no Alfred. A biblioteca faz tudo por ela mesma. Neste contexto, algumas pessoas criticam logo a existência de algum código que poderia ser facilitado usando
+ a biblioteca X ou Y. Nós sabemos que poderia, mas faz parte do objetivo do Alfred não depender destas bibliotecas externas. O Alfred tem que andar com as suas próprias pernas e ponto final. Contudo, há possibilidades de 
+ que façamos um Alfred Estendido. A ideia é abraçar outras bibliotecas, tornando o uso destas mais fácil.
+ 
+ *{Convenção de Código} 
+ 
+ Adotamos totalmente a convenção de códigos da Sun, que você pode encontrar aqui: {http://java.sun.com/docs/codeconv/}.
+ 
+ *{Testes}
+ 
+ No Alfred todas as classes possuem seu respectivo teste. Caso você odeie testes, então ficará complicado ajudar o Alfred. Códigos de terceiros só serão aceitos caso acompanhados de seu respectivo teste. Ah, e bem escrito,
+ não adianta enviar um código de testes que testa muito pouca coisa.
+
+ *{Guia Geral}
+ 
+ Para ajudar ativamente o Alfred, sendo um commiter, será preciso seguir algumas práticas além das já citadas acima. São elas:
+ 
+ * Nunca faça uma funcionalidade ou corrija erros sem antes registrar na Issues List do Google Code
+
+ * Sempre adicione ao arquivo release-notes.apt as novidades. Sejam elas mudanças ou inclusão de funcionalidades
+ 
+ * Sempre deixe um comentário relacionando a Issue ao Commit
+ 
+ * Tenha o costume de discutir com todos os desenvolvedores sua ideia de nova funcionalidade
+ 
+ * Viu um código mal escrito? Melhore-o. O código do Alfred não é de uma única pessoa. É de todos
+ 
+ * Fez um código mal escrito? Não faça commit dele até que tenha certeza que não pode mais melhorá-lo
