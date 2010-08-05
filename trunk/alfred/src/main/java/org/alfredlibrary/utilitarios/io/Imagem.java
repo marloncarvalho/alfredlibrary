@@ -34,7 +34,7 @@ import javax.swing.ImageIcon;
 import org.alfredlibrary.AlfredException;
 
 /**
- * Utilit�rio para imagens.
+ * Utilitário para imagens.
  * 
  * @author Mario Jorge Pereira
  * @author Marlon Silva Carvalho
@@ -66,7 +66,7 @@ final public class Imagem {
 	 * @param imagem Imagem a ser redimensionada.
 	 * @param novaLargura Nova Largura.
 	 * @param novaAltura Nova Altura.
-	 * @param manterProporcao Se deve ser mantida a propor��o.
+	 * @param manterProporcao Se deve ser mantida a proporção.
 	 * @return Nova imagem redimensionada.
 	 */
 	public static BufferedImage redimensionar(byte[] imagem, int novaLargura, int novaAltura, boolean manterProporcao) {
@@ -79,7 +79,7 @@ final public class Imagem {
 	 * @param bi Imagem a ser redimensionada.
 	 * @param novaLargura Nova Largura.
 	 * @param novaAltura Nova Altura.
-	 * @param manterProporcao Se deve ser mantida a propor��o.
+	 * @param manterProporcao Se deve ser mantida a proporção.
 	 * @return Nova imagem redimensionada.
 	 */
 	public static BufferedImage redimensionar(BufferedImage bi, int novaLargura, int novaAltura, boolean manterProporcao) {
@@ -108,7 +108,7 @@ final public class Imagem {
 	 * @param img Imagem a ser redimensionada.
 	 * @param novaLargura Nova Largura.
 	 * @param novaAltura Nova Altura.
-	 * @param manterProporcao Se deve ser mantida a propor��o.
+	 * @param manterProporcao Se deve ser mantida a proporção.
 	 * @return Nova imagem redimensionada.
 	 */
 	public static BufferedImage redimensionar(Image img, int novaLargura,int novaAltura, boolean manterProporcao) {
@@ -144,7 +144,7 @@ final public class Imagem {
 			out = new BufferedOutputStream(new FileOutputStream(arquivo));
 			ImageIO.write(img, tipo, out);
 		} catch (FileNotFoundException ex) {
-			throw new AlfredException("Arquivo n�o encontrado! ",ex);
+			throw new AlfredException("Arquivo não encontrado! ",ex);
 		} catch (IOException ex) {
 			throw new AlfredException("Erro ao salvar o arquivo! ",ex);
 		}
