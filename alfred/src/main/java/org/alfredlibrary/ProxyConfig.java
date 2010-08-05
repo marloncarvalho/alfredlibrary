@@ -9,13 +9,13 @@ public class ProxyConfig {
 	private int port;
 	private Proxy proxy;
 	
-	public ProxyConfig(String host, int port, Type proxyType) {
+	public ProxyConfig(final String host, final int port, final Type proxyType) {
 		this.host = host;
 		this.port = port;
 		this.proxy = new Proxy(proxyType, new InetSocketAddress(host, port));
 	}
 
-	public void setProxy(Proxy proxy) {
+	public void setProxy(final Proxy proxy) {
 		this.proxy = proxy;
 	}
 
@@ -23,7 +23,7 @@ public class ProxyConfig {
 		return proxy;
 	}
 
-	public void setHost(String host) {
+	public void setHost(final String host) {
 		this.host = host;
 	}
 
@@ -31,7 +31,7 @@ public class ProxyConfig {
 		return host;
 	}
 
-	public void setPort(int port) {
+	public void setPort(final int port) {
 		this.port = port;
 	}
 
