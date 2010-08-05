@@ -31,20 +31,20 @@ import org.alfredlibrary.utilitarios.net.WorldWideWeb;
 
 
 /**
- * Utilit�rio que obt�m um arquivo no formato .WAV com a pron�ncia de uma palavra em um idioma.
+ * Utilitário que obtém um arquivo no formato .WAV com a pronúncia de uma palavra em um idioma.
  * 
  * @author Marlon Silva Carvalho
  * @since 10/06/2009
  */
 final public class Pronuncia {
-	public static int INGLES = 1;
+	public final static int INGLES = 1;
 
 	/**
-	 * Obter o Stream de �udio de uma pron�ncia.
+	 * Obter o Stream de áudio de uma pronúncia.
 	 * 
 	 * @param idioma Idioma.
 	 * @param palavra Palavra.
-	 * @return Stream de �udio.
+	 * @return Stream de áudio.
 	 */
 	public static AudioInputStream obterPronuncia(int idioma, String palavra) {
 		String url = "http://www.merriam-webster.com/dictionary/" + palavra;
@@ -57,7 +57,7 @@ final public class Pronuncia {
 			break;
 		}
 		if ( "".equals(arquivoWav) )
-			throw new AlfredException("N�o foi encontrada a pron�ncia da palavra " + palavra + ".");
+			throw new AlfredException("Não foi encontrada a pronúncia da palavra " + palavra + ".");
 		arquivoWav = arquivoWav.replace("return au('", "");
 		url = "http://media.merriam-webster.com/soundc11/" + arquivoWav.charAt(0) + "/" + arquivoWav;
 		InputStream is = WorldWideWeb.obterConteudoArquivo(url);		
@@ -72,7 +72,7 @@ final public class Pronuncia {
 	}
 
 	/**
-	 * Ouvir a pron�ncia de uma palavra em um idioma.
+	 * Ouvir a pronúncia de uma palavra em um idioma.
 	 * 
 	 * @param idioma Idioma.
 	 * @param palavra Palavra.
