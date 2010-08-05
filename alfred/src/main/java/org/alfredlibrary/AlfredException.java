@@ -4,17 +4,18 @@ package org.alfredlibrary;
 public class AlfredException extends RuntimeException {
 
 	public AlfredException() {
+		super();
 	}
 
-	public AlfredException(String message) {
+	public AlfredException(final String message) {
 		super(message);
 	}
 
-	public AlfredException(Throwable cause) {
+	public AlfredException(final Throwable cause) {
 		super(cause);
 	}
 
-	public AlfredException(String message, Throwable cause) {
+	public AlfredException(final String message, final Throwable cause) {
 		super(message, cause);
 	}
 
