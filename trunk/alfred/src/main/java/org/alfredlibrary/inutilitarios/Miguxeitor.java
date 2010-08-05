@@ -34,271 +34,271 @@ final public class Miguxeitor {
 	/**
 	 * Esculhambar, digo, Miguxar uma frase.
 	 * 
-	 * @param t Texto a ser escu... miguxado.
+	 * @param text Texto a ser escu... miguxado.
 	 * @param level Nível de esculhambame... miguxamento.
 	 * @return Texto escu... miguxado.
 	 */
-	public static String miguxar(String t, int level) {
-		t = t.toLowerCase();
-		t = t.replaceAll("\\buma?\\b", "1");
-		t = t.replaceAll("\\b(dois|duas)\\b", "2");
-		t = t.replaceAll("\\btrês\\b", "3");
-		t = t.replaceAll("\\bquatro\\b", "4");
-		t = t.replaceAll("\\bcinco\\b", "5");
-		t = t.replaceAll("\\bseis\\b", "6");
-		t = t.replaceAll("\\bsete\\b", "7");
-		t = t.replaceAll("\\boito\\b", "8");
-		t = t.replaceAll("\\bnove\\b", "9");
-		t = t.replaceAll("\\bdez\\b", "10");
-		t = t.replaceAll("\\bonze\\b", "11");
-		t = t.replaceAll("\\bdoze\\b", "12");
-		t = t.replaceAll("\\btreze\\b", "13");
-		t = t.replaceAll("\\b(c|qu)atorze\\b", "14");
-		t = t.replaceAll("\\bquinze\\b", "15");
-		t = t.replaceAll("\\bdezesseis\\b", "16");
-		t = t.replaceAll("\\bdezessete\\b", "17");
-		t = t.replaceAll("\\bdezoito\\b", "18");
-		t = t.replaceAll("\\bdezenove\\b", "19");
+	public static String miguxar(String text, final int level) {
+		text = text.toLowerCase();
+		text = text.replaceAll("\\buma?\\b", "1");
+		text = text.replaceAll("\\b(dois|duas)\\b", "2");
+		text = text.replaceAll("\\btrês\\b", "3");
+		text = text.replaceAll("\\bquatro\\b", "4");
+		text = text.replaceAll("\\bcinco\\b", "5");
+		text = text.replaceAll("\\bseis\\b", "6");
+		text = text.replaceAll("\\bsete\\b", "7");
+		text = text.replaceAll("\\boito\\b", "8");
+		text = text.replaceAll("\\bnove\\b", "9");
+		text = text.replaceAll("\\bdez\\b", "10");
+		text = text.replaceAll("\\bonze\\b", "11");
+		text = text.replaceAll("\\bdoze\\b", "12");
+		text = text.replaceAll("\\btreze\\b", "13");
+		text = text.replaceAll("\\b(c|qu)atorze\\b", "14");
+		text = text.replaceAll("\\bquinze\\b", "15");
+		text = text.replaceAll("\\bdezesseis\\b", "16");
+		text = text.replaceAll("\\bdezessete\\b", "17");
+		text = text.replaceAll("\\bdezoito\\b", "18");
+		text = text.replaceAll("\\bdezenove\\b", "19");
 		// Repetições
-		t = t.replaceAll("\\b([0-9]+) vez(es)?\\b", "$1x");
+		text = text.replaceAll("\\b([0-9]+) vez(es)?\\b", "$1x");
 		// Horas, minutos
-		t = t.replaceAll("\\b(\\d+) horas?\\b", "$1h");
-		t = t.replaceAll("\\b(\\d+) minutos?\\b", "$1min");
+		text = text.replaceAll("\\b(\\d+) horas?\\b", "$1h");
+		text = text.replaceAll("\\b(\\d+) minutos?\\b", "$1min");
 		if (level < 3) {
-			t = t.replaceAll("\\b(\\d+) segundos?\\b", "$1s");
+			text = text.replaceAll("\\b(\\d+) segundos?\\b", "$1s");
 		}
 		// Dias da semana
-		t = t.replaceAll("\\bsegunda-feira\\b", "2a");
-		t = t.replaceAll("\\bterça-feira\\b", "3a");
-		t = t.replaceAll("\\bquarta-feira\\b", "4a");
-		t = t.replaceAll("\\bquinta-feira\\b", "5a");
-		t = t.replaceAll("\\bsexta-feira\\b", "6a");
+		text = text.replaceAll("\\bsegunda-feira\\b", "2a");
+		text = text.replaceAll("\\bterça-feira\\b", "3a");
+		text = text.replaceAll("\\bquarta-feira\\b", "4a");
+		text = text.replaceAll("\\bquinta-feira\\b", "5a");
+		text = text.replaceAll("\\bsexta-feira\\b", "6a");
 		if (level < 3) {
 			// Ordinais
-			t = t.replaceAll("\\bprimeir([ao])\\b", "1$1");
-			t = t.replaceAll("\\bsegund([ao])\\b", "2$1");
-			t = t.replaceAll("\\bterceir([ao])\\b", "3$1");
-			t = t.replaceAll("\\bquart([ao])\\b", "4$1");
-			t = t.replaceAll("\\bquint([ao])\\b", "5$1");
-			t = t.replaceAll("\\bsext([ao])\\b", "6$1");
-			t = t.replaceAll("\\bsétim([ao])\\b", "7$1");
-			t = t.replaceAll("\\boitav([ao])\\b", "8$1");
-			t = t.replaceAll("\\bnon([ao])\\b", "9$1");
-			t = t.replaceAll("\\bdécim([ao])\\b", "10$1");
+			text = text.replaceAll("\\bprimeir([ao])\\b", "1$1");
+			text = text.replaceAll("\\bsegund([ao])\\b", "2$1");
+			text = text.replaceAll("\\bterceir([ao])\\b", "3$1");
+			text = text.replaceAll("\\bquart([ao])\\b", "4$1");
+			text = text.replaceAll("\\bquint([ao])\\b", "5$1");
+			text = text.replaceAll("\\bsext([ao])\\b", "6$1");
+			text = text.replaceAll("\\bsétim([ao])\\b", "7$1");
+			text = text.replaceAll("\\boitav([ao])\\b", "8$1");
+			text = text.replaceAll("\\bnon([ao])\\b", "9$1");
+			text = text.replaceAll("\\bdécim([ao])\\b", "10$1");
 
 			// Abreviações não miguxas
-			t = t.replaceAll("\\bfi(m|nal) de semana\\b", "fds");
+			text = text.replaceAll("\\bfi(m|nal) de semana\\b", "fds");
 		}
 		// Símbolos
-		t = t.replaceAll("\\baté mais\\b", "t+");
-		t = t.replaceAll("\\bdemais\\b", "d+");
-		t = t.replaceAll("\\bmais ou menos\\b", "+-");
-		t = t.replaceAll("\\bmais\\b", "+");
-		t = t.replaceAll("\\bmenos\\b", "-");
-		t = t.replaceAll("\\bmei[ao]\\b", "1/2");
+		text = text.replaceAll("\\baté mais\\b", "t+");
+		text = text.replaceAll("\\bdemais\\b", "d+");
+		text = text.replaceAll("\\bmais ou menos\\b", "+-");
+		text = text.replaceAll("\\bmais\\b", "+");
+		text = text.replaceAll("\\bmenos\\b", "-");
+		text = text.replaceAll("\\bmei[ao]\\b", "1/2");
 		// Abreviações simples
-		t = t.replaceAll("\\bpor\\s?qu[eê]\\b", "pq");
-		t = t.replaceAll("\\bhoje\\b", "hj");
-		t = t.replaceAll("\\btambém\\b", "tb");
-		t = t.replaceAll("\\bbeleza\\\b", "blz");
-		t = t.replaceAll("\\bfirmeza\\b", "fmz");
-		t = t.replaceAll("\\bquando\\b", "qdo");
-		t = t.replaceAll("\\bquant([ao])(s?)\\b", "qt$1$2");
-		t = t.replaceAll("\\bmuit([ao])(s?)\\b", "mt$1$2");
-		t = t.replaceAll("\\bbeij(o|ão)\\b", "bj$1");
-		t = t.replaceAll("\\bbeijos\\b", "bjs");
+		text = text.replaceAll("\\bpor\\s?qu[eê]\\b", "pq");
+		text = text.replaceAll("\\bhoje\\b", "hj");
+		text = text.replaceAll("\\btambém\\b", "tb");
+		text = text.replaceAll("\\bbeleza\\\b", "blz");
+		text = text.replaceAll("\\bfirmeza\\b", "fmz");
+		text = text.replaceAll("\\bquando\\b", "qdo");
+		text = text.replaceAll("\\bquant([ao])(s?)\\b", "qt$1$2");
+		text = text.replaceAll("\\bmuit([ao])(s?)\\b", "mt$1$2");
+		text = text.replaceAll("\\bbeij(o|ão)\\b", "bj$1");
+		text = text.replaceAll("\\bbeijos\\b", "bjs");
 		if (level == 1) {
-			t = t.replaceAll("\\bcom([^\\wáéíóúàâêôãõüç]|$)", "c/$1");
+			text = text.replaceAll("\\bcom([^\\wáéíóúàâêôãõüç]|$)", "c/$1");
 		} else if (level == 3) {
-			t = t.replaceAll("\\bcom([^\\wáéíóúàâêôãõüç]|$)", "cum$1");
+			text = text.replaceAll("\\bcom([^\\wáéíóúàâêôãõüç]|$)", "cum$1");
 		}
 		if (level > 1) {
 			// Abreviações avançadas
-			t = t.replaceAll("\\bmesm[ao](s?)\\b", "msm$1");
-			t = t.replaceAll("\\bdepois\\b", "dpois");
-			t = t.replaceAll("\\bquem\\b", "qm");
-			t = t.replaceAll("\\bcomigo\\b", "cmg");
-			t = t.replaceAll("\\bcadê", "kd");
-			t = t.replaceAll("\\bqualquer\\b", "qq");
-			t = t.replaceAll("\\bfalou\\b", "flw");
-			t = t.replaceAll("\\bvaleu\\b", "vlw");
-			t = t.replaceAll("\\btchau\\b", "xau");
+			text = text.replaceAll("\\bmesm[ao](s?)\\b", "msm$1");
+			text = text.replaceAll("\\bdepois\\b", "dpois");
+			text = text.replaceAll("\\bquem\\b", "qm");
+			text = text.replaceAll("\\bcomigo\\b", "cmg");
+			text = text.replaceAll("\\bcadê", "kd");
+			text = text.replaceAll("\\bqualquer\\b", "qq");
+			text = text.replaceAll("\\bfalou\\b", "flw");
+			text = text.replaceAll("\\bvaleu\\b", "vlw");
+			text = text.replaceAll("\\btchau\\b", "xau");
 		}
 		if (level == 1) {
-			t = t.replaceAll("\\bque\\b", "q");
-			t = t.replaceAll("\\bvocê", "vc");
-			t = t.replaceAll("\\be-?mail(s?)\\b", "mail$1");
+			text = text.replaceAll("\\bque\\b", "q");
+			text = text.replaceAll("\\bvocê", "vc");
+			text = text.replaceAll("\\be-?mail(s?)\\b", "mail$1");
 		} else if (level == 2) {
-			t = t.replaceAll("\\bque\\b", "ke");
-			t = t.replaceAll("\\bvocês\\b", "6");
-			t = t.replaceAll("\\bvocê", "vc"); // c fica estranho em kd c?
+			text = text.replaceAll("\\bque\\b", "ke");
+			text = text.replaceAll("\\bvocês\\b", "6");
+			text = text.replaceAll("\\bvocê", "vc"); // c fica estranho em kd c?
 		} else {
-			t = t.replaceAll("\\bque\\b", "ki");
-			t = t.replaceAll("\\b(adoro você|te adoro)", "adoluxê");
-			t = t.replaceAll("\\bamo vocês\\b", "amodolu vocês");
-			t = t.replaceAll("\\b(amo você|te amo)", "te amodolu");
-			t = t.replaceAll("\\bvocê", "vuxê");
+			text = text.replaceAll("\\bque\\b", "ki");
+			text = text.replaceAll("\\b(adoro você|te adoro)", "adoluxê");
+			text = text.replaceAll("\\bamo vocês\\b", "amodolu vocês");
+			text = text.replaceAll("\\b(amo você|te amo)", "te amodolu");
+			text = text.replaceAll("\\bvocê", "vuxê");
 		}
 		// Glossário
-		t = t.replaceAll("\\btecl(e|ar|ou|amos)\\b", "tc");
-		t = t.replaceAll("\\binternet\\b", "net");
-		t = t.replaceAll("\\be-?mail(s?)\\b", "meio$1");
-		t = t.replaceAll("\\b(grana|dinheiro)\\b", "$$$$$$"); // $$$
+		text = text.replaceAll("\\btecl(e|ar|ou|amos)\\b", "tc");
+		text = text.replaceAll("\\binternet\\b", "net");
+		text = text.replaceAll("\\be-?mail(s?)\\b", "meio$1");
+		text = text.replaceAll("\\b(grana|dinheiro)\\b", "$$$$$$"); // $$$
 		if (level == 2) {
-			t = t.replaceAll("\\badicion", "adde"); // Tou t addeando
-			t = t.replaceAll("\\bamig([ao])\\b", "mig$1"); // miga
-			t = t.replaceAll("\\blind([ao])\\b", "leend$1"); // leenda
-			t = t.replaceAll("\\bnovidade(s?)\\b", "9dad$1");
+			text = text.replaceAll("\\badicion", "adde"); // Tou t addeando
+			text = text.replaceAll("\\bamig([ao])\\b", "mig$1"); // miga
+			text = text.replaceAll("\\blind([ao])\\b", "leend$1"); // leenda
+			text = text.replaceAll("\\bnovidade(s?)\\b", "9dad$1");
 		} else if (level == 3) {
-			t = t.replaceAll("\\badicion[\\wáí]+", "add"); // Tou t add
-			t = t.replaceAll("\\bamig([ao]s?)\\b", "migux$1"); // miguxa
-			t = t.replaceAll("\\blind([ao]s?)\\b", "lindux$1"); // linduxa
-			t = t.replaceAll("\\bfof([ao]s?)\\b", "fofux$1"); // fofuxa
-			t = t.replaceAll("\\bdormir\\b", "mimir");
-			t = t.replaceAll("\\bnome(s?)\\b", "nominho$1");
-			t = t.replaceAll("\\besposa\\b", "marida");
-			t = t.replaceAll("\\b(de novo|novamente)\\b", "dinovo");
-			t = t.replaceAll("\\b(aliás|por exemplo)\\b", "tipo assim");
+			text = text.replaceAll("\\badicion[\\wáí]+", "add"); // Tou t add
+			text = text.replaceAll("\\bamig([ao]s?)\\b", "migux$1"); // miguxa
+			text = text.replaceAll("\\blind([ao]s?)\\b", "lindux$1"); // linduxa
+			text = text.replaceAll("\\bfof([ao]s?)\\b", "fofux$1"); // fofuxa
+			text = text.replaceAll("\\bdormir\\b", "mimir");
+			text = text.replaceAll("\\bnome(s?)\\b", "nominho$1");
+			text = text.replaceAll("\\besposa\\b", "marida");
+			text = text.replaceAll("\\b(de novo|novamente)\\b", "dinovo");
+			text = text.replaceAll("\\b(aliás|por exemplo)\\b", "tipo assim");
 		}
 		// tou, tava, tar
-		t = t.replaceAll("\\best(ar|ou|ava|ive|aria|ão)\\b", "t$1");
-		t = t.replaceAll("\\bestá([^\\wáéíóúàâêôãõüç]|$)", "tah$1");
+		text = text.replaceAll("\\best(ar|ou|ava|ive|aria|ão)\\b", "t$1");
+		text = text.replaceAll("\\bestá([^\\wáéíóúàâêôãõüç]|$)", "tah$1");
 		// para
-		t = t.replaceAll("\\bpara ([ao]s?)\\b", "pr$1");
-		t = t.replaceAll("\\bpara([^\\wáéíóúàâêôãõüç-]|$)", "pra$1");
+		text = text.replaceAll("\\bpara ([ao]s?)\\b", "pr$1");
+		text = text.replaceAll("\\bpara([^\\wáéíóúàâêôãõüç-]|$)", "pra$1");
 		if (level == 2) {
-			t = t.replaceAll("\\bpr[ao]([^\\wáéíóúàâêôãõüç]|$)", "p$1");
+			text = text.replaceAll("\\bpr[ao]([^\\wáéíóúàâêôãõüç]|$)", "p$1");
 		}
 		// Simplifiq: irmos -> ir, acabou -> cabou
-		t = t.replaceAll("([aei]r)mos\\b", "$1");
-		t = t.replaceAll("\\bacab", "cab");
+		text = text.replaceAll("([aei]r)mos\\b", "$1");
+		text = text.replaceAll("\\bacab", "cab");
 		if (level > 1) {
 			// entaum, naum
-			t = t.replaceAll("ão\\b", "aum");
+			text = text.replaceAll("ão\\b", "aum");
 			// andando -> andano, comendo -> comeno (depois fica melhor: andanu,
 			// comenu)
-			t = t.replaceAll("(\\w[aei])ndo\\b", "$1no");
+			text = text.replaceAll("(\\w[aei])ndo\\b", "$1no");
 			// tada$ -> tadeenha (e alguns outros casos), foto -> foteenha,
 			// gatinha -> gateenha
-			t = t.replaceAll("(\\w[crt]ad)([ao])\\b", "$1eenh$2");
-			t = t.replaceAll("foto(s?)\\b", "foteenha$1");
-			t = t.replaceAll("(\\w)tinh([ao])\\b", "$1teenh$2");
+			text = text.replaceAll("(\\w[crt]ad)([ao])\\b", "$1eenh$2");
+			text = text.replaceAll("foto(s?)\\b", "foteenha$1");
+			text = text.replaceAll("(\\w)tinh([ao])\\b", "$1teenh$2");
 			if (level > 2) {
 				// No Orkut é mais fófi terminar em i
-				t = t.replaceAll("\\bse\\b", "si");
-				t = t.replaceAll("\\bde\\b", "di");
-				t = t.replaceAll("\\bte\\b", "ti");
+				text = text.replaceAll("\\bse\\b", "si");
+				text = text.replaceAll("\\bde\\b", "di");
+				text = text.replaceAll("\\bte\\b", "ti");
 			} else {
 				// No MSN o som da letra vira a palavra
-				t = t.replaceAll("\\bse\\b", "c");
-				t = t.replaceAll("\\bde\\b", "d");
-				t = t.replaceAll("\\bte\\b", "t");
+				text = text.replaceAll("\\bse\\b", "c");
+				text = text.replaceAll("\\bde\\b", "d");
+				text = text.replaceAll("\\bte\\b", "t");
 			}
 			// CH, SH e QU não existem
-			t = t.replaceAll("ch", "x");
-			t = t.replaceAll("sh", "x");
-			t = t.replaceAll("qu", "k");
+			text = text.replaceAll("ch", "x");
+			text = text.replaceAll("sh", "x");
+			text = text.replaceAll("qu", "k");
 			// e -> i (alguns casos)
-			t = t.replaceAll("(\\w(ss|[cdgtv]))e(s?)m?\\b", "$1i$3");
-			t = t.replaceAll("\\bseg", "sig");
-			t = t.replaceAll("\\bdes([^s])", "dis$1");
+			text = text.replaceAll("(\\w(ss|[cdgtv]))e(s?)m?\\b", "$1i$3");
+			text = text.replaceAll("\\bseg", "sig");
+			text = text.replaceAll("\\bdes([^s])", "dis$1");
 		}
 		// ei -> i (alguns casos) deixa -> dexa
-		t = t.replaceAll("eix", "ex");
+		text = text.replaceAll("eix", "ex");
 		if (level > 1) {
 			// o -> u (alguns casos)
-			t = t.replaceAll("\\bbonit", "bunit");
+			text = text.replaceAll("\\bbonit", "bunit");
 			// e sozinho -> i
-			t = t.replaceAll("\\be\\b", "i");
+			text = text.replaceAll("\\be\\b", "i");
 			if (level > 2) {
 				// inglês -> ingleix
-				t = t.replaceAll("ês\\b", "eix");
+				text = text.replaceAll("ês\\b", "eix");
 				// atrás -> atraix
-				t = t.replaceAll("(\\w)(ás|az)\\b", "$1aix");
+				text = text.replaceAll("(\\w)(ás|az)\\b", "$1aix");
 			}
 		}
 		// Acento no final eh moh uoh
-		t = t.replaceAll("á([^\\wáéíóúàâêôãõüç]|$)", "ah$1");
-		t = t.replaceAll("é([^\\wáéíóúàâêôãõüç]|$)", "eh$1");
-		t = t.replaceAll("í([^\\wáéíóúàâêôãõüç]|$)", "ih$1");
-		t = t.replaceAll("ó([^\\wáéíóúàâêôãõüç]|$)", "oh$1");
-		t = t.replaceAll("ú([^\\wáéíóúàâêôãõüç]|$)", "uh$1");
+		text = text.replaceAll("á([^\\wáéíóúàâêôãõüç]|$)", "ah$1");
+		text = text.replaceAll("é([^\\wáéíóúàâêôãõüç]|$)", "eh$1");
+		text = text.replaceAll("í([^\\wáéíóúàâêôãõüç]|$)", "ih$1");
+		text = text.replaceAll("ó([^\\wáéíóúàâêôãõüç]|$)", "oh$1");
+		text = text.replaceAll("ú([^\\wáéíóúàâêôãõüç]|$)", "uh$1");
 		// Acentuação? Nunca.
-		t = t.replaceAll("[áàâãä]", "a");
-		t = t.replaceAll("[éèêë]", "e");
-		t = t.replaceAll("[íìîï]", "i");
-		t = t.replaceAll("[óòôõö]", "o");
-		t = t.replaceAll("[úùûü]", "u");
+		text = text.replaceAll("[áàâãä]", "a");
+		text = text.replaceAll("[éèêë]", "e");
+		text = text.replaceAll("[íìîï]", "i");
+		text = text.replaceAll("[óòôõö]", "o");
+		text = text.replaceAll("[úùûü]", "u");
 		if (level == 1) {
-			t = t.replaceAll("[ç]", "c");
+			text = text.replaceAll("[ç]", "c");
 		} else {
-			t = t.replaceAll("[ç]", "ss");
+			text = text.replaceAll("[ç]", "ss");
 		}
 		if (level > 1) {
 			// l$ -> u
-			t = t.replaceAll("(\\w[a-z])l\\b", "$1u");
+			text = text.replaceAll("(\\w[a-z])l\\b", "$1u");
 			// amo -> amu, todo -> todu (plural também)
-			t = t.replaceAll("o(s?)\\b", "u$1");
-			t = t.replaceAll("\\b(\\d+)u\\b", "$1o"); // fix 1u > 1o (primeiro)
+			text = text.replaceAll("o(s?)\\b", "u$1");
+			text = text.replaceAll("\\b(\\d+)u\\b", "$1o"); // fix 1u > 1o (primeiro)
 			// ou -> o (se for parte de palavra)
 			if (level == 3) {
-				t = t.replaceAll("(\\w)ou\\b", "$1ow"); // Orkut
+				text = text.replaceAll("(\\w)ou\\b", "$1ow"); // Orkut
 			} else {
-				t = t.replaceAll("(\\w)ou\\b", "$1o"); // bug: 2)sol>sou>so
+				text = text.replaceAll("(\\w)ou\\b", "$1o"); // bug: 2)sol>sou>so
 			}
-			t = t.replaceAll("\\bou(\\w)", "o$1");
-			t = t.replaceAll("(\\w)ou(\\w)", "$1o$2");
+			text = text.replaceAll("\\bou(\\w)", "o$1");
+			text = text.replaceAll("(\\w)ou(\\w)", "$1o$2");
 			// ^c -> k (exceções: certo,cidade,c)
-			t = t.replaceAll("\\bc([ei\\w])", "k$1");
+			text = text.replaceAll("\\bc([ei\\w])", "k$1");
 			// andar -> andah, comer -> come, sentir -> senti
-			t = t.replaceAll("ar\\b", "ah");
-			t = t.replaceAll("er\\b", "e");
-			t = t.replaceAll("ir\\b", "i");
+			text = text.replaceAll("ar\\b", "ah");
+			text = text.replaceAll("er\\b", "e");
+			text = text.replaceAll("ir\\b", "i");
 			// eira$ -> era (sonzera, ladera)
-			t = t.replaceAll("eira\\b", "era");
+			text = text.replaceAll("eira\\b", "era");
 			// sa$ -> za, casa -> caza
-			t = t.replaceAll("([^s\\w])sa\\b", "$1za");
+			text = text.replaceAll("([^s\\w])sa\\b", "$1za");
 			// TODO muZica e assemelhados
 			// Certas palavras não precisam de plural (mmmmm, deixe quieto)
 			// t = t.replaceAll(/(dia)s\\b",			"$1");
 		}
 		if (level > 2) {
 			// O abominável X no fim das palavras no plural
-			t = t.replaceAll("([^\\ws])s\\b", "$1x");
+			text = text.replaceAll("([^\\ws])s\\b", "$1x");
 			// O abominável H no fim de certas palavras
-			t = t.replaceAll("(\\w)a\\b", "$1ah");
+			text = text.replaceAll("(\\w)a\\b", "$1ah");
 		}
 		// Risada
 		if (level == 1) {
-			t = t.replaceAll("\\b(he|ha|hi|ho|hua){2,}h?\\b", "rsrsrs");
+			text = text.replaceAll("\\b(he|ha|hi|ho|hua){2,}h?\\b", "rsrsrs");
 		} else if (level == 2) {
-			t = t.replaceAll("\\b(he|ha|hi|ho|hua|rs){2,}h?\\b", "huahuahua");
-			t = t.replaceAll("[8:][-o]?[D)]", "huahuahua");
+			text = text.replaceAll("\\b(he|ha|hi|ho|hua|rs){2,}h?\\b", "huahuahua");
+			text = text.replaceAll("[8:][-o]?[D)]", "huahuahua");
 		} else {
-			t = t.replaceAll("\\b(he|ha|hi|ho|hua|rs){2,}h?\\b", "kkkkkkkkkkk");
-			t = t.replaceAll("[8:][-o]?[D)]", "kkkkkkkkkkk");
+			text = text.replaceAll("\\b(he|ha|hi|ho|hua|rs){2,}h?\\b", "kkkkkkkkkkk");
+			text = text.replaceAll("[8:][-o]?[D)]", "kkkkkkkkkkk");
 		}
 		if (level > 1) {
 			// Somente um ponto final é muito pouco
-			t = t.replaceAll("\\.", "......");
+			text = text.replaceAll("\\.", "......");
 			// Pra que vírgula? Pontos são mais legais... vários...
-			t = t.replaceAll(",", "...");
-			t = t.replaceAll("(\\n|$)", "...$1");
+			text = text.replaceAll(",", "...");
+			text = text.replaceAll("(\\n|$)", "...$1");
 		}
 		// Sejamos enfáticos!!!
 		if (level == 1) {
-			t = t.replaceAll("!", "!!");
-			t = t.replaceAll("\\?", "??");
+			text = text.replaceAll("!", "!!");
+			text = text.replaceAll("\\?", "??");
 		} else {
-			t = t.replaceAll("!", "!!!!!");
-			t = t.replaceAll("\\?", "??!?!");
+			text = text.replaceAll("!", "!!!!!");
+			text = text.replaceAll("\\?", "??!?!");
 		}
 		if (level < 3) {
 			// Maiúsculas não existem
-			t = t.toLowerCase();
+			text = text.toLowerCase();
 		} else {
 			// Alternância aLEaTóRIa de maiúsculas e minúsculas
-			String[] letters = t.toLowerCase().split("");
+			String[] letters = text.toLowerCase().split("");
 			StringBuilder sb = new StringBuilder();
 			for (int i=0; i < letters.length; i++) {
 				if (Math.floor(Math.random()*2) == 1) {
@@ -309,10 +309,10 @@ final public class Miguxeitor {
 			}
 
 			// E uns ajustes finais para ficar ainda mais fofuxu
-			t = t.replaceAll("(x|X)", "xXx");
-			t = t.replaceAll("(ss|SS)", "XX");
+			text = text.replaceAll("(x|X)", "xXx");
+			text = text.replaceAll("(ss|SS)", "XX");
 		}
-		return t;
+		return text;
 	}
 
 }
