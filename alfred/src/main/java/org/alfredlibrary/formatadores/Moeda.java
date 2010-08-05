@@ -93,7 +93,7 @@ class Extenso {
    private ArrayList<Integer> nro;
    private BigInteger num;
 
-   private String Qualificadores[][] = {
+   private String qualificadores[][] = {
          {"centavo", "centavos"},
          {"", ""},
          {"mil", "mil"},
@@ -105,7 +105,7 @@ class Extenso {
          {"sextilhão", "sextilhões"},
          {"septilhão", "septilhões"}
          };
-   private String Numeros[][] = {
+   private String numeros[][] = {
          {"zero", "um", "dois", "três", "quatro", "cinco", "seis", "sete", "oito", "nove", "dez",
          "onze", "doze", "treze", "quatorze", "quinze", "desesseis", "desessete", "dezoito", "desenove"},
          {"vinte", "trinta", "quarenta", "cinquenta", "sessenta", "setenta", "oitenta", "noventa"},
@@ -154,9 +154,9 @@ class Extenso {
       nro.clear();
       if (num.equals(BigInteger.ZERO)) {
          // Centavos
-         nro.add(new Integer(0));
+         nro.add(Integer.valueOf(0));
          // Valor
-         nro.add(new Integer(0));
+         nro.add(Integer.valueOf(0));
       }
       else {
          // Adiciona centavos
@@ -213,7 +213,7 @@ class Extenso {
    
    private void addRemainder(int divisor) {
       BigInteger[] newNum = num.divideAndRemainder(BigInteger.valueOf(divisor));
-      nro.add(new Integer(newNum[1].intValue()));
+      nro.add(Integer.valueOf(newNum[1].intValue()));
       num = newNum[0];
    }
 
@@ -249,10 +249,10 @@ class Extenso {
       if (numero != 0) {
          if (centena != 0) {
             if (dezena == 0 && centena == 1) {
-               buf.append(Numeros[2][0]);
+               buf.append(numeros[2][0]);
             }
             else {
-               buf.append(Numeros[2][centena]);
+               buf.append(numeros[2][centena]);
             }
          }
 
@@ -261,22 +261,22 @@ class Extenso {
          }
          if (dezena > 19) {
             dezena /= 10;
-            buf.append(Numeros[1][dezena - 2]);
+            buf.append(numeros[1][dezena - 2]);
             if (unidade != 0) {
                buf.append(" e ");
-               buf.append(Numeros[0][unidade]);
+               buf.append(numeros[0][unidade]);
             }
          }
          else if (centena == 0 || dezena != 0) {
-            buf.append(Numeros[0][dezena]);
+            buf.append(numeros[0][dezena]);
          }
 
          buf.append(" ");
          if (numero == 1) {
-            buf.append(Qualificadores[escala][0]);
+            buf.append(qualificadores[escala][0]);
          }
          else {
-            buf.append(Qualificadores[escala][1]);
+            buf.append(qualificadores[escala][1]);
          }
       }
 
