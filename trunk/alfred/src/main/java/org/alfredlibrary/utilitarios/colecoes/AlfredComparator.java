@@ -15,13 +15,13 @@ import org.alfredlibrary.utilitarios.texto.Texto;
  * @author Rodrigo Moreira Fagundes
  * @since 28/04/2010
  */
-@SuppressWarnings("unchecked")
+@SuppressWarnings("all")
 public class AlfredComparator implements Comparator {
 	
 	private boolean ascendente;
 	private String atributo;
 	private Collection <String> colAtributo;
-	private Class clazz;
+	private Class<?> clazz;
         
 	public Collection<String> getColAtributo() {
 		return colAtributo;
@@ -31,11 +31,11 @@ public class AlfredComparator implements Comparator {
 		this.colAtributo = colAtributo;
 	}
 
-	public Class getClazz() {
+	public Class<?> getClazz() {
 		return clazz;
 	}
 
-	public void setClazz(Class clazz) {
+	public void setClazz(Class<?> clazz) {
 		this.clazz = clazz;
 	}
 
@@ -63,7 +63,7 @@ public class AlfredComparator implements Comparator {
 	 * @param atributo Nome do campo base para ordenação.
 	 * @return Clazz classe do atributo.
 	 */
-	public AlfredComparator(boolean ascendente, String atributo, Class clazz) {
+	public AlfredComparator(boolean ascendente, String atributo, Class<?> clazz) {
         this.setAscendente(ascendente);
         this.setAtributo(atributo);
         this.setClazz(clazz);
@@ -78,7 +78,7 @@ public class AlfredComparator implements Comparator {
 	 * 						a ordenação.
 	 * @return Clazz classe do atributo.
 	 */
-	public AlfredComparator(boolean ascendente, Collection <String> colAtributo, Class clazz) {
+	public AlfredComparator(boolean ascendente, Collection <String> colAtributo, Class<?> clazz) {
         this.setAscendente(ascendente);
         this.setColAtributo(colAtributo);
         this.setClazz(clazz);
@@ -125,12 +125,6 @@ public class AlfredComparator implements Comparator {
 		    	} else if (this.getClazz().equals(Boolean.class)) {
 		    		Long arg1 = ((Boolean)o1.getClass().getMethod("get"+Texto.capitalizarIniciais(this.getAtributo())).invoke(o1)).booleanValue() == true ? new Long(1) : new Long(0);
 		    		Long arg2 = ((Boolean)o2.getClass().getMethod("get"+Texto.capitalizarIniciais(this.getAtributo())).invoke(o2)).booleanValue() == true ? new Long(1) : new Long(0);
-		    		if (arg1 == null) {
-		    			arg1 = new Long(0);
-		    		}
-		    		if (arg2 == null) {
-		    			arg2 = new Long(0);
-		    		}
 		    		v = arg1.compareTo(arg2);
 		    	} else {
 		    		Object arg1 = o1.getClass().getMethod("get"+Texto.capitalizarIniciais(this.getAtributo())).invoke(o1);
