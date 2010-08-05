@@ -33,8 +33,8 @@ import org.alfredlibrary.utilitarios.texto.HTML;
  * @since 13/06/2009
  */
 final public class PAC {
-	private static String FORMATO_CAIXA_PACOTE = "1";
-	private static String FORMATO_ROLO_PRISMA = "2";
+	private final static String FORMATO_CAIXA_PACOTE = "1";
+	private final static String FORMATO_ROLO_PRISMA = "2";
 
 	/**
 	 * Método privado apenas para validar os parâmetros do PAC.
