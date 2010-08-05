@@ -10,8 +10,8 @@ public class ProxyConfig {
 	private Proxy proxy;
 	
 	public ProxyConfig(String host, int port, Type proxyType) {
-		this.setHost(host);
-		this.setPort(port);
+		this.host = host;
+		this.port = port;
 		this.proxy = new Proxy(proxyType, new InetSocketAddress(host, port));
 	}
 
