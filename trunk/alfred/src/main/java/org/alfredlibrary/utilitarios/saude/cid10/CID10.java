@@ -665,22 +665,12 @@ final public class CID10 {
 			Node noFilho = listNos.item(indice);
 			if ( noFilho.getNodeType() == Node.ELEMENT_NODE ) {
 				if (noFilho.getNodeName().equals( "referencia" )) {
-					Map<String,Object> registroDetalhe = null;
-					if (registroDetalhe == null) {
-						registroDetalhe = new HashMap<String,Object>();
-					}
+					Map<String,Object> registroDetalhe = new HashMap<String,Object>();
 					registroDetalhe.put("tipo", noPai.getAttributes().getNamedItem("tipo"));
-					
 					if (noFilho.getAttributes().getNamedItem("causaobito") != null) {
-						if (registroDetalhe == null) {
-							registroDetalhe = new HashMap<String,Object>();
-						}
 						registroDetalhe.put("causaobito", noFilho.getAttributes().getNamedItem("causaobito").getNodeValue().equals("sim") ? true : false);
 					}
 					if (obterReferencia(noPai) != null) {
-						if (registroDetalhe == null) {
-							registroDetalhe = new HashMap<String,Object>();
-						}
 						registroDetalhe.put("referencia", obterReferencia(noPai));
 					}
 					if (registroDetalhe != null) {
