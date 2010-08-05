@@ -38,7 +38,7 @@ public class WorldWideWebTest {
 
 	@Test
 	public void testarObterConteudoSemPostComProxy() {
-		WorldWideWeb.setProxyConfig(new ProxyConfig("189.56.61.33", 3128, Type.HTTP));
+		WorldWideWeb.setProxyConfig(new ProxyConfig("118.122.124.178", 80, Type.HTTP));
 		String conteudo = WorldWideWeb.obterConteudoSite("http://alfredlibrary.googlecode.com/", "UTF-8");
 		if (conteudo == null || "".equals(conteudo))
 			Assert.fail();

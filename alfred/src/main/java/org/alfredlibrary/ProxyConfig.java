@@ -2,19 +2,17 @@ package org.alfredlibrary;
 
 import java.net.InetSocketAddress;
 import java.net.Proxy;
-import java.net.SocketAddress;
 import java.net.Proxy.Type;
 
 public class ProxyConfig {
-	private Proxy proxy;
 	private String host;
 	private int port;
+	private Proxy proxy;
 	
 	public ProxyConfig(String host, int port, Type proxyType) {
 		this.setHost(host);
 		this.setPort(port);
-		SocketAddress sa = new InetSocketAddress(host, port);
-		this.setProxy(new Proxy(proxyType, sa));
+		this.proxy = new Proxy(proxyType, new InetSocketAddress(host, port));
 	}
 
 	public void setProxy(Proxy proxy) {
