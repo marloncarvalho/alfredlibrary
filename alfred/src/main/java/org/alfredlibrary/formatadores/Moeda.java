@@ -143,7 +143,7 @@ class Extenso {
       setNumber(dec);
    }
 
-   public void setNumber(BigDecimal dec) {
+   final public void setNumber(BigDecimal dec) {
       // Converte para inteiro arredondando os centavos
       num = dec
          .setScale(2, BigDecimal.ROUND_HALF_UP)
@@ -169,7 +169,7 @@ class Extenso {
       }
    }
 
-   public void setNumber(double dec) {
+   final public void setNumber(double dec) {
       setNumber(new BigDecimal(dec));
    }
 
