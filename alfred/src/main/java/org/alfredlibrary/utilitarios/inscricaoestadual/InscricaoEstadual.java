@@ -408,7 +408,7 @@ final public class InscricaoEstadual {
 						}
 					}
 				} else if (modulo == 10) {
-					String numMod10 = new String(num);
+					String numMod10 = num;
 					if (padrao.equals(PadraoInscricaoEstadual.MINAS_GERAIS)) {
 						// Inclui um "0" após o código do município para calcular o primeiro DV
 						numMod10 = Texto.manterNumeros(numMod10).substring(0,3) + "0" + Texto.manterNumeros(numMod10).substring(3,11);
