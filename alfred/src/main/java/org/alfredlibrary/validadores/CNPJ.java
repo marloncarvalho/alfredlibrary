@@ -30,7 +30,7 @@ final public class CNPJ {
 
 	/**
 	 * <b>Validar um CNPJ.</b><br>
-	 * Obtido em <a href=
+	 * Obtido00 em <a href=
 	 * "http://www.javafree.org/artigo/852844/Validacao-de-CNPJ-em-java.html"
 	 * >http://www.javafree.org/artigo/852844/Validacao-de-CNPJ-em-java.html</a><br>
 	 * 
