@@ -32,7 +32,7 @@ public class CNPJTest {
 	@Test
 	public void testValidarCerto() {
 		try {
-			if ( !CNPJ.isValido("00.000.000/0001-91") ) {
+			if ( !CNPJ.isValido("04.593.860/0001-37") ) {
 				Assert.fail();
 			}
 		} catch(AlfredException ex) {
