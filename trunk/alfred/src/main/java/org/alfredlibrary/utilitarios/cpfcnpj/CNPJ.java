@@ -51,6 +51,6 @@ public final class CNPJ {
 	 * @return Dígito verificador.
 	 */
 	public static String gerarDigitoVerificador(String cnpj) {
-		return Modulo11.obterDV(cnpj, false, 2);
+		return Modulo11.obterDVBase10(cnpj, false, 2);
 	}
 }
