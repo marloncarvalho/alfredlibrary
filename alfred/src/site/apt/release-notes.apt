@@ -5,6 +5,8 @@ Notas de Versão
 
 * v1.1.0
  
+ * Consertadas as consultas de CEP, Sedex, Sedex10 e PAC.
+  
  * Adicionado método completar() na classe Texto
  
  * Adicionado método removerPontuacao() na classe Texto
@@ -36,7 +38,9 @@ Notas de Versão
  * Utilitário de Letras corrigido para o novo formato do site
  
  * Testes de PAC corrigidos
-  
+ 
+ * Classe AlfredConfig não existe mais. Substituída por ProxyConfig
+ 
 * v1.0.0
   
   * Versão inicial do Alfred.
