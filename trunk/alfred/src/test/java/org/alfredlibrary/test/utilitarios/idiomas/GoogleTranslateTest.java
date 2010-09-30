@@ -37,6 +37,6 @@ public class GoogleTranslateTest {
 
 	@Test
 	public void testarTraducaoInglesPortugues() {
-		Assert.assertEquals("best", GoogleTranslate.traduzir("o melhor", Idioma.PORTUGUESE, Idioma.ENGLISH));
+		Assert.assertEquals("the best", GoogleTranslate.traduzir("o melhor", Idioma.PORTUGUESE, Idioma.ENGLISH));
 	}
 }

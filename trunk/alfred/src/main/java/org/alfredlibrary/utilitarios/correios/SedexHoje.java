@@ -25,7 +25,7 @@ import org.alfredlibrary.AlfredException;
 import org.alfredlibrary.utilitarios.net.WorldWideWeb;
 
 /**
- * Utilit�rios para obter informa��es de entrega para Sedex Hoje atrav�s do site dos Correios.
+ * Utilitários para obter informações de entrega para Sedex Hoje através do site dos Correios.
  * 
  * @author Marlon Silva Carvalho
  * @since 13/06/2009
@@ -33,7 +33,7 @@ import org.alfredlibrary.utilitarios.net.WorldWideWeb;
 final public class SedexHoje {
 
 	/**
-	 * Verificar o Prazo e o Pre�o para entrega via Sedex Hoje de um CEP de origem para um CEP de destino com uma encomenda com o peso especificado.
+	 * Verificar o Prazo e o Preço para entrega via Sedex Hoje de um CEP de origem para um CEP de destino com uma encomenda com o peso especificado.
 	 * Exemplo de uso:
 	 * Sedex.obterPrecoPrazoEntrega("40290280", "40290280",1);
 	 * Retorno: {"11,20","1"}
@@ -41,8 +41,8 @@ final public class SedexHoje {
 	 * @param cepOrigem CEP de Origem.
 	 * @param cepDestino CEP de Destino.
 	 * @param peso Peso da Encomenda.
-	 * @return Prazo e Pre�o para entrega. Primeira posi��o corresponde ao pre�o. 
-	 * 			   Segunda posi��o corresponde ao prazo em dias.
+	 * @return Prazo e Preço para entrega. Primeira posição corresponde ao preço. 
+	 * 			   Segunda posição corresponde ao prazo em dias.
 	 */
 	public static String[] obterPrecoPrazoEntrega(String cepOrigem, String cepDestino, int peso) {
 		// Checar se os par�metros foram informados.
@@ -53,7 +53,6 @@ final public class SedexHoje {
 		if ( peso <= 0 )
 			throw new AlfredException("Informe o Peso da encomenda.");
 
-		// Montar os par�metros.
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("resposta","paginaCorreios");
 		parametros.put("servico","40290");
@@ -61,27 +60,25 @@ final public class SedexHoje {
 		parametros.put("cepDestino", cepDestino);
 		parametros.put("embalagem","");
 		parametros.put("peso", Integer.toString(peso));
-		// Realizar a requisi��o.
-		String conteudo = WorldWideWeb.obterConteudoSite("http://www.correios.com.br/encomendas/prazo/prazo.cfm", parametros);
-		
-		// Usar express�o regular para achar o pre�o.
+
+		Map<String,String> cabecalhos = new HashMap<String,String>();
+		cabecalhos.put("referer", "http://www.correios.com.br/encomendas/prazo/default.cfm");
+		String conteudo = WorldWideWeb.obterConteudoSite("http://www.correios.com.br/encomendas/prazo/prazo.cfm", parametros, cabecalhos);
+
 		Pattern padrao = Pattern.compile("<b>R\\$ \\d{1,3},\\d{2}</b>");  
 		Matcher pesquisa = padrao.matcher(conteudo);
 
-		// Deve encontrar apenas um.
 		String preco = "";
 		while(pesquisa.find()) {
 			preco = pesquisa.group();
 		}
 
-		// Se pre�o n�o encontrado, emitir erro.
 		if ( "".equals(preco) ) {
-			throw new AlfredException("N�o foi poss�vel obter as informa��es do site dos Correios. Verifique se os CEPs informados est�o corretos.");
+			throw new AlfredException("Não foi possível obter as informações do site dos Correios. Verifique se os CEPs informados estão corretos.");
 		}
 
 		String prazo = "No mesmo dia da postagem";
 
-		// Remover as tags <b></b> das strings.
 		String precoFinal = preco.replace("<b>","").replace("</b>","");
 		String prazoFinal = prazo.replace("<b>","").replace("</b>","");
 

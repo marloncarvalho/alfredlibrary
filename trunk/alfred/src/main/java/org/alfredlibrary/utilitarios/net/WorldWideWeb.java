@@ -170,6 +170,10 @@ final public class WorldWideWeb {
 	 * @return String contendo todo o conteúdo do site em HTML.
 	 */
 	public static String obterConteudoSite(String u, Map<String,String> parametros) {
+		return obterConteudoSite(u,parametros,null);
+	}
+	
+	public static String obterConteudoSite(String u, Map<String,String> parametros, Map<String,String> headers) {
         URL url;
 		try {
 			StringBuilder strParams = new StringBuilder();
@@ -183,9 +187,16 @@ final public class WorldWideWeb {
 			}
 			url = new URL(u);
 			URLConnection conn = null;
+			
 			if ( proxy != null )
 				conn = url.openConnection(proxy.getProxy());
 			else conn = url.openConnection();
+			
+			if ( headers != null ) {
+				for(String header:headers.keySet()) {
+					conn.setRequestProperty(header, headers.get(header));
+				}
+			}
 	        conn.setDoOutput(true);
 	        OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
 	        wr.write(strParams.toString());
