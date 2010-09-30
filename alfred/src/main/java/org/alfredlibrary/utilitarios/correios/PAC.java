@@ -127,7 +127,9 @@ final public class PAC {
 		parametros.put("Comprimento", String.valueOf(comprimento));
 		parametros.put("peso", Integer.toString(peso));
 
-		String conteudo = WorldWideWeb.obterConteudoSite("http://www.correios.com.br/encomendas/prazo/prazo.cfm", parametros);
+		Map<String,String> cabecalhos = new HashMap<String,String>();
+		cabecalhos.put("referer", "http://www.correios.com.br/encomendas/prazo/default.cfm");
+		String conteudo = WorldWideWeb.obterConteudoSite("http://www.correios.com.br/encomendas/prazo/prazo.cfm", parametros, cabecalhos);
 
 		Pattern padrao = Pattern.compile("<b>R\\$ \\d{1,3},\\d{2}</b>");  
 		Matcher pesquisa = padrao.matcher(conteudo);
@@ -183,7 +185,10 @@ final public class PAC {
 		parametros.put("Formato", FORMATO_CAIXA_PACOTE);
 		parametros.put("Comprimento", String.valueOf(comprimento));
 		parametros.put("peso", Integer.toString(peso));
-		String conteudo = WorldWideWeb.obterConteudoSite("http://www.correios.com.br/encomendas/prazo/prazo.cfm", parametros);
+		
+		Map<String,String> cabecalhos = new HashMap<String,String>();
+		cabecalhos.put("referer", "http://www.correios.com.br/encomendas/prazo/default.cfm");
+		String conteudo = WorldWideWeb.obterConteudoSite("http://www.correios.com.br/encomendas/prazo/prazo.cfm", parametros, cabecalhos);
 
 		Pattern padrao = Pattern.compile("<b>R\\$ \\d{1,3},\\d{2}</b>");  
 		Matcher pesquisa = padrao.matcher(conteudo);

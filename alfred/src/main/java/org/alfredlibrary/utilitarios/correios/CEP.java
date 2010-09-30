@@ -53,7 +53,9 @@ final public class CEP {
 		parametros.put("cepDestino", cep);
 		parametros.put("embalagem","");
 		parametros.put("peso", Integer.toString(1));
-		String conteudo = WorldWideWeb.obterConteudoSite("http://www.correios.com.br/encomendas/prazo/prazo.cfm", parametros);
+		Map<String,String> cabecalhos = new HashMap<String,String>();
+		cabecalhos.put("referer", "http://www.correios.com.br/encomendas/prazo/default.cfm");
+		String conteudo = WorldWideWeb.obterConteudoSite("http://www.correios.com.br/encomendas/prazo/prazo.cfm", parametros, cabecalhos);
 		
 		String[] re = new String[4];
 		Pattern padrao = Pattern.compile("<td align=\"center\">(\\w| |/)*</td>");  

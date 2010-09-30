@@ -14,7 +14,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with Alfred Library.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.alfredlibrary.test.utilitarios.correios;
+package org.alfredlibrary.test.utilitarios.correios;	
 
 import org.alfredlibrary.AlfredException;
 import org.alfredlibrary.utilitarios.correios.Sedex;
@@ -31,13 +31,9 @@ public class SedexTest {
 
 	@Test
 	public void testarPrecoPrazoCEPsCorretos() {
-		try {
-			String[] r = Sedex.obterPrecoPrazoEntrega("40290280", "40290280", 1);
-			Assert.assertEquals("R$ 11,80", r[0]);
-			Assert.assertEquals("1 DIA ÚTIL", r[1]);
-		} catch ( AlfredException exception ) {
-			Assert.fail();
-		}
+		String[] r = Sedex.obterPrecoPrazoEntrega("40290280", "40290280", 1);
+		Assert.assertEquals("R$ 11,80", r[0]);
+		Assert.assertEquals("1 DIA ÚTIL", r[1]);
 	}
 
 	@Test
@@ -45,7 +41,7 @@ public class SedexTest {
 		try {
 			Sedex.obterPrecoPrazoEntrega("40290281", "40290280", 1);
 			Assert.fail();
-		} catch ( AlfredException exception ) {
+		} catch (AlfredException exception) {
 		}
 	}
 
@@ -54,7 +50,7 @@ public class SedexTest {
 		try {
 			Sedex.obterPrecoPrazoEntrega("40290280", "40290281", 1);
 			Assert.fail();
-		} catch ( AlfredException exception ) {
+		} catch (AlfredException exception) {
 		}
 	}
 
@@ -63,7 +59,7 @@ public class SedexTest {
 		try {
 			Sedex.obterPrecoPrazoEntrega("40290280", "40290280", -1);
 			Assert.fail();
-		} catch ( AlfredException exception ) {
+		} catch (AlfredException exception) {
 		}
 	}
 
@@ -72,7 +68,7 @@ public class SedexTest {
 		try {
 			Sedex.obterPrecoPrazoEntrega("", "", -1);
 			Assert.fail();
-		} catch ( AlfredException exception ) {
+		} catch (AlfredException exception) {
 		}
 	}
 

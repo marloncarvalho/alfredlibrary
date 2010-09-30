@@ -38,8 +38,9 @@ public class WorldWideWebTest {
 
 	@Test
 	public void testarObterConteudoSemPostComProxy() {
-		WorldWideWeb.setProxyConfig(new ProxyConfig("118.122.124.178", 80, Type.HTTP));
+		WorldWideWeb.setProxyConfig(new ProxyConfig("118.122.124.178", 80,Type.HTTP));
 		String conteudo = WorldWideWeb.obterConteudoSite("http://alfredlibrary.googlecode.com/", "UTF-8");
+		WorldWideWeb.setProxyConfig(null);
 		if (conteudo == null || "".equals(conteudo))
 			Assert.fail();
 	}
@@ -47,7 +48,8 @@ public class WorldWideWebTest {
 	@Test
 	public void testarObterConteudoSemPost() {
 		try {
-			String conteudo = WorldWideWeb.obterConteudoSite("http://alfredlibrary.googlecode.com/", "UTF-8");
+			String conteudo = WorldWideWeb.obterConteudoSite(
+					"http://alfredlibrary.googlecode.com/", "UTF-8");
 			if (conteudo == null || "".equals(conteudo)) {
 				Assert.fail();
 			}
@@ -58,22 +60,19 @@ public class WorldWideWebTest {
 
 	@Test
 	public void testarObterConteudoComPost() {
-		try {
-			Map<String, String> mapa = new HashMap<String, String>();
-			mapa.put("teste", "1");
-			String conteudo = WorldWideWeb.obterConteudoSite("http://code.google.com/p/alfredlibrary/", mapa);
-			if (conteudo == null || "".equals(conteudo)) {
-				Assert.fail();
-			}
-		} catch (AlfredException ae) {
-			Assert.fail(ae.getMessage());
+		Map<String, String> mapa = new HashMap<String, String>();
+		mapa.put("teste", "1");
+		String conteudo = WorldWideWeb.obterConteudoSite("http://code.google.com/p/alfredlibrary/", mapa);
+		if (conteudo == null || "".equals(conteudo)) {
+			Assert.fail();
 		}
 	}
 
 	@Test
 	public void testarObterConteudoArquivo() {
 		try {
-			InputStream conteudo = WorldWideWeb.obterConteudoArquivo("http://code.google.com/p/alfredlibrary/logo?logo_id=1246636913");
+			InputStream conteudo = WorldWideWeb
+					.obterConteudoArquivo("http://code.google.com/p/alfredlibrary/logo?logo_id=1246636913");
 			if (conteudo == null || "".equals(conteudo)) {
 				Assert.fail();
 			}
