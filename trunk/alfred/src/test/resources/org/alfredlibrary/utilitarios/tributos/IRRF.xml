@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+
+<!DOCTYPE tributo SYSTEM "Tributo.dtd">
+
+<!--
+<!ELEMENT tributo (vigencia+|aliquota+)>
+	<!ATTLIST tributo nome CDATA>
+	<!ELEMENT vigencia (inicio?,termino?,aliquota+)>
+		<!ELEMENT inicio (#PCDATA)>
+		<!ELEMENT termino (#PCDATA)>
+	<!ELEMENT aliquota (piso-faixa?,teto-faixa?,valor,incidencia*)>
+		<!ELEMENT piso-faixa (#PCDATA)>
+		<!ELEMENT teto-faixa (#PCDATA)>
+		<!ELEMENT valor (#PCDATA)>
+		<!ELEMENT incidencia (#PCDATA)> 
+-->
+
+<tributo nome="IRRF">
+	<vigencia> <!-- Janeiro de 2006 -->
+		<inicio>01/01/2006</inicio>
+		<termino>31/01/2006</termino>
+		<aliquota>
+			<piso-faixa>0.00</piso-faixa>
+			<teto-faixa>1164.00</teto-faixa>
+			<valor>0</valor>
+		</aliquota>
+		<aliquota>
+			<piso-faixa>1164.01</piso-faixa>
+			<teto-faixa>2326.00</teto-faixa>
+			<valor>15</valor>
+		</aliquota>
+		<aliquota>
+			<piso-faixa>2326.01</piso-faixa>
+			<teto-faixa></teto-faixa>
+			<valor>27.5</valor>
+		</aliquota>
+	</vigencia>
+	<vigencia> <!-- 2006 - a partir de fevereiro -->
+		<inicio>01/02/2006</inicio>
+		<termino>31/12/2006</termino>
+		<aliquota>
+			<piso-faixa>0.00</piso-faixa>
+			<teto-faixa>1257.12</teto-faixa>
+			<valor>0</valor>
+		</aliquota>
+		<aliquota>
+			<piso-faixa>1257.13</piso-faixa>
+			<teto-faixa>2512.08</teto-faixa>
+			<valor>15</valor>
+		</aliquota>
+		<aliquota>
+			<piso-faixa>2512.09</piso-faixa>
+			<teto-faixa></teto-faixa>
+			<valor>27.5</valor>
+		</aliquota>
+	</vigencia>
+	<vigencia> <!-- 2007 -->
+		<inicio>01/01/2007</inicio>
+		<termino>31/12/2007</termino>
+		<aliquota>
+			<piso-faixa>0.00</piso-faixa>
+			<teto-faixa>1313.69</teto-faixa>
+			<valor>0</valor>
+		</aliquota>
+		<aliquota>
+			<piso-faixa>1313.70</piso-faixa>
+			<teto-faixa>2625.12</teto-faixa>
+			<valor>15</valor>
+		</aliquota>
+		<aliquota>
+			<piso-faixa>2625.13</piso-faixa>
+			<teto-faixa></teto-faixa>
+			<valor>27.5</valor>
+		</aliquota>
+	</vigencia>
+	<vigencia> <!-- 2008 -->
+		<inicio>01/01/2008</inicio>
+		<termino>31/12/2008</termino>
+		<aliquota>
+			<piso-faixa>0.00</piso-faixa>
+			<teto-faixa>1372.81</teto-faixa>
+			<valor>0</valor>
+		</aliquota>
+		<aliquota>
+			<piso-faixa>1372.82</piso-faixa>
+			<teto-faixa>2743.25</teto-faixa>
+			<valor>15</valor>
+		</aliquota>
+		<aliquota>
+			<piso-faixa>2743.26</piso-faixa>
+			<teto-faixa></teto-faixa>
+			<valor>27.5</valor>
+		</aliquota>
+	</vigencia>
+	<vigencia> <!-- 2009 -->
+		<inicio>01/01/2009</inicio>
+		<termino>31/12/2009</termino>
+		<aliquota>
+			<piso-faixa>0.00</piso-faixa>
+			<teto-faixa>1434.59</teto-faixa>
+			<valor>0</valor>
+		</aliquota>
+		<aliquota>
+			<piso-faixa>1434.60</piso-faixa>
+			<teto-faixa>2150.00</teto-faixa>
+			<valor>7.5</valor>
+		</aliquota>
+		<aliquota>
+			<piso-faixa>2150.01</piso-faixa>
+			<teto-faixa>2866.70</teto-faixa>
+			<valor>15</valor>
+		</aliquota>
+		<aliquota>
+			<piso-faixa>2866.71</piso-faixa>
+			<teto-faixa>3582.00</teto-faixa>
+			<valor>22.5</valor>
+		</aliquota>
+		<aliquota>
+			<piso-faixa>3582.01</piso-faixa>
+			<teto-faixa></teto-faixa>
+			<valor>27.5</valor>
+		</aliquota>
+	</vigencia>
+	<vigencia> <!-- 2010 -->
+		<inicio>01/01/2010</inicio>
+		<termino>31/12/2010</termino>
+		<aliquota>
+			<piso-faixa>0.00</piso-faixa>
+			<teto-faixa>1499.15</teto-faixa>
+			<valor>0</valor>
+		</aliquota>
+		<aliquota>
+			<piso-faixa>1499.16</piso-faixa>
+			<teto-faixa>2246.75</teto-faixa>
+			<valor>7.5</valor>
+		</aliquota>
+		<aliquota>
+			<piso-faixa>2246.76</piso-faixa>
+			<teto-faixa>2995.70</teto-faixa>
+			<valor>15</valor>
+		</aliquota>
+		<aliquota>
+			<piso-faixa>2995.71</piso-faixa>
+			<teto-faixa>3743.19</teto-faixa>
+			<valor>22.5</valor>
+		</aliquota>
+		<aliquota>
+			<piso-faixa>3743.20</piso-faixa>
+			<teto-faixa></teto-faixa>
+			<valor>27.5</valor>
+		</aliquota>
+	</vigencia>
+</tributo>

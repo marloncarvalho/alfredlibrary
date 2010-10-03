@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+
+<!DOCTYPE tributo SYSTEM "Tributo.dtd">
+
+<!--
+<!ELEMENT tributo (vigencia+|aliquota+)>
+	<!ATTLIST tributo nome CDATA>
+	<!ELEMENT vigencia (inicio?,termino?,aliquota+)>
+		<!ELEMENT inicio (#PCDATA)>
+		<!ELEMENT termino (#PCDATA)>
+	<!ELEMENT aliquota (piso-faixa?,teto-faixa?,valor,incidencia*)>
+		<!ELEMENT piso-faixa (#PCDATA)>
+		<!ELEMENT teto-faixa (#PCDATA)>
+		<!ELEMENT valor (#PCDATA)>
+		<!ELEMENT incidencia (#PCDATA)> 
+-->
+
+<tributo nome="FGTS">
+	<aliquota>
+		<valor>8</valor>
+		<incidencia>Pessoa Jurídica Não Optante - SIMPLES</incidencia>
+		<incidencia>Pessoa Jurídica Optante - SIMPLES - Fat. R$ 1.200.000,00</incidencia>
+		<incidencia>Produtor Rural - Pes. Física - Fat. 1.200.000,00</incidencia>
+		<incidencia>Emp. Doméstico</incidencia>
+	</aliquota>
+</tributo>

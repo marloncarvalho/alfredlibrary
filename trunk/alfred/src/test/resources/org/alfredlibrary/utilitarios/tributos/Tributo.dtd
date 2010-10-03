@@ -1,0 +1,12 @@
+<!ELEMENT document (tributo)>
+
+<!ELEMENT tributo (vigencia+|aliquota+)>
+	<!ATTLIST tributo nome CDATA #REQUIRED>
+	<!ELEMENT vigencia (inicio?,termino?,aliquota+)>
+		<!ELEMENT inicio (#PCDATA)>
+		<!ELEMENT termino (#PCDATA)>
+	<!ELEMENT aliquota (piso-faixa?,teto-faixa?,valor,incidencia*)>
+		<!ELEMENT piso-faixa (#PCDATA)>
+		<!ELEMENT teto-faixa (#PCDATA)>
+		<!ELEMENT valor (#PCDATA)>
+		<!ELEMENT incidencia (#PCDATA)>
