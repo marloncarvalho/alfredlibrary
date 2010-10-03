@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+
+<!DOCTYPE tributo SYSTEM "Tributo.dtd">
+
+<!--
+<!ELEMENT tributo (vigencia+|aliquota+)>
+	<!ATTLIST tributo nome CDATA>
+	<!ELEMENT vigencia (inicio?,termino?,aliquota+)>
+		<!ELEMENT inicio (#PCDATA)>
+		<!ELEMENT termino (#PCDATA)>
+	<!ELEMENT aliquota (piso-faixa?,teto-faixa?,valor,incidencia*)>
+		<!ELEMENT piso-faixa (#PCDATA)>
+		<!ELEMENT teto-faixa (#PCDATA)>
+		<!ELEMENT valor (#PCDATA)>
+		<!ELEMENT incidencia (#PCDATA)> 
+-->
+
+<tributo nome="INSS">
+	<vigencia> <!-- Portaria nº 822, de 11 de maio de 2005 -->
+		<inicio>01/05/2005</inicio>
+		<termino>31/03/2006</termino>
+		<aliquota>
+			<piso-faixa>0.00</piso-faixa>
+			<teto-faixa>800.45</teto-faixa>
+			<valor>7.65</valor>
+			<incidencia>Empregado</incidencia>
+			<incidencia>Empregado Doméstico</incidencia>
+			<incidencia>Trabalhador Avulso</incidencia>
+		</aliquota>
+		<aliquota>
+			<piso-faixa>800.46</piso-faixa>
+			<teto-faixa>900.00</teto-faixa>
+			<valor>8.65</valor>
+			<incidencia>Empregado</incidencia>
+			<incidencia>Empregado Doméstico</incidencia>
+			<incidencia>Trabalhador Avulso</incidencia>
+		</aliquota>
+		<aliquota>
+			<piso-faixa>900.01</piso-faixa>
+			<teto-faixa>1334.07</teto-faixa>
+			<valor>9</valor>
+			<incidencia>Empregado</incidencia>
+			<incidencia>Empregado Doméstico</incidencia>
+			<incidencia>Trabalhador Avulso</incidencia>
+		</aliquota>
+		<aliquota>
+			<piso-faixa>1334.08</piso-faixa>
+			<teto-faixa>2668.15</teto-faixa>
+			<valor>11</valor>
+			<incidencia>Empregado</incidencia>
+			<incidencia>Empregado Doméstico</incidencia>
+			<incidencia>Trabalhador Avulso</incidencia>
+		</aliquota>
+		<aliquota>
+			<!-- Salário de contribuição mínimo = R$300,00 -->
+			<piso-faixa>0.00</piso-faixa>
+			<teto-faixa>2668.15</teto-faixa>
+			<valor>20</valor>
+			<incidencia>Contribuinte Individual</incidencia>
+			<incidencia>Contribuinte Facultativo</incidencia>
+		</aliquota>
+	</vigencia>
+	<vigencia> <!-- Portaria nº 119, de 19 de abril de 2006 -->
+		<inicio>01/04/2006</inicio>
+		<termino>31/07/2006</termino>
+		<aliquota>
+			<piso-faixa>0.00</piso-faixa>
+			<teto-faixa>840.47</teto-faixa>
+			<valor>7.65</valor>
+			<incidencia>Empregado</incidencia>
+			<incidencia>Empregado Doméstico</incidencia>
+			<incidencia>Trabalhador Avulso</incidencia>
+		</aliquota>
+		<aliquota>
+			<piso-faixa>840.48</piso-faixa>
+			<teto-faixa>1050.00</teto-faixa>
+			<valor>8.65</valor>
+			<incidencia>Empregado</incidencia>
+			<incidencia>Empregado Doméstico</incidencia>
+			<incidencia>Trabalhador Avulso</incidencia>
+		</aliquota>
+		<aliquota>
+			<piso-faixa>1050.01</piso-faixa>
+			<teto-faixa>1400.77</teto-faixa>
+			<valor>9</valor>
+			<incidencia>Empregado</incidencia>
+			<incidencia>Empregado Doméstico</incidencia>
+			<incidencia>Trabalhador Avulso</incidencia>
+		</aliquota>
+		<aliquota>
+			<piso-faixa>1400.78</piso-faixa>
+			<teto-faixa>2801.56</teto-faixa>
+			<valor>11</valor>
+			<incidencia>Empregado</incidencia>
+			<incidencia>Empregado Doméstico</incidencia>
+			<incidencia>Trabalhador Avulso</incidencia>
+		</aliquota>
+		<aliquota>
+			<!-- Salário de contribuição mínimo = R$350,00 -->
+			<piso-faixa>0.00</piso-faixa>
+			<teto-faixa>2801.56</teto-faixa>
+			<valor>20</valor>
+			<incidencia>Contribuinte Individual</incidencia>
+			<incidencia>Contribuinte Facultativo</incidencia>
+		</aliquota>
+	</vigencia>
+	<vigencia> <!-- Portaria nº 342, de 16 de agosto de 2006 -->
+		<inicio>01/08/2006</inicio>
+		<termino>31/03/2007</termino>
+		<aliquota>
+			<piso-faixa>0.00</piso-faixa>
+			<teto-faixa>840.55</teto-faixa>
+			<valor>7.65</valor>
+			<incidencia>Empregado</incidencia>
+			<incidencia>Empregado Doméstico</incidencia>
+			<incidencia>Trabalhador Avulso</incidencia>
+		</aliquota>
+		<aliquota>
+			<piso-faixa>840.56</piso-faixa>
+			<teto-faixa>1050.00</teto-faixa>
+			<valor>8.65</valor>
+			<incidencia>Empregado</incidencia>
+			<incidencia>Empregado Doméstico</incidencia>
+			<incidencia>Trabalhador Avulso</incidencia>
+		</aliquota>
+		<aliquota>
+			<piso-faixa>1050.01</piso-faixa>
+			<teto-faixa>1400.91</teto-faixa>
+			<valor>9</valor>
+			<incidencia>Empregado</incidencia>
+			<incidencia>Empregado Doméstico</incidencia>
+			<incidencia>Trabalhador Avulso</incidencia>
+		</aliquota>
+		<aliquota>
+			<piso-faixa>1400.92</piso-faixa>
+			<teto-faixa>2801.82</teto-faixa>
+			<valor>11</valor>
+			<incidencia>Empregado</incidencia>
+			<incidencia>Empregado Doméstico</incidencia>
+			<incidencia>Trabalhador Avulso</incidencia>
+		</aliquota>
+		<aliquota>
+			<!-- Salário de contribuição mínimo = R$380,00 -->
+			<piso-faixa>0.00</piso-faixa>
+			<teto-faixa>2801.82</teto-faixa>
+			<valor>20</valor>
+			<incidencia>Contribuinte Individual</incidencia>
+			<incidencia>Contribuinte Facultativo</incidencia>
+		</aliquota>
+	</vigencia>
+	<vigencia> <!-- Portaria nº 142, de 11 de abril de 2007 -->
+		<inicio>01/04/2007</inicio>
+		<termino>31/12/2007</termino>
+		<aliquota>
+			<piso-faixa>0.00</piso-faixa>
+			<teto-faixa>868.29</teto-faixa>
+			<valor>7.65</valor>
+			<incidencia>Empregado</incidencia>
+			<incidencia>Empregado Doméstico</incidencia>
+			<incidencia>Trabalhador Avulso</incidencia>
+		</aliquota>
+		<aliquota>
+			<piso-faixa>868.30</piso-faixa>
+			<teto-faixa>1140.00</teto-faixa>
+			<valor>8.65</valor>
+			<incidencia>Empregado</incidencia>
+			<incidencia>Empregado Doméstico</incidencia>
+			<incidencia>Trabalhador Avulso</incidencia>
+		</aliquota>
+		<aliquota>
+			<piso-faixa>1140.01</piso-faixa>
+			<teto-faixa>1447.14</teto-faixa>
+			<valor>9</valor>
+			<incidencia>Empregado</incidencia>
+			<incidencia>Empregado Doméstico</incidencia>
+			<incidencia>Trabalhador Avulso</incidencia>
+		</aliquota>
+		<aliquota>
+			<piso-faixa>1447.15</piso-faixa>
+			<teto-faixa>2894.28</teto-faixa>
+			<valor>11</valor>
+			<incidencia>Empregado</incidencia>
+			<incidencia>Empregado Doméstico</incidencia>
+			<incidencia>Trabalhador Avulso</incidencia>
+		</aliquota>
+		<aliquota>
+			<!-- Salário de contribuição mínimo = R$380,00 -->
+			<piso-faixa>0.00</piso-faixa>
+			<teto-faixa>380.00</teto-faixa>
+			<valor>11</valor>
+			<incidencia>Contribuinte Individual - Plano Simplificado</incidencia>
+			<incidencia>Contribuinte Facultativo - Plano Simplificado</incidencia>
+		</aliquota>
+		<aliquota>
+			<!-- Salário de contribuição mínimo = R$380,00 -->
+			<piso-faixa>0.00</piso-faixa>
+			<teto-faixa>2894.28</teto-faixa>
+			<valor>20</valor>
+			<incidencia>Contribuinte Individual</incidencia>
+			<incidencia>Contribuinte Facultativo</incidencia>
+		</aliquota>
+	</vigencia>
+	<vigencia> <!-- Portaria nº 501, de 28 de dezembro de 2007 -->
+		<inicio>01/01/2008</inicio>
+		<termino>29/02/2008</termino>
+		<aliquota>
+			<piso-faixa>0.00</piso-faixa>
+			<teto-faixa>868.29</teto-faixa>
+			<valor>8</valor>
+			<incidencia>Empregado</incidencia>
+			<incidencia>Empregado Doméstico</incidencia>
+			<incidencia>Trabalhador Avulso</incidencia>
+		</aliquota>
+		<aliquota>
+			<piso-faixa>868.30</piso-faixa>
+			<teto-faixa>1447.14</teto-faixa>
+			<valor>9</valor>
+			<incidencia>Empregado</incidencia>
+			<incidencia>Empregado Doméstico</incidencia>
+			<incidencia>Trabalhador Avulso</incidencia>
+		</aliquota>
+		<aliquota>
+			<piso-faixa>1447.15</piso-faixa>
+			<teto-faixa>2894.28</teto-faixa>
+			<valor>11</valor>
+			<incidencia>Empregado</incidencia>
+			<incidencia>Empregado Doméstico</incidencia>
+			<incidencia>Trabalhador Avulso</incidencia>
+		</aliquota>
+		<aliquota>
+			<!-- Salário de contribuição mínimo = R$380,00 -->
+			<piso-faixa>0.00</piso-faixa>
+			<teto-faixa>380.00</teto-faixa>
+			<valor>11</valor>
+			<incidencia>Contribuinte Individual - Plano Simplificado</incidencia>
+			<incidencia>Contribuinte Facultativo - Plano Simplificado</incidencia>
+		</aliquota>
+		<aliquota>
+			<!-- Salário de contribuição mínimo = R$380,00 -->
+			<piso-faixa>0.00</piso-faixa>
+			<teto-faixa>2894.28</teto-faixa>
+			<valor>20</valor>
+			<incidencia>Contribuinte Individual</incidencia>
+			<incidencia>Contribuinte Facultativo</incidencia>
+		</aliquota>
+	</vigencia>
+	<vigencia> <!-- Portaria nº 77, de 12 de março de 2008 -->
+		<inicio>01/03/2008</inicio>
+		<termino>31/01/2009</termino>
+		<aliquota>
+			<piso-faixa>0.00</piso-faixa>
+			<teto-faixa>911.70</teto-faixa>
+			<valor>8</valor>
+			<incidencia>Empregado</incidencia>
+			<incidencia>Empregado Doméstico</incidencia>
+			<incidencia>Trabalhador Avulso</incidencia>
+		</aliquota>
+		<aliquota>
+			<piso-faixa>911.71</piso-faixa>
+			<teto-faixa>1519.50</teto-faixa>
+			<valor>9</valor>
+			<incidencia>Empregado</incidencia>
+			<incidencia>Empregado Doméstico</incidencia>
+			<incidencia>Trabalhador Avulso</incidencia>
+		</aliquota>
+		<aliquota>
+			<piso-faixa>1519.51</piso-faixa>
+			<teto-faixa>3038.99</teto-faixa>
+			<valor>11</valor>
+			<incidencia>Empregado</incidencia>
+			<incidencia>Empregado Doméstico</incidencia>
+			<incidencia>Trabalhador Avulso</incidencia>
+		</aliquota>
+		<aliquota>
+			<!-- Salário de contribuição mínimo = R$415,00 -->
+			<piso-faixa>0.00</piso-faixa>
+			<teto-faixa>415.00</teto-faixa>
+			<valor>11</valor>
+			<incidencia>Contribuinte Individual - Plano Simplificado</incidencia>
+			<incidencia>Contribuinte Facultativo - Plano Simplificado</incidencia>
+		</aliquota>
+		<aliquota>
+			<!-- Salário de contribuição mínimo = R$415,00 -->
+			<piso-faixa>0.00</piso-faixa>
+			<teto-faixa>2894.28</teto-faixa>
+			<valor>20</valor>
+			<incidencia>Contribuinte Individual</incidencia>
+			<incidencia>Contribuinte Facultativo</incidencia>
+		</aliquota>
+	</vigencia>
+	<vigencia> <!-- Portaria nº 48, de 12 de fevereiro de 2009 -->
+		<inicio>01/02/2009</inicio>
+		<termino>31/12/2009</termino>
+		<aliquota>
+			<piso-faixa>0.00</piso-faixa>
+			<teto-faixa>965.67</teto-faixa>
+			<valor>8</valor>
+			<incidencia>Empregado</incidencia>
+			<incidencia>Empregado Doméstico</incidencia>
+			<incidencia>Trabalhador Avulso</incidencia>
+		</aliquota>
+		<aliquota>
+			<piso-faixa>965.68</piso-faixa>
+			<teto-faixa>1609.45</teto-faixa>
+			<valor>9</valor>
+			<incidencia>Empregado</incidencia>
+			<incidencia>Empregado Doméstico</incidencia>
+			<incidencia>Trabalhador Avulso</incidencia>
+		</aliquota>
+		<aliquota>
+			<piso-faixa>1609.46</piso-faixa>
+			<teto-faixa>3218.90</teto-faixa>
+			<valor>11</valor>
+			<incidencia>Empregado</incidencia>
+			<incidencia>Empregado Doméstico</incidencia>
+			<incidencia>Trabalhador Avulso</incidencia>
+		</aliquota>
+		<aliquota>
+			<!-- Salário de contribuição mínimo = R$465,00 -->
+			<piso-faixa>0.00</piso-faixa>
+			<teto-faixa>465.00</teto-faixa>
+			<valor>11</valor>
+			<incidencia>Contribuinte Individual - Plano Simplificado</incidencia>
+			<incidencia>Contribuinte Facultativo - Plano Simplificado</incidencia>
+		</aliquota>
+		<aliquota>
+			<!-- Salário de contribuição mínimo = R$465,00 -->
+			<piso-faixa>0.00</piso-faixa>
+			<teto-faixa>3218.90</teto-faixa>
+			<valor>20</valor>
+			<incidencia>Contribuinte Individual</incidencia>
+			<incidencia>Contribuinte Facultativo</incidencia>
+		</aliquota>
+	</vigencia>
+	<vigencia> <!-- Portaria  nº 333, de 29 de junho de 2010 -->
+		<inicio>01/01/2010</inicio>
+		<termino></termino>
+		<aliquota>
+			<piso-faixa>0.00</piso-faixa>
+			<teto-faixa>1040.22</teto-faixa>
+			<valor>8</valor>
+			<incidencia>Empregado</incidencia>
+			<incidencia>Empregado Doméstico</incidencia>
+			<incidencia>Trabalhador Avulso</incidencia>
+		</aliquota>
+		<aliquota>
+			<piso-faixa>1040.23</piso-faixa>
+			<teto-faixa>1733.70</teto-faixa>
+			<valor>9</valor>
+			<incidencia>Empregado</incidencia>
+			<incidencia>Empregado Doméstico</incidencia>
+			<incidencia>Trabalhador Avulso</incidencia>
+		</aliquota>
+		<aliquota>
+			<piso-faixa>1733.71</piso-faixa>
+			<teto-faixa>3467.40</teto-faixa>
+			<valor>11</valor>
+			<incidencia>Empregado</incidencia>
+			<incidencia>Empregado Doméstico</incidencia>
+			<incidencia>Trabalhador Avulso</incidencia>
+		</aliquota>
+		<aliquota>
+			<!-- Salário de contribuição mínimo = R$510,00 -->
+			<piso-faixa>0.00</piso-faixa>
+			<teto-faixa>510.00</teto-faixa>
+			<valor>11</valor>
+			<incidencia>Contribuinte Individual - Plano Simplificado</incidencia>
+			<incidencia>Contribuinte Facultativo - Plano Simplificado</incidencia>
+		</aliquota>
+		<aliquota>
+			<!-- Salário de contribuição mínimo = R$510,00 -->
+			<piso-faixa>0.00</piso-faixa>
+			<teto-faixa>3467.40</teto-faixa>
+			<valor>20</valor>
+			<incidencia>Contribuinte Individual</incidencia>
+			<incidencia>Contribuinte Facultativo</incidencia>
+		</aliquota>
+	</vigencia>
+</tributo>
