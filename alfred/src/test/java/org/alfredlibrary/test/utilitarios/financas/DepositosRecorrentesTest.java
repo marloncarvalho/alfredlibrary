@@ -39,4 +39,10 @@ public class DepositosRecorrentesTest {
 		Assert.assertEquals(100D, Double.valueOf(String.valueOf(Math.round(DepositosRecorrentes.obterDeposito(621.35D, 1D, 6D, false) * 100))) / 100);
 	}
 	
+	@Test
+	public void obterPeriodoMinimo() {
+		Assert.assertEquals(6, DepositosRecorrentes.obterPeriodoMinimo(100D, 621.35D, 1D, false));
+		Assert.assertEquals(7, DepositosRecorrentes.obterPeriodoMinimo(100D, 621.35D, 1D, true));
+	}
+	
 }

@@ -70,4 +70,37 @@ public final class DepositosRecorrentes {
 		return saldo / jurosAcumulado;
 	}
 	     
+	/**
+	 * Obtém a quantidade mínima de depósitos periódicos para se acumular um montante-alvo
+	 * a uma dada taxa de juros.
+	 * 
+	 * @param valor Valor do depósito periódico
+	 * @param saldo Valor do montante-alvo
+	 * @param juros Percentual de juros a que se sujeira o valor depositado 
+	 * @param resgateImediato Indicativo se o resgate deve ser imediatamente posterior
+	 * 						ao último depósito ou se deve-se considerar o rendimento
+	 * 						do montante por mais um período.
+	 * @return Período mínimo para se atingir o montante-alvo
+	 */
+	public static int obterPeriodoMinimo (double valor, double saldo, double juros, boolean resgateImediato) {
+		double acumulado = valor; // Primeiro mês
+		int periodoMinimo = 1;
+		if (acumulado >= saldo) {
+			return periodoMinimo;
+		}
+		while (acumulado < saldo) {
+			if (resgateImediato) {
+				acumulado = (acumulado * (1 + (juros / 100))) + valor;
+				periodoMinimo++;
+			} else {
+				acumulado *= 1 + (juros/100);
+				if (acumulado < saldo) {
+					acumulado += valor;
+					periodoMinimo++;
+				}
+			}
+		}
+		return periodoMinimo;
+	}
+	
 }
