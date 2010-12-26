@@ -37,10 +37,7 @@ final public class Email {
 	 * @return Verdadeiro caso seja valido. Falso, caso contrario.
 	 */
 	public static boolean isValido(String email) {
-		Pattern pattern = Pattern.compile (
-		         "([a-zA-Z0-9_\\-\\.]+)@((\\[a-z]{1,3}\\.[a-z]"
-		         + "{1,3}\\.[a-z]{1,3}\\.)|(([a-zA-Z\\-]+\\.)+))"
-		         + "([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)", 
+		Pattern pattern = Pattern.compile (Diversos.EMAIL, 
 		         Pattern.MULTILINE);
 		Matcher m=pattern.matcher(email);
 		return m.matches();
