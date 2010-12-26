@@ -27,6 +27,7 @@ public class DiversosTest {
 		Assert.assertTrue(Diversos.isValido("alonso@ferrari.com",Diversos.EMAIL));
 		Assert.assertTrue(Diversos.isValido("marlon@silvacarvalho.net",Diversos.EMAIL));
 		Assert.assertTrue(Diversos.isValido("alfred@alfredlibrary.org",Diversos.EMAIL));
+		Assert.assertTrue(Diversos.isValido("alfred@click21.com.br",Diversos.EMAIL));
 		Assert.assertTrue(Diversos.isValido("http://www.google.com",Diversos.URL));
 		Assert.assertTrue(Diversos.isValido("#00ccff",Diversos.COR_HTML));
 		Assert.assertTrue(Diversos.isValido("192.168.0.1",Diversos.IP));
