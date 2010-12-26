@@ -47,6 +47,7 @@ public class EmailTest {
 			Assert.assertTrue(Email.isValido("alonso@ferrari.com"));
 			Assert.assertTrue(Email.isValido("marlon@silvacarvalho.net"));
 			Assert.assertTrue(Email.isValido("alfred@alfredlibrary.org"));
+			Assert.assertTrue(Email.isValido("alfred@click21.com.br"));
 		} catch (Exception e) {
 			Assert.fail();
 		}
