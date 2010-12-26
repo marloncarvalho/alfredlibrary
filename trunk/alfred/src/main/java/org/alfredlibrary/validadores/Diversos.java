@@ -51,7 +51,7 @@ public class Diversos {
     public static final String DATASIMPLES =  "(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/((19|20)\\d\\d)";
     public static final String DECIMAL = "^\\d*[0-9](\\.\\d*[0-9])?$";
     public static final String DOCUMENTOS = "^[a-zA-Z0-9-_ \\.]+\\.(pdf|txt|doc|csv)$";
-    public static final String EMAIL = "^([a-zA-Z0-9_\\-\\.]+)@((\\[a-z]{1,3}\\.[a-z]{1,3}\\.[a-z]{1,3}\\.)|(([a-zA-Z\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)";
+    public static final String EMAIL = "^([a-zA-Z0-9_\\-\\.]+)@((\\[a-zA-Z]+[0-9a-zA-Z]{1,3}\\.[a-z]{1,3}\\.[a-z]{1,3}\\.)|(([a-zA-Z]+[0-9a-zA-Z\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)";
     public static final String COR_HTML = "^#?([a-f]|[A-F]|[0-9]){3}(([a-f]|[A-F]|[0-9]){3})?$";
     public static final String IMAGEM = "^[a-zA-Z0-9-_ \\.]+\\.(jpg|gif|png)$";
     public static final String IP = "\\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b";
