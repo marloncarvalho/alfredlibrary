@@ -32,6 +32,7 @@ import org.alfredlibrary.AlfredException;
 import org.alfredlibrary.utilitarios.colecoes.AlfredArrays;
 import org.alfredlibrary.utilitarios.enums.EstadoBrasileiro;
 import org.alfredlibrary.utilitarios.net.WorldWideWeb;
+import org.alfredlibrary.utilitarios.texto.HTML;
 import org.alfredlibrary.utilitarios.texto.Texto;
 
 /**
@@ -91,26 +92,34 @@ final public class DDD {
 	 * @return cidade Cidade.
 	 */
 	public static String[] obter(Integer ddd) {
-		String url = "http://www.gp11.net/ddd/resposta.asp";
-		Map<String,String> parametros = new HashMap<String, String>();
+		String url = "http://telelistas.net/templates/ddd_result.aspx";
+		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("ddd", ddd.toString());
-		parametros.put("metodo", "ddd");
-		String conteudo = WorldWideWeb.obterConteudoSite(url, "ISO-8859-1", parametros);
-		if ( conteudo.indexOf("---") > -1 ) {
+		parametros.put("estado", "");
+		parametros.put("localidade", "");
+		String conteudo = WorldWideWeb.obterConteudoSite(url, "ISO-8859-1",parametros);
+		if (conteudo.indexOf("Sua busca n&atilde;o obteve resultado. Por favor refa&ccedil;a sua pesquisa na caixa abaixo.") > -1) {
 			throw new AlfredException("DDD não encontrado.");
 		}
-		int inicio = conteudo.indexOf("<table width=\"500\" border=\"0\" cellspacing=\"2\" cellpadding=\"2\">");
-		int fim = conteudo.indexOf("<form name=\"dddform\" method=\"post\" action=\"resposta.asp\">");
-		conteudo = conteudo.substring(inicio, fim);
-		String[] table = conteudo.split("<[^>]*>");
-		String[] a = AlfredArrays.removerItensVazios(table);
 		List<String> resultado = new ArrayList<String>();
-		for(int i = 3;i < a.length;i+=3){
-			resultado.add(a[i]+"-"+a[i+1]);
+		int indexTotalinicio = conteudo.indexOf("localidades encontradas:");
+		int intexTotalfim = conteudo.indexOf("</b>", indexTotalinicio);
+		Integer total = Integer.parseInt(conteudo.substring(indexTotalinicio, intexTotalfim).replaceAll("[^0-9]", ""))+10;
+		for (int j = 10; j <= total; j+=10) {
+			int inicio = conteudo.indexOf("<img src=\"http://img.telelistas.net/img/por_servddd_barralista.gif\" width=\"468\" height=\"20\">");
+			int fim = conteudo.indexOf("</table>", inicio);
+			conteudo = conteudo.substring(inicio, fim);
+			conteudo = HTML.desconverterElementosHTMLEspeciais(conteudo, 0);
+			String[] table = conteudo.split("<[^>]*>");
+			String[] a = AlfredArrays.removerItensVazios(table);
+			for (int i = 0; i < a.length; i += 3) {
+				resultado.add(a[i]);
+			}
+			parametros.put("count", j+"");
+		    conteudo = WorldWideWeb.obterConteudoSite(url, "ISO-8859-1", parametros);
 		}
-
-		return  resultado.toArray(new String[resultado.size()]);
-
+		return resultado.toArray(new String[resultado.size()]);
 	}
+
 
 }
