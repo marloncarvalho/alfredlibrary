@@ -1,19 +1,18 @@
 package org.alfredlibrary.utilitarios.clima;
 
 import org.alfredlibrary.utilitarios.clima.climatempo.ClimatempoProvedor;
-
-final public class ProvedorClimaFactory {
-	private static ProvedorClimaFactory instancia;
+/**
+ * @author Marlon Silva Carvalho
+ * @author Mario Jorge Pereira
+ * 
+ * @since 
+ *
+ */
+public enum ProvedorClimaFactory {
+	instancia;
 	
 	public enum ProvedoresClima {
 		CLIMATEMPO;
-	}
-
-	public static ProvedorClimaFactory getInstancia() {
-		if ( instancia == null ) {
-			instancia = new ProvedorClimaFactory();
-		}
-		return instancia;
 	}
 
 	public ProvedorClima criar(ProvedoresClima provedor) {
