@@ -25,6 +25,12 @@ package org.alfredlibrary.utilitarios.fisica.cinematica.movimentoretilineounifor
  */
 public final class VelocidadeFinal {
 	
+	
+	private VelocidadeFinal() {
+		throw new AssertionError();
+	}
+
+	
 	/**
 	 * Obtém a velocidade inicial pela fórmula V = Vo + a.t
 	 * 

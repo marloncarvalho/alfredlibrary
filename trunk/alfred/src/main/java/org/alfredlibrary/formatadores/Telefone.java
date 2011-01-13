@@ -28,7 +28,9 @@ import org.alfredlibrary.utilitarios.texto.Texto;
  */
 final public class Telefone {
 
-	private Telefone() {}
+	private Telefone() {
+		throw new AssertionError();
+	}
 
 	/**
 	 * Formatar um Telefone.

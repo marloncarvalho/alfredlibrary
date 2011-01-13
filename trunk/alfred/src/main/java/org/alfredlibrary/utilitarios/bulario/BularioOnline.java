@@ -26,6 +26,10 @@ import org.alfredlibrary.utilitarios.texto.HTML;
  * @since 02/05/2010
  */
 final public class BularioOnline {
+	
+	private BularioOnline() {
+		throw new AssertionError();
+	}
 
 	/**
 	 * Obter a bula de um remédio.

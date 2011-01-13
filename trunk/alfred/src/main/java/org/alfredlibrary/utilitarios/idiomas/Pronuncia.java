@@ -38,6 +38,10 @@ import org.alfredlibrary.utilitarios.net.WorldWideWeb;
  */
 final public class Pronuncia {
 	public final static int INGLES = 1;
+	
+	private Pronuncia() {
+		throw new AssertionError();
+	}
 
 	/**
 	 * Obter o Stream de áudio de uma pronúncia.

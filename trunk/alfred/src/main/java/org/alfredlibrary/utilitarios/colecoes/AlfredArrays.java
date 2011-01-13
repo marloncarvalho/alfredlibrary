@@ -16,10 +16,12 @@
  */
 package org.alfredlibrary.utilitarios.colecoes;
 
+import java.nio.LongBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.alfredlibrary.validadores.Diversos;
+import org.alfredlibrary.validadores.Numeros;
 /**
  * 
  * @author Mario Jorge Pereira

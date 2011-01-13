@@ -26,6 +26,10 @@ import java.math.BigDecimal;
  */
 final public class Numeros {
 
+	private Numeros() {
+		throw new AssertionError();
+	}
+	
 	/**
 	 * Verificar se o numero da String eh um Numero.
 	 * 

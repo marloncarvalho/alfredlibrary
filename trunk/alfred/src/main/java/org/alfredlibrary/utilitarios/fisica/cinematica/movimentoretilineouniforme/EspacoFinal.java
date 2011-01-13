@@ -24,6 +24,10 @@ package org.alfredlibrary.utilitarios.fisica.cinematica.movimentoretilineounifor
  * @since 27/05/2010
  */
 public final class EspacoFinal {
+	
+	private EspacoFinal() {
+		throw new AssertionError();
+	}
 
 	/**
 	 * Obtém o espaço final pela fórmula S = So + v.t

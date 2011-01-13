@@ -54,7 +54,9 @@ final public class Comprimento {
 		}
 	}
 
-	private Comprimento() {}
+	private Comprimento() {
+		throw new AssertionError();
+	}
 	
 	/**
 	 * Converter uma unidade de comprimento para outra.

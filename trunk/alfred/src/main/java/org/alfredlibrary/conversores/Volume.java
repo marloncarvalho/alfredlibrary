@@ -49,7 +49,9 @@ public final class Volume {
 		}
 	}
 
-	private Volume() {}
+	private Volume() {
+		throw new AssertionError();
+	}
 	
 	/**
 	 * Converter uma unidade de volume para outra.

@@ -45,6 +45,10 @@ import org.alfredlibrary.utilitarios.texto.Texto;
  * @since 31/12/2010
  */
 final public class DDD {
+	
+	private DDD() {
+		throw new AssertionError();
+	}
 
 	/**
 	 * Obter o DDD de uma determinada cidade.

@@ -33,7 +33,13 @@ import org.alfredlibrary.AlfredException;
  * 
  * 
  */
-public class NumerosAleatorios {
+final public class NumerosAleatorios {
+	
+	
+	private NumerosAleatorios() {
+		throw new AssertionError();
+	}
+	
 
 	private static Random gerador = new Random();
 

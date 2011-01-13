@@ -28,6 +28,7 @@ import java.util.regex.Pattern;
 final public class Email {
 
 	private Email() {
+		throw new AssertionError();
 	}
 
 	/**

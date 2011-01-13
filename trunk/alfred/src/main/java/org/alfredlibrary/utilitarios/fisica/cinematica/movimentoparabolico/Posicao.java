@@ -27,6 +27,10 @@ import org.alfredlibrary.utilitarios.fisica.cinematica.movimentoretilineouniform
  * @since 28/05/2010
  */
 public final class Posicao {
+	
+	private Posicao() {
+		throw new AssertionError();
+	}
 
 	/**
 	 * Obtém a posição pela composição de Alcance (eixo X, Movimento Parabólico)

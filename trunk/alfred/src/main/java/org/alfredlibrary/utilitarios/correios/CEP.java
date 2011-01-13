@@ -35,7 +35,9 @@ import org.alfredlibrary.utilitarios.texto.HTML;
  */
 final public class CEP {
 
-	private CEP() {}
+	private CEP() {
+		throw new AssertionError();
+	}
 
 	/**
 	 * Consultar um Endereço pelo CEP.

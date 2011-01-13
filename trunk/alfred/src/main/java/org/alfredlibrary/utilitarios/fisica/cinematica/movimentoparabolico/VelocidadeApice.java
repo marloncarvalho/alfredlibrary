@@ -25,6 +25,10 @@ package org.alfredlibrary.utilitarios.fisica.cinematica.movimentoparabolico;
  */
 public final class VelocidadeApice {
 	
+	private VelocidadeApice() {
+		throw new AssertionError();
+	}
+	
 	/**
 	 * Obtém a velocidade horizontal no topo da parábola pela fórmula
 	 * Vx = Vo.cos(fi)

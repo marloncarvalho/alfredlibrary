@@ -62,6 +62,10 @@ public class Diversos {
     public static final String HORA = "^([0-1][0-9]|[2][0-3])(:([0-5][0-9])){1,2}$";
     public static final String URL = "^(http[s]?://|ftp://)?(www\\.)?[a-zA-Z0-9-\\.]+\\.(com|org|net|mil|edu|ca|co.uk|com.au|gov|br)$";
 
+    private Diversos() {
+    	throw new AssertionError();
+	}
+    
 	/**
 	 * Verificar se valor é compativel no formato requerido.
 	 *

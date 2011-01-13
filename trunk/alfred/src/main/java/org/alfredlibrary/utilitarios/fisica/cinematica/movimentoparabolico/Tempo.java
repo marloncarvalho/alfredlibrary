@@ -27,6 +27,10 @@ import org.alfredlibrary.AlfredException;
  */
 public final class Tempo {
 	
+	private Tempo() {
+		throw new AssertionError();
+	}
+	
 	/**
 	 * Obtém o tempo decorrido pela fórmula t = (2.Vo.sen(fi)) / g
 	 * 

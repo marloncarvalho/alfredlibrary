@@ -27,6 +27,10 @@ import org.alfredlibrary.AlfredException;
  */
 public final class Tempo {
 	
+	private Tempo() {
+		throw new AssertionError();
+	}
+	
 	/**
 	 * Obtém o tempo pela fórmula S = So + v.t
 	 * 

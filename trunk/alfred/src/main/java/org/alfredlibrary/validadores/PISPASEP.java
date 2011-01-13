@@ -28,6 +28,7 @@ import org.alfredlibrary.utilitarios.texto.Texto;
 final public class PISPASEP {
 
 	private PISPASEP() {
+		throw new AssertionError();
 	}
 
 	/**

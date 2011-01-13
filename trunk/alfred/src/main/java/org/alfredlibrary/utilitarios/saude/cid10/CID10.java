@@ -50,7 +50,9 @@ import org.xml.sax.SAXException;
  */
 final public class CID10 {
 	
-	private CID10() { }
+	private CID10() { 
+		throw new AssertionError();
+	}
 	
 	/*
 	 *	<!ELEMENT document (cid10)>

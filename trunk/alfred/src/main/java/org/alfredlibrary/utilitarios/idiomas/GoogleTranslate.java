@@ -25,6 +25,10 @@ import org.alfredlibrary.utilitarios.net.WorldWideWeb;
  * @since 27/05/2010
  */
 final public class GoogleTranslate {
+	
+	private GoogleTranslate() {
+		throw new AssertionError();		
+	}
 
 	public enum Idioma {
 		AUTO_DETECT(""),

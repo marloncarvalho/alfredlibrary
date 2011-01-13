@@ -30,6 +30,10 @@ import org.alfredlibrary.utilitarios.texto.HTML;
  * @since 27/04/2010
  */
 final public class Michaelis {
+	
+	private Michaelis() {
+		throw new AssertionError();
+	}
 
 	public static String obterSignificado(String palavra, boolean formatacaoHTML) {
 		String url = "http://michaelis.uol.com.br/moderno/portugues/index.php?lingua=portugues-portugues&palavra=" + palavra;

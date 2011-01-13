@@ -26,6 +26,10 @@ import org.alfredlibrary.AlfredException;
  * @since 28/05/2010
  */
 public final class Angulacao {
+	
+	private Angulacao() {
+		throw new AssertionError();
+	}
 
 	/**
 	 * Obtém a angulação pela fórmula A = (Vo^2 . sen(2 * fi)) / g

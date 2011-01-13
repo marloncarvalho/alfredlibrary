@@ -30,6 +30,10 @@ import org.alfredlibrary.utilitarios.texto.Texto;
  */
 public final class PesoPersonalizado {
 	
+	private PesoPersonalizado() {
+		throw new AssertionError();
+	}
+	
 	/**
 	 * Calcular um dígito verificador a partir de uma sequência de números
 	 * enviada e de uma sequencia de pesos.

@@ -44,7 +44,9 @@ final public class BaseNumerica {
 		
 	}
 	
-	private BaseNumerica() {}
+	private BaseNumerica() {
+		throw new AssertionError();
+	}
 	
 	/**
 	 * Converter um número de uma base para outra.

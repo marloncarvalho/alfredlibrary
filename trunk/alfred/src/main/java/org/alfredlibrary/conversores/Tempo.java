@@ -40,7 +40,9 @@ public final class Tempo {
 		}
 	}
 
-	private Tempo() {}
+	private Tempo() {
+		throw new AssertionError();
+	}
 	
 	/**
 	 * Converter uma unidade de volume para outra.

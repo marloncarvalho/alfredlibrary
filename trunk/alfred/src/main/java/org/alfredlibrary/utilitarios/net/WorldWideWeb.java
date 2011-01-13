@@ -41,6 +41,10 @@ import org.alfredlibrary.ProxyConfig;
 final public class WorldWideWeb {
 	private static ProxyConfig proxy = null;
 	
+	public WorldWideWeb() {
+		throw new AssertionError();
+	}
+	
 	public static void setProxyConfig(ProxyConfig proxyConfig) {
 		proxy = proxyConfig;
 	}

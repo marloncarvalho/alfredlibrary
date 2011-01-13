@@ -26,6 +26,10 @@ import org.alfredlibrary.AlfredException;
  * @since 27/05/2010
  */
 public final class Frequencia {
+	
+	private Frequencia() {
+		throw new AssertionError();
+	}
 
 	/**
 	 * Obtém a frequência pelo período

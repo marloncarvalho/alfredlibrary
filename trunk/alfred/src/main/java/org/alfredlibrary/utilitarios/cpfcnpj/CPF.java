@@ -26,7 +26,9 @@ import org.alfredlibrary.utilitarios.digitoverificador.Modulo11;
  */
 final public class CPF {
 
-	private CPF() {}
+	private CPF() {
+		throw new AssertionError();
+	}
 	
 	/**
      * Gerar um CPF arbitrário.

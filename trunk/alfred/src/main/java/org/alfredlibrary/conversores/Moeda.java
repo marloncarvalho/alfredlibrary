@@ -167,7 +167,9 @@ final public class Moeda {
 	public final static String ZAMBIA = "765";
 	public final static String ZIMBABUE = "217";
 
-	private Moeda() {}
+	private Moeda() {
+		throw new AssertionError();
+	}
 
 	/**
 	 * Realizar a conversão de uma moeda para outra.
@@ -206,5 +208,7 @@ final public class Moeda {
 
 		return valorConvertido.replace("<strong>Resultado da convers&atilde;o:</strong> ","");
 	}
+	
+	
 
 }

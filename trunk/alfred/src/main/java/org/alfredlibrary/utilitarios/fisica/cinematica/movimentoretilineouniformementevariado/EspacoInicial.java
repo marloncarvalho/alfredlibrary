@@ -25,6 +25,10 @@ package org.alfredlibrary.utilitarios.fisica.cinematica.movimentoretilineounifor
  */
 public final class EspacoInicial {
 	
+	private EspacoInicial() {
+		throw new AssertionError();
+	}
+	
 	/**
 	 * Obtém o espaço inicial pela fórmula S = So + vo.t + a.t^2/2 
 	 * 

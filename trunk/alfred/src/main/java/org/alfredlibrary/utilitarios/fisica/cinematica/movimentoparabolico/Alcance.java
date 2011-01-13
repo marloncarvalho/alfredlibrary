@@ -26,6 +26,10 @@ import org.alfredlibrary.AlfredException;
  * @since 28/05/2010
  */
 public final class Alcance {
+	
+	private Alcance() {
+		throw new AssertionError();
+	}
 
 	/**
 	 * Obtém o alcance pela fórmula A = (Vo^2 . sen(2 * fi)) / g

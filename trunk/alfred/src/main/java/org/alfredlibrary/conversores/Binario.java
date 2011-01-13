@@ -28,7 +28,11 @@ import org.alfredlibrary.AlfredException;
  * @since 11/06/2009
  */
 final public class Binario {
-
+	
+	private Binario(){
+		throw new AssertionError();
+	}
+	
 	/**
 	 * Converter um array de bytes em uma representa��o em Base 64.
 	 * 

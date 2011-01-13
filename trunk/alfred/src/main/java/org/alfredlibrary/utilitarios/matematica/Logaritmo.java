@@ -23,6 +23,10 @@ package org.alfredlibrary.utilitarios.matematica;
  * @since 03/10/2010
  */
 public final class Logaritmo {
+	
+	private Logaritmo() {
+		throw new AssertionError();
+	}
 
 	/**
 	 * Faz a mudança de base para obter o logaritmo de base não-neperiana

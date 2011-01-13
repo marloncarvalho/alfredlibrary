@@ -30,6 +30,10 @@ package org.alfredlibrary.inutilitarios;
  * @since 10/05/2010
  */
 final public class Miguxeitor {
+	
+	public Miguxeitor() {
+		throw new AssertionError();
+	}
 
 	/**
 	 * Esculhambar, digo, Miguxar uma frase.

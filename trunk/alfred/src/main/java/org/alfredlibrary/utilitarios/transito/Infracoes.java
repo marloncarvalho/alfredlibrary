@@ -34,6 +34,10 @@ import org.alfredlibrary.validadores.Numeros;
  * @since 13/05/2010
  */
 public class Infracoes {
+	
+	public Infracoes() {
+		throw new AssertionError();
+	}
 
 	/**
 	 * Obter todas as infrações de trânsito disponíveis.

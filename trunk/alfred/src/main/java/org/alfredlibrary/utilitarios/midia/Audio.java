@@ -34,6 +34,10 @@ import org.alfredlibrary.AlfredException;
  * @since 11/06/2009
  */
 final public class Audio {
+	
+	private Audio() {
+		throw new AssertionError();
+	}
 
 	/**
 	 * Executar um Arquivo de �udio.

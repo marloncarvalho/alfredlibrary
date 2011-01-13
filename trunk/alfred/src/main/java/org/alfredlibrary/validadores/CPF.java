@@ -28,6 +28,7 @@ import org.alfredlibrary.utilitarios.texto.Texto;
 final public class CPF {
 
 	private CPF() {
+		throw new AssertionError();
 	}
 
 	/**

@@ -91,4 +91,8 @@ public final class MedidasCompostas {
 		}
 	}
 	
+	private MedidasCompostas() {
+		throw new AssertionError();
+	}
+	
 }

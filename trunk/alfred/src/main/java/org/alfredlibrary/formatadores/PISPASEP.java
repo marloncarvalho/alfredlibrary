@@ -27,7 +27,9 @@ import org.alfredlibrary.validadores.Numeros;
  */
 final public class PISPASEP {
 	
-	private PISPASEP() {}
+	private PISPASEP() {
+		throw new AssertionError();
+	}
 	
 	/**
 	 * Obter um PIS/PASEP qualquer e formatá-lo. Qualquer caracter diferente de
