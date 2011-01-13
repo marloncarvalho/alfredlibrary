@@ -27,6 +27,10 @@ import org.alfredlibrary.AlfredException;
  */
 public final class VelocidadeInicial {
 	
+	private VelocidadeInicial() {
+		throw new AssertionError();
+	}
+	
 	/**
 	 * Obtém a velocidade inicial pela fórmula S = So + vo.t + a.t^2/2
 	 * 

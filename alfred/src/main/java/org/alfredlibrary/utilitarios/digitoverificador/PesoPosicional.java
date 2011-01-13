@@ -28,6 +28,10 @@ import org.alfredlibrary.utilitarios.texto.Texto;
  */
 public final class PesoPosicional {
 	
+	public PesoPosicional() {
+		throw new AssertionError();
+	}
+	
 	/**
 	 * Calcular um dígito verificador a partir de uma sequência de números
 	 * enviada.

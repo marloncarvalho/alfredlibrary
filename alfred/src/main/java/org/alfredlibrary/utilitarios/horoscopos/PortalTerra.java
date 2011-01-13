@@ -26,6 +26,10 @@ import org.alfredlibrary.utilitarios.texto.HTML;
  * @since 02/05/2010
  */
 final public class PortalTerra {
+	
+	private PortalTerra() {
+		throw new AssertionError();
+	}
 
 	/**
 	 * Obter o horóscopo para um Signo.

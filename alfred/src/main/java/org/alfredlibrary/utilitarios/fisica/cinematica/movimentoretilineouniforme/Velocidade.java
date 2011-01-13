@@ -26,6 +26,10 @@ import org.alfredlibrary.AlfredException;
  * @since 27/05/2010
  */
 public final class Velocidade {
+	
+	private Velocidade() {
+		throw new AssertionError();
+	}
 
 	/**
 	 * Obtém a velocidade pela fórmula S = So + v.t

@@ -31,6 +31,7 @@ import org.alfredlibrary.utilitarios.texto.Texto;
 final public class InscricaoEstadual {
 
 	private InscricaoEstadual() {
+		throw new AssertionError();
 	}
 
 	/**

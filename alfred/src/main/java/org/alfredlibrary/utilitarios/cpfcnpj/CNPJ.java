@@ -26,7 +26,9 @@ import org.alfredlibrary.utilitarios.digitoverificador.Modulo11;
  */
 public final class CNPJ {
 
-	private CNPJ() {}
+	private CNPJ() {
+		throw new AssertionError();
+	}
 	
 	/**
 	 * Gerar um número de CNPJ válido.<br>

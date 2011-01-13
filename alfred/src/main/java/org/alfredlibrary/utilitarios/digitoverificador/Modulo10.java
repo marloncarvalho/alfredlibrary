@@ -27,6 +27,10 @@ import org.alfredlibrary.utilitarios.texto.Texto;
  */
 public final class Modulo10 {
 	
+	private Modulo10() {
+		throw new AssertionError();
+	}
+	
 	/**
 	 * Calcular um dígito verificador a partir de uma sequência de números
 	 * enviada.

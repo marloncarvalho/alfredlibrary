@@ -35,6 +35,10 @@ import org.alfredlibrary.validadores.Numeros;
  * @since 05/05/2010
  */
 final public class Febraban {
+	
+	private Febraban() {
+		throw new AssertionError();
+	}
 
 	/**
 	 * Obter uma Lista de Bancos do site da Febraban.

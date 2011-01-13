@@ -27,6 +27,10 @@ import org.alfredlibrary.AlfredException;
  */
 public final class Aceleracao {
 	
+	private Aceleracao() {
+		throw new AssertionError();
+	}
+	
 	/**
 	 * Obtém a aceleração pela fórmula S = So + vo.t + a.t^2/2
 	 * 

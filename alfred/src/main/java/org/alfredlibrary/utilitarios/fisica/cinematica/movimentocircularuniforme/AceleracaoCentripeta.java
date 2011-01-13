@@ -27,6 +27,10 @@ import org.alfredlibrary.AlfredException;
  */
 public final class AceleracaoCentripeta {
 	
+	private AceleracaoCentripeta() {
+		throw new AssertionError();
+	}
+	
 	/**
 	 * Obtém a aceleração centrípeta pela fórmula ac = V^2 / R
 	 * 

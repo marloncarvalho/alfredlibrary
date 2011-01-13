@@ -36,8 +36,12 @@ import org.alfredlibrary.AlfredException;
  * @since 09/06/2009
  */
 final public class Arquivo {
+	
+	
 
-	private Arquivo() {}
+	private Arquivo() {
+		throw new AssertionError();
+	}
 
 	/**
 	 * Salvar um arquivo.

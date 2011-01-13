@@ -35,6 +35,10 @@ import org.alfredlibrary.utilitarios.texto.Texto;
  * @since 04/06/2009
  */
 final public class Colecoes {
+	
+	public Colecoes() {
+		throw new AssertionError();
+	}
 
 	/**
 	 * Remover de uma coleção todos os itens que possuam o campo "nomeCampo" com

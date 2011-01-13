@@ -26,7 +26,9 @@ import org.alfredlibrary.utilitarios.digitoverificador.Modulo11;
  */
 final public class PISPASEP {
 
-	private PISPASEP() {}
+	private PISPASEP() {
+		throw new AssertionError();
+	}
 	
 	/**
      * Gerar um PIS/PASEP arbitrário.

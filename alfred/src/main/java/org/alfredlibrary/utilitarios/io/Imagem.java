@@ -42,7 +42,9 @@ import org.alfredlibrary.AlfredException;
  */
 final public class Imagem {
 
-	private Imagem() { }
+	private Imagem() { 
+		throw new AssertionError();
+	}
 
 	/**
 	 * Carregar a imagem em um BufferedImage.

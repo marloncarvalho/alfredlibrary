@@ -27,7 +27,9 @@ import org.alfredlibrary.validadores.Numeros;
  */
 final public class CPF {
 	
-	private CPF() {}
+	private CPF() {
+		throw new AssertionError();
+	}
 	
 	/**
 	 * Obter um CPF qualquer e formatá-lo. Qualquer caracter diferente de

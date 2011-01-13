@@ -39,7 +39,12 @@ final public class Armazenamento {
 
 	}
 
-	private Armazenamento() {}
+	/**
+	 * 
+	 */
+	private Armazenamento() {
+		throw new AssertionError();
+	}
 
 	/**
 	 * Converter um valor entre duas grandezas de armazenamento em informática.<br><br>

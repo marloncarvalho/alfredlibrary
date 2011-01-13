@@ -23,6 +23,11 @@ package org.alfredlibrary.utilitarios.financas;
  * @since 04/10/2010
  */
 public final class AmortizacaoPrice {
+	
+	
+	private AmortizacaoPrice() {
+		throw new AssertionError();
+	}
 
 	/**
 	 * Obtém o acompanhamento do financiamento, prestação a prestação, com informações

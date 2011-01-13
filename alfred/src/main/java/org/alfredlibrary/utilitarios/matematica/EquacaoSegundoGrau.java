@@ -26,6 +26,10 @@ import org.alfredlibrary.AlfredException;
  */
 public final class EquacaoSegundoGrau {
 	
+	private EquacaoSegundoGrau() {
+		throw new AssertionError();
+	}
+	
 	public static double[] resolverRacional (double a, double b, double c) {
 		double delta = Math.pow(b, 2) - (4 * a * c);
 		if (a == 0) {

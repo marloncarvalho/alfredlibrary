@@ -53,7 +53,9 @@ final public class Massa {
 		}
 	}
 
-	private Massa() {}
+	private Massa() {
+		throw new AssertionError();
+	}
 
 	/**
 	 * Converter uma unidade de massa para outra.

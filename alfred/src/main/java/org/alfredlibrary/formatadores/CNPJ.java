@@ -27,7 +27,9 @@ import org.alfredlibrary.utilitarios.texto.Texto;
  */
 public final class CNPJ {
 
-	private CNPJ() {}
+	private CNPJ() {
+		throw new AssertionError();
+	}
 	
 	/**
 	 * Formatar um CNPJ.

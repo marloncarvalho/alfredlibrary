@@ -36,7 +36,9 @@ import org.alfredlibrary.AlfredException;
  */
 public final class Data {
 
-	private Data() { }
+	private Data() { 
+		throw new AssertionError();
+	}
 
 	/**
 	 * Obtém uma String correspondente a uma determinada data,

@@ -33,7 +33,9 @@ import org.alfredlibrary.utilitarios.texto.Texto;
  */
 final public class Propriedades {
 
-	private Propriedades() { }
+	private Propriedades() { 
+		throw new AssertionError();
+	}
 	
 	/**
 	 * Colocar em um Map todas as propriedades de um objeto.

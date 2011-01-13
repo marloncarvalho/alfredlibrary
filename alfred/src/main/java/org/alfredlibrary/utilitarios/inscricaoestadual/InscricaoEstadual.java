@@ -32,6 +32,10 @@ import org.alfredlibrary.utilitarios.texto.Texto;
  * @since 10/06/2010
  */
 final public class InscricaoEstadual {
+	
+	private InscricaoEstadual() {
+		throw new AssertionError();
+	}
 
 	public enum PadraoInscricaoEstadual {
 		/* N = Número

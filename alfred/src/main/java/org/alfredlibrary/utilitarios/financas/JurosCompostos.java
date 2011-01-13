@@ -32,6 +32,10 @@ import org.alfredlibrary.utilitarios.matematica.Logaritmo;
  * @since 03/10/2010
  */
 public final class JurosCompostos {
+	
+	private JurosCompostos() {
+		throw new AssertionError();
+	}
 
 	/**
 	 * Obtém o valor futuro, que é o valor presente (inicial) ao final

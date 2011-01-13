@@ -26,6 +26,10 @@ import org.alfredlibrary.AlfredException;
  * @since 28/05/2010
  */
 public final class Gravidade {
+	
+	private Gravidade() {
+		throw new AssertionError();
+	}
 
 	/**
 	 * Obtém a aceleração da gravidade pela fórmula A = (Vo^2 . sen(2 * fi)) / g

@@ -31,6 +31,9 @@ import org.alfredlibrary.utilitarios.net.WorldWideWeb;
  * @since 13/06/2009
  */
 final public class SedexHoje {
+	private SedexHoje() {
+		throw new AssertionError();
+	}
 
 	/**
 	 * Verificar o Prazo e o Preço para entrega via Sedex Hoje de um CEP de origem para um CEP de destino com uma encomenda com o peso especificado.

@@ -27,6 +27,10 @@ import org.alfredlibrary.utilitarios.net.WorldWideWeb;
  * @since 13/06/2009
  */
 final public class Loterias {
+	
+	private Loterias(){
+		throw new AssertionError();
+	}
 
 	/**
 	 * Obter o resultado da Megasena.

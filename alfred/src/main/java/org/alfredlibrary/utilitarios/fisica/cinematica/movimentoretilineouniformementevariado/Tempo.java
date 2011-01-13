@@ -28,6 +28,10 @@ import org.alfredlibrary.utilitarios.matematica.EquacaoSegundoGrau;
  */
 public final class Tempo {
 	
+	private Tempo() {
+		throw new AssertionError();
+	}
+	
 	/**
 	 * Obtém o tempo pela fórmula S = So + vo.t + a.t^2/2
 	 * 

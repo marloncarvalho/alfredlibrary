@@ -27,7 +27,9 @@ import org.alfredlibrary.AlfredException;
  */
 final public class Matriz {
 
-	private Matriz() { }
+	private Matriz() { 
+		throw new AssertionError();
+	}
 	
 	/**
 	 * Obter a transposta de uma Matriz.

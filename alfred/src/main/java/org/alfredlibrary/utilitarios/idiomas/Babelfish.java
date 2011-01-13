@@ -71,7 +71,9 @@ final public class Babelfish {
 	public final static String ESPANHOL_PARA_INGLES = "es_en";
 	public final static String ESPANHOL_PARA_FRANCES = "es_fr";
 		
-	private Babelfish() { }
+	private Babelfish() { 
+		throw new AssertionError();
+	}
 
 	/**
 	 * Realizar a tradução de um idioma para outro.

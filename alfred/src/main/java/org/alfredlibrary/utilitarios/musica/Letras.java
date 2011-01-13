@@ -28,6 +28,10 @@ import org.alfredlibrary.utilitarios.texto.HTML;
  */
 final public class Letras {
 
+	
+	private Letras() {
+		throw new AssertionError();
+	}
 	/**
 	 * Obter a letra de uma música.
 	 * 

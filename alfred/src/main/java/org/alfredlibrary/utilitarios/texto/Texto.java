@@ -28,6 +28,10 @@ import org.alfredlibrary.validadores.Numeros;
  * @since 03/06/2009
  */
 public class Texto {
+	
+	private Texto() {
+		throw new AssertionError();
+	}
 
 	/**
 	 * Manter no Texto apenas os números.

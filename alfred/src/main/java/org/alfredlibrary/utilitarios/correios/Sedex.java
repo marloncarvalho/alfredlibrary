@@ -32,6 +32,10 @@ import org.alfredlibrary.utilitarios.texto.HTML;
  * @since 02/06/2009
  */
 final public class Sedex {
+	
+	private Sedex() {
+		throw new AssertionError();
+	}
 
 	/**
 	 * Verificar o Prazo e o Preço para entrega via Sedex de um CEP de origem para um CEP de destino com uma encomenda com o peso especificado.

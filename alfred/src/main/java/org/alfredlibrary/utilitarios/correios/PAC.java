@@ -36,6 +36,10 @@ final public class PAC {
 	private final static String FORMATO_CAIXA_PACOTE = "1";
 	private final static String FORMATO_ROLO_PRISMA = "2";
 
+	
+	private PAC() {
+		throw new AssertionError();
+	}
 	/**
 	 * Método privado apenas para validar os parâmetros do PAC.
 	 * 

@@ -23,6 +23,10 @@ package org.alfredlibrary.utilitarios.financas;
  * @since 04/10/2010
  */
 public final class AmortizacaoSAC {
+	
+	private AmortizacaoSAC() {
+		throw new AssertionError();
+	}
 
 	/**
 	 * Obtém o acompanhamento do financiamento, prestação a prestação, com informações

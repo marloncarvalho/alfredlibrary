@@ -27,6 +27,9 @@ import org.alfredlibrary.AlfredException;
  */
 public final class VelocidadeEscalar {
 
+	private VelocidadeEscalar() {
+		throw new AssertionError();
+	}
 	
 	/**
 	 * Obtém a velocidade escalar pela fórmula V = 2.pi.R / T

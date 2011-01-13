@@ -32,6 +32,10 @@ import org.alfredlibrary.utilitarios.tributo.IR.IRRF;
  */
 public final class CalculoSalarial {
 	
+	private CalculoSalarial() {
+		throw new AssertionError();
+	}
+	
 	/**
 	 * Retorna o salário líquido a partir do valor bruto e das
 	 * contribuições padrão de impostos.

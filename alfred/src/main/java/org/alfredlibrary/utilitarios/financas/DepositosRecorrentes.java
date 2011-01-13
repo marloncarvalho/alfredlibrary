@@ -24,65 +24,86 @@ package org.alfredlibrary.utilitarios.financas;
  */
 public final class DepositosRecorrentes {
 
+	public DepositosRecorrentes() {
+		throw new AssertionError();
+	}
+
 	/**
-	 * Obtém o valor futuro com base no valor do depósito periódico, do juro
-	 * e do período.
+	 * Obtém o valor futuro com base no valor do depósito periódico, do juro e
+	 * do período.
 	 * 
-	 * @param valor Valor do depósito periódico
-	 * @param juros Percentual de juros a que se sujeira o valor depositado 
-	 * @param periodos Quantidade de períodos no qual os depósitos serão realizados
-	 * @param resgateImediato Indicativo se o resgate deve ser imediatamente posterior
-	 * 						ao último depósito ou se deve-se considerar o rendimento
-	 * 						do montante por mais um período.
-	 * @return Valor Acumulado ao longo do período em que os depósitos foram realizados
+	 * @param valor
+	 *            Valor do depósito periódico
+	 * @param juros
+	 *            Percentual de juros a que se sujeira o valor depositado
+	 * @param periodos
+	 *            Quantidade de períodos no qual os depósitos serão realizados
+	 * @param resgateImediato
+	 *            Indicativo se o resgate deve ser imediatamente posterior ao
+	 *            último depósito ou se deve-se considerar o rendimento do
+	 *            montante por mais um período.
+	 * @return Valor Acumulado ao longo do período em que os depósitos foram
+	 *         realizados
 	 */
-	public static double obterSaldo (double valor, double juros, double periodos, boolean resgateImediato) {
+	public static double obterSaldo(double valor, double juros,
+			double periodos, boolean resgateImediato) {
 		double acumulado = valor; // Primeiro mês
 		for (int indice = 1; indice < periodos; indice++) {
 			acumulado = (acumulado * (1 + (juros / 100))) + valor;
 		}
 		if (!resgateImediato) {
-			acumulado *= 1 + (juros/100);
+			acumulado *= 1 + (juros / 100);
 		}
 		return acumulado;
 	}
-	
+
 	/**
-	 * Obtém o valor do depósito recorrente a ser realizado a fim de obter um determinado
-	 * montante ao final de uma certa quantidade de períodos, com uma certa taxa de juros.
+	 * Obtém o valor do depósito recorrente a ser realizado a fim de obter um
+	 * determinado montante ao final de uma certa quantidade de períodos, com
+	 * uma certa taxa de juros.
 	 * 
-	 * @param saldo Valor do montante final
-	 * @param juros Percentual de juros a que se sujeira o valor depositado 
-	 * @param periodos Quantidade de períodos no qual os depósitos serão realizados
-	 * @param resgateImediato Indicativo se o resgate deve ser imediatamente posterior
-	 * 						ao último depósito ou se deve-se considerar o rendimento
-	 * 						do montante por mais um período.
+	 * @param saldo
+	 *            Valor do montante final
+	 * @param juros
+	 *            Percentual de juros a que se sujeira o valor depositado
+	 * @param periodos
+	 *            Quantidade de períodos no qual os depósitos serão realizados
+	 * @param resgateImediato
+	 *            Indicativo se o resgate deve ser imediatamente posterior ao
+	 *            último depósito ou se deve-se considerar o rendimento do
+	 *            montante por mais um período.
 	 * @return Valor do depósito a ser feito periodicamente
 	 */
-	public static double obterDeposito (double saldo, double juros, double periodos, boolean resgateImediato) {
+	public static double obterDeposito(double saldo, double juros,
+			double periodos, boolean resgateImediato) {
 		if (resgateImediato) {
 			periodos--;
 		}
 		double jurosAcumulado = 0;
 		for (int indice = 1; indice <= periodos; indice++) {
-			jurosAcumulado += Math.pow(1 + (juros/100), indice);
+			jurosAcumulado += Math.pow(1 + (juros / 100), indice);
 		}
 		return saldo / jurosAcumulado;
 	}
-	     
+
 	/**
-	 * Obtém a quantidade mínima de depósitos periódicos para se acumular um montante-alvo
-	 * a uma dada taxa de juros.
+	 * Obtém a quantidade mínima de depósitos periódicos para se acumular um
+	 * montante-alvo a uma dada taxa de juros.
 	 * 
-	 * @param valor Valor do depósito periódico
-	 * @param saldo Valor do montante-alvo
-	 * @param juros Percentual de juros a que se sujeira o valor depositado 
-	 * @param resgateImediato Indicativo se o resgate deve ser imediatamente posterior
-	 * 						ao último depósito ou se deve-se considerar o rendimento
-	 * 						do montante por mais um período.
+	 * @param valor
+	 *            Valor do depósito periódico
+	 * @param saldo
+	 *            Valor do montante-alvo
+	 * @param juros
+	 *            Percentual de juros a que se sujeira o valor depositado
+	 * @param resgateImediato
+	 *            Indicativo se o resgate deve ser imediatamente posterior ao
+	 *            último depósito ou se deve-se considerar o rendimento do
+	 *            montante por mais um período.
 	 * @return Período mínimo para se atingir o montante-alvo
 	 */
-	public static int obterPeriodoMinimo (double valor, double saldo, double juros, boolean resgateImediato) {
+	public static int obterPeriodoMinimo(double valor, double saldo,
+			double juros, boolean resgateImediato) {
 		double acumulado = valor; // Primeiro mês
 		int periodoMinimo = 1;
 		if (acumulado >= saldo) {
@@ -93,7 +114,7 @@ public final class DepositosRecorrentes {
 				acumulado = (acumulado * (1 + (juros / 100))) + valor;
 				periodoMinimo++;
 			} else {
-				acumulado *= 1 + (juros/100);
+				acumulado *= 1 + (juros / 100);
 				if (acumulado < saldo) {
 					acumulado += valor;
 					periodoMinimo++;
@@ -102,5 +123,5 @@ public final class DepositosRecorrentes {
 		}
 		return periodoMinimo;
 	}
-	
+
 }

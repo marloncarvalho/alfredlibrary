@@ -41,7 +41,9 @@ final public class Temperatura {
 
 	}
 
-	private Temperatura() {}
+	private Temperatura() {
+		throw new AssertionError();
+	}
 
 	/**
 	 * Converter um valor de temperatura para outro.

@@ -38,6 +38,10 @@ import org.xml.sax.helpers.DefaultHandler;
  * @since 21/07/2009
  */
 final public class BRLinux {
+	
+	public BRLinux() {
+		throw new AssertionError();
+	}
 
 	private static String resultado = "";
 

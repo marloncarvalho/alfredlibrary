@@ -29,6 +29,9 @@ import org.alfredlibrary.AlfredException;
  */
 final public class CalculoData {
 
+	private CalculoData() {
+		throw new AssertionError();
+	}
 	/**
 	 * Somar uma determinada quantidade de dias a uma data.
 	 * 

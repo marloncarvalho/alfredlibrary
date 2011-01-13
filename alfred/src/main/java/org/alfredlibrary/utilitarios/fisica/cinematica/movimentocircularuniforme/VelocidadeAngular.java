@@ -27,6 +27,11 @@ import org.alfredlibrary.AlfredException;
  */
 public final class VelocidadeAngular {
 	
+	
+	private VelocidadeAngular() {
+		throw new AssertionError();
+	}
+	
 	/**
 	 * Obter a velocidade angular pela fórmula W = 2.pi/T
 	 * 

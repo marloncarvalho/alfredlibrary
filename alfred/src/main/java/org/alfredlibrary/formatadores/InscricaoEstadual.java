@@ -29,7 +29,9 @@ import org.alfredlibrary.validadores.Numeros;
  */
 final public class InscricaoEstadual {
 	
-	private InscricaoEstadual() {}
+	private InscricaoEstadual() {
+		throw new AssertionError();
+	}
 	
 	/**
 	 * Obter uma Inscrição Estadual qualquer e formatá-la. Qualquer caracter

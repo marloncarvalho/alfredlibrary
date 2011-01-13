@@ -27,6 +27,11 @@ import org.alfredlibrary.AlfredException;
  */
 public final class Raio {
 	
+	private Raio() {
+		throw new AssertionError();
+
+	}
+	
 	/**
 	 * Obtém o raio pela fórmula V = 2.pi.R / T
 	 * 

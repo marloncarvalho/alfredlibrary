@@ -36,6 +36,10 @@ import org.alfredlibrary.AlfredException;
  * @since 04/06/2009
  */
 final public class CSVReader {
+	
+	private CSVReader() {
+		throw new AssertionError();
+	}
 
 	/**
 	 * L� um arquivo CSV de um local e interpreta.

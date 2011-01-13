@@ -36,6 +36,10 @@ import org.alfredlibrary.utilitarios.texto.Texto;
  */
 final public class Rastreamento {
 	
+	private Rastreamento() {
+		throw new AssertionError();
+	}
+	
 	/**
 	 * Rastrear um objeto a partir do seu código.
 	 * 

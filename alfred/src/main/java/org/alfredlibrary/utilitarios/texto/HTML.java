@@ -31,6 +31,7 @@ import java.util.regex.Pattern;
 final public class HTML {
 
 	private HTML() {
+		throw new AssertionError();
 	}
 
 	/**

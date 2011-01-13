@@ -30,6 +30,10 @@ package org.alfredlibrary.utilitarios.financas;
  * @since 03/10/2010
  */
 public final class JurosSimples {
+	
+	public JurosSimples() {
+		throw new AssertionError();
+	}
 
 	/**
 	 * Obtém o valor futuro, que é o valor presente (inicial) ao final

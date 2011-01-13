@@ -26,7 +26,9 @@ import org.alfredlibrary.AlfredException;
  */
 final public class CEP {
 
-	private CEP() { }
+	private CEP() {
+		throw new AssertionError();
+	}
 	
 	/**
 	 * Realizar a formatação do CEP passado.
