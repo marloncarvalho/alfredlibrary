@@ -53,13 +53,14 @@ public class CEPTest {
 	@Test
 	public void testarConsultarEnderecoCorretoCorreios() {
 		String[] endereco = CEP.consultarEnderecoCorreios("40290280");
-		Assert.assertEquals(4,endereco.length);
+		Assert.assertEquals(5,endereco.length);
 		for(int i=0; i < endereco.length; i++) {
 			Assert.assertNotNull(endereco[i]);
 		}
 		Assert.assertEquals("RUA CRUZ E SOUZA", endereco[1].toUpperCase());
 		Assert.assertEquals("ACUPE DE BROTAS", endereco[2].toUpperCase());
-		Assert.assertEquals("SALVADORBA", endereco[3].toUpperCase().substring(0, endereco[3].indexOf(" ")) + endereco[3].toUpperCase().substring(endereco[3].length() - 2));
+		Assert.assertEquals("SALVADOR", endereco[3].toUpperCase());
+		Assert.assertEquals("BA", endereco[4].toUpperCase());
 	}
 
 	@Test
@@ -74,13 +75,14 @@ public class CEPTest {
 	@Test
 	public void testarConsultarEnderecoCorretoCorreiosLogradouro() {
 		String[] endereco = CEP.consultarEnderecoCorreios("Rodolpho Coelho Cavalcante");
-		Assert.assertEquals(4,endereco.length);
+		Assert.assertEquals(5,endereco.length);
 		for(int i=0; i < endereco.length; i++) {
 			Assert.assertNotNull(endereco[i]);
 		}
 		Assert.assertEquals("RUA RODOLPHO COELHO CAVALCANTE", endereco[1].toUpperCase());
 		Assert.assertEquals("ARMAÇÃO", endereco[2].toUpperCase());
-		Assert.assertEquals("SALVADORBA", endereco[3].toUpperCase().substring(0, endereco[3].indexOf(" ")) + endereco[3].toUpperCase().substring(endereco[3].length() - 2));
+		Assert.assertEquals("SALVADOR", endereco[3].toUpperCase());
+		Assert.assertEquals("BA", endereco[4].toUpperCase());
 		Assert.assertEquals("41750166", endereco[0].toUpperCase());
 	}
 }
