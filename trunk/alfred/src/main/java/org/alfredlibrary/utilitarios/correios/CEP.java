@@ -41,25 +41,25 @@ final public class CEP {
 	}
 
 	/**
-	 * Consultar um Endereço pelo CEP. Será retornado um Array contendo 4
-	 * posições, que conterão, respectivamente, os campos cep, endereço, bairro
-	 * e cidade/estado). Utiliza o site dos Correios para extrair as
+	 * Consultar um Endereço pelo CEP ou Logradouro. Será retornado um Array contendo 5
+	 * posições, que conterão, respectivamente, os campos cep, endereço, bairro,
+	 * cidade e estado). Utiliza o site dos Correios para extrair as
 	 * informações.
 	 * 
-	 * @param cep
-	 *            CEP a ser consultado.
+	 * @param cepLogradouro
+	 *            CEP ou logradouro a ser consultado.
 	 * @return Array contendo o resultado da consulta.
 	 */
-	public static String[] consultarEnderecoCorreios(String cep) {
+	public static String[] consultarEnderecoCorreios(String cepLogradouro) {
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("cepTemp", "");
 		parametros.put("metodo", "buscarCep");
 		parametros.put("tipoCep", "");
-		parametros.put("cepEntrada", cep);
+		parametros.put("cepEntrada", cepLogradouro);
 		String conteudo = WorldWideWeb.obterConteudoSite("http://m.correios.com.br/movel/buscaCepConfirma.do",
 				"iso-8859-1", parametros);
 
-		String[] re = new String[4];
+		String[] re = new String[5];
 		Pattern padrao = Pattern.compile("<span class=\"respostadestaque\">(\\w| |/|\t|,|" + value + ")*</span>",
 				Pattern.CASE_INSENSITIVE);
 		Matcher pesquisa = padrao.matcher(conteudo);
@@ -70,7 +70,9 @@ final public class CEP {
 		pesquisa.find();
 		re[2] = HTML.removerTags(pesquisa.group()).trim();
 		pesquisa.find();
-		re[3] = HTML.removerTags(pesquisa.group()).trim();
+		String cidadeUf = HTML.removerTags(pesquisa.group()).trim();
+		re[3] = cidadeUf.substring(0,cidadeUf.indexOf(' '));
+		re[4] = cidadeUf.substring(cidadeUf.length() - 2);
 		pesquisa.find();
 		re[0] = HTML.removerTags(pesquisa.group()).trim();
 		return re;
