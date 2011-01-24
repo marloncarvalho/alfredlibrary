@@ -59,7 +59,7 @@ public class CEPTest {
 		}
 		Assert.assertEquals("RUA CRUZ E SOUZA", endereco[1].toUpperCase());
 		Assert.assertEquals("ACUPE DE BROTAS", endereco[2].toUpperCase());
-		Assert.assertEquals("SALVADOR/BA", endereco[3].toUpperCase());
+		Assert.assertEquals("SALVADORBA", endereco[3].toUpperCase().substring(0, endereco[3].indexOf(" ")) + endereco[3].toUpperCase().substring(endereco[3].length() - 2));
 	}
 
 	@Test
@@ -80,7 +80,7 @@ public class CEPTest {
 		}
 		Assert.assertEquals("RUA RODOLPHO COELHO CAVALCANTE", endereco[1].toUpperCase());
 		Assert.assertEquals("ARMAÇÃO", endereco[2].toUpperCase());
-		Assert.assertEquals("SALVADOR/BA", endereco[3].toUpperCase());
+		Assert.assertEquals("SALVADORBA", endereco[3].toUpperCase().substring(0, endereco[3].indexOf(" ")) + endereco[3].toUpperCase().substring(endereco[3].length() - 2));
 		Assert.assertEquals("41750166", endereco[0].toUpperCase());
 	}
 }
