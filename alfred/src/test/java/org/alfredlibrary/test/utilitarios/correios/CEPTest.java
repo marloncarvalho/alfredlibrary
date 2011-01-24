@@ -71,4 +71,16 @@ public class CEPTest {
 		}
 	}
 
+	@Test
+	public void testarConsultarEnderecoCorretoCorreiosLogradouro() {
+		String[] endereco = CEP.consultarEnderecoCorreios("Rodolpho Coelho Cavalcante");
+		Assert.assertEquals(4,endereco.length);
+		for(int i=0; i < endereco.length; i++) {
+			Assert.assertNotNull(endereco[i]);
+		}
+		Assert.assertEquals("RUA RODOLPHO COELHO CAVALCANTE", endereco[1].toUpperCase());
+		Assert.assertEquals("ARMAÇÃO", endereco[2].toUpperCase());
+		Assert.assertEquals("SALVADOR/BA", endereco[3].toUpperCase());
+		Assert.assertEquals("41750166", endereco[0].toUpperCase());
+	}
 }
