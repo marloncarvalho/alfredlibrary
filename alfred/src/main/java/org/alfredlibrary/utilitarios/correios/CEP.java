@@ -148,12 +148,12 @@ final public class CEP {
 				re[2] = content;
 				enderecoCompleto += 1;
 			} else if (label.equals("Localidade/UF:")){ 
-				String cidadeUf = HTML.removerTags(pesquisa.group()).trim();
+				String cidadeUf = content;
 				re[3] = cidadeUf.substring(0,cidadeUf.indexOf(' '));
 				re[4] = cidadeUf.substring(cidadeUf.length() - 2);
 				enderecoCompleto += 2;
 			} else if (label.equals("CEP:")){ 
-				re[0] = HTML.removerTags(pesquisa.group()).trim();
+				re[0] = content;
 				enderecoCompleto += 1;
 			} else if (enderecoCompleto == 5) {
 				enderecoCompleto = 0;
@@ -191,7 +191,10 @@ final public class CEP {
 		if (r.size() <= 0)
 			throw new AlfredException("Endereço não encontrado.");
 		List<String[]> resultado = new ArrayList<String[]>();
-		while ( r.iterator().hasNext() ){
+		for (int i = 0; i < r.size(); i++) {
+			if (!r.iterator().hasNext()) {
+				break;
+			}
 			Map<String, String> endereco = (Map<String, String>) r.iterator().next();
 			if (endereco != null) {
 				resultado.add(new String[] { endereco.get("tipo_logradouro"), endereco.get("logradouro"), endereco.get("bairro"),
