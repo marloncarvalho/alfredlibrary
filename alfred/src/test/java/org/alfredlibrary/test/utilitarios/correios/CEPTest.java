@@ -16,6 +16,8 @@
  */
 package org.alfredlibrary.test.utilitarios.correios;
 
+import java.util.List;
+
 import org.alfredlibrary.AlfredException;
 import org.alfredlibrary.utilitarios.correios.CEP;
 import org.junit.Assert;
@@ -85,4 +87,58 @@ public class CEPTest {
 		Assert.assertEquals("BA", endereco[4].toUpperCase());
 		Assert.assertEquals("41750166", endereco[0].toUpperCase());
 	}
+	
+	@Test
+	public void testarConsultaEnderecosCEPLivreLogradouro() {
+		List<String[]> listEndereco = CEP.consultarEnderecoCEPLivreLogradouro("tancredo neves", null, "salvador");
+		
+		String[] endereco = listEndereco.get(0);
+		Assert.assertEquals("AV.", endereco[0].toUpperCase());
+		Assert.assertEquals("TANCREDO NEVES", endereco[1].toUpperCase());
+		Assert.assertEquals("CAMINHO DAS ÁRVORES", endereco[2].toUpperCase());
+		Assert.assertEquals("SALVADOR", endereco[3].toUpperCase());
+		Assert.assertEquals("BA", endereco[4].toUpperCase());
+		Assert.assertEquals("41820-020", endereco[5].toUpperCase());
+		
+		endereco = listEndereco.get(1);
+		Assert.assertEquals("AV.", endereco[0].toUpperCase());
+		Assert.assertEquals("TANCREDO NEVES", endereco[1].toUpperCase());
+		Assert.assertEquals("PERNAMBUÉS", endereco[2].toUpperCase());
+		Assert.assertEquals("SALVADOR", endereco[3].toUpperCase());
+		Assert.assertEquals("BA", endereco[4].toUpperCase());
+		Assert.assertEquals("41100-800", endereco[5].toUpperCase());
+		
+		endereco = listEndereco.get(2);
+		Assert.assertEquals("TRAV.", endereco[0].toUpperCase());
+		Assert.assertEquals("TANCREDO NEVES", endereco[1].toUpperCase());
+		Assert.assertEquals("TANCREDO NEVES", endereco[2].toUpperCase());
+		Assert.assertEquals("SALVADOR", endereco[3].toUpperCase());
+		Assert.assertEquals("BA", endereco[4].toUpperCase());
+		Assert.assertEquals("41207-695", endereco[5].toUpperCase());
+		
+		endereco = listEndereco.get(3);
+		Assert.assertEquals("AV.", endereco[0].toUpperCase());
+		Assert.assertEquals("TANCREDO NEVES", endereco[1].toUpperCase());
+		Assert.assertEquals("CAMINHO DAS ÁRVORES", endereco[2].toUpperCase());
+		Assert.assertEquals("SALVADOR", endereco[3].toUpperCase());
+		Assert.assertEquals("BA", endereco[4].toUpperCase());
+		Assert.assertEquals("41820-021", endereco[5].toUpperCase());
+		
+		endereco = listEndereco.get(4);
+		Assert.assertEquals("RUA", endereco[0].toUpperCase());
+		Assert.assertEquals("TANCREDO NEVES", endereco[1].toUpperCase());
+		Assert.assertEquals("PALESTINA", endereco[2].toUpperCase());
+		Assert.assertEquals("SALVADOR", endereco[3].toUpperCase());
+		Assert.assertEquals("BA", endereco[4].toUpperCase());
+		Assert.assertEquals("41308-325", endereco[5].toUpperCase());
+		
+		endereco = listEndereco.get(5);
+		Assert.assertEquals("AV.", endereco[0].toUpperCase());
+		Assert.assertEquals("TANCREDO NEVES", endereco[1].toUpperCase());
+		Assert.assertEquals("CAMINHO DAS ÁRVORES", endereco[2].toUpperCase());
+		Assert.assertEquals("SALVADOR", endereco[3].toUpperCase());
+		Assert.assertEquals("BA", endereco[4].toUpperCase());
+		Assert.assertEquals("41820-901", endereco[5].toUpperCase());
+	}
+	 
 }
