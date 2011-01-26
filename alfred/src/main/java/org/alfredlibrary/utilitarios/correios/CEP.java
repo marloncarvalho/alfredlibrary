@@ -133,33 +133,37 @@ final public class CEP {
 		Pattern padraoLabel = Pattern.compile("<span class=\"resposta\">(\\w| |/|\t|,|" + value + ")*</span>",
 				Pattern.CASE_INSENSITIVE);
 		Matcher pesquisaLabel = padraoLabel.matcher(conteudo);
-		if (!pesquisa.find()) {
-			throw new AlfredException("CEP não encontrado.");
-		}
 		String[] re = new String[5];
 		int enderecoCompleto = 0;
-		while (pesquisa.find()) {
-			String label = HTML.removerTags(pesquisaLabel.group()).trim();
-			String content = HTML.removerTags(pesquisa.group()).trim();
-			if (label.equals("Endereço:")){ 
-				re[1] = content;
-				enderecoCompleto += 1;
-			} else if (label.equals("Bairro:")){ 
-				re[2] = content;
-				enderecoCompleto += 1;
-			} else if (label.equals("Localidade/UF:")){ 
-				String cidadeUf = content;
-				re[3] = cidadeUf.substring(0,cidadeUf.indexOf(' '));
-				re[4] = cidadeUf.substring(cidadeUf.length() - 2);
-				enderecoCompleto += 2;
-			} else if (label.equals("CEP:")){ 
-				re[0] = content;
-				enderecoCompleto += 1;
-			} else if (enderecoCompleto == 5) {
-				enderecoCompleto = 0;
-				resultado.add(re);
-				re = new String[5];
-			} // Labels como Unidade ou Cliente, que aparecem apenas em alguns registros, são ignorados
+		String label = "";
+		String content = "";
+		while (pesquisaLabel.find()) {
+			if (pesquisa.find()) {
+				label = HTML.removerTags(pesquisaLabel.group()).trim();
+				content = HTML.removerTags(pesquisa.group()).trim();
+				if (label.indexOf("Endereço:") >= 0){ 
+					re[1] = content;
+					enderecoCompleto += 1;
+				} else if (label.indexOf("Bairro:") >= 0){ 
+					re[2] = content;
+					enderecoCompleto += 1;
+				} else if (label.indexOf("Localidade/UF:") >= 0){
+					String cidadeUf = content;
+					re[3] = cidadeUf.substring(0,cidadeUf.indexOf(' '));
+					re[4] = cidadeUf.substring(cidadeUf.length() - 2);
+					enderecoCompleto += 2;
+				} else if (label.indexOf("CEP:") >= 0){ 
+					re[0] = content;
+					enderecoCompleto += 1;
+				} else if (enderecoCompleto == 5) {
+					enderecoCompleto = 0;
+					resultado.add(re);
+					re = new String[5];
+				} // Labels como Unidade ou Cliente, que aparecem apenas em alguns registros, são ignorados
+			}
+		}
+		if (resultado.size() <= 0) {
+			throw new AlfredException("Nenhum endereço encontrado!");
 		}
 		return resultado;
 	}
@@ -228,9 +232,9 @@ final public class CEP {
 			List<String[]> enderecosCorreio = consultarEnderecoCorreiosLogradouro(Texto.manterNumeros(logradouro));
 			List<String[]> resultado = new ArrayList<String[]>();
 			for (String[] registro : enderecosCorreio) {
-				if (uf != null ? uf.equals(registro[4]) : true) {
-					if (cidade != null ? cidade.equals(registro[3]) : true) {
-						if (bairro != null ? bairro.equals(registro[2]) : true) {
+				if (uf != null ? uf.toUpperCase().equals(registro[4].toUpperCase()) : true) {
+					if (cidade != null ? cidade.toUpperCase().equals(registro[3].toUpperCase()) : true) {
+						if (bairro != null ? bairro.toUpperCase().equals(registro[2].toUpperCase()) : true) {
 							resultado.add(registro);
 						}
 					}
@@ -242,7 +246,7 @@ final public class CEP {
 				List<String[]> enderecosCorreio = consultarEnderecoCEPLivreLogradouro(cidade, bairro, cidade);
 				List<String[]> resultado = new ArrayList<String[]>();
 				for (String[] registro : enderecosCorreio) {
-					if (uf != null ? uf.equals(registro[4]) : true) {
+					if (uf != null ? uf.toUpperCase().equals(registro[4].toUpperCase()) : true) {
 						resultado.add(new String[] { registro[0] + " " + registro[1], registro[2], registro[3], registro[4], registro[5] });
 					}
 				}
