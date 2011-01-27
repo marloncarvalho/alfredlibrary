@@ -143,7 +143,7 @@ public class CEPTest {
 	
 	@Test
 	public void testarConsultarEnderecosCorreiosLogradouro() {
-		List<String[]> listEndereco = CEP.consultarEnderecoCorreiosLogradouro("tancredo neves", null, null);
+		List<String[]> listEndereco = CEP.consultarEnderecoCorreiosLogradouro("tancredo neves");
 		
 		String[] endereco = listEndereco.get(0);
 		Assert.assertEquals("Rua 2 de Julho de Tancredo Neves (Cabula X)", endereco[1]);
