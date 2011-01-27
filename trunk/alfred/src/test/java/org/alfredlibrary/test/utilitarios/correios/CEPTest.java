@@ -89,7 +89,7 @@ public class CEPTest {
 	}
 	
 	@Test
-	public void testarConsultaEnderecosCEPLivreLogradouro() {
+	public void testarConsultarEnderecosCEPLivreLogradouro() {
 		List<String[]> listEndereco = CEP.consultarEnderecoCEPLivreLogradouro("tancredo neves", null, "salvador");
 		
 		String[] endereco = listEndereco.get(0);
@@ -139,6 +139,83 @@ public class CEPTest {
 		Assert.assertEquals("SALVADOR", endereco[3].toUpperCase());
 		Assert.assertEquals("BA", endereco[4].toUpperCase());
 		Assert.assertEquals("41820-901", endereco[5].toUpperCase());
+	}
+	
+	@Test
+	public void testarConsultarEnderecosCorreiosLogradouro() {
+		List<String[]> listEndereco = CEP.consultarEnderecoCorreiosLogradouro("tancredo neves", null, null);
+		
+		String[] endereco = listEndereco.get(0);
+		Assert.assertEquals("Rua 2 de Julho de Tancredo Neves (Cabula X)", endereco[1]);
+		Assert.assertEquals("Tancredo Neves", endereco[2]);
+		Assert.assertEquals("Salvador", endereco[3]);
+		Assert.assertEquals("BA", endereco[4]);
+		Assert.assertEquals("41205540", endereco[0]);
+		
+		endereco = listEndereco.get(1);
+		Assert.assertEquals("Rua Tancredo Neves", endereco[1]);
+		Assert.assertEquals("Tancredo Neves", endereco[2]);
+		Assert.assertEquals("Manaus", endereco[3]);
+		Assert.assertEquals("AM", endereco[4]);
+		Assert.assertEquals("69087500", endereco[0]);
+		
+		endereco = listEndereco.get(2);
+		Assert.assertEquals("Travessa Tancredo Neves", endereco[1]);
+		Assert.assertEquals("Tancredo Neves", endereco[2]);
+		Assert.assertEquals("Manaus", endereco[3]);
+		Assert.assertEquals("AM", endereco[4]);
+		Assert.assertEquals("69087230", endereco[0]);
+		
+		endereco = listEndereco.get(3);
+		Assert.assertEquals("Avenida Sete de Setembro, 14", endereco[1]);
+		Assert.assertEquals("Centro", endereco[2]);
+		Assert.assertEquals("Presidente Tancredo Neves", endereco[3]);
+		Assert.assertEquals("BA", endereco[4]);
+		Assert.assertEquals("45416970", endereco[0]);
+		// Este endereço ainda tem um campo (Unidade: AC Presidente Tancredo Neves) que deve ser ignorado na montagem do endereço.
+		
+		endereco = listEndereco.get(4);
+		Assert.assertEquals("1ª Travessa Senhor do Bonfim de Tancredo Neves", endereco[1]);
+		Assert.assertEquals("Tancredo Neves", endereco[2]);
+		Assert.assertEquals("Salvador", endereco[3]);
+		Assert.assertEquals("BA", endereco[4]);
+		Assert.assertEquals("41207688", endereco[0]);
+		
+		endereco = listEndereco.get(5);
+		Assert.assertEquals("2ª Travessa Senhor do Bonfim de Tancredo Neves", endereco[1]);
+		Assert.assertEquals("Tancredo Neves", endereco[2]);
+		Assert.assertEquals("Salvador", endereco[3]);
+		Assert.assertEquals("BA", endereco[4]);
+		Assert.assertEquals("41207689", endereco[0]);
+		
+		endereco = listEndereco.get(6);
+		Assert.assertEquals("Alameda Estrela de Tancredo Neves (Cj Hab Barreiras)", endereco[1]);
+		Assert.assertEquals("Tancredo Neves", endereco[2]);
+		Assert.assertEquals("Salvador", endereco[3]);
+		Assert.assertEquals("BA", endereco[4]);
+		Assert.assertEquals("41205283", endereco[0]);
+		
+		endereco = listEndereco.get(7);
+		Assert.assertEquals("Avenida Tancredo Neves, 2915 Loja 4004", endereco[1]);
+		Assert.assertEquals("Caminho das Árvores", endereco[2]);
+		Assert.assertEquals("Salvador", endereco[3]);
+		Assert.assertEquals("BA", endereco[4]);
+		Assert.assertEquals("41820974", endereco[0]);
+		// Este endereço ainda tem um campo (Unidade: ACF Avenida Tancredo Neves) que deve ser ignorado na montagem do endereço.
+		
+		endereco = listEndereco.get(8);
+		Assert.assertEquals("Rua Direta de Tancredo Neves", endereco[1]);
+		Assert.assertEquals("Tancredo Neves", endereco[2]);
+		Assert.assertEquals("Salvador", endereco[3]);
+		Assert.assertEquals("BA", endereco[4]);
+		Assert.assertEquals("41205000", endereco[0]);
+		
+		endereco = listEndereco.get(9);
+		Assert.assertEquals("Rua Senhor do Bonfim de Tancredo Neves", endereco[1]);
+		Assert.assertEquals("Tancredo Neves", endereco[2]);
+		Assert.assertEquals("Salvador", endereco[3]);
+		Assert.assertEquals("BA", endereco[4]);
+		Assert.assertEquals("41207687", endereco[0]);
 	}
 	 
 }
