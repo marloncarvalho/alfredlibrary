@@ -37,7 +37,7 @@ import org.alfredlibrary.utilitarios.texto.Texto;
  * @since 04/06/2009
  */
 final public class CEP {
-	private static String value = "À|Á|Â|Ã|Ä|Å|Æ|Ç|È|É|Ê|Ë|Ì|Í|Î|Ï|Ð|Ñ|Ò|Ó|Ô|Õ|Ö|Ø|Ù|Ú|Û|Ü|Ý|Þ|ß|à|á|â|ã|ä|å|æ|ç|è|é|ê|ë|ì|í|î|ï|ð|ñ|ò|ó|ô|õ|ö|ø|ù|ú|û|ü|ý|þ|ÿ";
+	private static String value = "À|Á|Â|Ã|Ä|Å|Æ|Ç|È|É|Ê|Ë|Ì|Í|Î|Ï|Ð|Ñ|Ò|Ó|Ô|Õ|Ö|Ø|Ù|Ú|Û|Ü|Ý|Þ|ß|à|á|â|ã|ä|å|æ|ç|è|é|ê|ë|ì|í|î|ï|ð|ñ|ò|ó|ô|õ|ö|ø|ù|ú|û|ü|ý|þ|ÿ|ª|º";
 	
 	private CEP() {
 		throw new AssertionError();
@@ -113,8 +113,11 @@ final public class CEP {
 	 * campos cep, endereço, bairro, cidade e uf). Utiliza o site dos Correios para
 	 * extrair as informações.
 	 * 
-	 * @param cepLogradouro
-	 *            CEP ou logradouro a ser consultado.
+	 * Apenas os 10 primeiros resultados serão retornados.
+	 * 
+	 * @param cepLogradouro logradouro a ser consultado.
+	 * @param bairro a ser consultado.
+	 * @param cidade a ser consultada.
 	 * @return Lista contendo o resultado da consulta.
 	 */
 	public static List<String[]> consultarEnderecoCorreiosLogradouro(String cepLogradouro) {
@@ -125,45 +128,52 @@ final public class CEP {
 		parametros.put("cepEntrada", cepLogradouro);
 		String conteudo = WorldWideWeb.obterConteudoSite("http://m.correios.com.br/movel/buscaCepConfirma.do",
 				"iso-8859-1", parametros);
-
+		String conteudoCopia = new String(conteudo).replace(':', ' ');
+		
 		List<String[]> resultado = new ArrayList<String[]>();
-		Pattern padrao = Pattern.compile("<span class=\"respostadestaque\">(\\w| |/|\t|,|" + value + ")*</span>",
+		
+		// Monta a lista de labels
+		Pattern patternResposta = Pattern.compile("<span class=\"resposta\">(\\w|:| |/|\t|,|" + value + ")*</span>",
 				Pattern.CASE_INSENSITIVE);
-		Matcher pesquisa = padrao.matcher(conteudo);
-		Pattern padraoLabel = Pattern.compile("<span class=\"resposta\">(\\w| |/|\t|,|" + value + ")*</span>",
-				Pattern.CASE_INSENSITIVE);
-		Matcher pesquisaLabel = padraoLabel.matcher(conteudo);
-		String[] re = new String[5];
-		int enderecoCompleto = 0;
-		String label = "";
-		String content = "";
+		//pesquisa.usePattern(patternResposta);
+		Matcher pesquisaLabel = patternResposta.matcher(conteudoCopia);
+		List<String> listResposta= new ArrayList<String>();
 		while (pesquisaLabel.find()) {
-			if (pesquisa.find()) {
-				label = HTML.removerTags(pesquisaLabel.group()).trim();
-				content = HTML.removerTags(pesquisa.group()).trim();
-				if (label.indexOf("Endereço:") >= 0){ 
-					re[1] = content;
-					enderecoCompleto += 1;
-				} else if (label.indexOf("Bairro:") >= 0){ 
-					re[2] = content;
-					enderecoCompleto += 1;
-				} else if (label.indexOf("Localidade/UF:") >= 0){
-					String cidadeUf = content;
-					re[3] = cidadeUf.substring(0,cidadeUf.indexOf(' '));
-					re[4] = cidadeUf.substring(cidadeUf.length() - 2);
-					enderecoCompleto += 2;
-				} else if (label.indexOf("CEP:") >= 0){ 
-					re[0] = content;
-					enderecoCompleto += 1;
-				} else if (enderecoCompleto == 5) {
-					enderecoCompleto = 0;
-					resultado.add(re);
-					re = new String[5];
-				} // Labels como Unidade ou Cliente, que aparecem apenas em alguns registros, são ignorados
-			}
+			listResposta.add(HTML.removerTags(pesquisaLabel.group()).trim());
 		}
-		if (resultado.size() <= 0) {
-			throw new AlfredException("Nenhum endereço encontrado!");
+		
+		// Monta a lista de conteúdos
+		Pattern patternRespostaDestaque = Pattern.compile("<span class=\"respostadestaque\">(\\w| |/|\t|,|\\(|\\)|\\,|" + value + ")*</span>",
+				Pattern.CASE_INSENSITIVE);
+		Matcher pesquisa = patternRespostaDestaque.matcher(conteudo);
+		List<String> listRespostaDestaque = new ArrayList<String>();
+		while (pesquisa.find()) {
+			listRespostaDestaque.add(HTML.removerTags(pesquisa.group()).trim());
+		} 
+				
+		// Montagem dos Endereços e adição ao resultado
+		int enderecoCompleto = 0;
+		String[] re = new String[5];
+		for (int i = 0; i < listResposta.size(); i++) {
+			if (((String)listResposta.get(i)).indexOf("Logradouro") >= 0 || ((String)listResposta.get(i)).indexOf("Endereço") >= 0) {
+				enderecoCompleto++;
+				re[1] = listRespostaDestaque.get(i).toString();
+			} else if (((String)listResposta.get(i)).indexOf("Bairro") >= 0) {
+				enderecoCompleto++;
+				re[2] = listRespostaDestaque.get(i).toString();
+			} else if (((String)listResposta.get(i)).indexOf("Localidade") >= 0 && ((String)listResposta.get(i)).indexOf("UF") >= 0) {
+				enderecoCompleto += 2;
+				re[3] = listRespostaDestaque.get(i).toString().substring(0,listRespostaDestaque.get(i).toString().indexOf('/')).trim();
+				re[4] = listRespostaDestaque.get(i).toString().substring(listRespostaDestaque.get(i).toString().length() - 2);
+			} else if (((String)listResposta.get(i)).indexOf("CEP") >= 0) {
+				enderecoCompleto++;
+				re[0] = listRespostaDestaque.get(i).toString();
+			} // Labels como Unidade ou Cliente, que aparecem apenas em alguns registros, são ignorados
+			if (enderecoCompleto == 5) {
+				resultado.add(re);
+				re = new String[5];
+				enderecoCompleto = 0;
+			}
 		}
 		return resultado;
 	}
