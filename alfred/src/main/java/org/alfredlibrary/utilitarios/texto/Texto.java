@@ -219,4 +219,31 @@ public class Texto {
 		return original;
 	}
 
+	/**
+	 * Remove caracteres brancos do início e do final do texto.
+	 *  
+	 * @param original Texto original
+	 * @return Texto sem caracteres brancos no início e ao final
+	 */
+	public static String removerBrancosExtremidades(String original) {
+		int inicio = 0;
+		int fim = original.length() - 1;
+		while (inicio < original.length()) {
+			if (original.charAt(inicio) != '\t' && original.charAt(inicio) != '\n' && original.charAt(inicio) != ' ') {
+				break;
+			}
+			inicio++;
+		}
+		while (fim >= 0) {
+			if (original.charAt(fim) != '\t' && original.charAt(fim) != '\n' && original.charAt(fim) != ' ') {
+				break;
+			}
+			fim--;
+		}
+		if (fim < inicio) {
+			return "";
+		}
+		return original.substring(inicio, fim);
+	}
+
 }
