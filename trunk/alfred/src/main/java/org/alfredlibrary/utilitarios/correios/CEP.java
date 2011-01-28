@@ -133,33 +133,16 @@ final public class CEP {
 		cabecalhos.put("referer", "http://m.correios.com.br/movel/buscaCepConfirma.do");
 		
 		boolean sair = false;
-		int registrosTotais, registrosLidos;
-		int pagina = 1;
 		
 		String conteudo = WorldWideWeb.obterConteudoSite("http://m.correios.com.br/movel/buscaCepConfirma.do",
 				"iso-8859-1", parametros, cabecalhos);
-		String conteudoCopia = new String(conteudo).replace(':', ' ');
-		String conteudoCopiaPagina = new String(conteudo);
 		
 		do {
 			// Monta a lista de labels
-			Pattern patternResposta = Pattern.compile("<span class=\"resposta\">(\\w|:| |/|\t|,|" + value + ")*</span>",
-					Pattern.CASE_INSENSITIVE);
-			//pesquisa.usePattern(patternResposta);
-			Matcher pesquisaLabel = patternResposta.matcher(conteudoCopia);
-			List<String> listResposta= new ArrayList<String>();
-			while (pesquisaLabel.find()) {
-				listResposta.add(HTML.removerTags(pesquisaLabel.group()).trim());
-			}
+			List<String> listResposta = montarListLabels(conteudo);
 			
 			// Monta a lista de conteúdos
-			Pattern patternRespostaDestaque = Pattern.compile("<span class=\"respostadestaque\">(\\w| |/|\t|,|\\(|\\)|\\,|" + value + ")*</span>",
-					Pattern.CASE_INSENSITIVE);
-			Matcher pesquisa = patternRespostaDestaque.matcher(conteudo);
-			List<String> listRespostaDestaque = new ArrayList<String>();
-			while (pesquisa.find()) {
-				listRespostaDestaque.add(HTML.removerTags(pesquisa.group()).trim());
-			} 
+			List<String> listRespostaDestaque = montarListConteudo(conteudo);
 					
 			// Montagem dos Endereços e adição ao resultado
 			int enderecoCompleto = 0;
@@ -187,36 +170,56 @@ final public class CEP {
 			}
 			
 			// Muda de página
-			Pattern patternPagina = Pattern.compile("Logradouro <b>(\\w| |\t)*-(\\w| |\t)*</b>( |\t)*de( |\t)*<b>(\\w| |\t)*</b>",
-					Pattern.CASE_INSENSITIVE);
-			Matcher pesquisaPagina = patternPagina.matcher(conteudoCopiaPagina);
-			if (pesquisaPagina.find()) {
-				registrosLidos = Integer.valueOf(HTML.removerTags(pesquisaPagina.group()).trim().substring(HTML.removerTags(pesquisaPagina.group()).trim().indexOf("-") + 2, HTML.removerTags(pesquisaPagina.group()).trim().indexOf(" de")));
-				registrosTotais = Integer.valueOf(HTML.removerTags(pesquisaPagina.group()).trim().substring(HTML.removerTags(pesquisaPagina.group()).trim().indexOf("de") + 3));
-				if (registrosLidos == registrosTotais) {
-					sair = true;
-				} else {
-					pagina++;
-					parametros = new HashMap<String, String>();
-					parametros.put("cepTemp", "");
-					parametros.put("metodo", "buscarCep");
-					//parametros.put("metodo", "proximo");
-					parametros.put("tipoCep", "");
-					parametros.put("cepEntrada", cepLogradouro);
-					parametros.put("numPagina", String.valueOf(pagina));
-					parametros.put("regTotal", String.valueOf(registrosTotais));
-					conteudo = new String(WorldWideWeb.obterConteudoSite("http://m.correios.com.br/movel/buscaCepConfirma.do",
-							"iso-8859-1", parametros, cabecalhos));
-					conteudoCopia = new String(conteudo).replace(':', ' ');
-					conteudoCopiaPagina = new String(conteudo);
-				}
-			} else {
+			Map<String,Integer> parametrosPagina = montarParametrosPagina(conteudo);
+			
+			if (resultado.size() == parametrosPagina.get("total")) {
 				sair = true;
+			} else {
+				String url = "http://m.correios.com.br/movel/buscaCepConfirma.do?metodo=proximo&numPagina=" + String.valueOf(parametrosPagina.get("pagina")) + "&regTotal=" + String.valueOf(parametrosPagina.get("total")) + "&cepEntrada=Cruz&tipoCep=&cepTemp=";
+				conteudo = new String(WorldWideWeb.obterConteudoSite(url,"iso-8859-1"));
 			}
 		} while (!sair);
 		return resultado;
 	}
 	
+	private static Map<String, Integer> montarParametrosPagina(String conteudo) {
+		Map<String, Integer> resultado = new HashMap<String, Integer>();
+		if (conteudo.indexOf("<input type=\"hidden\" name=\"numPagina\" value=\"") < 0) {
+			throw new AlfredException("Erro ao localizar parâmetros da página!");
+		}
+		int indiceBase = conteudo.indexOf("<input type=\"hidden\" name=\"numPagina\" value=\"") + "<input type=\"hidden\" name=\"numPagina\" value=\"".length();
+		resultado.put("pagina", Integer.valueOf(Texto.manterNumeros(conteudo.substring(indiceBase, indiceBase + conteudo.substring(indiceBase).indexOf("\"")))));
+		indiceBase += conteudo.substring(indiceBase).indexOf("<input type=\"hidden\" name=\"regTotal\" value=\"") + "<input type=\"hidden\" name=\"regTotal\" value=\"".length();
+		resultado.put("total", Integer.valueOf(Texto.manterNumeros(conteudo.substring(indiceBase, indiceBase + conteudo.substring(indiceBase).indexOf("\"")))));
+		return resultado;
+	}
+
+	private static List<String> montarListConteudo(String conteudo) {
+		List<String> resultado = new ArrayList<String>();
+		int indiceBase = 0;
+		String valor;
+		while (conteudo.substring(indiceBase).indexOf("<span class=\"respostadestaque\">") >= 0) {
+			indiceBase += conteudo.substring(indiceBase).indexOf("<span class=\"respostadestaque\">") + 31;
+			valor = conteudo.substring(indiceBase, indiceBase + conteudo.substring(indiceBase).indexOf("</span>"));
+			valor = Texto.removerBrancosExtremidades(valor);
+			resultado.add(valor);
+		}
+		return resultado;
+	}
+
+	private static List<String> montarListLabels(String conteudo) {
+		List<String> resultado = new ArrayList<String>();
+		int indiceBase = 0;
+		String valor;
+		while (conteudo.substring(indiceBase).indexOf("<span class=\"resposta\">") >= 0) {
+			indiceBase += conteudo.substring(indiceBase).indexOf("<span class=\"resposta\">") + 23;
+			valor = conteudo.substring(indiceBase, indiceBase + conteudo.substring(indiceBase).indexOf("</span>"));
+			valor = Texto.removerBrancosExtremidades(valor);
+			resultado.add(valor);
+		}
+		return resultado;
+	}
+
 	/**
 	 * Consultar um Endereço pelo Logradouro. Será retornado uma lista de endereços
 	 * candidatos, onde cada um será um Array contendo 6 posições, que conterão,
