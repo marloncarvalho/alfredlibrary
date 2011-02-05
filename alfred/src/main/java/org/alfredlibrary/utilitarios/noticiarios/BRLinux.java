@@ -31,7 +31,7 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-/**
+/** 
  * Obter resultado de Noticias do BR-Linux.
  * 
  * @author Carlos Daniel de Mattos Mercer
