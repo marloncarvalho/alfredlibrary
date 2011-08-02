@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"    
+    xmlns="cnet_consultamatserv"
+    targetNamespace="cnet_consultamatserv"
+    elementFormDefault="qualified"> 
+    
+    <xsd:annotation>
+      <xsd:appinfo>
+        Schema de validação para consulta de material/serviço. Consulte a equipe de suporte do ComprasNet
+        para maiores detalhes. Ultima atualização em 15 de dezembro de 2003.
+        Copyright 2001 - ComprasNet - Todos os Direitos Reservados - All Rights Reserved
+      </xsd:appinfo>
+      <xsd:documentation>
+        Este documento foi criado e testado tendo como base o schema recomendado pela W3C
+        http://www.w3c.org e o Microsoft XML Parser 4.0.
+      </xsd:documentation>
+    </xsd:annotation> 
+    
+    <xsd:simpleType name="nulo">
+		<xsd:annotation><xsd:documentation>
+			Definição para aceitar dado tipo nulo
+		</xsd:documentation></xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value=""/>
+		</xsd:restriction>		
+	</xsd:simpleType>
+	
+	<xsd:simpleType name="ambienteTipo">
+	  <xsd:annotation><xsd:documentation>
+      Utilizado para descrever o ambiente do grande porte onde será feita a comunicação. 
+      Para o ambiente de produção, o valor aceito é produção.
+      No ambiente de treinamento, o valor válido é treinamento.
+    </xsd:documentation></xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="desenvolvimento|homologação|produção|treinamento"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	
+	<xsd:simpleType name="acaoTipo">
+	  <xsd:annotation><xsd:documentation>
+      Descreve o tipo de ação a ser executada na consulta. 
+    </xsd:documentation></xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="consulta material"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="acaoTipoNulo">
+		<xsd:union memberTypes="acaoTipo nulo"/>
+	</xsd:simpleType>
+	
+	<xsd:simpleType name="sustentavelTipo">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="(n|s|N|S)"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="sustentavelTipoNulo">
+		<xsd:union memberTypes="sustentavelTipo nulo"/>
+	</xsd:simpleType>
+	
+	<xsd:simpleType name="stringTam15Tipo">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[\p{IsBasicLatin},\p{IsLatin-1Supplement}]*"/>
+			<xsd:maxLength value="15"/>
+			<xsd:minLength value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="stringTam15TipoNulo">
+		<xsd:union memberTypes="stringTam15Tipo nulo"/>
+	</xsd:simpleType>
+	
+	<xsd:simpleType name="stringTam25Tipo">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[\p{IsBasicLatin},\p{IsLatin-1Supplement}]*"/>
+			<xsd:maxLength value="25"/>
+			<xsd:minLength value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="stringTam25TipoNulo">
+		<xsd:union memberTypes="stringTam25Tipo nulo"/>
+	</xsd:simpleType>
+	
+	<xsd:simpleType name="numTam9Tipo">
+		<xsd:restriction base="xsd:positiveInteger">
+			<xsd:maxInclusive value="999999999"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="numTam9TipoNulo">
+		<xsd:union memberTypes="numTam9Tipo nulo"/>
+	</xsd:simpleType>
+	
+	<xsd:simpleType name="numTam11Tipo">
+		<xsd:restriction base="xsd:positiveInteger">
+			<xsd:maxInclusive value="99999999999"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="numTam11TipoNulo">
+		<xsd:union memberTypes="numTam11Tipo nulo"/>
+	</xsd:simpleType>
+	
+  <xsd:element name="cnet">
+   	<xsd:complexType><xsd:sequence>  
+			  
+			  <xsd:element name="ambiente" type="ambienteTipo"/>
+			  <xsd:element name="sistema" type="stringTam15Tipo"/>
+			  <xsd:element name="cpf" type="numTam11Tipo"/>
+			  <xsd:element name="senha" type="xsd:string"/>
+			  <xsd:element name="acao" type="acaoTipo"/>
+			  <xsd:element name="codigo_item" type="numTam9TipoNulo" nillable="true"/>
+			  <xsd:element name="radical1" type="stringTam25TipoNulo" nillable="true"/>
+			  <xsd:element name="radical2" type="stringTam25TipoNulo" nillable="true"/>
+			  <xsd:element name="radical3" type="stringTam25TipoNulo" nillable="true"/>
+			  <xsd:element name="sustentavel" type="sustentavelTipoNulo" />
+			  
+			  
+    </xsd:sequence></xsd:complexType>
+  </xsd:element>
+  
+</xsd:schema>

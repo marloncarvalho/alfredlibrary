@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="cnet">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="erroxml"/>
+        <xs:element ref="descxml"/>
+        <xs:element ref="erronat"/>
+        <xs:element ref="descnat"/>
+        <xs:element ref="itens"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="erroxml" type="xs:integer"/>
+  <xs:element name="descxml">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="erronat" type="xs:integer"/>
+  <xs:element name="descnat">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="itens">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="item"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="item">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="codigo"/>
+        <xs:element ref="descricao"/>
+        <xs:element ref="grupo"/>
+        <xs:element ref="classe"/>
+        <xs:element ref="sustentabilidade"/>
+        <xs:element ref="codigoPDM"/>
+        <xs:element ref="descricaoPDM"/>
+        <xs:element ref="unidades"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="codigo" type="xs:integer"/>
+  <xs:element name="descricao" type="xs:string"/>
+  <xs:element name="grupo" type="xs:integer"/>
+  <xs:element name="classe" type="xs:integer"/>
+  <xs:element name="sustentabilidade" type="xs:NCName"/>
+  <xs:element name="codigoPDM" type="xs:integer"/>
+  <xs:element name="descricaoPDM" type="xs:string"/>
+  <xs:element name="unidades">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="unidade"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="unidade">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="unidade_fornecimento"/>
+        <xs:element ref="sigla_unidade_fornecimento"/>
+        <xs:element ref="capacidade"/>
+        <xs:element ref="unidade_medida"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="unidade_fornecimento" type="xs:NCName"/>
+  <xs:element name="sigla_unidade_fornecimento" type="xs:NCName"/>
+  <xs:element name="capacidade" type="xs:string"/>
+  <xs:element name="unidade_medida" type="xs:string"/>
+</xs:schema>
