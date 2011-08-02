@@ -22,6 +22,7 @@ import javax.xml.bind.Unmarshaller;
 
 import org.alfredlibrary.AlfredException;
 import org.alfredlibrary.gov.comprasnet.catalogo.materiais.retorno.Item;
+import org.alfredlibrary.utilitarios.net.WorldWideWeb;
 
 
 /**
@@ -403,51 +404,11 @@ public class CatalogoMateriasService {
 	private String obterDados(String dados) {
 		Map<String, String> parametros = new HashMap<String, String>();
 		parametros.put("xml", dados);
-		return obterConteudoSite(
+		return WorldWideWeb.obterConteudoSite(
 				"http://www.comprasnet.gov.br/xml/producao/consultamatserv.asp",
 				"ISO-8859-1", parametros);
 	}
 
-	private static String obterConteudoSite(String u, String encode,
-			Map<String, String> parametros) {
-		URL url;
-		try {
-			StringBuilder strParams = new StringBuilder();
-			if (parametros != null) {
-				for (String chave : parametros.keySet()) {
-					strParams.append(URLEncoder.encode(chave, "UTF-8"));
-					strParams.append("=");
-					strParams.append(URLEncoder.encode(parametros.get(chave),
-							encode));
-					strParams.append("&");
-				}
-			}
-			url = new URL(u);
-			URLConnection conn = null;
-			conn = url.openConnection();
-			conn.setDoOutput(true);
-			OutputStreamWriter wr = new OutputStreamWriter(
-					conn.getOutputStream());
-			wr.write(strParams.toString());
-			wr.flush();
-			BufferedReader rd = new BufferedReader(new InputStreamReader(
-					conn.getInputStream(), encode));
-			String line;
-			StringBuilder resultado = new StringBuilder();
-			while ((line = rd.readLine()) != null) {
-				resultado.append(line);
-			}
-			wr.close();
-			rd.close();
-			return resultado.toString();
-		} catch (MalformedURLException e) {
-			throw new AlfredException(
-					"Não foi possível obter contato com o site " + u, e);
-		} catch (IOException e) {
-			throw new AlfredException(
-					"Não foi possível obter contato com o site " + u, e);
-		}
-	}
 
 	private org.alfredlibrary.gov.comprasnet.catalogo.materiais.retorno.Cnet unmarshaller(
 			String xml) {
